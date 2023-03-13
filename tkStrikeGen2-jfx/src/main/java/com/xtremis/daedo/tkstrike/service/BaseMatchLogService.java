@@ -67,9 +67,10 @@ public abstract class BaseMatchLogService<D extends CommonMatchLogDto, ID extend
 
 	@Override
 	public D getLastStarted() throws TkStrikeServiceException {
-		MatchLogEntity matchLogEntity = getMatchLogRepository().getLastStarted();
-		if(matchLogEntity != null)
-			return (D)getMatchLogTransformer().transferToDto(matchLogEntity);
+		final DE entity = this.getMatchLogRepository().getLastStarted();
+		if(entity != null) {
+			return this.getMatchLogTransformer().transferToDto(entity);
+		}
 		return null;
 	}
 
@@ -133,7 +134,7 @@ public abstract class BaseMatchLogService<D extends CommonMatchLogDto, ID extend
 			String entryValue) throws TkStrikeServiceException {
 		if(matchLogId != null) {
 			EI matchLogItem = newMatchLogItemEntity();
-			matchLogItem.setMatchLog((MatchLogEntity)_getById(matchLogId));
+			matchLogItem.setMatchLog(this._getById(matchLogId));
 			matchLogItem.setRoundNumber(roundNumber);
 			matchLogItem.setRoundNumberStr(roundNumberString);
 			matchLogItem.setEventTime(eventTime);
@@ -157,7 +158,7 @@ public abstract class BaseMatchLogService<D extends CommonMatchLogDto, ID extend
 	public void addMatchLogItem(String matchLogId, ID matchLogItemDto) throws TkStrikeServiceException {
 		if(matchLogId != null) {
 			EI matchLogItem = newMatchLogItemEntity();
-			matchLogItem.setMatchLog((MatchLogEntity)_getById(matchLogId));
+			matchLogItem.setMatchLog(this._getById(matchLogId));
 			BeanUtils.copyProperties(matchLogItemDto, matchLogItem, new String[] {"matchLog", "version", "id"});
 			try {
 				getMatchLogItemRepository().saveAndFlush(matchLogItem);
