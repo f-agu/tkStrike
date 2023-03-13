@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.String?>
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.RestrictiveTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane fx:id="rootView" minWidth="970.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.EditAthleteController">
+    <children>
+        <BorderPane fx:id="pnMain" styleClass="tkStrike-window-container" visible="true">
+            <top>
+                <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                    <children>
+                        <Label text="%label.editAthlete" BorderPane.alignment="CENTER" />
+                    </children>
+                </StackPane>
+            </top>
+         <bottom>
+            <StackPane BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#doCancel" text="%button.cancel" StackPane.alignment="CENTER_LEFT">
+                     <styleClass>
+                        <String fx:value="button-window-reverse" />
+                        <String fx:value="wz-button-control" />
+                        <String fx:value="button-image-cancel-reverse" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="94.0" layoutY="10.0" mnemonicParsing="false" onAction="#doSave" text="%button.save" StackPane.alignment="CENTER_RIGHT">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="wz-button-control" />
+                        <String fx:value="button-image-save-reverse" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </StackPane>
+         </bottom>
+         <center>
+            <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="450.0" prefWidth="450.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="450.0" prefWidth="450.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                     <children>
+                        <Label text="%label.wtfId" />
+                        <TextField fx:id="txtWtId" promptText="%label.wtfId" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="5.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label text="%label.ovrInternalId" />
+                        <TextField fx:id="txtOvrInternalId" />
+                         <Circle fx:id="ciExists" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="15.0" spacing="5.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="%label.scoreboardName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtScoreboardName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.scoreboardName" />
+                     </children>
+                  </HBox>
+                      <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                         <children>
+                            <Label text="%label.flag" />
+                            <RestrictiveTextField fx:id="txtFlagAbbr" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                            <ImageView fx:id="ivFlag" fitHeight="35.0" pickOnBounds="true" preserveRatio="true" />
+                         </children>
+                      </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="65.0" spacing="5.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="%label.givenName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtGivenName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.givenName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="115.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="%label.familyName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtFamilyName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.familyName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="470.0" layoutY="115.0" spacing="5.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="%label.passportGivenName" textAlignment="RIGHT" wrapText="true" />
+                        <TextField fx:id="txtPassportGivenName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.passportGivenName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="165.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="%label.passportFamilyName" textAlignment="RIGHT" wrapText="true" />
+                        <TextField fx:id="txtPassportFamilyName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.passportFamilyName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="470.0" layoutY="165.0" spacing="5.0" GridPane.rowIndex="4">
+                     <children>
+                        <Label text="%label.preferredGivenName" textAlignment="RIGHT" wrapText="true" />
+                        <TextField fx:id="txtPreferredGivenName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.preferredGivenName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="215.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <Label text="%label.preferredFamilyName" textAlignment="RIGHT" wrapText="true" />
+                        <TextField fx:id="txtPreferredFamilyName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.preferredFamilyName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="470.0" layoutY="215.0" spacing="5.0" GridPane.rowIndex="5">
+                     <children>
+                        <Label text="%label.printName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtPrintName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.printName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="265.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <Label text="%label.printInitialName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtPrintInitialName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.printInitialName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="470.0" layoutY="265.0" spacing="5.0" GridPane.rowIndex="6">
+                     <children>
+                        <Label text="%label.tvName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtTVName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.tvName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="315.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <Label text="%label.tvInitialName" textAlignment="CENTER" wrapText="true" />
+                        <TextField fx:id="txtTVInitialName" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="%label.tvInitialName" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="470.0" layoutY="315.0" spacing="5.0" GridPane.rowIndex="7">
+                     <children>
+                        <Label text="%label.birthDate" textAlignment="CENTER" wrapText="true" />
+                        <DatePicker fx:id="dpBirthDate" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="365.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <Label text="%label.competitorType" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tgCompetitorTypeA" layoutX="340.0" layoutY="16.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="wz-selection-toggle" text="%toggle.competitorType.A" />
+                        <ToggleButton fx:id="tgCompetitorTypeT" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="wz-selection-toggle" text="%toggle.competitorType.T" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="488.0" layoutY="365.0" spacing="5.0" GridPane.rowIndex="8">
+                     <children>
+                        <Label text="%label.gender" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tgGenderFEMALE" layoutX="340.0" layoutY="16.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="wz-selection-toggle" text="%enum.gender.FEMALE" />
+                        <ToggleButton fx:id="tgGenderMALE" layoutX="378.0" layoutY="16.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="wz-selection-toggle" text="%enum.gender.MALE" />
+                        <ToggleButton fx:id="tgGenderMIXED" layoutX="378.0" layoutY="16.0" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="wz-selection-toggle" text="%enum.gender.MIXED" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="415.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <children>
+                        <Label text="%label.rank" textAlignment="CENTER" wrapText="true" />
+                        <RestrictiveTextField fx:id="txtRank" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <Label layoutX="353.0" layoutY="25.0" text="%label.seed" textAlignment="CENTER" wrapText="true" />
+                        <RestrictiveTextField fx:id="txtSeed" layoutX="397.0" layoutY="15.0" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </GridPane>
+         </center>
+        </BorderPane>
+        <StackPane fx:id="piPanel" visible="false">
+            <children>
+                <ProgressIndicator />
+                <Label text="%message.info.workingPleaseWait" />
+            </children>
+        </StackPane>
+    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</StackPane>

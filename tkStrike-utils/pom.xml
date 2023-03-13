@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    	<parent>
+		<groupId>org.fagu.tkstrike</groupId>
+		<artifactId>tkstrike-parent</artifactId>
+		<version>1.2.0-SNAPSHOT</version>
+	</parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tkStrike-utils</artifactId>
+    <packaging>jar</packaging>
+    <name>TkStrike Tools Utils</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.fagu.tkstrike</groupId>
+            <artifactId>tkStrike-base-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- CXF -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- REST API -->
+        <!--<dependency>-->
+            <!--<groupId>javax.ws.rs</groupId>-->
+            <!--<artifactId>jsr311-api</artifactId>-->
+        <!--</dependency>-->
+
+
+    </dependencies>
+
+</project>

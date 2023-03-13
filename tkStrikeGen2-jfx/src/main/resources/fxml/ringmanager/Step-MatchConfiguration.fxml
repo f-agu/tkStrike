@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootView" styleClass="tkStrike-window-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.MatchConfigurationController">
+   <bottom>
+
+   </bottom>
+   <right>
+
+   </right>
+   <center>
+
+   </center>
+   <center>
+
+   </center>
+   <center>
+      <GridPane styleClass="tkStrike-window-container">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="273.0" prefWidth="273.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="273.0" prefWidth="273.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="273.0" prefWidth="273.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="60.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label minWidth="140.0" prefWidth="140.0" text="%label.rounds" />
+                  <ComboBox fx:id="cmbRounds" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1">
+               <children>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                     <children>
+                        <Label text="%label.roundTime" />
+                     </children>
+                  </StackPane>
+                  <RestrictiveTextField fx:id="txtRoundMinutes" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+                  <RestrictiveTextField fx:id="txtRoundSeconds" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                     <children>
+                        <Label text="%label.kyeShiTime" />
+                     </children>
+                  </StackPane>
+                  <RestrictiveTextField fx:id="txtKyeShiMinutes" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+                  <RestrictiveTextField fx:id="txtKyeShiSeconds" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                     <children>
+                        <Label text="%label.restTime" />
+                     </children>
+                  </StackPane>
+                  <RestrictiveTextField fx:id="txtRestMinutes" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+                  <RestrictiveTextField fx:id="txtRestSeconds" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2">
+               <children>
+                  <Label text="%label.goldenPoint" />
+                 <CheckBox fx:id="chkGoldenPoint" mnemonicParsing="false" />
+                 <RestrictiveTextField fx:id="txtGoldenPointTimeMinutes" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+                 <RestrictiveTextField fx:id="txtGoldenPointTimeSeconds" maxLength="2" minWidth="40.0" prefColumnCount="2" prefWidth="40.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="566.0" layoutY="20.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <CheckBox fx:id="chkIsParaTkdMatch" mnemonicParsing="false">
+                     <graphic>
+                        <Label text="%label.isParaTkdMatch" />
+                     </graphic>
+                  </CheckBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                     <children>
+                        <Label fx:id="lblDifferentialScore" text="%label.differencialScore" wrapText="true" />
+                     </children>
+                  </StackPane>
+                  <RestrictiveTextField fx:id="txtDifferencialScore" alignment="CENTER_RIGHT" maxWidth="75.0" minHeight="25.0" prefHeight="25.0" prefWidth="75.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="293.0" layoutY="20.0" spacing="10.0" GridPane.rowIndex="1">
+               <children>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                     <children>
+                        <Label minWidth="140.0" prefWidth="140.0" text="%label.maxGamJeomsAllowed" wrapText="true" />
+                     </children>
+                  </StackPane>
+                  <RestrictiveTextField fx:id="txtMaxGamJeoms" maxLength="2" minWidth="60.0" prefColumnCount="2" prefWidth="60.0" />
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="2">
+               <children>
+                  <ToggleButton fx:id="tgMatchVictoryCriteria" mnemonicParsing="false" text="%toggle.matchVictoryCriteria.byPoints" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="lblMatchVictoryCriteria" text="%toggle.matchVictoryCriteria.byPoints.extraInfo" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </GridPane>
+   </center>
+   <top>
+      <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+         <children>
+            <Label text="%label.match" BorderPane.alignment="CENTER" />
+         </children>
+      </StackPane>
+   </top>
+</BorderPane>

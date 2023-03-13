@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<!--<BorderPane fx:id="rootView" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExternalScreenMainController">-->
+<BorderPane fx:id="rootView" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.externalscreen.ExternalScreenMainController" style="-fx-background-color: #000000;">
+   <center>
+      <StackPane fx:id="pnWrapper">
+         <children>
+         </children>
+      </StackPane>
+   </center>
+   <!--<padding>-->
+      <!--<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+   <!--</padding>-->
+</BorderPane>

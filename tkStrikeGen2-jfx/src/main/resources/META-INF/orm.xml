@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" version="1.0">
+
+    <!-- Entities -->
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.Phase"
+            name="Phase"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.SubCategory"
+            name="Subcategory"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.Category"
+            name="Category"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.Flag"
+            name="Flag"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.Athlete"
+            name="Athlete"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.NetworkConfiguration"
+            name="NetworkConfiguration"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.MatchConfiguration"
+            name="MatchConfiguration"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.SoundConfiguration"
+            name="SoundConfiguration"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.Rules"
+            name="Rules"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.ExternalConfig"
+            name="ExternalConfig"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.MatchLog"
+            name="MatchLog"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.MatchLogItem"
+            name="MatchLogItem"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.UdpEventListener"
+            name="UdpEventListener"/>
+
+    <entity class="com.xtremis.daedo.tkstrike.orm.model.Referee"
+            name="Referee"/>
+
+</entity-mappings>

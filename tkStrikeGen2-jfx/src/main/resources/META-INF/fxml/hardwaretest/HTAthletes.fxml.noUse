@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.RestrictiveTextField?>
+
+<BorderPane fx:id="rootView" maxHeight="460.0" maxWidth="900.0" minHeight="460.0" minWidth="900.0" prefHeight="460.0" prefWidth="900.0" styleClass="tkStrike-hardwareTest-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.hardwaretest.HTAthletesController">
+
+   <top>
+      <Label style="-fx-text-fill: white;" styleClass="label-title" text="%label.athletesHWTest" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label style="-fx-text-fill: white;" text="%label.bodyMinLevel" />
+                  <RestrictiveTextField fx:id="txtMinBodyHit" alignment="CENTER_RIGHT" maxWidth="75.0" minHeight="25.0" prefHeight="25.0" prefWidth="75.0" text="0" />
+                  <Label layoutX="266.0" layoutY="15.0" style="-fx-text-fill: white;" text="%label.headMinLevel" />
+                  <RestrictiveTextField fx:id="txtMinHeadHit" alignment="CENTER_RIGHT" maxWidth="75.0" minHeight="25.0" prefHeight="25.0" prefWidth="75.0" text="0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <BorderPane styleClass="tkStrike-window-container-blue">
+                     <center>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <VBox fx:id="hbG1BB" alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label contentDisplay="CENTER" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.body" />
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <Rectangle fx:id="shG1BB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                          <Text fx:id="txtG1BB" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1BB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                                          <Text fx:id="txtG1BBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="hbG1HB" alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.head" />
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <Circle fx:id="shG1HB" fill="#cdcfd0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                                          <Text fx:id="txtG1HB" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1HB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                                          <Text fx:id="txtG1HBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </center>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </BorderPane>
+                  <BorderPane layoutX="10.0" layoutY="10.0" styleClass="tkStrike-window-container-red">
+                     <center>
+                        <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <VBox fx:id="hbG1BR" alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+                                 <children>
+                                    <Label contentDisplay="CENTER" layoutX="23.0" layoutY="47.0" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.body" />
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <Rectangle fx:id="shG1BR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                          <Text fx:id="txtG1BR" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1BR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                                          <Text fx:id="txtG1BRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="hbG1HR" alignment="CENTER" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+                                 <children>
+                                    <Label contentDisplay="CENTER" layoutX="123.0" layoutY="47.0" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.head" />
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <Circle fx:id="shG1HR" fill="#cdcfd0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                                          <Text fx:id="txtG1HR" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1HR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                                          <Text fx:id="txtG1HRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <StackPane>
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="250.0" />
+                  <Text fx:id="txtTestStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="%label.waiting" visible="false" />
+                  <Button mnemonicParsing="false" onAction="#closeHardwareTestWindow" styleClass="button-main" text="%button.close" />
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Pane maxHeight="0.0" minHeight="0.0" prefHeight="0.0" visible="false">
+      <children>
+         <VBox fx:id="hbG2BB" alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+            <children>
+               <Label contentDisplay="CENTER" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.body" />
+               <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <children>
+                     <Rectangle fx:id="shG2BB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                     <Text fx:id="txtG2BB" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                  </children>
+               </StackPane>
+               <StackPane>
+                  <children>
+                     <Rectangle fx:id="stG2BB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                     <Text fx:id="txtG2BBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  </children>
+               </StackPane>
+            </children>
+         </VBox>
+         <VBox fx:id="hbG2HB" alignment="CENTER" spacing="5.0">
+            <children>
+               <Label contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.head" />
+               <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <children>
+                     <Circle fx:id="shG2HB" fill="#cdcfd0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Text fx:id="txtG2HB" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                  </children>
+               </StackPane>
+               <StackPane>
+                  <children>
+                     <Rectangle fx:id="stG2HB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                     <Text fx:id="txtG2HBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  </children>
+               </StackPane>
+            </children>
+         </VBox>   
+         <VBox fx:id="hbG2BR" alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+            <children>
+               <Label contentDisplay="CENTER" layoutX="23.0" layoutY="47.0" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.body" />
+               <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <children>
+                     <Rectangle fx:id="shG2BR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="80.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                     <Text fx:id="txtG2BR" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                  </children>
+               </StackPane>
+               <StackPane>
+                  <children>
+                     <Rectangle fx:id="stG2BR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                     <Text fx:id="txtG2BRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  </children>
+               </StackPane>
+            </children>
+         </VBox>
+         <VBox fx:id="hbG2HR" alignment="CENTER" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+            <children>
+               <Label contentDisplay="CENTER" layoutX="123.0" layoutY="47.0" style="-fx-text-fill: white;" styleClass="label-subTitle" text="%label.head" />
+               <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <children>
+                     <Circle fx:id="shG2HR" fill="#cdcfd0" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                     <Text fx:id="txtG2HR" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-font-size: 20;" />
+                  </children>
+               </StackPane>
+               <StackPane>
+                  <children>
+                     <Rectangle fx:id="stG2HR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="25.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+                     <Text fx:id="txtG2HRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  </children>
+               </StackPane>
+            </children>
+         </VBox>
+      </children>
+      </Pane>
+   </bottom>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+
+</BorderPane>

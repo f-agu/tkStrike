@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="rootView" maxWidth="970.0" minHeight="500.0" minWidth="970.0" prefHeight="500.0" prefWidth="970.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationMatchLogController">
+   <children>
+      <BorderPane fx:id="pnContainer" maxWidth="970.0" minHeight="500.0" minWidth="970.0" prefHeight="500.0" prefWidth="970.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <center>
+            <GridPane vgap="5.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="75.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <BorderPane styleClass="tkStrike-window-container">
+                     <top>
+                        <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                           <children>
+                              <Label text="%label.matchLogConfiguration" BorderPane.alignment="CENTER" />
+                           </children>
+                        </StackPane>
+                     </top>
+                     <center>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="41.0" spacing="10.0">
+                                 <children>
+                                    <Label text="%label.matchLogOutputDirectory" />
+                                    <TextField fx:id="txtMatchLogOutputDirectory" editable="false" maxWidth="540.0" minWidth="540.0" prefWidth="540.0" />
+                                    <Button contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#doChangeDirectory" prefWidth="35.0">
+                                       <styleClass>
+                                          <String fx:value="button-image-select" />
+                                          <String fx:value="button-window-reverse" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="301.0" layoutY="20.0" mnemonicParsing="false" onAction="#exportAllToDirectory" styleClass="button-window" text="%button.exportAllMatchLog2Directory" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+                  <BorderPane styleClass="tkStrike-window-container" GridPane.rowIndex="1">
+                     <top>
+                        <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="%label.matchLogHistorical" />
+                           </children>
+                        </StackPane>
+                     </top>
+                     <center>
+                        <StackPane>
+                           <children>
+                              <VBox fx:id="pnMatchLogMain" spacing="5.0" BorderPane.alignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Label maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="%label.phase" />
+                                                <ComboBox fx:id="cmbPhase" prefWidth="150.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                             <children>
+                                                <Label maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="%label.subCategory" />
+                                                <ComboBox fx:id="cmbSubCategory" prefWidth="150.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="210.0" layoutY="10.0" spacing="5.0">
+                                             <children>
+                                                <Label maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="%label.gender" />
+                                                <ComboBox fx:id="cmbGender" prefWidth="150.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="419.0" layoutY="10.0" spacing="5.0">
+                                             <children>
+                                                <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="%label.category" />
+                                                <ComboBox fx:id="cmbCategory" prefWidth="150.0" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#showFilterAthletes" styleClass="button-window-reverse" text="%button.selectAthletes" />
+                                                <Label fx:id="lblSelectAthletesInfo" maxWidth="145.0" minWidth="145.0" prefWidth="145.0" styleClass="label-red" text="%label.athletesFilterNo" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="20.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Label text="%label.startDate" />
+                                                <DatePicker fx:id="dpStartDate" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                             <children>
+                                                <Label text="%label.endDate" />
+                                                <DatePicker fx:id="dpEndDate" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#doExecuteFilter" text="%button.executeFilter">
+                                                   <styleClass>
+                                                      <String fx:value="button-window-reverse" />
+                                                      <String fx:value="button-image-filter" />
+                                                   </styleClass>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="tbMatchLogHisto" focusTraversable="false">
+                                      <columns>
+                                         <TableColumn fx:id="colId" editable="false" sortable="false" text="%label.id" visible="false" />
+                                         <TableColumn fx:id="colMatchNumber" editable="false" minWidth="70.0" prefWidth="70.0" sortable="true" text="%label.matchNumber" />
+                                         <TableColumn fx:id="colMatchStartTime" editable="false" minWidth="145.0" prefWidth="145.0" sortable="true" text="%label.startTime" />
+                                         <TableColumn fx:id="colMatchEndTime" editable="false" minWidth="145.0" prefWidth="145.0" sortable="true" text="%label.endTime" />
+                                         <TableColumn fx:id="colBlueName" editable="false" minWidth="180.0" prefWidth="180.0" sortable="true" text="%label.blueAthlete.name" />
+                                         <TableColumn fx:id="colRedName" editable="false" minWidth="180.0" prefWidth="180.0" sortable="true" text="%label.redAthlete.name" />
+                                         <TableColumn fx:id="colScore" editable="false" minWidth="60.0" prefWidth="60.0" text="%label.score" />
+                                         <TableColumn fx:id="colPdf" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="" />
+                                         <TableColumn fx:id="colCsv" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="" />
+                                         <TableColumn fx:id="colXls" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="" />
+                                         <TableColumn fx:id="colView" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="" />
+                                         <TableColumn fx:id="colDelete" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="pnFilterAthletes" spacing="5.0" visible="false">
+                                 <children>
+                                    <Label styleClass="label-subTitle" text="%label.selectAthletes4Filter" />
+                                    <TableView fx:id="tbAthletes">
+                                      <columns>
+                                        <TableColumn fx:id="colAthleteId" editable="false" prefWidth="75.0" sortable="false" text="id" visible="false" />
+                                          <TableColumn fx:id="colAthleteSelect" editable="false" prefWidth="45.0" />
+                                        <TableColumn fx:id="colAthleteName" editable="false" prefWidth="350.0" text="%label.name" />
+                                          <TableColumn fx:id="colAthleteWtfId" editable="false" prefWidth="75.0" text="%label.wtfId" />
+                                          <TableColumn fx:id="colAthleteAbbreviation" editable="false" prefWidth="75.0" text="%label.abbreviation" />
+                                          <TableColumn fx:id="colAthleteAbbreviationImage" editable="false" prefWidth="75.0" sortable="false" />
+                                      </columns>
+                                    </TableView>
+                                    <StackPane>
+                                       <children>
+                                          <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#cancelAthletesFilter" text="Button" StackPane.alignment="CENTER_LEFT">
+                                             <styleClass>
+                                                <String fx:value="button-window-reverse" />
+                                                <String fx:value="button-image-cancel-reverse" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button contentDisplay="GRAPHIC_ONLY" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#confirmAthletesFilter" text="Button" StackPane.alignment="CENTER_RIGHT">
+                                             <styleClass>
+                                                <String fx:value="button-window" />
+                                                <String fx:value="button-image-save-reverse" />
+                                             </styleClass>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </StackPane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="15.0" left="150.0" right="150.0" top="15.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                     </center>
+                     <bottom>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button layoutX="299.0" layoutY="10.0" mnemonicParsing="false" onAction="#doGenerateAggregateCSV" styleClass="button-window" text="%button.generateAggregatedCSV" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" />
+                           </padding>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+      <ProgressIndicator fx:id="pi" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" visible="false" />
+   </children>
+</StackPane>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootView" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="tkStrikeMain" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.TkStrikeMainControllerImpl">
+   <bottom>
+      <VBox alignment="BOTTOM_CENTER" maxHeight="180.0" minHeight="180.0" prefHeight="180.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxWidth="1280.0" minWidth="1280.0" prefWidth="1280.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <StackPane fx:id="pnNetworkStatus" alignment="CENTER_LEFT" maxHeight="85.0" maxWidth="800.0" minHeight="85.0" minWidth="800.0" prefHeight="85.0" prefWidth="800.0">
+                     <children>
+               </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_RIGHT" maxWidth="400.0" minWidth="440.0" prefWidth="440.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblStatusNetworkConfigured" alignment="CENTER" maxHeight="30.0" maxWidth="210.0" minHeight="30.0" minWidth="210.0" prefHeight="30.0" prefWidth="210.0" styleClass="appStatus-no" text="%label.appStatus.NETWORK_CONFIGURED" textFill="WHITE" />
+                              <StackPane>
+                                 <children>
+                                    <Label fx:id="lblStatusMatchConfigured" alignment="CENTER" layoutX="20.0" layoutY="10.0" maxHeight="30.0" maxWidth="210.0" minHeight="30.0" minWidth="210.0" prefHeight="30.0" prefWidth="210.0" styleClass="appStatus-no" text="%label.appStatus.MATCH_CONFIGURED" textFill="WHITE" />
+                                    <Label fx:id="lblErrorsOnExternals" alignment="CENTER" layoutX="240.0" layoutY="10.0" maxHeight="30.0" maxWidth="210.0" minHeight="30.0" minWidth="210.0" prefHeight="30.0" prefWidth="210.0" styleClass="appStatus-error" text="%label.appStatus.ERRORS_ON_EXTERNALS" textFill="WHITE" visible="false" />
+                                 </children>
+                              </StackPane>
+                              <!-- BETA7 es treu l'obiglarorietat de passar els Hardware Tests-->
+                              <!--<Label fx:id="lblStatusHTJudgesOk" alignment="CENTER" layoutX="230.0" layoutY="10.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" styleClass="appStatus-no" text="%label.appStatus.HT_JUDGES_OK" textFill="WHITE" />-->
+                              <!--<Label fx:id="lblStatusHTAthletesOk" alignment="CENTER" layoutX="440.0" layoutY="10.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" styleClass="appStatus-no" text="%label.appStatus.HT_ATHLETES_OK" textFill="WHITE" />-->
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="40.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lblStatusReady4Match" alignment="CENTER" maxHeight="30.0" maxWidth="210.0" minHeight="30.0" minWidth="210.0" prefHeight="30.0" prefWidth="210.0" styleClass="appStatus-no" text="%label.appStatus.READY_FOR_MATCH" textFill="WHITE" />
+                              <Label fx:id="lblStatusNetworkError" alignment="CENTER" layoutX="20.0" layoutY="10.0" maxHeight="30.0" maxWidth="210.0" minHeight="30.0" minWidth="210.0" prefHeight="30.0" prefWidth="210.0" styleClass="appStatus-no" text="%label.appStatus.NETWORK_ERROR" textFill="WHITE" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" right="20.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="pnAppMainButtons" alignment="BOTTOM_CENTER" spacing="10.0">
+               <children>
+                  <!--<Button onAction="#openMatchLogTest" maxHeight="40.0" maxWidth="75.0" minHeight="40.0" minWidth="75.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="75.0" styleClass="button-app-control" text="ML" />-->
+                  <Button fx:id="btRingManager" focusTraversable="false" mnemonicParsing="false" styleClass="button-main" text="%button.main.ringManager" />
+                  <Button fx:id="btHardwareTest" focusTraversable="false" mnemonicParsing="false" onAction="#openHardwareTest" styleClass="button-main" text="%button.main.hardwareTest" />
+                  <Button fx:id="btConfig" focusTraversable="false" mnemonicParsing="false" styleClass="button-main" text="%button.main.config" />
+                  <Button fx:id="btExit" focusTraversable="false" mnemonicParsing="false" onAction="#exitTkStrike" styleClass="button-main" text="%button.main.exit" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </VBox>
+   </bottom>
+   <right>
+      <VBox>
+         <children>
+            <VBox fx:id="pnButtonsMatchControl" alignment="TOP_CENTER" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <StackPane>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="37.0" maxWidth="295.0" minHeight="37.0" minWidth="295.0" prefHeight="37.0" prefWidth="295.0" styleClass="label-matchControl" text="%label.main.matchControl" textAlignment="CENTER" />
+                           </children>
+                        </StackPane>
+                        <VBox fx:id="pnButtonsPenalties" alignment="CENTER" maxWidth="295.0" minWidth="295.0" prefWidth="295.0" style="-fx-background-color: #3f3f3f;">
+                           <children>
+                              <Line endX="195.0" fill="#565555" startX="-100.0" stroke="#565555" />
+                              <HBox alignment="CENTER" maxHeight="70.0" maxWidth="295.0" minHeight="70.0" minWidth="295.0" prefHeight="70.0" prefWidth="295.0" spacing="5.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <Button focusTraversable="false" layoutX="40.0" layoutY="15.0" maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#removeGamJeom2Blue" prefHeight="38.0" prefWidth="38.0" styleClass="button-penalty-blue" text="-" textAlignment="CENTER" textFill="WHITE" />
+                                    <Button focusTraversable="false" maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#addGamJeom2Blue" prefHeight="38.0" prefWidth="38.0" styleClass="button-penalty-blue" text="+" textAlignment="CENTER" textFill="WHITE" />
+                                    <VBox alignment="CENTER" maxWidth="95.0" minWidth="95.0" prefWidth="95.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="%label.main.game-jeon" textFill="WHITE" />
+                                          <Label alignment="CENTER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="1 p" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <Button alignment="CENTER" focusTraversable="false" maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#addGamJeom2Red" prefHeight="38.0" prefWidth="38.0" styleClass="button-penalty-red" text="+" textAlignment="CENTER" textFill="WHITE" />
+                                    <Button alignment="CENTER" focusTraversable="false" layoutX="180.0" layoutY="15.0" maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#removeGamJeom2Red" prefHeight="38.0" prefWidth="38.0" styleClass="button-penalty-red" text="-" textAlignment="CENTER" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="btNextRound" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" styleClass="button-match-control" text="%btn.main.next-round" textAlignment="CENTER" textFill="WHITE" />
+                        <Button fx:id="btStartRound" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" styleClass="button-match-control" text="%btn.main.start-round" textAlignment="CENTER" textFill="WHITE" />
+                        <Button fx:id="btTimeout" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" styleClass="button-match-control" text="%btn.main.timeout" textAlignment="CENTER" textFill="WHITE" />
+                        <Button fx:id="btKyeShi" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" styleClass="button-match-control" text="%btn.main.kye-shi" textAlignment="CENTER" textFill="WHITE" />
+                        <ToggleButton fx:id="btDoctor" mnemonicParsing="false" styleClass="toggle-externalScreen" text="%btn.main.doctor" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="btMatchLog" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#openMatchLog" styleClass="button-match-control" text="%button.main.match-log" textAlignment="CENTER" textFill="WHITE" />
+                        <Button fx:id="btFinalResult" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" styleClass="button-match-control" text="%button.main.final-result" textAlignment="CENTER" textFill="WHITE" />
+                        <Button fx:id="btScoreboard" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#openScoreboardEditor" styleClass="button-match-control" text="%button.main.scoreboard" textAlignment="CENTER" textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <StackPane>
+               <children>
+                  <ToggleButton fx:id="tgExternalScoreboard" focusTraversable="false" mnemonicParsing="false" styleClass="toggle-externalScreen" text="%label.externalScoreboard.off" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="428.0">
+               <children>
+                  <ToggleButton fx:id="tgBackupSystem" focusTraversable="false" mnemonicParsing="false" styleClass="toggle-externalScreen" text="%label.backupSystem.off" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </StackPane>
+            <Label fx:id="lblMatchVictoryCriteria" alignment="CENTER" maxWidth="285.0" minHeight="30.0" minWidth="285.0" prefHeight="30.0" prefWidth="285.0" styleClass="appStatus-ok" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </right>
+   <center>
+   </center>
+   <top>
+      <Pane maxHeight="10.0" minHeight="10.0" prefHeight="10.0" BorderPane.alignment="CENTER" />
+   </top>
+
+</BorderPane>

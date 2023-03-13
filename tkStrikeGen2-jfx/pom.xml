@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>org.fagu.tkstrike</groupId>
+		<artifactId>tkstrike-parent</artifactId>
+		<version>1.2.0-SNAPSHOT</version>
+	</parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tkStrikeGen2-jfx</artifactId>
+ 
+    <properties>
+        <exec.mainClass>com.xtremis.daedo.tkstrike.ui.TkStrikeAppMain</exec.mainClass>
+    </properties>
+
+    <dependencies>
+        <!-- Dependències de tkstrike-app-common-->
+        <!-- CONTROLS FX -->
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+<!--            <version>8.40.10</version>-->
+        </dependency>
+
+        <!-- Apache POI-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+        </dependency>
+
+        <!-- TkStrikeExternalIntegration dependencies..-->
+        <dependency>
+           <groupId>org.fagu.tkstrike</groupId>
+            <artifactId>tkStrike-ei-restInterfaces</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fagu.tkstrike</groupId>
+            <artifactId>tkStrike-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- TkStrike Software Updates dependencies-->
+        <dependency>
+            <groupId>org.fagu.tkstrike</groupId>
+            <artifactId>tkSTrike-software-updates-restInterfaces</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <!-- Dependencies CXF -->
+        <!-- CXF Client -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-hc</artifactId>
+        </dependency>
+        <!-- CXF Extension Providers.. per a tenir el JSONprovider per defecte-->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+        </dependency>
+
+        <!-- jssc -->
+        <dependency>
+            <groupId>org.scream3r</groupId>
+            <artifactId>jssc</artifactId>
+        </dependency>
+
+        <!-- Apache Commmons -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <!--<scope>runtime</scope>--> <!-- revise scope -->
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
+
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <!-- <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency> -->
+
+        <!-- Spring -->
+        <!-- Spring Framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <!-- Spring Aspects -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+
+        <!-- Sping Data JPA -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Open CSV -->
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+        </dependency>
+
+        <!-- FlyWay-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-labs</artifactId>
+        </dependency>
+
+        <!-- Jasper Reports Dependencies -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+           <groupId>commons-digester</groupId>
+           <artifactId>commons-digester</artifactId>
+        </dependency>
+        <dependency>
+           <groupId>org.codehaus.groovy</groupId>
+           <artifactId>groovy-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.crnk</groupId>
+            <artifactId>crnk-client</artifactId>
+            <!-- <version>3.0.20190714142556</version> -->
+            <version>3.4.20210509072026</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <finalName>${exeFinalName}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>mp3</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>wav</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+            <plugin>
+               <groupId>com.zenjava</groupId>
+               <artifactId>javafx-maven-plugin</artifactId>
+               <version>${zenjava.version}</version>
+               <configuration>
+                   <!--<preLoader>com.xtremis.daedo.tkstrike.ui.TkStrikePreLoader</preLoader>-->
+                   <mainClass>${exec.mainClass}</mainClass>
+                   <identifier>${nativeBuildIdentifier}-${tkStrike-nativeReleaseVersion}</identifier>
+                   <verbose>true</verbose>
+                   <updateExistingJar>true</updateExistingJar>
+                   <vendor>Daedo</vendor>
+                   <needShortcut>true</needShortcut>
+                   <needMenu>true</needMenu>
+                   <nativeReleaseVersion>${project.version}</nativeReleaseVersion>
+                   <!-- Definició per defecte de l'encoding a UTF-8 -->
+                   <jvmProperties>
+                       <file-encoding>UTF-8</file-encoding>
+                       <file.encoding>UTF-8</file.encoding>
+                       <sun.jnu.encoding>UTF-8</sun.jnu.encoding>
+                   </jvmProperties>
+                   <!--<jvmProperties>-->
+                       <!--<prism.debug>true</prism.debug>-->
+                       <!--<prism.trace>true</prism.trace>-->
+                       <!--<prism.verbose>true</prism.verbose>-->
+                   <!--</jvmProperties>-->
+               </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <!-- Plugin per la generació del BuildNumber -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <revisionOnScmFailure>false</revisionOnScmFailure>
+                    <format>{0,date,yyyyMMddHHmm}</format>
+                    <items>
+                        <item>timestamp</item>
+                    </items>
+                </configuration>
+            </plugin>
+
+            <!-- unpack dependencies -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-tkStrike</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>com.xtremis.daedo,com.xtremis.daedo.comm</includeGroupIds>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Profiles per la Versió de sensors usada -->
+        <profile>
+            <id>gen1</id>
+            <properties>
+                <tkStrikeGenVersion>gen1</tkStrikeGenVersion>
+                <exeFinalName>tkStrikeGen1</exeFinalName>
+                <!--<appTitleName>Daedo TkStrike</appTitleName>-->
+                <appTitleName>Daedo TkStrike Gen 1</appTitleName>
+                <nativeBuildIdentifier>DaedoTkStrikeGen1</nativeBuildIdentifier>
+                <timeAllowedNextStatus>12250</timeAllowedNextStatus>
+                <!--<timeAllowed4NodeNextStatus>3500</timeAllowed4NodeNextStatus>-->
+                <timeAllowed4NodeNextStatus>6000</timeAllowed4NodeNextStatus>
+
+                <validateNetworkWithNTimesAllowedOfflineNode>false</validateNetworkWithNTimesAllowedOfflineNode>
+                <maxNTimesAllowedOfflineNode>2</maxNTimesAllowedOfflineNode>
+
+                <tkStrikeSoftwareUpdatesUrl>http://94.23.215.81:8080/tkStrike-software-updates-webapp/api/secure/tkStrike-newRules2017/software-updates</tkStrikeSoftwareUpdatesUrl>
+                <!--<tkStrikeSoftwareUpdatesUrl>http://localhost:8080/tkStrike-software-updates-webapp/api/secure/tkStrike-newRules2017/software-updates</tkStrikeSoftwareUpdatesUrl>-->
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.xtremis.daedo.comm</groupId>
+                    <artifactId>tkStrike-comm-gen1</artifactId>
+                    <version>${project.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>gen2</id>
+            <properties>
+                <tkStrikeGenVersion>gen2</tkStrikeGenVersion>
+                <exeFinalName>tkStrikeGen2</exeFinalName>
+                <appTitleName>Daedo TkStrike Gen2</appTitleName>
+                <nativeBuildIdentifier>DaedoTkStrikeGen2</nativeBuildIdentifier>
+                <!--<timeAllowedNextStatus>7000</timeAllowedNextStatus>-->
+                <timeAllowedNextStatus>60000</timeAllowedNextStatus>
+                <!--<timeAllowed4NodeNextStatus>1000</timeAllowed4NodeNextStatus>-->
+                <timeAllowed4NodeNextStatus>5000</timeAllowed4NodeNextStatus>
+
+                <validateNetworkWithNTimesAllowedOfflineNode>true</validateNetworkWithNTimesAllowedOfflineNode>
+                <maxNTimesAllowedOfflineNode>2</maxNTimesAllowedOfflineNode>
+
+                <tkStrikeSoftwareUpdatesUrl>http://94.23.215.81:8080/tkStrike-software-updates-webapp/api/secure/tkStrike-gen2-newRules2017/software-updates</tkStrikeSoftwareUpdatesUrl>
+                <!--<tkStrikeSoftwareUpdatesUrl>http://localhost:8080/tkStrike-software-updates-webapp/api/secure/tkStrike-gen2-newRules2017/software-updates</tkStrikeSoftwareUpdatesUrl>-->
+
+                <maxNetworkAthleteGroupsAllowed>2</maxNetworkAthleteGroupsAllowed>
+
+                <rules.forceShowName.default>0</rules.forceShowName.default>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.xtremis.daedo.comm</groupId>
+                    <artifactId>tkStrike-comm-gen2</artifactId>
+                    <version>${project.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <!-- Dependències de comm-gen2 -->
+                <!-- Spring -->
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </dependency>
+                <!-- jssc-->
+                <dependency>
+                    <groupId>org.scream3r</groupId>
+                    <artifactId>jssc</artifactId>
+                </dependency>
+
+            </dependencies>
+        </profile>
+    </profiles>
+</project>

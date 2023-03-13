@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.RestrictiveTextField?>
+<BorderPane fx:id="rootView" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.FlagsManagementController">
+   <right>
+
+   </right>
+   <center>
+      <StackPane>
+         <children>
+            <TableView fx:id="tbFlag" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tbFlagColId" text="%label.id" visible="false" />
+                <TableColumn fx:id="tbFlagColName" prefWidth="400.0" text="%label.name" />
+                  <TableColumn fx:id="tbFlagColAbbreviation" prefWidth="75.0" text="%label.abbreviation" />
+                  <TableColumn fx:id="tbFlagColImage" editable="false" prefWidth="75.0" sortable="false" text="%label.image" />
+                  <TableColumn fx:id="tbFlagColShowName" prefWidth="200.0" text="%label.showName" />
+                  <TableColumn fx:id="tbFlagColDelete" editable="false" prefWidth="50.0" sortable="false" />
+              </columns>
+            </TableView>
+            <ProgressIndicator fx:id="pi" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" visible="false" />
+         </children>
+      </StackPane>
+   </center>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <top>
+      <BorderPane styleClass="tkStrike-window-container" BorderPane.alignment="CENTER">
+         <center>
+            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="80.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" GridPane.columnIndex="4">
+                     <children>
+                         <Button fx:id="btNew" mnemonicParsing="false" onAction="#newFlag" styleClass="button-window" text="%button.new" GridPane.columnIndex="4" />
+                     </children>
+                  </HBox>
+                   <Label minWidth="80.0" prefWidth="80.0" text="%label.name" GridPane.rowIndex="1" />
+                   <TextField fx:id="txtFlagName" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                   <Label layoutX="10.0" layoutY="47.0" minWidth="80.0" prefWidth="80.0" text="%label.abbreviation" GridPane.rowIndex="2" />
+                   <RestrictiveTextField fx:id="txtFlagAbbreviation" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <StackPane alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                         <Button fx:id="btChangeImage" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeFlagImage" prefWidth="35.0" text="%button.changeImage" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </StackPane>
+                   <ImageView fx:id="ivFlagImage" fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                   <HBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                       <children>
+                           <Button fx:id="btOk" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#saveFlag" prefWidth="35.0">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-save" />
+                           </styleClass>
+                        </Button>
+                           <Button fx:id="btUndo" contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#undoFlag" prefWidth="35.0">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-undo" />
+                           </styleClass>
+                        </Button>
+                       </children>
+                   </HBox>
+                  <HBox alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <ToggleButton fx:id="tgShowName" mnemonicParsing="false" text="%toggle.showName.disabled" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </GridPane>
+         </center>
+         <top>
+            <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+               <children>
+                  <Label text="%label.flags" BorderPane.alignment="CENTER" />
+               </children>
+            </StackPane>
+         </top>
+      </BorderPane>
+   </top>
+</BorderPane>

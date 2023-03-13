@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane fx:id="rootView" maxHeight="500.0" maxWidth="1100.0" minHeight="500.0" minWidth="1100.0" prefHeight="500.0" prefWidth="1100.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.RingManagerControllerController">
+   <children>
+      <BorderPane fx:id="pnContainer" StackPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#doRestoreDefaultConfig" text="%button.main.restoreDefaultConfigs">
+                     <styleClass>
+                        <String fx:value="button-window-reverse" />
+                        <String fx:value="button-ringManager-bottom" />
+                        <String fx:value="button-image-undo" />
+                     </styleClass></Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="20.0" mnemonicParsing="false" onAction="#openAthletesManagement" text="%button.main.athletes">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-bottom" />
+                     </styleClass></Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="246.0" layoutY="20.0" mnemonicParsing="false" onAction="#openFlagsManagement" text="%button.main.flags">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-bottom" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openPhasesManagement" text="%button.main.phases">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-bottom" />
+                     </styleClass></Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openCategoriesManagement" text="%button.main.categories">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-bottom" />
+                     </styleClass></Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="613.0" layoutY="20.0" mnemonicParsing="false" onAction="#openDifferentialScoreDefinitions" text="%button.main.differentialScoreDefinitions" wrapText="true">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-bottom" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#close" text="%button.close">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-image-cancel" />
+                        <String fx:value="button-ringManager-bottom" />
+                     </styleClass></Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <right>
+
+   </right>
+         <center>
+
+   </center>
+         <center>
+            <VBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.matchNumber" />
+                        <Label fx:id="lblMatchNumberInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                        <Label styleClass="label-subTitle" text="%label.maxGamJeomsAllowed" wrapText="true" />
+                        <Label fx:id="lblMaxGamJeomsAllowed" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label layoutX="315.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.phase" />
+                        <Label fx:id="lblPhaseInfo" layoutX="455.0" layoutY="10.0" styleClass="label-info" />
+                        <Label styleClass="label-subTitle" text="%label.differencialScore" wrapText="true" />
+                        <Label fx:id="lblDifferentialScore" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.category" />
+                        <Label fx:id="lblCategoryInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="46.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.blue" />
+                        <Label fx:id="lblBlueInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                        <ImageView fx:id="ivBlueInfo" fitHeight="35.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="72.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.red" />
+                        <Label fx:id="lblRedInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                        <ImageView fx:id="ivRedInfo" fitHeight="35.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="72.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.rounds" />
+                        <Label fx:id="lblRoundsInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label layoutX="337.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.roundTime" />
+                        <Label fx:id="lblRoundTimeInfo" layoutX="433.0" layoutY="10.0" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="46.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.kyeShiTime" />
+                        <Label fx:id="lblKyeShiTimeInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label layoutX="337.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.restTime" />
+                        <Label fx:id="lblRestTimeInfo" layoutX="433.0" layoutY="10.0" styleClass="label-info" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="pnGoldenPoint" alignment="CENTER_LEFT" layoutX="10.0" layoutY="198.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="label-subTitle" text="%label.goldenPointTime" />
+                        <Label fx:id="lblGoldenPointTimeInfo" layoutX="320.0" layoutY="10.0" styleClass="label-info" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" top="10.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER" spacing="2.5" BorderPane.alignment="CENTER">
+               <children>
+                  <StackPane>
+                     <children>
+                        <HBox fx:id="pnTkStrikeOVR" alignment="CENTER" spacing="2.5">
+                           <children>
+                              <Button fx:id="btPrevMatch" mnemonicParsing="false" onAction="#requestPrevMatch" text="%button.prevMatch">
+                                 <styleClass>
+                                    <String fx:value="button-window" />
+                                    <String fx:value="button-ringManager-top" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="btNextMatch" mnemonicParsing="false" onAction="#requestNextMatch" text="%button.nextMatch">
+                                 <styleClass>
+                                    <String fx:value="button-window" />
+                                    <String fx:value="button-ringManager-top" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
+<!--                        <HBox fx:id="pnWTOVR" alignment="CENTER" layoutX="13.0" layoutY="15.0" spacing="2.5">-->
+<!--                           <children>-->
+<!--                              <Button fx:id="btWtOvrGetMatches" mnemonicParsing="false" onAction="#wtOvrGetMatches" text="%button.wtOvrGetMatches">-->
+<!--                                 <styleClass>-->
+<!--                                    <String fx:value="button-window" />-->
+<!--                                    <String fx:value="button-ringManager-top" />-->
+<!--                                 </styleClass>-->
+<!--                              </Button>-->
+<!--                           </children>-->
+<!--                        </HBox>-->
+                     </children>
+                  </StackPane>
+                  <Button fx:id="btNewMatch" mnemonicParsing="false" onAction="#openWizard" text="%button.newMatchWizard">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-top" />
+                     </styleClass></Button>
+                  <Button mnemonicParsing="false" onAction="#openSelectMatch" text="%button.selectMatch">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-top" />
+                     </styleClass></Button>
+                  <Button layoutX="732.0" layoutY="10.0" mnemonicParsing="false" onAction="#doChoseLastMatch" text="%button.lastStartedMatch">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-ringManager-top" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="734.0" layoutY="10.0" mnemonicParsing="false" onAction="#doRestoreLastMatch" text="%button.restoreLastStartedMatch" wrapText="true">
+                     <styleClass>
+                        <String fx:value="button-window-reverse" />
+                        <String fx:value="button-ringManager-top" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </top>
+      </BorderPane>
+      <StackPane fx:id="piPanel" visible="false">
+         <children>
+            <ProgressIndicator fx:id="pi" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0"  StackPane.alignment="CENTER"/>
+            <Label fx:id="lblPiMessage" text="%message.info.workingPleaseWait" />
+         </children>
+      </StackPane>
+   </children>
+</StackPane>

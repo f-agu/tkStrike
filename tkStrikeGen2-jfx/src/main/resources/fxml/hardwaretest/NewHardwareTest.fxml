@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootView" maxHeight="600.0" maxWidth="960.0" minHeight="600.0" minWidth="960.0" prefHeight="600.0" prefWidth="960.0" styleClass="newHardwareTest-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.hardwaretest.HardwareTestMainController">
+    <top>
+
+   </top>
+   <bottom>
+
+   </bottom>
+   <right>
+
+   </right>
+   <center>
+      <GridPane maxHeight="540.0" minHeight="540.0" prefHeight="540.0" BorderPane.alignment="TOP_CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <StackPane GridPane.rowIndex="4">
+               <children>
+                  <ImageView fx:id="ivLogoDaedo" fitHeight="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@/images/LogoDaedoWhiteTransparent.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <children>
+                  <ImageView fx:id="ivWT" fitHeight="60.0" layoutX="10.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@/images/LogoWTWhiteTransparent.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="3">
+               <children>
+                  <ImageView fx:id="ivBodyRed" fitHeight="210.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="202.0" layoutY="220.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="3">
+               <children>
+                  <ImageView fx:id="ivBodyBlue" fitHeight="210.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </StackPane>
+            <VBox alignment="TOP_CENTER" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
+               <children>
+                  <StackPane layoutX="586.0" layoutY="220.0" maxHeight="120.0" minHeight="120.0" prefHeight="120.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fx:id="ivJudge1" fitHeight="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" StackPane.alignment="TOP_CENTER">
+                           <image>
+                              
+                           </image></ImageView>
+                        <AnchorPane>
+                           <children>
+                              <Arc fx:id="ciJ1Red1" fill="DODGERBLUE" layoutX="70.0" layoutY="29.0" length="100.0" radiusX="15.0" radiusY="30.0" startAngle="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" type="CHORD" />
+                              <Circle fx:id="ciJ1Red2" fill="DODGERBLUE" layoutX="61.0" layoutY="37.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" />
+                              <Circle fx:id="ciJ1Red3" fill="DODGERBLUE" layoutX="68.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" />
+                              <Arc fx:id="ciJ1Blue1" fill="DODGERBLUE" layoutX="126.0" layoutY="29.0" length="100.0" radiusX="15.0" radiusY="30.0" startAngle="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" type="CHORD" />
+                              <Circle fx:id="ciJ1Blue2" fill="DODGERBLUE" layoutX="131.5" layoutY="37.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" />
+                              <Circle fx:id="ciJ1Blue3" fill="DODGERBLUE" layoutX="124.5" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" />
+                              <ImageView fx:id="ivJ1Green" fitHeight="18.0" layoutX="90.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/images/ht_green_button.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="lblJudge1" styleClass="labelTestModeJudge" text="OK" StackPane.alignment="BOTTOM_CENTER">
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <StackPane layoutX="394.0" layoutY="65.0" maxHeight="120.0" minHeight="120.0" prefHeight="120.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fx:id="ivJudge2" fitHeight="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" StackPane.alignment="TOP_CENTER">
+                           <image>
+
+                           </image></ImageView>
+                        <AnchorPane>
+                           <children>
+                              <Arc fx:id="ciJ2Red1" fill="DODGERBLUE" layoutX="70.0" layoutY="29.0" length="100.0" radiusX="15.0" radiusY="30.0" startAngle="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" type="CHORD" />
+                              <Circle fx:id="ciJ2Red2" fill="DODGERBLUE" layoutX="61.0" layoutY="37.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" />
+                              <Circle fx:id="ciJ2Red3" fill="DODGERBLUE" layoutX="68.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" />
+                              <Arc fx:id="ciJ2Blue1" fill="DODGERBLUE" layoutX="126.0" layoutY="29.0" length="100.0" radiusX="15.0" radiusY="30.0" startAngle="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" type="CHORD" />
+                              <Circle fx:id="ciJ2Blue2" fill="DODGERBLUE" layoutX="131.5" layoutY="37.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" />
+                              <Circle fx:id="ciJ2Blue3" fill="DODGERBLUE" layoutX="124.5" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" />
+                              <ImageView fx:id="ivJ2Green" fitHeight="18.0" layoutX="90.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/images/ht_green_button.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="lblJudge2" styleClass="labelTestModeJudge" text="OK" StackPane.alignment="BOTTOM_CENTER" />
+                     </children>
+                  </StackPane>
+                  <StackPane layoutX="394.0" layoutY="135.0" maxHeight="120.0" minHeight="120.0" prefHeight="120.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fx:id="ivJudge3" fitHeight="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" StackPane.alignment="TOP_CENTER">
+                           <image>
+
+                           </image></ImageView>
+                        <AnchorPane>
+                           <children>
+                              <Arc fx:id="ciJ3Red1" fill="DODGERBLUE" layoutX="70.0" layoutY="29.0" length="100.0" radiusX="15.0" radiusY="30.0" startAngle="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" type="CHORD" />
+                              <Circle fx:id="ciJ3Red2" fill="DODGERBLUE" layoutX="61.0" layoutY="37.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" />
+                              <Circle fx:id="ciJ3Red3" fill="DODGERBLUE" layoutX="68.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red-noGradient" />
+                              <Arc fx:id="ciJ3Blue1" fill="DODGERBLUE" layoutX="126.0" layoutY="29.0" length="100.0" radiusX="15.0" radiusY="30.0" startAngle="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" type="CHORD" />
+                              <Circle fx:id="ciJ3Blue2" fill="DODGERBLUE" layoutX="131.5" layoutY="37.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" />
+                              <Circle fx:id="ciJ3Blue3" fill="DODGERBLUE" layoutX="124.5" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue-noGradient" />
+                              <ImageView fx:id="ivJ3Green" fitHeight="18.0" layoutX="90.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/images/ht_green_button.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="lblJudge3" styleClass="labelTestModeJudge" text="OK" StackPane.alignment="BOTTOM_CENTER" />
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <StackPane layoutX="10.0" layoutY="470.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="ivHeadRed" fitHeight="130.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="202.0" layoutY="107.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="ivHeadBlue" fitHeight="130.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4" />
+               </children>
+            </StackPane>
+            <StackPane GridPane.rowIndex="1">
+               <children>
+                  <Circle fx:id="ciHeadRed" radius="15.0" stroke="WHITE" strokeType="INSIDE" StackPane.alignment="CENTER_RIGHT" />
+                  <Label fx:id="lblHeadRed" styleClass="labelTestModeAthlete" text="OK" GridPane.rowIndex="1" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="118.0" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <children>
+                  <Label fx:id="lblBodyRed" styleClass="labelTestModeAthlete" text="OK" GridPane.rowIndex="1" />
+                  <Circle fx:id="ciBodyRed" radius="15.0" stroke="WHITE" strokeType="INSIDE" StackPane.alignment="CENTER_RIGHT" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="118.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="lblHeadBlue" styleClass="labelTestModeAthlete" text="OK" GridPane.rowIndex="1" />
+                  <Circle fx:id="ciHeadBlue" radius="15.0" stroke="WHITE" strokeType="INSIDE" StackPane.alignment="CENTER_LEFT" />
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="226.0" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <children>
+                  <Label fx:id="lblBodyBlue" styleClass="labelTestModeAthlete" text="OK" GridPane.rowIndex="1" />
+                  <Circle fx:id="ciBodyBlue" radius="15.0" stroke="WHITE" strokeType="INSIDE" StackPane.alignment="CENTER_LEFT" />
+               </children>
+            </StackPane>
+            <StackPane GridPane.columnIndex="1" GridPane.columnSpan="3">
+               <children>
+                  <Label fx:id="lblHeadRed1" styleClass="labelTestModeTitle" text="%label.testMode" GridPane.columnIndex="2" />
+               </children>
+            </StackPane>
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label style="-fx-text-fill: white;" text="%label.bodyMinLevel" />
+            <RestrictiveTextField fx:id="txtMinBodyHit" alignment="CENTER_RIGHT" maxWidth="75.0" minHeight="25.0" prefHeight="25.0" prefWidth="75.0" text="0" />
+            <Label layoutX="266.0" layoutY="15.0" style="-fx-text-fill: white;" text="%label.headMinLevel" />
+            <RestrictiveTextField fx:id="txtMinHeadHit" alignment="CENTER_RIGHT" maxWidth="75.0" minHeight="25.0" prefHeight="25.0" prefWidth="75.0" text="0" />
+            <Button mnemonicParsing="false" onAction="#doResetHardwareTest" styleClass="button-main" text="%button.reset" />
+            <Button layoutX="459.0" layoutY="23.0" mnemonicParsing="false" onAction="#doClose" styleClass="button-image-close" text="%button.close" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+
+</BorderPane>

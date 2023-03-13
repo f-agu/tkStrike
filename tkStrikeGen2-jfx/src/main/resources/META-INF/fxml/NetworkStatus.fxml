@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="rootView" maxHeight="80.0" maxWidth="550.0" minHeight="80.0" minWidth="550.0" prefHeight="80.0" prefWidth="550.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.NetworkStatusController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox fx:id="hbJudge1" alignment="CENTER" spacing="2.0" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="label-networkStatus" text="%label.judge1" textFill="WHITE" />
+            <StackPane>
+               <children>
+                  <Rectangle fx:id="stJ1" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+                  <Text fx:id="txtJ1Battery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox fx:id="hbJudge2" alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="label-networkStatus" text="%label.judge2" textFill="WHITE" />
+            <StackPane>
+               <children>
+                  <Rectangle fx:id="stJ2" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+                  <Text fx:id="txtJ2Battery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox fx:id="hbJudge3" alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="label-networkStatus" text="%label.judge3" textFill="WHITE" />
+            <StackPane>
+               <children>
+                  <Rectangle fx:id="stJ3" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+                  <Text fx:id="txtJ3Battery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <children>
+            <Label styleClass="label-networkStatus" text="%label.g1" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <HBox fx:id="hbG1BB" alignment="CENTER" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.b" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG1BB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG1BBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbG1HB" alignment="CENTER" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.h" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG1HB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG1HBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <HBox fx:id="hbG1BR" alignment="CENTER" layoutX="75.0" layoutY="10.0" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.b" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG1BR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG1BRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbG1HR" alignment="CENTER" layoutX="120.0" layoutY="10.0" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.h" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG1HR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG1HRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox fx:id="pnGr2" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <children>
+            <Label styleClass="label-networkStatus" text="%label.g2" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <HBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <HBox fx:id="hbG2BB" alignment="CENTER" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.b" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG2BB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG2BBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbG2HB" alignment="CENTER" layoutX="75.0" layoutY="10.0" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.h" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG2HB" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG2HBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <children>
+                  <HBox fx:id="hbG2BR" alignment="CENTER" layoutX="75.0" layoutY="10.0" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.b" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG2BR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG2BRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbG2HR" alignment="CENTER" layoutX="120.0" layoutY="10.0" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="label-networkStatus" text="%label.h" textFill="WHITE" />
+                        <StackPane>
+                           <children>
+                              <Rectangle fx:id="stG2HR" arcHeight="5.0" arcWidth="5.0" fill="#cdcfd0" height="15.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="40.0" />
+                              <Text fx:id="txtG2HRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <StackPane GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <children>
+            <Rectangle fx:id="reNetworkStatus" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="250.0" />
+            <Text fx:id="txtNetworkStatus" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-networkStatus" textAlignment="CENTER" />
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" focusTraversable="true" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+         <children>
+            <ToggleButton fx:id="tgGroup1" focusTraversable="false" mnemonicParsing="false" styleClass="toggle-networkStatus" text="%toggle.group1.enabled" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ToggleButton fx:id="tgGroup2" focusTraversable="false" layoutX="114.0" layoutY="21.0" mnemonicParsing="false" styleClass="toggle-networkStatus" text="%toggle.group2.disabled" />
+         </children>
+      </HBox>
+   </children>
+</GridPane>

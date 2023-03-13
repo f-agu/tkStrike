@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootView" maxHeight="430.0" maxWidth="840.0" minHeight="430.0" minWidth="840.0" prefHeight="430.0" prefWidth="840.0" styleClass="tkStrike-window-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.AthletesInformationController">
+   <bottom>
+
+   </bottom>
+   <right>
+
+   </right>
+   <center>
+
+   </center>
+   <center>
+
+   </center>
+   <center>
+      <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="label-subTitle" text="%label.blueAthlete" textFill="BLUE" />
+               </children>
+            </StackPane>
+            <GridPane alignment="CENTER" hgap="5.0" styleClass="sb-blue" vgap="5.0">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.wtfId" textFill="WHITE" GridPane.rowIndex="0" />
+                  <TextField fx:id="txtBlueWTFID" promptText="%label.wtfId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="0">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.flag" textFill="WHITE" />
+                        <RestrictiveTextField fx:id="txtBlueAbbr" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ImageView fx:id="ivBlueFlag" fitHeight="35.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.name" textFill="WHITE" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <Circle fx:id="ciBlueExists" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Button mnemonicParsing="false" onAction="#newAthleteFromBlue" styleClass="button-window" text="%button.new" />
+                        <Button fx:id="btEditBlue" layoutX="35.0" layoutY="11.0" mnemonicParsing="false" onAction="#editBlueAthlete" styleClass="button-window" text="%label.editAthlete" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtBlueName" promptText="%label.blueAthlete.name" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.vrQuota" textFill="WHITE" />
+                        <RestrictiveTextField fx:id="txtBlueVrQuota" maxLength="2" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" restrict="" />
+                     </children>
+                  </HBox>
+
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                  <ColumnConstraints maxWidth="215.0" minWidth="215.0" prefWidth="215.0" />
+                  <ColumnConstraints maxWidth="215.0" minWidth="215.0" prefWidth="215.0" />
+                  <ColumnConstraints maxWidth="215.0" minWidth="215.0" prefWidth="215.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="40.0" />
+                  <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="40.0" />
+                  <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="40.0" />
+               </rowConstraints>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <StackPane alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="label-subTitle" text="%label.redAthlete" textFill="RED" GridPane.rowIndex="4" />
+               </children>
+            </StackPane>
+            <GridPane alignment="CENTER" hgap="5.0" styleClass="sb-red" vgap="5.0">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.wtfId" textFill="WHITE" GridPane.rowIndex="0" />
+                  <TextField fx:id="txtRedWTFID" promptText="%label.wtfId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <HBox alignment="CENTER_RIGHT" layoutX="333.0" layoutY="45.0" spacing="5.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="0">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.flag" textFill="WHITE" />
+                        <RestrictiveTextField fx:id="txtRedAbbr" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ImageView fx:id="ivRedFlag" fitHeight="34.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.name" textFill="WHITE" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtRedName" promptText="%label.redAthlete.name" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <Circle fx:id="ciRedExists" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Button mnemonicParsing="false" onAction="#newAthleteFromRed" styleClass="button-window" text="%button.new" />
+                        <Button fx:id="btEditRed" mnemonicParsing="false" onAction="#editRedAthlete" styleClass="button-window" text="%label.editAthlete" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="%label.vrQuota" textFill="WHITE" />
+                        <RestrictiveTextField fx:id="txtRedVrQuota" maxLength="2" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" restrict="" />
+                     </children>
+                  </HBox>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                  <ColumnConstraints maxWidth="215.0" minWidth="215.0" prefWidth="215.0" />
+                  <ColumnConstraints maxWidth="215.0" minWidth="215.0" prefWidth="215.0" />
+                  <ColumnConstraints maxWidth="215.0" minWidth="215.0" prefWidth="215.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" />
+                  <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" />
+                  <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" />
+               </rowConstraints>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+         <children>
+            <Label text="%label.athletes" BorderPane.alignment="CENTER" />
+         </children>
+      </StackPane>
+   </top>
+</BorderPane>

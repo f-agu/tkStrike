@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootView" minHeight="500.0" minWidth="970.0" prefHeight="500.0" prefWidth="970.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationSoundsController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <bottom>
+      <StackPane BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#undo" text="%button.undo" StackPane.alignment="CENTER_LEFT">
+               <styleClass>
+                  <String fx:value="button-image-undo" />
+                  <String fx:value="button-config" />
+                  <String fx:value="button-window-reverse" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#save" text="%button.save" StackPane.alignment="CENTER_RIGHT">
+               <styleClass>
+                  <String fx:value="button-window" />
+                  <String fx:value="button-image-save-reverse" />
+                  <String fx:value="button-config" />
+               </styleClass>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </StackPane>
+   </bottom>
+   <center>
+      <BorderPane styleClass="tkStrike-window-container" BorderPane.alignment="CENTER">
+         <top>
+            <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+               <children>
+                  <Label text="%label.sounds" BorderPane.alignment="CENTER" />
+               </children>
+            </StackPane>
+         </top>
+         <center>
+            <GridPane alignment="CENTER" vgap="5.0" BorderPane.alignment="CENTER">
+               <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="85.0" prefWidth="85.0" />
+                  <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                     <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                     <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                     <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                     <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" percentHeight="15.0" prefHeight="50.0" />
+                  </rowConstraints>
+               <children>
+                  <!-- BETA7 desapareix Before End of Time -->
+                  <!--<CheckBox fx:id="chkBET" mnemonicParsing="false" text="%label.sound.bet" />-->
+                  <!--<HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1">-->
+                     <!--<children>-->
+                        <!--<Label text="%label.sound.timeBefore" GridPane.columnIndex="1" />-->
+                        <!--<ComboBox fx:id="cmbSecondsBeforeBET" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" GridPane.columnIndex="1" />-->
+                     <!--</children>-->
+                  <!--</HBox>-->
+                  <!--<HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2">-->
+                     <!--<children>-->
+                        <!--<Label text="%label.sound.volume" GridPane.columnIndex="1" />-->
+                        <!--<ComboBox fx:id="cmbVolumeBET" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />-->
+                     <!--</children>-->
+                  <!--</HBox>-->
+                  <!--<TextField fx:id="txtBET" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="0" />-->
+                  <!--<HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4">-->
+                     <!--<children>-->
+                        <!--<Button fx:id="btChangeBET" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeBET" prefWidth="35.0" GridPane.columnIndex="5">-->
+                           <!--<styleClass>-->
+                              <!--<String fx:value="button-window-reverse" />-->
+                              <!--<String fx:value="button-image-select" />-->
+                           <!--</styleClass>-->
+                        <!--</Button>-->
+                        <!--<Button fx:id="btPlayBET" mnemonicParsing="false" onAction="#playBET" styleClass="button-play" GridPane.columnIndex="5" />-->
+                     <!--</children>-->
+                  <!--</HBox>-->
+      
+                        <CheckBox fx:id="chkBSR" mnemonicParsing="false" text="%label.sound.bsr" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label text="%label.sound.timeBefore" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbSecondsBeforeBSR" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2">
+                     <children>
+                        <Label text="%label.sound.volume" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbVolumeBSR" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtBSR" editable="false" GridPane.columnIndex="3" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4">
+                     <children>
+                        <Button fx:id="btChangeBSR" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeBSR" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayBSR" mnemonicParsing="false" onAction="#playBSR" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+      
+                        <CheckBox fx:id="chkEOT" mnemonicParsing="false" text="%label.sound.eot" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="%label.sound.volume" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbVolumeEOT" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtEOT" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="btChangeEOT" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeEOT" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayEOT" mnemonicParsing="false" onAction="#playEOT" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+                  
+                        <CheckBox fx:id="chkWBH" mnemonicParsing="false" text="%label.sound.wbh" GridPane.rowIndex="2" />
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="%label.sound.volume" />
+                        <ComboBox fx:id="cmbVolumeWBH" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtWBH" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <children>
+                        <Button fx:id="btChangeWBH" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeWBH" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayWBH" mnemonicParsing="false" onAction="#playWBH" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+                  
+                        <CheckBox fx:id="chkWHH" mnemonicParsing="false" text="%label.sound.whh" GridPane.rowIndex="3" />
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="%label.sound.volume" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbVolumeWHH" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtWHH" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="btChangeWHH" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeWHH" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayWHH" mnemonicParsing="false" onAction="#playWHH" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+                  
+                        
+                  <CheckBox fx:id="chkWKG" mnemonicParsing="false" text="%label.sound.wkg" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <children>
+                        <Label text="%label.sound.volume" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbVolumeWKG" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtWKG" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <children>
+                        <Button fx:id="btChangeWKG" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeWKG" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayWKG" mnemonicParsing="false" onAction="#playWKG" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+                  
+                        <CheckBox fx:id="chkWGJ" mnemonicParsing="false" text="%label.sound.wgj" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <children>
+                        <Label text="%label.sound.volume" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbVolumeWGJ" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtWGJ" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                     <children>
+                        <Button fx:id="btChangeWGJ" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeWGJ" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayWGJ" mnemonicParsing="false" onAction="#playWGJ" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+                  <CheckBox fx:id="chkWTM" mnemonicParsing="false" text="%label.sound.wtm" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER" layoutX="310.0" layoutY="272.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <children>
+                        <Label text="%label.sound.volume" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbVolumeWTM" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtWTM" editable="false" layoutX="485.0" layoutY="275.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER_RIGHT" layoutX="855.0" layoutY="272.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <children>
+                        <Button fx:id="btChangeWTM" contentDisplay="GRAPHIC_ONLY" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#changeWTM" prefWidth="35.0" GridPane.columnIndex="5">
+                           <styleClass>
+                              <String fx:value="button-window-reverse" />
+                              <String fx:value="button-image-select" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btPlayWTM" mnemonicParsing="false" onAction="#playWTM" styleClass="button-play" GridPane.columnIndex="5" />
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+            </GridPane>
+         </center>
+         <opaqueInsets>
+            <Insets bottom="10.0" top="10.0" />
+         </opaqueInsets>
+      </BorderPane>
+   </center>
+</BorderPane>

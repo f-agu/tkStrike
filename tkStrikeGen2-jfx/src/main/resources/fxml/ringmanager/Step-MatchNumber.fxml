@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootView" styleClass="tkStrike-window-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.MatchNumberController">
+   <bottom>
+
+   </bottom>
+   <right>
+
+   </right>
+   <center>
+
+   </center>
+   <center>
+
+   </center>
+   <center>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtMatchNumber" GridPane.columnIndex="1" />
+             <Button layoutX="380.0" layoutY="72.0" mnemonicParsing="false" onAction="#openMatchsConfigurationSelection" GridPane.columnIndex="2">
+               <styleClass>
+                  <String fx:value="button-window-reverse" />
+                  <String fx:value="button-image-select" />
+               </styleClass></Button>
+         </children>
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+         <children>
+            <Label text="%label.matchNumber" BorderPane.alignment="CENTER" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

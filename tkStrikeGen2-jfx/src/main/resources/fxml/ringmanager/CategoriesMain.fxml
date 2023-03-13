@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.ringmanager.CategoriesMainControllerImpl">
+    <center>
+        <TabPane fx:id="tabPane">
+             <tabs>
+                 <Tab id="tabSubCategories" closable="false" text="%label.subCategory" />
+                 <Tab id="tabCategories" closable="false" text="%label.category" />
+             </tabs>
+         </TabPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootView" maxHeight="590.0" maxWidth="930.0" minHeight="590.0" minWidth="930.0" prefHeight="590.0" prefWidth="930.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.MatchFinalResultController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <center>
+      <GridPane alignment="TOP_CENTER" hgap="10.0" maxWidth="900.0" minWidth="900.0" prefWidth="900.0" vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="725.0" minWidth="725.0" prefWidth="725.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="410.0" minHeight="410.0" prefHeight="410.0" vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BorderPane maxHeight="410.0" minHeight="410.0" prefHeight="410.0" styleClass="tkStrike-window-container">
+               <top>
+                  <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="%label.winner" BorderPane.alignment="CENTER" />
+                     </children>
+                  </StackPane>
+               </top>
+               <center>
+                  <VBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <ToggleButton fx:id="tgWinnerBLUE" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="150.0" minHeight="85.0" minWidth="150.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0">
+                           <styleClass>
+                              <String fx:value="fd-winner-toggle" />
+                              <String fx:value="fd-winner-toggle-blue" />
+                           </styleClass>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tgWinnerTIE" contentDisplay="CENTER" focusTraversable="false" layoutX="20.0" layoutY="20.0" maxHeight="85.0" maxWidth="150.0" minHeight="85.0" minWidth="150.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0">
+                           <styleClass>
+                              <String fx:value="fd-winner-toggle" />
+                              <String fx:value="fd-winner-toggle-tie" />
+                           </styleClass>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tgWinnerRED" contentDisplay="CENTER" focusTraversable="false" layoutX="20.0" layoutY="66.0" maxHeight="85.0" maxWidth="150.0" minHeight="85.0" minWidth="150.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0">
+                           <styleClass>
+                              <String fx:value="fd-winner-toggle" />
+                              <String fx:value="fd-winner-toggle-red" />
+                           </styleClass>
+                        </ToggleButton>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="10.0" layoutY="50.0" maxHeight="410.0" minHeight="410.0" prefHeight="410.0" styleClass="tkStrike-window-container" GridPane.columnIndex="1">
+               <top>
+                  <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                     <children>
+                        <Label fx:id="lblSelectedFinalDecision" alignment="CENTER" contentDisplay="CENTER" text="%label.winnerBy" BorderPane.alignment="CENTER" />
+                     </children>
+                  </StackPane>
+               </top>
+               <center>
+                  <FlowPane fx:id="pnWinnerByContainer" alignment="CENTER" columnHalignment="CENTER" hgap="5.0" vgap="30.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ToggleButton fx:id="tbFinalDecisionRSC" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionPTF" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionPTG" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionGDP" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionSUP" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionWDR" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionDSQ" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionDQB" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                        <ToggleButton fx:id="tbFinalDecisionPUN" contentDisplay="CENTER" focusTraversable="false" maxHeight="85.0" maxWidth="235.0" minHeight="85.0" minWidth="235.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="235.0" styleClass="fd-finalDecision-toggle" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </FlowPane>
+               </center>
+            </BorderPane>
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <VBox spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="pnExtraControls" alignment="CENTER" spacing="10.0">
+               <children>
+                  <StackPane fx:id="pnBlueVideo">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-blue" width="75.0" />
+                        <ImageView fx:id="imgBlueVideo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="pnRedVideo" maxHeight="75.0" maxWidth="75.0" minHeight="75.0" minWidth="75.0" prefHeight="75.0" prefWidth="75.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="sb-red" width="75.0" />
+                        <ImageView fx:id="imgRedVideo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                           <children>
+                              <Button focusTraversable="false" maxHeight="35.0" maxWidth="200.0" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#openScoreboardEditor" prefHeight="35.0" prefWidth="200.0" styleClass="button-window-reverse" text="%button.main.scoreboard" />
+                              <Button focusTraversable="false" maxHeight="35.0" maxWidth="200.0" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#openMatchLog" prefHeight="35.0" prefWidth="200.0" styleClass="button-window-reverse" text="%button.main.match-log" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <StackPane alignment="CENTER_RIGHT">
+                           <children>
+                              <Button fx:id="btCancelGoldenPointHit" focusTraversable="false" maxHeight="35.0" maxWidth="410.0" minHeight="35.0" minWidth="410.0" mnemonicParsing="false" onAction="#doCancelGoldenPointHit" prefHeight="35.0" prefWidth="410.0" text="%button.cancelGoldenPointHit">
+                                 <styleClass>
+                                    <String fx:value="button-window-reverse" />
+                                    <String fx:value="button-image-cancel-reverse" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </StackPane>
+                     </children>
+                     <padding>
+                        <Insets left="300.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <StackPane BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btCancel" focusTraversable="false" maxHeight="35.0" maxWidth="200.0" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#doCancel" prefHeight="35.0" prefWidth="200.0" text="%button.cancel" StackPane.alignment="CENTER_LEFT">
+                     <styleClass>
+                        <String fx:value="button-window-reverse" />
+                        <String fx:value="button-image-cancel-reverse" />
+                     </styleClass>
+                  </Button>
+                  <Button focusTraversable="false" maxHeight="35.0" maxWidth="200.0" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#doConfirm" prefHeight="35.0" prefWidth="200.0" text="%button.confirm" StackPane.alignment="CENTER_RIGHT">
+                     <styleClass>
+                        <String fx:value="button-window" />
+                        <String fx:value="button-image-save-reverse" />
+                     </styleClass>
+                  </Button>
+                  <ToggleButton fx:id="tgShowSuperiority" focusTraversable="false" mnemonicParsing="false" styleClass="toggle-showSuperiority" text="%toggle.showSuperiority.disabled" />
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

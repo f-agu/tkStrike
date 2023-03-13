@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="rootView" maxWidth="970.0" minHeight="500.0" minWidth="970.0" prefHeight="500.0" prefWidth="970.0" styleClass="tkStrike-window" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationSoftwareUpdateController">
+   <children>
+      <BorderPane styleClass="tkStrike-window-container">
+         <center>
+
+   </center>
+         <center>
+            <StackPane>
+               <children>
+                  <VBox fx:id="pnContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="lblCurrentVersion" styleClass="label-title" />
+                        <Button mnemonicParsing="false" onAction="#doCheckForUpdates" styleClass="button-window" text="%button.checkForUpdates" />
+                        <StackPane>
+                           <children>
+                              <Label fx:id="lblThisIsLastVersion" styleClass="label-title" text="%message.currentVersionIsLastRelease" visible="false" />
+                              <Label fx:id="lblHasNewVersions" layoutX="225.0" layoutY="10.0" styleClass="label-info" text="%message.hasNewVersions" visible="false" />
+                           </children>
+                        </StackPane>
+                        <HBox fx:id="pnNewVersion" alignment="CENTER" spacing="5.0" />
+                     </children>
+                  </VBox>
+                  <ProgressIndicator fx:id="pi" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" visible="false" />
+               </children>
+            </StackPane>
+         </center>
+         <top>
+            <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+               <children>
+                  <Label text="%label.softwareUpdates" BorderPane.alignment="CENTER" />
+               </children>
+            </StackPane>
+         </top>
+      </BorderPane>
+   </children>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</StackPane>

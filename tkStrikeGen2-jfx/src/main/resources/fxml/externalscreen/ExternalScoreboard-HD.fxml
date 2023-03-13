@@ -1,0 +1,1855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import com.xtremis.daedo.tkstrike.ui.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<!--<StackPane fx:id="rootView" focusTraversable="true" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="defaultScoreboardRoot" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.externalscreen.ExternalScoreboardHDController">-->
+
+<StackPane fx:id="rootView" focusTraversable="true" maxHeight="540.0" maxWidth="960.0"
+    minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0"
+    styleClass="defaultScoreboardRoot" xmlns="http://javafx.com/javafx/8"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.xtremis.daedo.tkstrike.ui.controller.externalscreen.ExternalScoreboardHDController">
+    <children>
+        <StackPane fx:id="pnScoreboard">
+            <children>
+                <BorderPane>
+                    <top>
+                        <HBox alignment="CENTER_LEFT" maxHeight="57.5" minHeight="57.5"
+                            prefHeight="57.5" spacing="5.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <ImageView fitWidth="105.0" pickOnBounds="true"
+                                    preserveRatio="true">
+                                    <image>
+                                        <Image url="@/images/logoWTFScoreboard.png"/>
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="50.0" pickOnBounds="true"
+                                    preserveRatio="true">
+                                    <image>
+                                        <Image url="@/images/LogoDaedoTotBlack-STD.png"/>
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="lblMatchConfig" alignment="CENTER"
+                                    contentDisplay="CENTER" maxWidth="650.0" minWidth="650.0"
+                                    prefWidth="650.0" textAlignment="CENTER" wrapText="true">
+                                    <styleClass>
+                                        <String fx:value="df-newMatchInfo1"/>
+                                        <String fx:value="newMatchInfo"/>
+                                    </styleClass>
+                                </Label>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <StackPane fx:id="pnHeadLevel">
+                                            <children>
+                                                <!--<ImageView fitHeight="50.0" pickOnBounds="true" preserveRatio="true">-->
+                                                <!--<image>-->
+                                                <!--<Image url="@/images/headGearLittle.png" />-->
+                                                <!--</image>-->
+                                                <!--</ImageView>-->
+                                                <Text fx:id="txtHeadLevel" strokeType="OUTSIDE"
+                                                    strokeWidth="0.0" text="0">
+                                                    <styleClass>
+                                                        <String fx:value="newHeadLevel"/>
+                                                        <String fx:value="df-newHeadLevel"/>
+                                                    </styleClass>
+                                                </Text>
+                                            </children>
+                                        </StackPane>
+                                        <StackPane fx:id="pnBodyLevel">
+                                            <children>
+                                                <!--<ImageView fitHeight="50.0" pickOnBounds="true" preserveRatio="true">-->
+                                                <!--<image>-->
+                                                <!--<Image url="@/images/trunkLittle.png" />-->
+                                                <!--</image>-->
+                                                <!--</ImageView>-->
+                                                <Text fx:id="txtBodyLevel" strokeType="OUTSIDE"
+                                                    strokeWidth="0.0" text="0">
+                                                    <styleClass>
+                                                        <String fx:value="newBodyLevel"/>
+                                                        <String fx:value="df-newBodyLevel"/>
+                                                    </styleClass>
+                                                </Text>
+                                            </children>
+                                        </StackPane>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="10.0" right="10.0"/>
+                            </padding>
+                        </HBox>
+                    </top>
+                    <center>
+                        <HBox BorderPane.alignment="CENTER">
+                            <children>
+                                <BorderPane fx:id="pnLeftAthlete" maxWidth="480.0" minWidth="480.0"
+                                    prefWidth="480.0" styleClass="sb-red-radial">
+                                    <top>
+                                        <StackPane maxHeight="92.5" minHeight="92.5"
+                                            prefHeight="92.5">
+                                            <children>
+                                                <Pane styleClass="pn-opacity"/>
+                                                <HBox alignment="CENTER" spacing="5.0"
+                                                    StackPane.alignment="CENTER">
+                                                    <children>
+                                                        <StackPane fx:id="pnLeftFlag"
+                                                            maxHeight="87.5" maxWidth="110.0"
+                                                            minHeight="87.5" minWidth="110.0"
+                                                            prefHeight="87.5" prefWidth="110.0"/>
+                                                        <Label fx:id="txtLeftName"
+                                                            alignment="CENTER" maxHeight="50.0"
+                                                            maxWidth="355.0" minHeight="50.0"
+                                                            minWidth="355.0" prefHeight="50.0"
+                                                            prefWidth="355.0" wrapText="true">
+                                                            <styleClass>
+                                                                <String fx:value="newAthleteName"/>
+                                                                <String
+                                                                    fx:value="df-newAthleteName"/>
+                                                            </styleClass>
+                                                        </Label>
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0"
+                                                            top="5.0"/>
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </StackPane>
+                                    </top>
+                                    <left>
+                                        <StackPane maxWidth="120.0" minWidth="120.0"
+                                            prefWidth="120.0">
+                                            <children>
+                                                <Pane styleClass="pn-opacity"/>
+                                                <VBox alignment="TOP_CENTER" maxWidth="120.0"
+                                                    minWidth="120.0" prefWidth="120.0"
+                                                    BorderPane.alignment="CENTER">
+                                                    <children>
+                                                        <Text fx:id="txtLeftAbbr"
+                                                            strokeType="OUTSIDE" strokeWidth="0.0">
+                                                            <styleClass>
+                                                                <String
+                                                                    fx:value="newAthleteAbbreviation"/>
+                                                                <String
+                                                                    fx:value="df-newAthleteAbbreviation"/>
+                                                            </styleClass>
+                                                        </Text>
+                                                        <VBox fx:id="pnLeftHits"
+                                                            alignment="TOP_CENTER" maxHeight="235.0"
+                                                            minHeight="235.0" prefHeight="235.0"
+                                                            spacing="4.5">
+                                                            <padding>
+                                                                <Insets top="3.75"/>
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </StackPane>
+                                    </left>
+                                    <bottom>
+                                        <StackPane maxHeight="92.5" maxWidth="370.0"
+                                            minHeight="92.5" minWidth="370.0" prefHeight="92.5"
+                                            prefWidth="370.0" BorderPane.alignment="CENTER_LEFT">
+                                            <children>
+                                                <Pane maxWidth="370.0" minWidth="370.0"
+                                                    prefWidth="370.0" styleClass="pn-opacity"/>
+                                                <HBox alignment="CENTER_LEFT" maxWidth="370.0"
+                                                    minWidth="370.0" prefWidth="370.0">
+                                                    <children>
+                                                        <VBox alignment="TOP_CENTER"
+                                                            maxHeight="92.5" maxWidth="120.0"
+                                                            minHeight="92.5" minWidth="120.0"
+                                                            prefHeight="92.5" prefWidth="120.0"
+                                                            spacing="10.0">
+                                                            <children>
+                                                                <Label text="GAM-JEOM">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="penaltiesLabel"/>
+                                                                        <String
+                                                                            fx:value="df-penalties"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblLeftPenalties"
+                                                                    layoutX="34.0" layoutY="48.0"
+                                                                    text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="penaltiesLabel"/>
+                                                                        <String
+                                                                            fx:value="df-penaltiesValue"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                            </children>
+                                                        </VBox>
+                                                        <HBox fx:id="pnLeftLastImpact"
+                                                            alignment="CENTER" maxHeight="92.5"
+                                                            maxWidth="250.0" minHeight="92.5"
+                                                            minWidth="250.0"
+                                                            nodeOrientation="LEFT_TO_RIGHT"
+                                                            prefHeight="92.5" prefWidth="250.0">
+                                                            <children>
+                                                                <StackPane maxHeight="92.5"
+                                                                    maxWidth="125.0"
+                                                                    minHeight="92.5"
+                                                                    minWidth="125.0"
+                                                                    prefHeight="92.5"
+                                                                    prefWidth="125.0"/>
+                                                                <StackPane layoutX="73.0"
+                                                                    layoutY="10.0" maxHeight="92.5"
+                                                                    maxWidth="125.0"
+                                                                    minHeight="92.5"
+                                                                    minWidth="125.0"
+                                                                    prefHeight="92.5"
+                                                                    prefWidth="125.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </StackPane>
+                                    </bottom>
+                                    <center>
+                                        <StackPane fx:id="pnLeftScore" alignment="CENTER_LEFT"
+                                            maxWidth="250.0" minWidth="250.0" prefWidth="250.0"
+                                            BorderPane.alignment="CENTER_LEFT">
+                                            <children>
+                                                <VBox fx:id="pnLeftScorePoints"
+                                                    alignment="BOTTOM_CENTER" maxWidth="250.0"
+                                                    minWidth="250.0" prefWidth="250.0"
+                                                    BorderPane.alignment="CENTER">
+                                                    <children>
+                                                        <StackPane alignment="BOTTOM_CENTER"
+                                                            maxWidth="250.0" minWidth="250.0"
+                                                            prefWidth="250.0">
+                                                            <children>
+                                                                <Text fx:id="txtLeftPoints"
+                                                                    strokeType="OUTSIDE"
+                                                                    strokeWidth="0.0" text="0"
+                                                                    textAlignment="CENTER"
+                                                                    wrappingWidth="255.46875"
+                                                                    BorderPane.alignment="CENTER">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-newPoints"/>
+                                                                    </styleClass>
+                                                                    <VBox.margin>
+                                                                        <Insets/>
+                                                                    </VBox.margin>
+                                                                    <StackPane.margin>
+                                                                        <Insets bottom="15.0"/>
+                                                                    </StackPane.margin>
+                                                                </Text>
+                                                                <StackPane fx:id="pnLeftVideo"
+                                                                    alignment="BOTTOM_CENTER"
+                                                                    maxHeight="42.5"
+                                                                    maxWidth="250.0"
+                                                                    minHeight="42.5"
+                                                                    minWidth="250.0"
+                                                                    prefHeight="42.5"
+                                                                    prefWidth="250.0">
+                                                                    <children>
+                                                                        <HBox
+                                                                            fx:id="pnLeftVideoContainer"
+                                                                            alignment="CENTER"
+                                                                            maxWidth="250.0"
+                                                                            minWidth="250.0"
+                                                                            prefWidth="250.0"/>
+                                                                    </children>
+                                                                </StackPane>
+                                                            </children>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0"/>
+                                                            </VBox.margin>
+                                                        </StackPane>
+                                                    </children>
+                                                    <BorderPane.margin>
+                                                        <Insets right="110.0"/>
+                                                    </BorderPane.margin>
+                                                </VBox>
+                                                <VBox fx:id="pnLeftScoreRoundsInfo"
+                                                    alignment="BOTTOM_CENTER" layoutX="10.0"
+                                                    layoutY="10.0" maxWidth="250.0" minWidth="250.0"
+                                                    prefWidth="250.0" visible="false">
+                                                    <children>
+                                                        <HBox alignment="CENTER" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="R1">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblLeftR1Points"
+                                                                    alignment="CENTER"
+                                                                    layoutX="112.0" layoutY="10.0"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <StackPane fx:id="pnLeftR1Winner"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER" layoutX="10.0"
+                                                            layoutY="96.0" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="R2">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblLeftR2Points"
+                                                                    alignment="CENTER"
+                                                                    layoutX="112.0" layoutY="10.0"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <StackPane fx:id="pnLeftR2Winner"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER" layoutX="10.0"
+                                                            layoutY="96.0" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="R3">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblLeftR3Points"
+                                                                    alignment="CENTER"
+                                                                    layoutX="112.0" layoutY="10.0"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <StackPane fx:id="pnLeftR3Winner"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <StackPane>
+                                                            <children>
+                                                                <Text fx:id="txtLeftRoundsWins"
+                                                                    strokeType="OUTSIDE"
+                                                                    strokeWidth="0.0" text="0"
+                                                                    textAlignment="CENTER"
+                                                                    wrappingWidth="255.46875"
+                                                                    BorderPane.alignment="CENTER">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWins"/>
+                                                                    </styleClass>
+                                                                    <StackPane.margin>
+                                                                        <Insets/>
+                                                                    </StackPane.margin>
+                                                                    <VBox.margin>
+                                                                        <Insets/>
+                                                                    </VBox.margin>
+                                                                </Text>
+                                                                <ImageView
+                                                                    fx:id="ivLeftRoundsWinsVideo"
+                                                                    fitHeight="46.5"
+                                                                    pickOnBounds="true"
+                                                                    preserveRatio="true"
+                                                                    StackPane.alignment="BOTTOM_LEFT">
+                                                                    <StackPane.margin>
+                                                                        <Insets bottom="15.0"
+                                                                            left="15.0" right="15.0"
+                                                                            top="15.0"/>
+                                                                    </StackPane.margin>
+                                                                </ImageView>
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </StackPane>
+                                    </center>
+                                </BorderPane>
+                                <BorderPane fx:id="pnRightAthlete" layoutX="10.0" layoutY="10.0"
+                                    maxWidth="480.0" minWidth="480.0" prefWidth="480.0"
+                                    styleClass="sb-blue-radial">
+                                    <top>
+                                        <StackPane maxHeight="92.5" minHeight="92.5"
+                                            prefHeight="92.5" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <Pane styleClass="pn-opacity"/>
+                                                <HBox alignment="CENTER" spacing="5.0">
+                                                    <children>
+                                                        <Label fx:id="txtRightName"
+                                                            alignment="CENTER" maxHeight="50.0"
+                                                            maxWidth="355.0" minHeight="50.0"
+                                                            minWidth="355.0" prefHeight="50.0"
+                                                            prefWidth="355.0" wrapText="true">
+                                                            <styleClass>
+                                                                <String fx:value="newAthleteName"/>
+                                                                <String
+                                                                    fx:value="df-newAthleteName"/>
+                                                            </styleClass>
+                                                        </Label>
+                                                        <StackPane fx:id="pnRightFlag"
+                                                            maxHeight="87.5" maxWidth="110.0"
+                                                            minHeight="87.5" minWidth="110.0"
+                                                            prefHeight="87.5" prefWidth="110.0"/>
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0"
+                                                            top="5.0"/>
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </StackPane>
+                                    </top>
+                                    <right>
+                                        <StackPane maxWidth="120.0" minWidth="120.0"
+                                            prefWidth="120.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <Pane styleClass="pn-opacity"/>
+                                                <VBox alignment="TOP_CENTER" maxWidth="120.0"
+                                                    minWidth="120.0" prefWidth="120.0"
+                                                    BorderPane.alignment="CENTER">
+                                                    <children>
+                                                        <Text fx:id="txtRightAbbr"
+                                                            strokeType="OUTSIDE" strokeWidth="0.0">
+                                                            <styleClass>
+                                                                <String
+                                                                    fx:value="newAthleteAbbreviation"/>
+                                                                <String
+                                                                    fx:value="df-newAthleteAbbreviation"/>
+                                                            </styleClass>
+                                                        </Text>
+                                                        <VBox fx:id="pnRightHits"
+                                                            alignment="TOP_CENTER" maxHeight="235.0"
+                                                            minHeight="235.0" prefHeight="235.0"
+                                                            spacing="4.5">
+                                                            <padding>
+                                                                <Insets top="3.75"/>
+                                                            </padding>
+                                                        </VBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </StackPane>
+                                    </right>
+                                    <bottom>
+                                        <StackPane maxHeight="92.5" maxWidth="370.0"
+                                            minHeight="92.5" minWidth="370.0" prefHeight="92.5"
+                                            prefWidth="370.0" BorderPane.alignment="CENTER_RIGHT">
+                                            <children>
+                                                <Pane maxWidth="370.0" minWidth="370.0"
+                                                    prefWidth="370.0" styleClass="pn-opacity"/>
+                                                <HBox alignment="CENTER_RIGHT" maxWidth="370.0"
+                                                    minWidth="370.0" prefWidth="370.0">
+                                                    <children>
+                                                        <HBox fx:id="pnRightLastImpact"
+                                                            alignment="CENTER" maxHeight="92.5"
+                                                            maxWidth="250.0" minHeight="92.5"
+                                                            minWidth="250.0"
+                                                            nodeOrientation="RIGHT_TO_LEFT"
+                                                            prefHeight="92.5" prefWidth="250.0">
+                                                            <children>
+                                                                <StackPane maxHeight="92.5"
+                                                                    maxWidth="125.0"
+                                                                    minHeight="92.5"
+                                                                    minWidth="125.0"
+                                                                    prefHeight="92.5"
+                                                                    prefWidth="125.0"/>
+                                                                <StackPane maxHeight="92.5"
+                                                                    maxWidth="125.0"
+                                                                    minHeight="92.5"
+                                                                    minWidth="125.0"
+                                                                    prefHeight="92.5"
+                                                                    prefWidth="125.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <VBox alignment="TOP_CENTER"
+                                                            maxHeight="92.5" maxWidth="120.0"
+                                                            minHeight="92.5" minWidth="120.0"
+                                                            prefHeight="92.5" prefWidth="120.0"
+                                                            spacing="10.0">
+                                                            <children>
+                                                                <Label text="GAM-JEOM">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="penaltiesLabel"/>
+                                                                        <String
+                                                                            fx:value="df-penalties"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblRightPenalties"
+                                                                    layoutX="34.0" layoutY="48.0"
+                                                                    text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="penaltiesLabel"/>
+                                                                        <String
+                                                                            fx:value="df-penaltiesValue"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </StackPane>
+                                    </bottom>
+                                    <center>
+                                        <StackPane fx:id="pnRightScore" alignment="CENTER_RIGHT"
+                                            maxWidth="250.0" minWidth="250.0" prefWidth="250.0"
+                                            BorderPane.alignment="CENTER_RIGHT">
+                                            <children>
+                                                <VBox fx:id="pnRightScorePoints"
+                                                    alignment="BOTTOM_CENTER" maxWidth="250.0"
+                                                    minWidth="250.0" prefWidth="250.0"
+                                                    BorderPane.alignment="CENTER">
+                                                    <BorderPane.margin>
+                                                        <Insets left="110.0"/>
+                                                    </BorderPane.margin>
+                                                    <children>
+                                                        <StackPane alignment="BOTTOM_CENTER"
+                                                            maxWidth="250.0" minWidth="250.0"
+                                                            prefWidth="250.0">
+                                                            <children>
+                                                                <Text fx:id="txtRightPoints"
+                                                                    strokeType="OUTSIDE"
+                                                                    strokeWidth="0.0" text="0"
+                                                                    textAlignment="CENTER">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-newPoints"/>
+                                                                    </styleClass>
+                                                                    <StackPane.margin>
+                                                                        <Insets bottom="15.0"/>
+                                                                    </StackPane.margin>
+                                                                </Text>
+                                                                <StackPane fx:id="pnRightVideo"
+                                                                    alignment="BOTTOM_CENTER"
+                                                                    maxHeight="42.5"
+                                                                    maxWidth="250.0"
+                                                                    minHeight="42.5"
+                                                                    minWidth="250.0"
+                                                                    prefHeight="42.5"
+                                                                    prefWidth="250.0">
+                                                                    <children>
+                                                                        <HBox
+                                                                            fx:id="pnRightVideoContainer"
+                                                                            alignment="CENTER"
+                                                                            maxWidth="250.0"
+                                                                            minWidth="250.0"
+                                                                            prefWidth="250.0"/>
+                                                                    </children>
+                                                                </StackPane>
+                                                            </children>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0"/>
+                                                            </VBox.margin>
+                                                        </StackPane>
+                                                    </children>
+                                                </VBox>
+                                                <VBox fx:id="pnRightScoreRoundsInfo"
+                                                    alignment="BOTTOM_CENTER" maxWidth="250.0"
+                                                    minWidth="250.0" prefWidth="250.0"
+                                                    visible="false">
+                                                    <children>
+                                                        <HBox alignment="CENTER" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="R1">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblRightR1Points"
+                                                                    alignment="CENTER"
+                                                                    layoutX="112.0" layoutY="10.0"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <StackPane fx:id="pnRightR1Winner"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER" layoutX="10.0"
+                                                            layoutY="96.0" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="R2">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblRightR2Points"
+                                                                    alignment="CENTER"
+                                                                    layoutX="112.0" layoutY="10.0"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <StackPane fx:id="pnRightR2Winner"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER" layoutX="10.0"
+                                                            layoutY="96.0" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="R3">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <Label fx:id="lblRightR3Points"
+                                                                    alignment="CENTER"
+                                                                    layoutX="112.0" layoutY="10.0"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0" text="0">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWinsInfo"/>
+                                                                    </styleClass>
+                                                                </Label>
+                                                                <StackPane fx:id="pnRightR3Winner"
+                                                                    maxWidth="75.0" minWidth="75.0"
+                                                                    prefWidth="75.0"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <StackPane>
+                                                            <children>
+                                                                <Text fx:id="txtRightRoundsWins"
+                                                                    strokeType="OUTSIDE"
+                                                                    strokeWidth="0.0" text="0"
+                                                                    textAlignment="CENTER"
+                                                                    wrappingWidth="255.46875"
+                                                                    BorderPane.alignment="CENTER">
+                                                                    <styleClass>
+                                                                        <String
+                                                                            fx:value="newPoints"/>
+                                                                        <String
+                                                                            fx:value="df-roundWins"/>
+                                                                    </styleClass>
+                                                                    <StackPane.margin>
+                                                                        <Insets/>
+                                                                    </StackPane.margin>
+                                                                    <VBox.margin>
+                                                                        <Insets/>
+                                                                    </VBox.margin>
+                                                                </Text>
+                                                                <ImageView
+                                                                    fx:id="ivRightRoundsWinsVideo"
+                                                                    fitHeight="46.5"
+                                                                    pickOnBounds="true"
+                                                                    preserveRatio="true"
+                                                                    StackPane.alignment="BOTTOM_RIGHT">
+                                                                    <StackPane.margin>
+                                                                        <Insets bottom="15.0"
+                                                                            left="15.0" right="15.0"
+                                                                            top="15.0"/>
+                                                                    </StackPane.margin>
+                                                                </ImageView>
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </StackPane>
+                                    </center>
+                                </BorderPane>
+                            </children>
+                        </HBox>
+                    </center>
+                </BorderPane>
+                <VBox alignment="TOP_CENTER" maxHeight="390.0" maxWidth="220.0" minHeight="390.0"
+                    minWidth="220.0" prefHeight="390.0" prefWidth="220.0" styleClass="newRoundInfo">
+                    <StackPane.margin>
+                        <Insets top="150.0"/>
+                    </StackPane.margin>
+                    <children>
+                        <StackPane maxHeight="100.0" maxWidth="200.0" minHeight="100.0"
+                            minWidth="220.0" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <VBox fx:id="pnMatchNumber" alignment="CENTER" maxHeight="100.0"
+                                    minHeight="100.0" prefHeight="100.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MATCH">
+                                            <styleClass>
+                                                <String fx:value="newMatchInfo-matchNumber"/>
+                                                <String
+                                                    fx:value="df-newMatchInfo-matchNumberLabel"/>
+                                            </styleClass>
+                                            <VBox.margin>
+                                                <Insets top="6.0"/>
+                                            </VBox.margin>
+                                        </Text>
+                                        <Text fx:id="txtMatchNumber" strokeType="OUTSIDE"
+                                            strokeWidth="0.0" text="0">
+                                            <styleClass>
+                                                <String fx:value="newMatchInfo-matchNumber"/>
+                                                <String
+                                                    fx:value="df-newMatchInfo-matchNumberValue"/>
+                                            </styleClass>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                                <VBox fx:id="pnKyeShi" alignment="TOP_CENTER" maxHeight="100.0"
+                                    maxWidth="220.0" minHeight="100.0" minWidth="220.0"
+                                    prefHeight="100.0" prefWidth="220.0" styleClass="pn-kyeShi"
+                                    visible="false" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets/>
+                                    </StackPane.margin>
+                                    <children>
+                                        <Label text="Kye-shi" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="lblKyeShi"/>
+                                                <String fx:value="df-lblKyeShi"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Text fx:id="lblKyeShiTime" text="0:00" translateY="-10.0">
+                                            <styleClass>
+                                                <String fx:value="lblKyeShi"/>
+                                                <String fx:value="df-lblKyeShiTime"/>
+                                            </styleClass>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="pnCountdownContainer">
+                            <children>
+                                <!--<StackPane>-->
+                                <!--<children>-->
+                                <!--<Rectangle fx:id="recRoundCountdown" height="125.0" styleClass="pn-newCountdown" width="220.0" StackPane.alignment="CENTER">-->
+                                <!--<StackPane.margin>-->
+                                <!--<Insets />-->
+                                <!--</StackPane.margin>-->
+                                <!--</Rectangle>-->
+                                <!--<Text fx:id="roundCountdown" fill="BLACK" text="0:00" StackPane.alignment="CENTER">-->
+                                <!--<styleClass>-->
+                                <!--<String fx:value="roundCountdown" />-->
+                                <!--<String fx:value="df-newRoundCountdown" />-->
+                                <!--</styleClass>-->
+                                <!--</Text>-->
+                                <!--</children>-->
+                                <!--</StackPane>-->
+                                <!--<Label fx:id="roundCountdown" text="0:00" StackPane.alignment="CENTER">-->
+                                <!--<styleClass>-->
+                                <!--<String fx:value="roundCountdown" />-->
+                                <!--<String fx:value="df-newRoundCountdown" />-->
+                                <!--</styleClass>-->
+                                <!--</Label>-->
+                                <Label fx:id="lblDoctor" alignment="CENTER" maxHeight="125.0"
+                                    maxWidth="300.0" minHeight="125.0" minWidth="300.0"
+                                    prefHeight="125.0" prefWidth="300.0" text="DOCTOR"
+                                    textAlignment="CENTER" visible="false"
+                                    StackPane.alignment="CENTER">
+                                    <styleClass>
+                                        <String fx:value="pn-doctor"/>
+                                        <String fx:value="df-doctor"/>
+                                    </styleClass>
+                                </Label>
+                            </children>
+                        </StackPane>
+                        <VBox fx:id="pnTimeout" alignment="CENTER" maxHeight="50.0" maxWidth="220.0"
+                            minHeight="50.0" minWidth="220.0" prefHeight="50.0" prefWidth="220.0"
+                            visible="false">
+                            <children>
+                                <Label alignment="CENTER" maxHeight="50.0" maxWidth="220.0"
+                                    minHeight="50.0" minWidth="220.0" prefHeight="50.0"
+                                    prefWidth="220.0" text="%message.matchPaused"
+                                    StackPane.alignment="CENTER">
+                                    <styleClass>
+                                        <String fx:value="newLblTimeOut"/>
+                                        <String fx:value="df-newLblTimeOut"/>
+                                    </styleClass>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <VBox fx:id="pnLeftRoundWins" alignment="TOP_CENTER" maxWidth="30.0"
+                                    minWidth="30.0" prefWidth="30.0" spacing="5.0">
+                                    <HBox.margin>
+                                        <Insets left="12.0" right="12.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox alignment="CENTER">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ROUND"
+                                            StackPane.alignment="CENTER">
+                                            <styleClass>
+                                                <String fx:value="newRoundNumber"/>
+                                                <String
+                                                    fx:value="df-newMatchInfo-matchNumberLabel"/>
+                                            </styleClass>
+                                            <VBox.margin>
+                                                <Insets/>
+                                            </VBox.margin>
+                                        </Text>
+                                        <Text fx:id="txtCurrentRound" strokeType="OUTSIDE"
+                                            strokeWidth="0.0" text="1" StackPane.alignment="CENTER">
+                                            <StackPane.margin>
+                                                <Insets/>
+                                            </StackPane.margin>
+                                            <styleClass>
+                                                <String fx:value="newRoundNumber"/>
+                                                <String fx:value="df-roundNumber"/>
+                                            </styleClass>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                                <VBox fx:id="pnRightRoundWins" alignment="TOP_CENTER" layoutX="50.0"
+                                    layoutY="10.0" maxWidth="30.0" minWidth="30.0" prefWidth="30.0"
+                                    spacing="5.0">
+                                    <HBox.margin>
+                                        <Insets left="12.0" right="12.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="7.0"/>
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox fx:id="pnRest" alignment="TOP_CENTER" maxHeight="175.0" maxWidth="220.0"
+                    minHeight="175.0" minWidth="220.0" prefHeight="175.0" prefWidth="220.0"
+                    visible="false" StackPane.alignment="TOP_CENTER">
+                    <StackPane.margin>
+                        <Insets top="250.0"/>
+                    </StackPane.margin>
+                    <children>
+                        <Label fx:id="lblRest" text="%message.restTime" textFill="black">
+                            <VBox.margin>
+                                <Insets top="6.0"/>
+                            </VBox.margin>
+                        </Label>
+                        <Text fx:id="txtRestTime" fill="black">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                    <styleClass>
+                        <String fx:value="newRestTime"/>
+                        <String fx:value="df-newRestTime"/>
+                    </styleClass>
+                </VBox>
+            </children>
+        </StackPane>
+        <StackPane fx:id="pnShowWinner" visible="false">
+            <children>
+                <Pane style="-fx-background-color: black; -fx-opacity: .85;"/>
+                <BorderPane>
+                    <top>
+                        <Label fx:id="lblMatchWinnerTitle" text="%message.matchWinner"
+                            textFill="WHITE" BorderPane.alignment="CENTER">
+                            <styleClass>
+                                <String fx:value="finalResult-label"/>
+                                <String fx:value="df-finalResult-matchWinner"/>
+                            </styleClass>
+                            <BorderPane.margin>
+                                <Insets top="50.0"/>
+                            </BorderPane.margin>
+                        </Label>
+                    </top>
+                    <center>
+                        <VBox alignment="TOP_CENTER" spacing="30.0"
+                            BorderPane.alignment="TOP_CENTER">
+                            <children>
+                                <HBox alignment="CENTER" spacing="5.0">
+                                    <children>
+                                        <Label fx:id="lblFinalDecission" alignment="CENTER"
+                                            text="WINNER" textAlignment="CENTER" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="matchWinner"/>
+                                                <String fx:value="df-matchWinner"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblFinalBlueResult" alignment="CENTER"
+                                            layoutX="243.0" layoutY="10.0" textAlignment="CENTER"
+                                            textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="sb-blue"/>
+                                                <String fx:value="df-matchWinnerResult"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblFinalRedResult" alignment="CENTER"
+                                            layoutX="690.0" layoutY="10.0" textAlignment="CENTER"
+                                            textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="sb-red"/>
+                                                <String fx:value="df-matchWinnerResult"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="11.25">
+                                    <children>
+                                        <ImageView fx:id="ivWinnerFlag" fitHeight="135.0"
+                                            pickOnBounds="true" preserveRatio="true"/>
+                                        <Label fx:id="lblWinner" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="finalResult-label"/>
+                                                <String fx:value="df-finalResult-athlete"/>
+                                                <String fx:value="sb-blue"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets top="40.0"/>
+                            </BorderPane.margin>
+                        </VBox>
+                    </center>
+                </BorderPane>
+            </children>
+            <StackPane.margin>
+                <Insets top="57.5"/>
+            </StackPane.margin>
+        </StackPane>
+        <StackPane fx:id="pnVideoRequest" maxHeight="540.0" maxWidth="960.0" minHeight="540.0"
+            minWidth="960.0" prefHeight="540.0" prefWidth="960.0" visible="false">
+            <children>
+                <Pane prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: black; -fx-opacity: .65;"/>
+                <VBox alignment="TOP_CENTER">
+                    <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label text="%message.videoRequested">
+                                    <styleClass>
+                                        <String fx:value="videoRequestInfo"/>
+                                        <String fx:value="df-videoRequestInfo"/>
+                                    </styleClass>
+                                    <VBox.margin>
+                                        <Insets top="80.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="txtVideoRequest" layoutX="432.0" layoutY="90.0"
+                                    styleClass="df-videoRequestInfo"/>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="80.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="ivVideoRequestStatus" fitHeight="105.0"
+                            pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets top="85.0"/>
+                            </VBox.margin>
+                            <image>
+                                <Image url="@/images/imageVideoRequest-df.png"/>
+                            </image>
+                        </ImageView>
+                        <Label fx:id="txtVideoRequestResult">
+                            <styleClass>
+                                <String fx:value="videoRequestInfo"/>
+                                <String fx:value="df-videoRequestInfo"/>
+                            </styleClass>
+                            <VBox.margin>
+                                <Insets top="100.0"/>
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+        <StackPane fx:id="pnNetworkError" alignment="TOP_CENTER" maxHeight="540.0" maxWidth="960.0"
+            minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" visible="false">
+            <children>
+                <Pane prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: black; -fx-opacity: .85;"/>
+                <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_CENTER">
+                    <children>
+                        <ImageView fitHeight="180.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/Stop.png"/>
+                            </image>
+                        </ImageView>
+                        <HBox alignment="CENTER" spacing="5.0">
+                            <children>
+                                <Label fx:id="lblNetworkError1" alignment="CENTER" textFill="WHITE">
+                                    <styleClass>
+                                        <String fx:value="networkError"/>
+                                        <String fx:value="df-networkError"/>
+                                    </styleClass>
+                                </Label>
+                                <Label fx:id="lblNetworkError2" alignment="CENTER" layoutX="447.0"
+                                    layoutY="40.0" textFill="WHITE">
+                                    <styleClass>
+                                        <String fx:value="networkError"/>
+                                        <String fx:value="df-networkError"/>
+                                    </styleClass>
+                                </Label>
+                            </children>
+                            <padding>
+                                <Insets top="30.0"/>
+                            </padding>
+                        </HBox>
+                        <ImageView fx:id="ivErrorCause" fitHeight="150.0" pickOnBounds="true"
+                            preserveRatio="true">
+                            <VBox.margin>
+                                <Insets top="44.0"/>
+                            </VBox.margin>
+                        </ImageView>
+                    </children>
+                    <StackPane.margin>
+                        <Insets/>
+                    </StackPane.margin>
+                    <padding>
+                        <Insets top="45.0"/>
+                    </padding>
+                </VBox>
+            </children>
+        </StackPane>
+        <StackPane fx:id="pnGoldenPointTieBreaker" visible="false">
+            <children>
+                <Pane style="-fx-background-color: black; -fx-opacity: .85;"/>
+                <BorderPane maxWidth="960.0" minWidth="960.0" prefWidth="960.0"
+                    StackPane.alignment="BOTTOM_CENTER">
+                    <StackPane.margin>
+                        <Insets/>
+                    </StackPane.margin>
+                    <center>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label fx:id="lblFinalDecissionGDPTB" alignment="CENTER"
+                                    textAlignment="CENTER" textFill="WHITE">
+                                    <styleClass>
+                                        <String fx:value="matchWinner"/>
+                                        <String fx:value="df-matchWinnerGDPTB"/>
+                                    </styleClass>
+                                </Label>
+                                <HBox alignment="TOP_CENTER" spacing="11.25">
+                                    <children>
+                                        <ImageView fx:id="ivWinnerFlagGDPTB" fitHeight="135.0"
+                                            pickOnBounds="true" preserveRatio="true"/>
+                                        <Label fx:id="lblWinnerGDPTB" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="finalResult-label"/>
+                                                <String fx:value="df-finalResult-athlete"/>
+                                                <String fx:value="sb-blue"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <GridPane alignment="CENTER" hgap="5.0" maxWidth="815.0"
+                                    minWidth="815.0" prefWidth="815.0" vgap="5.0"
+                                    BorderPane.alignment="CENTER">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0"
+                                            minWidth="195.0" prefWidth="195.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"
+                                            minWidth="150.0" prefWidth="150.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"
+                                            prefWidth="150.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"
+                                            prefWidth="150.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"
+                                            prefWidth="150.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <BorderPane.margin>
+                                        <Insets left="125.0" right="125.0"/>
+                                    </BorderPane.margin>
+                                    <children>
+                                        <Label fx:id="lblBlueGPTBHits" text="0"
+                                            GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="68.0" text="CHUNG"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-title-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="10.0" layoutY="68.0" text="HONG"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-title-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueGPTBRounds" layoutX="190.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="3"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueGPTBPenalties" layoutX="370.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="4"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="68.0" text="HITS"
+                                            GridPane.columnIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="10.0" text="ROUND"
+                                            GridPane.columnIndex="3">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="370.0" layoutY="10.0" text="GAM-JEOM"
+                                            GridPane.columnIndex="4">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBHits" layoutX="190.0" layoutY="68.0"
+                                            text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBRounds" layoutX="190.0"
+                                            layoutY="126.0" text="0" GridPane.columnIndex="3"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBPenalties" layoutX="370.0"
+                                            layoutY="126.0" text="0" GridPane.columnIndex="4"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="345.0" layoutY="10.0" text="PUNCH"
+                                            GridPane.columnIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueGPTBPunches" layoutX="345.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="1"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBPunches" layoutX="345.0"
+                                            layoutY="126.0" text="0" GridPane.columnIndex="1"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </center>
+                    <top>
+                        <Label fx:id="lblMatchWinnerTitleGDPTB" text="%message.matchWinner"
+                            textFill="WHITE" BorderPane.alignment="CENTER">
+                            <styleClass>
+                                <String fx:value="finalResult-label"/>
+                                <String fx:value="df-finalResult-matchWinner"/>
+                            </styleClass>
+                        </Label>
+                    </top>
+                </BorderPane>
+            </children>
+            <StackPane.margin>
+                <Insets top="57.5"/>
+            </StackPane.margin>
+        </StackPane>
+        <!--        <StackPane fx:id="pnSuperiorityBestOf3" layoutX="10.0" layoutY="68.0" visible="false">-->
+        <!--            <children>-->
+        <!--                <Pane style="-fx-background-color: black; -fx-opacity: .85;"/>-->
+        <!--                <BorderPane maxWidth="960.0" minWidth="960.0" prefWidth="960.0"-->
+        <!--                    StackPane.alignment="BOTTOM_CENTER">-->
+        <!--                    <center>-->
+        <!--                        <VBox alignment="CENTER" spacing="10.0">-->
+        <!--                            <children>-->
+        <!--                                <Label fx:id="lblFinalDecisionSUPBestOf3" alignment="CENTER"-->
+        <!--                                    textAlignment="CENTER" textFill="WHITE">-->
+        <!--                                    <styleClass>-->
+        <!--                                        <String fx:value="matchWinner"/>-->
+        <!--                                        <String fx:value="df-matchWinnerGDPTB"/>-->
+        <!--                                    </styleClass>-->
+        <!--                                </Label>-->
+        <!--                                <HBox alignment="TOP_CENTER" spacing="11.25">-->
+        <!--                                    <children>-->
+        <!--                                        <ImageView fx:id="ivWinnerFlagSUPBestOf3" fitHeight="135.0"-->
+        <!--                                            pickOnBounds="true" preserveRatio="true"/>-->
+        <!--                                        <Label fx:id="lblWinnerSUPBestOf3" textFill="WHITE">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="finalResult-label"/>-->
+        <!--                                                <String fx:value="df-finalResult-athlete"/>-->
+        <!--                                                <String fx:value="sb-blue"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                    </children>-->
+        <!--                                </HBox>-->
+        <!--                                <GridPane alignment="CENTER" hgap="5.0" maxWidth="815.0"-->
+        <!--                                    minWidth="815.0" prefWidth="815.0" vgap="5.0"-->
+        <!--                                    BorderPane.alignment="CENTER">-->
+        <!--                                    <children>-->
+        <!--                                        <Label fx:id="lblBlueSUPBestOf3Turning" text="0"-->
+        <!--                                            GridPane.columnIndex="3" GridPane.rowIndex="1">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-blue-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label layoutX="190.0" layoutY="68.0" text="CHUNG"-->
+        <!--                                            GridPane.rowIndex="1">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-title-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-blue-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label layoutX="10.0" layoutY="68.0" text="HONG"-->
+        <!--                                            GridPane.rowIndex="2">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-title-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-red-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label fx:id="lblBlueSUPBestOf3Penalties" layoutX="190.0"-->
+        <!--                                            layoutY="68.0" text="0" GridPane.columnIndex="4"-->
+        <!--                                            GridPane.rowIndex="1">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-blue-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label layoutX="190.0" layoutY="68.0" text="TURNING"-->
+        <!--                                            GridPane.columnIndex="3">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label layoutX="190.0" layoutY="10.0" text="GAM-JEOM"-->
+        <!--                                            GridPane.columnIndex="4">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label layoutX="370.0" layoutY="10.0" text="3rd PUN"-->
+        <!--                                            GridPane.columnIndex="1">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label fx:id="lblRedSUPBestOf3Turning" layoutX="190.0"-->
+        <!--                                            layoutY="68.0" text="0" GridPane.columnIndex="3"-->
+        <!--                                            GridPane.rowIndex="2">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-red-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label fx:id="lblRedSUPBestOf3Penalties" layoutX="190.0"-->
+        <!--                                            layoutY="126.0" text="0" GridPane.columnIndex="4"-->
+        <!--                                            GridPane.rowIndex="2">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-red-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label layoutX="345.0" layoutY="10.0" text="POINTS"-->
+        <!--                                            GridPane.columnIndex="2">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label fx:id="lblBlueSUPBestOf3Points" layoutX="345.0"-->
+        <!--                                            layoutY="68.0" text="0" GridPane.columnIndex="2"-->
+        <!--                                            GridPane.rowIndex="1">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-blue-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <Label fx:id="lblRedSUPBestOf3Points" layoutX="345.0"-->
+        <!--                                            layoutY="126.0" text="0" GridPane.columnIndex="2"-->
+        <!--                                            GridPane.rowIndex="2">-->
+        <!--                                            <styleClass>-->
+        <!--                                                <String fx:value="gptb-title"/>-->
+        <!--                                                <String fx:value="df-gptb-hits"/>-->
+        <!--                                                <String fx:value="sb-red-noGradient"/>-->
+        <!--                                            </styleClass>-->
+        <!--                                        </Label>-->
+        <!--                                        <StackPane fx:id="pnBlueSUPBestOf33rRound" maxHeight="52.5"-->
+        <!--                                            maxWidth="150.0" minHeight="52.5" minWidth="150.0"-->
+        <!--                                            prefHeight="52.5" prefWidth="150.0"-->
+        <!--                                            styleClass="sb-blue-noGradient" GridPane.columnIndex="1"-->
+        <!--                                            GridPane.rowIndex="1">-->
+        <!--                                            <children>-->
+        <!--                                                <ImageView fx:id="ivBlueSUPBestOf33rRound"-->
+        <!--                                                    fitHeight="25.0" pickOnBounds="true"-->
+        <!--                                                    preserveRatio="true"/>-->
+        <!--                                            </children>-->
+        <!--                                        </StackPane>-->
+        <!--                                        <StackPane fx:id="pnRedSUPBestOf33rRound" layoutX="675.0"-->
+        <!--                                            layoutY="68.0" maxHeight="52.5" maxWidth="150.0"-->
+        <!--                                            minHeight="52.5" minWidth="150.0" prefHeight="52.5"-->
+        <!--                                            prefWidth="150.0" styleClass="sb-red-noGradient"-->
+        <!--                                            GridPane.columnIndex="1" GridPane.rowIndex="2">-->
+        <!--                                            <children>-->
+        <!--                                                <ImageView fx:id="ivRedSUPBestOf33rRound"-->
+        <!--                                                    fitHeight="25.0" pickOnBounds="true"-->
+        <!--                                                    preserveRatio="true"/>-->
+        <!--                                            </children>-->
+        <!--                                        </StackPane>-->
+        <!--                                    </children>-->
+        <!--                                    <columnConstraints>-->
+        <!--                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0"-->
+        <!--                                            minWidth="195.0" prefWidth="195.0"/>-->
+        <!--                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"-->
+        <!--                                            minWidth="150.0" prefWidth="150.0"/>-->
+        <!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"-->
+        <!--                                            prefWidth="150.0"/>-->
+        <!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"-->
+        <!--                                            prefWidth="150.0"/>-->
+        <!--                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"-->
+        <!--                                            prefWidth="150.0"/>-->
+        <!--                                    </columnConstraints>-->
+        <!--                                    <rowConstraints>-->
+        <!--                                        <RowConstraints maxHeight="52.5" minHeight="52.5"-->
+        <!--                                            prefHeight="52.5" vgrow="SOMETIMES"/>-->
+        <!--                                        <RowConstraints maxHeight="52.5" minHeight="52.5"-->
+        <!--                                            prefHeight="52.5" vgrow="SOMETIMES"/>-->
+        <!--                                        <RowConstraints maxHeight="52.5" minHeight="52.5"-->
+        <!--                                            prefHeight="52.5" vgrow="SOMETIMES"/>-->
+        <!--                                    </rowConstraints>-->
+        <!--                                    <BorderPane.margin>-->
+        <!--                                        <Insets left="125.0" right="125.0"/>-->
+        <!--                                    </BorderPane.margin>-->
+        <!--                                </GridPane>-->
+        <!--                            </children>-->
+        <!--                        </VBox>-->
+        <!--                    </center>-->
+        <!--                    <top>-->
+        <!--                        <Label fx:id="lblMatchWinnerTitleSUPBestOf3" text="%message.matchWinner"-->
+        <!--                            textFill="WHITE" BorderPane.alignment="CENTER">-->
+        <!--                            <styleClass>-->
+        <!--                                <String fx:value="finalResult-label"/>-->
+        <!--                                <String fx:value="df-finalResult-matchWinner"/>-->
+        <!--                            </styleClass>-->
+        <!--                        </Label>-->
+        <!--                    </top>-->
+        <!--                    <StackPane.margin>-->
+        <!--                        <Insets/>-->
+        <!--                    </StackPane.margin>-->
+        <!--                </BorderPane>-->
+        <!--            </children>-->
+        <!--        </StackPane>-->
+        <StackPane fx:id="pnRoundSuperiorityBestOf3" layoutX="10.0" layoutY="68.0" visible="false">
+            <children>
+                <Pane style="-fx-background-color: black; -fx-opacity: .85;"/>
+                <BorderPane maxWidth="960.0" minWidth="960.0" prefWidth="960.0"
+                    StackPane.alignment="BOTTOM_CENTER">
+                    <center>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label fx:id="lblRoundSUPBestOf3" alignment="CENTER"
+                                    textAlignment="CENTER" textFill="WHITE">
+                                    <styleClass>
+                                        <String fx:value="matchWinner"/>
+                                        <String fx:value="df-matchWinnerGDPTB"/>
+                                    </styleClass>
+                                </Label>
+                                <HBox alignment="TOP_CENTER" spacing="11.25">
+                                    <children>
+                                        <ImageView fx:id="ivWinnerFlagRoundSUPBestOf3"
+                                            fitHeight="135.0" pickOnBounds="true"
+                                            preserveRatio="true"/>
+                                        <Label fx:id="lblWinnerRoundSUPBestOf3" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="finalResult-label"/>
+                                                <String fx:value="df-finalResult-athlete"/>
+                                                <String fx:value="sb-blue"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <GridPane alignment="CENTER" hgap="5.0" maxWidth="815.0"
+                                    minWidth="815.0" prefWidth="815.0" vgap="5.0"
+                                    BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="lblBlueRoundSUPBestOf3Tech" text="0"
+                                            GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="68.0" text="CHUNG"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-title-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="10.0" layoutY="68.0" text="HONG"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-title-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueRoundSUPBestOf3Hits" layoutX="190.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="3"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="68.0" text="TECH"
+                                            GridPane.columnIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="10.0" text="HITS"
+                                            GridPane.columnIndex="3">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedRoundSUPBestOf3Tech" layoutX="190.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="2"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedRoundSUPBestOf3Hits" layoutX="190.0"
+                                            layoutY="126.0" text="0" GridPane.columnIndex="3"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER"
+                                            layoutX="345.0" layoutY="10.0" text="TURNING SPINNING"
+                                            textAlignment="CENTER" wrapText="true"
+                                            GridPane.columnIndex="1" StackPane.alignment="CENTER">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueRoundSUPBestOf3TurningSpinning"
+                                            layoutX="345.0" layoutY="68.0" text="0"
+                                            GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedRoundSUPBestOf3TurningSpinning"
+                                            layoutX="345.0" layoutY="126.0" text="0"
+                                            GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0"
+                                            minWidth="195.0" prefWidth="195.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"
+                                            minWidth="150.0" prefWidth="150.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"
+                                            minWidth="150.0" prefWidth="150.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"
+                                            minWidth="150.0" prefWidth="150.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="52.5" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <BorderPane.margin>
+                                        <Insets left="125.0" right="125.0"/>
+                                    </BorderPane.margin>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </center>
+                    <top>
+                        <Label fx:id="lblMatchTitleRoundSUPBestOf3" text="%message.matchWinner"
+                            textFill="WHITE" BorderPane.alignment="CENTER">
+                            <styleClass>
+                                <String fx:value="finalResult-label"/>
+                                <String fx:value="df-finalResult-matchWinner"/>
+                            </styleClass>
+                        </Label>
+                    </top>
+                    <StackPane.margin>
+                        <Insets/>
+                    </StackPane.margin>
+                </BorderPane>
+            </children>
+        </StackPane>
+        <StackPane fx:id="pnGoldenPointTieBreakerPARA" visible="false">
+            <children>
+                <Pane style="-fx-background-color: black; -fx-opacity: .85;"/>
+                <BorderPane maxWidth="960.0" minWidth="960.0" prefWidth="960.0"
+                    StackPane.alignment="BOTTOM_CENTER">
+                    <StackPane.margin>
+                        <Insets/>
+                    </StackPane.margin>
+                    <center>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label fx:id="lblFinalDecissionGDPTBPARA" alignment="CENTER"
+                                    textAlignment="CENTER" textFill="WHITE">
+                                    <styleClass>
+                                        <String fx:value="matchWinner"/>
+                                        <String fx:value="df-matchWinnerGDPTB"/>
+                                    </styleClass>
+                                </Label>
+                                <HBox alignment="TOP_CENTER" spacing="11.25">
+                                    <children>
+                                        <ImageView fx:id="ivWinnerFlagGDPTBPARA" fitHeight="135.0"
+                                            pickOnBounds="true" preserveRatio="true"/>
+                                        <Label fx:id="lblWinnerGDPTBPARA" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="finalResult-label"/>
+                                                <String fx:value="df-finalResult-athlete"/>
+                                                <String fx:value="sb-blue"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <GridPane alignment="CENTER" hgap="5.0" maxWidth="815.0"
+                                    minWidth="815.0" prefWidth="815.0" vgap="5.0"
+                                    BorderPane.alignment="CENTER">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0"
+                                            minWidth="195.0" prefWidth="195.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0"
+                                            minWidth="200.0" prefWidth="200.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0"
+                                            minWidth="200.0" prefWidth="200.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0"
+                                            minWidth="200.0" prefWidth="200.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="52.5" minHeight="52.5"
+                                            prefHeight="52.5" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <BorderPane.margin>
+                                        <Insets left="125.0" right="125.0"/>
+                                    </BorderPane.margin>
+                                    <children>
+                                        <Label fx:id="lblBlueGPTBHitsPARA" text="0"
+                                            GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="68.0" text="CHUNG"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-title-gptb-hits"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="10.0" layoutY="68.0" text="HONG"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-title-gptb-hits"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueGPTBPenaltiesPARA" layoutX="370.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="3"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="190.0" layoutY="10.0" text="3/4 POINTS"
+                                            GridPane.columnIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="370.0" layoutY="10.0" text="GAM-JEOM"
+                                            GridPane.columnIndex="3">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBHitsPARA" layoutX="190.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="1"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBPenaltiesPARA" layoutX="370.0"
+                                            layoutY="126.0" text="0" GridPane.columnIndex="3"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label layoutX="345.0" layoutY="10.0" text="HITS"
+                                            GridPane.columnIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblBlueGPTBTechPointsPARA" layoutX="345.0"
+                                            layoutY="68.0" text="0" GridPane.columnIndex="2"
+                                            GridPane.rowIndex="1">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                                <String fx:value="sb-blue-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label fx:id="lblRedGPTBTechPointsPARA" layoutX="345.0"
+                                            layoutY="126.0" text="0" GridPane.columnIndex="2"
+                                            GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="gptb-title"/>
+                                                <String fx:value="df-gptb-hits-para"/>
+                                                <String fx:value="sb-red-noGradient"/>
+                                            </styleClass>
+                                        </Label>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </center>
+                    <top>
+                        <Label fx:id="lblMatchWinnerTitleGDPTBPARA" text="%message.matchWinner"
+                            textFill="WHITE" BorderPane.alignment="CENTER">
+                            <styleClass>
+                                <String fx:value="finalResult-label"/>
+                                <String fx:value="df-finalResult-matchWinner"/>
+                            </styleClass>
+                        </Label>
+                    </top>
+                </BorderPane>
+            </children>
+            <StackPane.margin>
+                <Insets top="57.5"/>
+            </StackPane.margin>
+        </StackPane>
+        <StackPane fx:id="pnPointGap" layoutX="10.0" layoutY="10.0" maxHeight="540.0"
+            maxWidth="960.0" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0"
+            visible="false">
+            <children>
+                <Pane prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: black; -fx-opacity: .85;"/>
+                <VBox alignment="TOP_CENTER">
+                    <children>
+                        <Label text="%message.winnerByPointGap">
+                            <styleClass>
+                                <String fx:value="videoRequestInfo"/>
+                                <String fx:value="df-videoRequestInfo"/>
+                            </styleClass>
+                            <VBox.margin>
+                                <Insets top="80.0"/>
+                            </VBox.margin>
+                        </Label>
+                        <Label fx:id="lblPointGapWinner" text="BLUE">
+                            <styleClass>
+                                <String fx:value="finalResult-label"/>
+                                <String fx:value="df-finalResult-athlete"/>
+                                <String fx:value="sb-blue"/>
+                            </styleClass>
+                            <VBox.margin>
+                                <Insets top="100.0"/>
+                            </VBox.margin>
+                            <padding>
+                                <Insets bottom="10.0" left="40.0" right="40.0" top="10.0"/>
+                            </padding>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+        <StackPane fx:id="pnPointGapBOF3" layoutX="10.0" layoutY="10.0" maxHeight="540.0"
+            maxWidth="960.0" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0"
+            visible="false">
+            <children>
+                <VBox alignment="CENTER">
+                    <children>
+                        <Label fx:id="lblBestOf3PointGap" styleClass="bestOf3PointGap-label"
+                            text="PTG">
+                            <padding>
+                                <Insets bottom="10.0" left="40.0" right="40.0" top="10.0"/>
+                            </padding>
+                            <VBox.margin>
+                                <Insets top="100.0"/>
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </children>
+</StackPane>

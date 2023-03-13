@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+<StackPane fx:id="rootView" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.controller.RoundCountdownController">
+    <children>
+        <Rectangle fx:id="recRoundCountdown" height="125.0" styleClass="pn-newCountdown" width="220.0" StackPane.alignment="CENTER">
+     <StackPane.margin>
+        <Insets />
+     </StackPane.margin>
+  </Rectangle>
+        <Text fx:id="roundCountdown" fill="BLACK" text="0:00" StackPane.alignment="CENTER">
+     <styleClass>
+        <String fx:value="roundCountdown" />
+        <String fx:value="df-newRoundCountdown" />
+     </styleClass>
+  </Text>
+    </children>
+</StackPane>

@@ -1,0 +1,19 @@
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+.externalToolBuilders
+
+# IntelliJ
+*.iml
+.idea
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+
+# test u
+/com.oodrive.services.*.png

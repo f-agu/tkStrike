@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo_matchLog" language="groovy" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="10059b00-8b42-41d0-b606-119ea1e12f70">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="390"/>
+	<property name="ireport.y" value="34"/>
+	<parameter name="pathImageLogo" class="java.lang.String"/>
+	<parameter name="jrMatchLogItems" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="dsMatchLogItems" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="pathImageLogoTkStrike" class="java.lang.String"/>
+	<parameter name="pathImageIcoVideo" class="java.lang.String"/>
+	<parameter name="pathImageIcoNoVideo" class="java.lang.String"/>
+	<parameter name="pathImageHead" class="java.lang.String"/>
+	<parameter name="pathImageBody" class="java.lang.String"/>
+	<field name="matchNumber" class="java.lang.String"/>
+	<field name="phaseName" class="java.lang.String"/>
+	<field name="subCategoryName" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="categoryName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numberOfJudges" class="java.lang.Integer"/>
+	<field name="minBodyLevel" class="java.lang.Integer"/>
+	<field name="minHeadLevel" class="java.lang.Integer"/>
+	<field name="matchStartTime" class="java.lang.Long"/>
+	<field name="matchEndTime" class="java.lang.Long"/>
+	<field name="blueAthleteName" class="java.lang.String"/>
+	<field name="redAthleteName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="blueAthleteFlagAbbreviation" class="java.lang.String"/>
+	<field name="redAthleteFlagAbbreviation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="maxAllowedGamJeoms" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.blueRoundWins" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.blueHits" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.bluePenalties" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.redRoundWins" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.redHits" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.redPenalties" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.haveTieBreaker" class="java.lang.Boolean"/>
+	<field name="goldenPointTieBreakerInfo.bluePunches" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.redPunches" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.bluePARATechPoints" class="java.lang.Integer"/>
+	<field name="goldenPointTieBreakerInfo.redPARATechPoints" class="java.lang.Integer"/>
+	<field name="blueAthleteFlagName" class="java.lang.String"/>
+	<field name="blueAthleteFlagShowName" class="java.lang.Boolean"/>
+	<field name="redAthleteFlagName" class="java.lang.String"/>
+	<field name="redAthleteFlagShowName" class="java.lang.Boolean"/>
+	<field name="paraTkdMatch" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<image scaleImage="RetainShape">
+				<reportElement x="5" y="5" width="105" height="40" uuid="578d32ab-f461-4ea8-a090-3cbf15cd497d"/>
+				<imageExpression><![CDATA[$P{pathImageLogo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="110" y="5" width="350" height="22" uuid="d395552e-694c-45e8-b862-ae914e2cfe80"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Daedo TkStrike]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="27" width="350" height="18" uuid="56c0d61e-8cc4-4d80-8d33-6c102cd16894"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Match Log Report]]></text>
+			</staticText>
+			<image scaleImage="RetainShape">
+				<reportElement x="461" y="5" width="104" height="22" uuid="60108aea-3f77-43a9-91d6-25f3014f73f3"/>
+				<imageExpression><![CDATA[$P{pathImageLogoTkStrike}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="1" width="65" height="11" uuid="2d0ca80a-60b3-4557-9291-c09b8347408e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Match Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="1" width="50" height="11" forecolor="#666666" uuid="98e4d4b3-e4c6-4aef-859e-0ea5c860543a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matchNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="13" width="65" height="11" uuid="95f6fd20-f8a7-4b64-a52e-071486ef1e63"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Weight division:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="13" width="355" height="11" forecolor="#666666" uuid="d969d35b-8227-4142-9ccc-4c13314863d5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subCategoryName} +" "+ $F{gender} +" "+ $F{categoryName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="121" y="1" width="27" height="11" uuid="a4e8f280-bcec-42a6-ab16-c2b17db58c69"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Phase:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="148" y="1" width="138" height="11" forecolor="#666666" uuid="4a50b4e2-f676-4c99-bffd-2b7ea1bb14c9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phaseName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="1" width="65" height="11" uuid="7cb7cfff-21f0-482f-8bf7-3b9d7e9ea540"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Body Level:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="351" y="1" width="50" height="11" forecolor="#666666" uuid="56758693-a9e7-4618-95c5-7f8e8706e5f0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{minBodyLevel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="427" y="1" width="65" height="11" uuid="0b7253d4-8c69-468a-a250-37c42bf8ce31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Head Level:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="492" y="1" width="50" height="11" forecolor="#666666" uuid="ae005f65-15bf-4f91-ac48-fc6a3cc8ef9a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{minHeadLevel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="25" width="65" height="11" uuid="bcbd5bd0-4adf-47d0-98ed-769b2afa6196"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Blue:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="25" width="200" height="11" forecolor="#666666" uuid="cd00a606-5a86-44a9-8156-ce7ffe4d8a72"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Unicode MS" size="8" pdfFontName="Arial Unicode MS" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{blueAthleteName} + " - "+ ($F{blueAthleteFlagShowName} ? $F{blueAthleteFlagName} : $F{blueAthleteFlagAbbreviation})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="25" width="65" height="11" uuid="2a5644fc-323d-4137-b2f1-74bd45ac4728"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Red:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="351" y="25" width="200" height="11" forecolor="#666666" uuid="a1aea553-9c02-45bf-af63-72ef4b8575a4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Unicode MS" size="8" pdfFontName="Arial Unicode MS" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{redAthleteName}+" - "+($F{redAthleteFlagShowName} ? $F{redAthleteFlagName} : $F{redAthleteFlagAbbreviation})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="37" width="65" height="11" uuid="85f544a0-845c-41e6-9132-f6b3c9950501"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Start time:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="37" width="200" height="11" forecolor="#666666" uuid="68cd3c48-ed54-4289-acee-9861ad6b37a1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm:ss:SSS").format(new java.util.Date($F{matchStartTime}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="37" width="65" height="11" uuid="10763ae4-6d21-4be7-8cac-4247f1fb1ce2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[End time:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="351" y="37" width="200" height="11" forecolor="#666666" uuid="25d2737d-27e9-4e66-82f8-52d34ce4dd5f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm:ss:SSS").format(new java.util.Date($F{matchEndTime}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="427" y="13" width="70" height="11" uuid="8d3159ad-280d-4c75-9a9a-d204ca81faad">
+					<printWhenExpression><![CDATA[$F{maxAllowedGamJeoms}!=null && $F{maxAllowedGamJeoms}.intValue()>0?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Max. GamJeoms:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="497" y="13" width="23" height="11" forecolor="#666666" uuid="66cb38d8-e810-435a-9d52-3c493fd0dae1">
+					<printWhenExpression><![CDATA[$F{maxAllowedGamJeoms}!=null && $F{maxAllowedGamJeoms}.intValue()>0?Boolean.TRUE:Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{maxAllowedGamJeoms}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="7">
+			<subreport>
+				<reportElement x="0" y="1" width="575" height="5" uuid="f354e345-582f-43c9-973e-585185109b8b"/>
+				<subreportParameter name="pathImageIcoNoVideo">
+					<subreportParameterExpression><![CDATA[$P{pathImageIcoNoVideo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pathImageIcoVideo">
+					<subreportParameterExpression><![CDATA[$P{pathImageIcoVideo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pathImageHead">
+					<subreportParameterExpression><![CDATA[$P{pathImageHead}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pathImageBody">
+					<subreportParameterExpression><![CDATA[$P{pathImageBody}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{dsMatchLogItems}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{jrMatchLogItems}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="28">
+			<printWhenExpression><![CDATA[$F{goldenPointTieBreakerInfo.haveTieBreaker} && !$F{paraTkdMatch}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="5" y="3" width="125" height="23" uuid="3992aca7-240b-4e9a-b5e9-f1b436a1653f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[GOLDEN POINT SUPERIORITY]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="238" y="15" width="50" height="11" forecolor="#666666" uuid="7cf90d33-5854-4f09-8a60-7d2e4b174964"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.blueRoundWins}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="15" width="50" height="11" forecolor="#666666" uuid="94d559e7-e4fa-4483-adf0-b9edd2ce8518"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.blueHits}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="15" width="50" height="11" forecolor="#666666" uuid="106463ba-d5a8-478e-b507-3a7f9612acbd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.bluePenalties}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="15" width="50" height="11" forecolor="#666666" uuid="addac389-96b3-4f31-9645-796c088cfe28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redRoundWins}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="15" width="50" height="11" forecolor="#666666" uuid="5d0d0694-f7c0-45fb-a675-792f1b4ebfeb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redHits}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="15" width="50" height="11" forecolor="#666666" uuid="a2169de0-803e-462b-a9b2-f61fc728c22f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redPenalties}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="187" y="3" width="50" height="11" uuid="1477089c-227a-4560-bc2a-93a635fea88d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HITS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="3" width="50" height="11" uuid="033ffae3-31e4-4e0b-8d2a-65b3382e00cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ROUNDS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="3" width="50" height="11" uuid="64ad5fce-1923-4563-a33a-d4bc418dd0ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[GAM-JEOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="3" width="50" height="11" uuid="45f89de5-e928-440c-8e69-ac6bf10a51b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HITS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="3" width="50" height="11" uuid="22535dc4-c3a3-4038-a85f-3cc01fe7f0b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ROUNDS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="3" width="50" height="11" uuid="ffa30a61-ae8f-40aa-92f1-20c973899da1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[GAM-JEOM]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="136" y="2" width="204" height="25" forecolor="#0000FF" uuid="4d415345-4961-4730-9b8d-ba0f9f1e71b6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="342" y="2" width="204" height="25" forecolor="#FF0000" uuid="a2751b48-e366-4999-939c-c89dd08b723b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="136" y="3" width="50" height="11" uuid="eed54d49-4697-4554-80bd-40196d1db953"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PUNCH]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="15" width="50" height="11" forecolor="#666666" uuid="94b74761-f13e-40b2-93c1-d70b1143ee18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.bluePunches}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="3" width="50" height="11" uuid="88a15a95-fbb1-42f5-b23e-a6f7cc8abaf4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PUNCH]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="343" y="15" width="50" height="11" forecolor="#666666" uuid="00357916-a548-4851-a225-5b0cce5312b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redPunches}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="28">
+			<printWhenExpression><![CDATA[$F{goldenPointTieBreakerInfo.haveTieBreaker} && $F{paraTkdMatch}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="5" y="3" width="125" height="23" uuid="3992aca7-240b-4e9a-b5e9-f1b436a1653f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[GOLDEN POINT SUPERIORITY]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="15" width="65" height="11" forecolor="#666666" uuid="7cf90d33-5854-4f09-8a60-7d2e4b174964"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.bluePARATechPoints}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="272" y="15" width="65" height="11" forecolor="#666666" uuid="106463ba-d5a8-478e-b507-3a7f9612acbd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.bluePenalties}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="15" width="65" height="11" forecolor="#666666" uuid="addac389-96b3-4f31-9645-796c088cfe28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redPARATechPoints}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="15" width="65" height="11" forecolor="#666666" uuid="a2169de0-803e-462b-a9b2-f61fc728c22f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redPenalties}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="202" y="3" width="65" height="11" uuid="033ffae3-31e4-4e0b-8d2a-65b3382e00cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[3/4 POINTS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="3" width="65" height="11" uuid="64ad5fce-1923-4563-a33a-d4bc418dd0ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[GAM-JEOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="3" width="65" height="11" uuid="22535dc4-c3a3-4038-a85f-3cc01fe7f0b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[3/4 POINTS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="3" width="65" height="11" uuid="ffa30a61-ae8f-40aa-92f1-20c973899da1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[GAM-JEOM]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="136" y="2" width="204" height="25" forecolor="#0000FF" uuid="4d415345-4961-4730-9b8d-ba0f9f1e71b6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="342" y="2" width="204" height="25" forecolor="#FF0000" uuid="a2751b48-e366-4999-939c-c89dd08b723b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="136" y="3" width="65" height="11" uuid="eed54d49-4697-4554-80bd-40196d1db953"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HITS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="136" y="15" width="65" height="11" forecolor="#666666" uuid="94b74761-f13e-40b2-93c1-d70b1143ee18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.blueHits}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="3" width="65" height="11" uuid="88a15a95-fbb1-42f5-b23e-a6f7cc8abaf4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HITS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="343" y="15" width="65" height="11" forecolor="#666666" uuid="00357916-a548-4851-a225-5b0cce5312b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldenPointTieBreakerInfo.redHits}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="505" y="1" width="50" height="12" uuid="9e408353-e3ef-4e9d-8b82-5ffcb970b143"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="555" y="1" width="20" height="12" uuid="f779c299-267f-49a2-801d-f961c11d0d64"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

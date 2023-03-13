@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo_MatchLogEntries" language="groovy" pageWidth="575" pageHeight="595" orientation="Landscape" columnWidth="575" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ee31a46b-1b9b-4230-81b7-846b606352f5">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="545"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pathImageIcoVideo" class="java.lang.String"/>
+	<parameter name="pathImageIcoNoVideo" class="java.lang.String"/>
+	<parameter name="pathImageHead" class="java.lang.String"/>
+	<parameter name="pathImageBody" class="java.lang.String"/>
+	<field name="eventTime" class="java.lang.Long"/>
+	<field name="roundTime" class="java.lang.Long"/>
+	<field name="roundNumber" class="java.lang.Integer"/>
+	<field name="roundNumberStr" class="java.lang.String"/>
+	<field name="matchLogItemType" class="java.lang.Object"/>
+	<field name="entryValue" class="java.lang.String"/>
+	<field name="blueGeneralPoints" class="java.lang.Integer"/>
+	<field name="redGeneralPoints" class="java.lang.Integer"/>
+	<field name="blueAddPoints" class="java.lang.Integer"/>
+	<field name="redAddPoints" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<rectangle>
+				<reportElement x="235" y="1" width="88" height="13" forecolor="#0000FF" uuid="05dea661-8efb-4f21-8559-e8e032f5bb49"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="330" y="1" width="88" height="13" forecolor="#FF0000" uuid="24344b29-a377-460f-90fb-b9f7dc4c7d54"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="2" width="25" height="11" uuid="9414f74f-ed47-4d74-a05c-caded1e061e2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Round]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="2" width="50" height="11" uuid="b5a3ee1f-25a7-4a20-986a-b2b6e4979a44"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Round time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="2" width="15" height="11" uuid="daea59da-ed83-4512-91fb-c448fdfe6302"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[J1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="2" width="145" height="11" uuid="9c38a17c-6111-4c4b-bbaf-4949d2195360"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="2" width="15" height="11" uuid="c286a1d7-23d6-42f6-a0e8-466f72c41840"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[J2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="2" width="15" height="11" uuid="4e19988b-b2fb-4037-b1b8-10f4d4b6e446"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[J3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="2" width="15" height="11" uuid="052ea6c8-6bcd-46df-9fb3-4305f293ead4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Hit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="2" width="15" height="11" uuid="23633ff5-604d-4326-a009-2e26402f216e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[B P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="2" width="15" height="11" uuid="5bbe4bde-d935-4bb7-bae7-8c1f93d9908b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[J1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="2" width="15" height="11" uuid="f7b34eed-3e26-4f65-b4fe-2a9f94a2b302"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[J2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="2" width="15" height="11" uuid="594a8a8a-2ec0-462a-b486-73e4cdf67370"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[J3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="2" width="15" height="11" uuid="9e954ccf-88e8-41ec-b815-42b01a678c1d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Hit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="2" width="15" height="11" uuid="14c21901-571d-43d2-ab50-221d60e1d52f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[R P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="2" width="95" height="11" uuid="5334c5bf-bbc4-49ce-9af4-cade96dd8e9f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Value]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="2" width="40" height="11" uuid="b774739e-ba9a-4a28-bea8-977cda2edb3a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Score]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="575" height="1" uuid="6e3c0d26-fe3a-4b02-ab35-5ef99e97f7a3"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="2" width="25" height="11" forecolor="#666666" uuid="a34b2c54-bdb7-4759-ab62-5c0e5e696bbd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{roundNumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="33" y="2" width="50" height="11" forecolor="#666666" uuid="393ff61f-f706-4632-841e-ebb2d05a5219"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("mm:ss:SSS").format(new java.util.Date($F{roundTime}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="89" y="2" width="145" height="11" forecolor="#666666" uuid="939f00f5-fdf3-4b46-b448-f2b60b7ff36f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matchLogItemType}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="531" y="2" width="40" height="11" forecolor="#666666" uuid="3be3f004-8399-4126-b585-30950c86ef57"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{blueGeneralPoints} + " - "+$F{redGeneralPoints}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="434" y="2" width="95" height="11" forecolor="#666666" uuid="df8976a5-1a23-403d-8a80-3e7bfb9b1e8c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entryValue}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="575" height="1" uuid="6a410158-1c2d-415d-b131-1ae5f2e47fe6"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="308" y="2" width="11" height="11" forecolor="#FFFFFF" backcolor="#0000FF" uuid="ca8b98c0-9d6a-4f07-aabc-1ec111caa409">
+					<printWhenExpression><![CDATA[$F{blueAddPoints} != null && $F{blueAddPoints}.intValue()!=0 ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{blueAddPoints}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="403" y="2" width="11" height="11" forecolor="#FFFFFF" backcolor="#FF0000" uuid="b0f60fd5-8299-425d-b821-cc4f568ced26">
+					<printWhenExpression><![CDATA[$F{redAddPoints} != null && $F{redAddPoints}.intValue()!=0  ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{redAddPoints}]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement x="240" y="2" width="11" height="11" forecolor="#EAFF00" backcolor="#EAFF00" uuid="fbb47e51-2b36-49c8-9f1c-9cc3e49ddf9e">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) && (("BLUE_JUDGE_PUNCH".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_JUDGE_PUNCH".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="257" y="2" width="11" height="11" forecolor="#EAFF00" backcolor="#EAFF00" uuid="208f139c-1996-4082-a73c-6af6a63950eb">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) && (("BLUE_JUDGE_PUNCH".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_JUDGE_PUNCH".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="274" y="2" width="11" height="11" forecolor="#EAFF00" backcolor="#EAFF00" uuid="a2805519-616f-431b-85e4-85b656725ae2">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) && (("BLUE_JUDGE_PUNCH".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_JUDGE_PUNCH".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<rectangle>
+				<reportElement x="240" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="5b0289a7-cbb9-48b8-a661-481ac560cfa9">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) && (("BLUE_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("BLUE_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="257" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="81055502-71d2-4bfe-81e7-40e6272c3762">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) && (("BLUE_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("BLUE_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="274" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="b9d220c6-455c-4067-9a65-e90f1a7d3e01">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) && (("BLUE_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("BLUE_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<ellipse>
+				<reportElement x="335" y="2" width="11" height="11" forecolor="#EAFF00" backcolor="#EAFF00" uuid="e98e69bb-fd50-4b2e-9e2d-e262db7548b0">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) && (("RED_JUDGE_PUNCH".equals($F{matchLogItemType}.toString())) || ("OT_RED_JUDGE_PUNCH".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="352" y="2" width="11" height="11" forecolor="#EAFF00" backcolor="#EAFF00" uuid="0248a1f1-a08b-45d3-a9ad-63faf9db5626">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) && (("RED_JUDGE_PUNCH".equals($F{matchLogItemType}.toString())) || ("OT_RED_JUDGE_PUNCH".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="369" y="2" width="11" height="11" forecolor="#EAFF00" backcolor="#EAFF00" uuid="60510af9-d452-44ae-9340-6097ffac06b0">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) && (("RED_JUDGE_PUNCH".equals($F{matchLogItemType}.toString())) || ("OT_RED_JUDGE_PUNCH".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<rectangle>
+				<reportElement x="335" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="fec26f73-83fe-445f-9f11-34a46178952f">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) && (("RED_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("OT_RED_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("RED_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_RED_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="352" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="ead766b3-0c6d-4beb-82b4-41fa8cf34761">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) && (("RED_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("OT_RED_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("RED_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_RED_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="369" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="9f898742-ecd4-4854-bb4c-ad314ae27633">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) && (("RED_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("OT_RED_JUDGE_BODY_TECH".equals($F{matchLogItemType}.toString())) || ("RED_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_RED_PARA_TURNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement mode="Transparent" x="290" y="1" width="13" height="13" backcolor="#999999" uuid="8ffff7ff-4b94-42cc-b1b2-0d8a1896b34e">
+					<printWhenExpression><![CDATA["BLUE_BODY_HIT".equals($F{matchLogItemType}.toString()) || "OT_BLUE_BODY_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageBody}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="291" y="2" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="32702797-e7ff-4fc8-af58-6101650cee25">
+					<printWhenExpression><![CDATA["BLUE_BODY_HIT".equals($F{matchLogItemType}.toString()) || "OT_BLUE_BODY_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["100".equals($F{entryValue})?"99":$F{entryValue}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement mode="Transparent" x="385" y="1" width="13" height="13" backcolor="#999999" uuid="7aea8d48-a2f9-42a6-b498-b0afaffe8dcb">
+					<printWhenExpression><![CDATA["RED_BODY_HIT".equals($F{matchLogItemType}.toString()) || "OT_RED_BODY_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageBody}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="386" y="2" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="962dd664-37df-4927-bc2f-365beebc732f">
+					<printWhenExpression><![CDATA["RED_BODY_HIT".equals($F{matchLogItemType}.toString()) || "OT_RED_BODY_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["100".equals($F{entryValue})?"99":$F{entryValue}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="240" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="d845b4f8-adbe-4a45-8dc6-7a2f23132c4c">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) &&
+("BLUE_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "BLUE_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString())
+    || "BLUE_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="257" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="785a0e53-1f7d-4e87-9a01-d89bf206c3e0">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) &&
+("BLUE_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "BLUE_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString())
+    || "BLUE_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="274" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="d67de01d-9036-4fc0-976d-13277f4802e4">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) &&
+("BLUE_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "BLUE_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString())
+    || "BLUE_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_BLUE_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="335" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="b72bd729-f14f-4954-b7b7-50fb0e2a190c">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) &&
+("RED_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "RED_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString())
+    || "RED_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="352" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="80965add-c809-4c25-add3-fffbc3fa0572">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) &&
+("RED_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "RED_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString())
+    || "RED_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="369" y="2" width="11" height="11" forecolor="#00FF00" backcolor="#00FF00" uuid="a322e73a-b3f9-4cbe-93fd-ce47fe1c8cda">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) &&
+("RED_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    || "RED_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString())
+    || "RED_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_SPECIAL_BODY_HIT".equals($F{matchLogItemType}.toString())
+    || "OT_RED_JUDGE_SPECIAL_HEAD_HIT".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<ellipse>
+				<reportElement x="240" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="99b572e3-28d2-4067-9593-827cb37cdf2f">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue})
+&& ("BLUE_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    ||"OT_BLUE_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="257" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="1cf0c001-9e6b-4de9-b4dd-6a3ce15b57d5">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue})
+&& ("BLUE_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    ||"OT_BLUE_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="274" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="343d31e9-bf95-49f5-ba43-7e7838802db8">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue})
+&& ("BLUE_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    ||"OT_BLUE_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="335" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="838200d6-b0c2-48c7-900f-40f767fe5844">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue})
+&& ("RED_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    ||"OT_RED_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="352" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="8489b16c-8532-4fba-96cb-433b4f29563a">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue})
+&& ("RED_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    ||"OT_RED_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="369" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="72a64a85-22f2-442d-a4e5-eb8812cd5db1">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue})
+&& ("RED_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString())
+    ||"OT_RED_JUDGE_SPECIAL_HEAD_TECH".equals($F{matchLogItemType}.toString()))
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement mode="Transparent" x="290" y="1" width="13" height="13" backcolor="#999999" uuid="bf5a415f-b9fb-438b-8488-b488956fb8cb">
+					<printWhenExpression><![CDATA["BLUE_HEAD_HIT".equals($F{matchLogItemType}.toString()) || "OT_BLUE_HEAD_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageHead}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="291" y="2" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="223ac470-1d67-4045-9c55-7f85173bb5af">
+					<printWhenExpression><![CDATA["BLUE_HEAD_HIT".equals($F{matchLogItemType}.toString())
+||"OT_BLUE_HEAD_HIT".equals($F{matchLogItemType}.toString())
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["100".equals($F{entryValue})?"99":$F{entryValue}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement mode="Transparent" x="385" y="1" width="13" height="13" backcolor="#999999" uuid="df4bcaf5-74ab-4d9c-ab9a-c347813ef4e6">
+					<printWhenExpression><![CDATA["RED_HEAD_HIT".equals($F{matchLogItemType}.toString()) || "OT_RED_HEAD_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageHead}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="386" y="2" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="4b92cf8e-1507-44f7-8f81-7b153ccbfb7d">
+					<printWhenExpression><![CDATA["RED_HEAD_HIT".equals($F{matchLogItemType}.toString())
+||"OT_RED_HEAD_HIT".equals($F{matchLogItemType}.toString())
+? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["100".equals($F{entryValue})?"99":$F{entryValue}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="291" y="2" width="11" height="11" backcolor="#999999" uuid="8496385f-77b9-4a57-992d-415177edaa2c">
+					<printWhenExpression><![CDATA["BLUE_VIDEO_REQUEST".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageIcoVideo}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="291" y="2" width="11" height="11" forecolor="#0000FF" backcolor="#FFFFFF" uuid="f4052293-cded-48a9-bf4d-10a36822ac77">
+					<printWhenExpression><![CDATA["BLUE_VIDEO_REQUEST".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("?")]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="291" y="2" width="11" height="11" backcolor="#999999" uuid="876d0705-5f7a-45ed-8534-f92430a768e1">
+					<printWhenExpression><![CDATA["BLUE_VIDEO_QUOTA_CHANGED".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageIcoNoVideo}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement mode="Opaque" x="386" y="2" width="11" height="11" backcolor="#999999" uuid="6f03293c-52ff-4da4-aa09-25a5f76e331d">
+					<printWhenExpression><![CDATA["RED_VIDEO_REQUEST".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageIcoVideo}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="386" y="2" width="11" height="11" forecolor="#FF0000" backcolor="#FFFFFF" uuid="76f1ae58-c842-4b3a-8fac-c2d47f3dfe0a">
+					<printWhenExpression><![CDATA["RED_VIDEO_REQUEST".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("?")]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="386" y="2" width="11" height="11" backcolor="#999999" uuid="08f90de0-7450-404a-b355-23b3f3e70289">
+					<printWhenExpression><![CDATA["RED_VIDEO_QUOTA_CHANGED".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pathImageIcoNoVideo}]]></imageExpression>
+			</image>
+			<ellipse>
+				<reportElement x="291" y="2" width="11" height="11" forecolor="#FFF550" backcolor="#FFF550" uuid="1c07a0ca-209c-4856-b02d-5089e64b8676">
+					<printWhenExpression><![CDATA["BLUE_ADD_KYONG_GO".equals($F{matchLogItemType}.toString()) || "BLUE_REMOVE_KYONG_GO".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="291" y="2" width="11" height="11" forecolor="#FF0000" backcolor="#FF0000" uuid="e3c33d67-14e7-478c-9f40-45996065c77f">
+					<printWhenExpression><![CDATA["BLUE_ADD_GAME_JEON".equals($F{matchLogItemType}.toString()) || "BLUE_REMOVE_GAME_JEON".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<rectangle>
+				<reportElement x="291" y="2" width="11" height="11" forecolor="#FF0000" backcolor="#FF0000" uuid="2d9f2124-9bb1-4a12-87fa-267618ed7416">
+					<printWhenExpression><![CDATA["BLUE_REMOVE_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) || "BLUE_ADD_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="291" y="2" width="11" height="11" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="028c9d3b-0cdc-4360-9afd-efed5662d0fb">
+					<printWhenExpression><![CDATA["BLUE_ADD_KYONG_GO".equals($F{matchLogItemType}.toString()) || "BLUE_ADD_GAME_JEON".equals($F{matchLogItemType}.toString()) || "BLUE_ADD_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString())  ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("+")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="291" y="2" width="11" height="11" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="b1187305-64bb-49ed-8369-c292799b84a7">
+					<printWhenExpression><![CDATA["BLUE_REMOVE_KYONG_GO".equals($F{matchLogItemType}.toString()) || "BLUE_REMOVE_GAME_JEON".equals($F{matchLogItemType}.toString()) || "BLUE_REMOVE_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("-")]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement x="386" y="2" width="11" height="11" forecolor="#FFF550" backcolor="#FFF550" uuid="1f98df6f-bdaa-4132-881a-126cc4c7f9f9">
+					<printWhenExpression><![CDATA["RED_ADD_KYONG_GO".equals($F{matchLogItemType}.toString()) || "RED_REMOVE_KYONG_GO".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<ellipse>
+				<reportElement x="386" y="2" width="11" height="11" forecolor="#FF0000" backcolor="#FF0000" uuid="19b4828d-fb67-4ee8-b7e8-3a8114456ed2">
+					<printWhenExpression><![CDATA["RED_ADD_GAME_JEON".equals($F{matchLogItemType}.toString()) || "RED_REMOVE_GAME_JEON".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<rectangle>
+				<reportElement x="386" y="2" width="11" height="11" forecolor="#FF0000" backcolor="#FF0000" uuid="c5293234-fba1-482f-877d-8ae01a242353">
+					<printWhenExpression><![CDATA["RED_REMOVE_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) || "RED_ADD_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="386" y="2" width="11" height="11" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="c7f5abfd-c50f-449c-8f10-c4e71ed28c48">
+					<printWhenExpression><![CDATA["RED_ADD_KYONG_GO".equals($F{matchLogItemType}.toString()) || "RED_ADD_GAME_JEON".equals($F{matchLogItemType}.toString()) || "RED_ADD_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("+")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Transparent" x="386" y="2" width="11" height="11" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="1a9ca1af-76c3-4732-bf4e-659b1b2d75e2">
+					<printWhenExpression><![CDATA["RED_REMOVE_KYONG_GO".equals($F{matchLogItemType}.toString()) || "RED_REMOVE_GAME_JEON".equals($F{matchLogItemType}.toString()) || "RED_REMOVE_NEAR_MISS_HIT".equals($F{matchLogItemType}.toString()) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("-")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="330" y="0" width="1" height="15" forecolor="#FF0000" uuid="bec842a4-2312-4903-a101-9fe62aba9698"/>
+			</line>
+			<line>
+				<reportElement x="417" y="0" width="1" height="15" forecolor="#FF0000" uuid="3372558f-46bc-4a98-a82f-092c83feeb1f"/>
+			</line>
+			<line>
+				<reportElement x="322" y="0" width="1" height="15" forecolor="#0000FF" uuid="660cfcaf-c22d-4c3b-ae31-d497f3a33dfd"/>
+			</line>
+			<line>
+				<reportElement x="235" y="0" width="1" height="15" forecolor="#0000FF" uuid="3d373704-96c8-4ea1-aaf0-5dc76d54f4cc"/>
+			</line>
+			<rectangle>
+				<reportElement x="240" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="6fc0deae-6816-40d6-895b-221c2891df6e">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) && (("BLUE_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="257" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="ebc40eec-89db-473d-9bdd-d06a79baec1f">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) && (("BLUE_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="274" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="a757de44-771c-4fe7-ba51-c1d3d640a612">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) && (("BLUE_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_BLUE_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="335" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="df8792a1-acb2-4b79-b222-e663075061e6">
+					<printWhenExpression><![CDATA["1".equals($F{entryValue}) && (("RED_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_RED_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="352" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="92a1a764-c722-4d6a-a518-9a778cb05f3d">
+					<printWhenExpression><![CDATA["2".equals($F{entryValue}) && (("RED_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_RED_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="369" y="2" width="11" height="11" forecolor="#8A2BE2" backcolor="#8A2BE2" uuid="1c59ee41-a8f8-4259-bffc-9c0837d8b106">
+					<printWhenExpression><![CDATA["3".equals($F{entryValue}) && (("RED_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString())) || ("OT_RED_PARA_SPINNING_KICK".equals($F{matchLogItemType}.toString()))) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
