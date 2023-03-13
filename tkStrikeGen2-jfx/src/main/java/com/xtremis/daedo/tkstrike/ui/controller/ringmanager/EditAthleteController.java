@@ -226,8 +226,7 @@ public class EditAthleteController extends TkStrikeBaseController {
 				this.txtWtId, this.txtOvrInternalId, this.txtScoreboardName, this.txtFlagAbbr, this.txtGivenName, this.txtFamilyName,
 				this.txtPassportGivenName, this.txtPassportFamilyName, this.txtPreferredGivenName, this.txtPreferredFamilyName,
 				this.txtPrintName, this.txtPrintInitialName, this.txtTVName, this.txtTVInitialName, this.dpBirthDate, this.tgCompetitorTypeA,
-				this.tgComp
-				etitorTypeT, this.tgGenderFEMALE, this.tgGenderMALE, this.tgGenderMIXED,
+				this.tgCompetitorTypeT, this.tgGenderFEMALE, this.tgGenderMALE, this.tgGenderMIXED,
 				this.txtRank, this.txtSeed});
 	}
 

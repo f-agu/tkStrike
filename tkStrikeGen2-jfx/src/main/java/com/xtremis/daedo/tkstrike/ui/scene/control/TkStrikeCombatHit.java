@@ -305,7 +305,7 @@ public class TkStrikeCombatHit extends HBox {
 				eliHit.setRadiusY(controlHeight.doubleValue() / 2.0D);
 				ellipse1 = eliHit;
 				break;
-			case BODY:
+			case SPECIAL_HEAD:
 			case SPECIAL_BODY:
 			case PARA_SPINNING:
 			case PARA_TURNING:
@@ -315,7 +315,7 @@ public class TkStrikeCombatHit extends HBox {
 				rectangle1 = rect;
 				break;
 			case HEAD:
-			case SPECIAL_HEAD:
+			case BODY:
 				recHitPunch = new Rectangle();
 				recHitPunch.setWidth(controlHitWidth.doubleValue());
 				recHitPunch.setHeight(controlHeight.doubleValue());
@@ -377,16 +377,16 @@ public class TkStrikeCombatHit extends HBox {
 				double base;
 				Polygon polygon;
 				switch(TkStrikeCombatHit.this.hitEventType) {
-					case SPINNING_KICK_TECH:
+					case HEAD:
 						fillColor = TkStrikeCombatHit.COLOR_HEAD;
 						break;
-					case TURNING_KICK_TECH:
-					case null:
+					case SPECIAL_HEAD:
+					case SPECIAL_BODY:
 						fillColor = TkStrikeCombatHit.COLOR_SPECIAL_HEAD;
 						break;
-					case NONE:
-					case null:
-					case null:
+					case BODY:
+					case PARA_SPINNING:
+					case PARA_TURNING:
 						switch(TkStrikeCombatHit.this.paraTkdTechEvent) {
 							case SPINNING_KICK_TECH:
 								fillColor = TkStrikeCombatHit.COLOR_SPINNING_HEAD;
@@ -404,7 +404,7 @@ public class TkStrikeCombatHit extends HBox {
 								break;
 						}
 						break;
-					case null:
+					case PUNCH:
 						fillColor = TkStrikeCombatHit.COLOR_PUNCH;
 						break;
 				}

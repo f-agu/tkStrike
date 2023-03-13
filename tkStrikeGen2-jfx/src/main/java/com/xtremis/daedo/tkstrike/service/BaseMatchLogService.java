@@ -252,7 +252,7 @@ public abstract class BaseMatchLogService<D extends CommonMatchLogDto, ID extend
 		}
 		try {
 			List<DE> matchLogs = getMatchLogRepository().getAllExceptLast();
-			for(MatchLogEntity matchLogEntity : matchLogs)
+			for(DE matchLogEntity : matchLogs)
 				getMatchLogRepository().delete(matchLogEntity);
 		} catch(Exception e) {
 			e.printStackTrace();

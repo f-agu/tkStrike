@@ -192,8 +192,7 @@ public class FlagsManagementController extends TkStrikeBaseTableWithDeleteManage
 
 			@Override
 			public TableCell<FlagEntry, Boolean> call(TableColumn<FlagEntry, Boolean> personBooleanTableColumn) {
-				return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(FlagsManagementController.this,
-						FlagsManagementController.this.tbFlag);
+				return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(tbFlag);
 			}
 		});
 	}

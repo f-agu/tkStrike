@@ -185,8 +185,9 @@ public class AthletesManagementController extends TkStrikeBaseTableWithDeleteMan
 
 			@Override
 			public TableCell<AthleteEntry, Boolean> call(TableColumn<AthleteEntry, Boolean> personBooleanTableColumn) {
-				return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(AthletesManagementController.this,
-						AthletesManagementController.this.tbAthletes);
+				return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(tbAthletes);
+				// return new DeleteEntryCell(AthletesManagementController.this.tbAthletes);
+
 			}
 		});
 		this.tbColEdit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<AthleteEntry, Boolean>, ObservableValue<Boolean>>() {

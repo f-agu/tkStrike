@@ -1,20 +1,22 @@
 package com.xtremis.daedo.tkstrike.ui.controller.externalscreen;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
 import com.xtremis.daedo.tkstrike.om.ExternalScreenViewId;
 import com.xtremis.daedo.tkstrike.ui.controller.CommonTkStrikeBaseController;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeController;
 import com.xtremis.daedo.tkstrike.ui.model.INetworkConfigurationEntry;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.WindowEvent;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 
 public abstract class CommonExternalScreenMainController<NE extends INetworkConfigurationEntry, ESB extends ExternalScoreboardController, EHTA extends TkStrikeController, EHTJ extends TkStrikeController>
@@ -34,16 +36,17 @@ public abstract class CommonExternalScreenMainController<NE extends INetworkConf
 	}
 
 	@Override
-public EventHandler<WindowEvent> getOnWindowCloseEventHandler() {
-    return new EventHandler<WindowEvent>() {
-        @Override
-		public void handle(WindowEvent windowEvent) {
-          CommonExternalScreenMainController.this.getExternalScoreboardController().getOnWindowCloseEventHandler().handle()windowEvent);
-          CommonExternalScreenMainController.this.getExternalHTAthletesController().getOnWindowCloseEventHandler().handle(windowEvent);
-          CommonExternalScreenMainController.this.getExternalHTJudgesController().getOnWindowCloseEventHandler().handle(windowEvent);
-        }
-      };
-  }
+	public EventHandler<WindowEvent> getOnWindowCloseEventHandler() {
+		return new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent windowEvent) {
+				CommonExternalScreenMainController.this.getExternalScoreboardController().getOnWindowCloseEventHandler().handle(windowEvent);
+				CommonExternalScreenMainController.this.getExternalHTAthletesController().getOnWindowCloseEventHandler().handle(windowEvent);
+				CommonExternalScreenMainController.this.getExternalHTJudgesController().getOnWindowCloseEventHandler().handle(windowEvent);
+			}
+		};
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {}

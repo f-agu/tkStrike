@@ -367,8 +367,7 @@ public class MatchConfigurationManagementController
 
 					@Override
 					public TableCell<MatchConfigurationEntry, Boolean> call(TableColumn<MatchConfigurationEntry, Boolean> personBooleanTableColumn) {
-						return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(MatchConfigurationManagementController.this,
-								MatchConfigurationManagementController.this.tbMatch);
+						return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(tbMatch);
 					}
 				});
 		this.tbMatchColRefresh.setCellValueFactory(

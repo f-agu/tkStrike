@@ -462,7 +462,7 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 						if(newMatchStatus != null)
 							try {
 								switch(newMatchStatus) {
-									case ESCAPE:
+									case WAITING_4_MATCH:
 										BaseTkStrikeMainController.this.btStartRound.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.start-round"));
 										BaseTkStrikeMainController.this.btStartRound.setUserData(Boolean.TRUE);
@@ -471,8 +471,8 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 										BaseTkStrikeMainController.this.btTimeout.setUserData(
 												BaseTkStrikeMainController.TimeoutButtonUserData.TIMEOUT);
 										break;
-									case SPACE:
-									case null:
+									case ROUND_WORKING:
+									case ROUND_IN_GOLDENPOINT:
 										BaseTkStrikeMainController.this.btTimeout.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.timeout"));
 										BaseTkStrikeMainController.this.btTimeout.setUserData(
@@ -484,7 +484,7 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 										BaseTkStrikeMainController.this.btKyeShi.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.kye-shi"));
 										break;
-									case null:
+									case ROUND_PAUSED:
 										BaseTkStrikeMainController.this.btStartRound.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.end-round"));
 										BaseTkStrikeMainController.this.btStartRound.setUserData(Boolean.FALSE);
@@ -496,14 +496,14 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 												"btn.main.kye-shi"));
 										BaseTkStrikeMainController.this.btKyeShi.setUserData(BaseTkStrikeMainController.KyeShiButtonUserData.KYE_SHI);
 										break;
-									case null:
+									case ROUND_PARA_TIMEOUT_WORKING:
 										BaseTkStrikeMainController.this.btTimeout.setText(BaseTkStrikeMainController.this.getMessage(
 												"button.cancelPARATimeout"));
 										BaseTkStrikeMainController.this.btTimeout.setUserData(
 												BaseTkStrikeMainController.TimeoutButtonUserData.CANCEL_PARA_TIMEOUT);
 										break;
-									case null:
-									case null:
+									case WAITING_4_START_ROUND:
+									case WAITING_4_START_GOLDENPOINT:
 										BaseTkStrikeMainController.this.btStartRound.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.start-round"));
 										BaseTkStrikeMainController.this.btStartRound.setUserData(Boolean.TRUE);
@@ -515,7 +515,7 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 										BaseTkStrikeMainController.this.btKyeShi.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.kye-shi"));
 										break;
-									case null:
+									case ROUND_FINISHED:
 										BaseTkStrikeMainController.this.btStartRound.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.start-round"));
 										BaseTkStrikeMainController.this.btStartRound.setUserData(Boolean.TRUE);
@@ -527,7 +527,7 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 										BaseTkStrikeMainController.this.btKyeShi.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.kye-shi"));
 										break;
-									case null:
+									case NETWORK_ERROR:
 										BaseTkStrikeMainController.this.btTimeout.setText(BaseTkStrikeMainController.this.getMessage(
 												"btn.main.resume"));
 										BaseTkStrikeMainController.this.btTimeout.setUserData(
@@ -536,7 +536,7 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 												"btn.main.kye-shi"));
 										BaseTkStrikeMainController.this.btKyeShi.setUserData(BaseTkStrikeMainController.KyeShiButtonUserData.KYE_SHI);
 										break;
-									case null:
+									case MATCH_NEEDS_CONFIRM_FINAL_DECISION:
 										if( ! BaseTkStrikeMainController.this.getMatchFinalResultController().isOpened())
 											BaseTkStrikeMainController.this.openFinalResult();
 										break;
@@ -939,12 +939,12 @@ public abstract class BaseTkStrikeMainController<MW extends CommonMatchWorker, M
 					});
 				} else if(TkStrikeKeyCombinationsHelper.keyCombViewDifferentialScore.match(event)) {
 					BaseTkStrikeMainController.this.showInfoNotification(BaseTkStrikeMainController.this
-							.getMessage("message.info.currentDifferentialScore", new String[] {"" + this.this$0.getMatchWorker()
+							.getMessage("message.info.currentDifferentialScore", new String[] {"" + BaseTkStrikeMainController.this.getMatchWorker()
 									.getDifferentialScore()}));
 				} else if(TkStrikeKeyCombinationsHelper.keyCombUndoPointGap.match(event)) {
 					BaseTkStrikeMainController.this.getMatchWorker().disableDifferentialScore();
 					BaseTkStrikeMainController.this.showInfoNotification(BaseTkStrikeMainController.this
-							.getMessage("message.info.currentDifferentialScore", new String[] {"" + this.this$0.getMatchWorker()
+							.getMessage("message.info.currentDifferentialScore", new String[] {"" + BaseTkStrikeMainController.this.getMatchWorker()
 									.getDifferentialScore()}));
 				} else if(BaseTkStrikeMainController.this.allowGroupSelectionByColor.booleanValue()
 						&& TkStrikeKeyCombinationsHelper.keyCombColorGroupSelectionVisible.match(event)) {

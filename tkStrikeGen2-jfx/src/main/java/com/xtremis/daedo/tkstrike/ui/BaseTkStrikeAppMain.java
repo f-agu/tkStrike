@@ -176,7 +176,7 @@ public abstract class BaseTkStrikeAppMain extends Application {
 					initErrors = Boolean.valueOf(tkStrikeDatabaseMigration.databaseMigration());
 					updateMessage("Initializing Context...");
 					try {
-						BaseTkStrikeAppMain.this.contextAnnotation = new AnnotationConfigApplicationContext(new Class[] {this.this$0
+						BaseTkStrikeAppMain.this.contextAnnotation = new AnnotationConfigApplicationContext(new Class[] {BaseTkStrikeAppMain.this
 								.getTkStrikeSpringConfigurationClass()});
 					} catch(Exception e) {
 						e.printStackTrace();

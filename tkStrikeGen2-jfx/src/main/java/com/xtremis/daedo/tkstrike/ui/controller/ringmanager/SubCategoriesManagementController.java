@@ -154,8 +154,7 @@ public class SubCategoriesManagementController
 
 			@Override
 			public TableCell<SubCategoryEntry, Boolean> call(TableColumn<SubCategoryEntry, Boolean> personBooleanTableColumn) {
-				return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(SubCategoriesManagementController.this,
-						SubCategoriesManagementController.this.tbSubCategories);
+				return new TkStrikeBaseTableWithDeleteManagementController.DeleteEntryCell(tbSubCategories);
 			}
 		});
 	}

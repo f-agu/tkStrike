@@ -259,8 +259,9 @@ public class ConfigurationMatchLogController extends TkStrikeBaseController {
 					ConfigurationMatchLogController.this.matchLogHistoricalService.exportAllMatchLog2DefaultDirectory();
 					ConfigurationMatchLogController.this.showInfoDialog(ConfigurationMatchLogController.this.getMessage("title.default.info"),
 							ConfigurationMatchLogController.this
-									.getMessage("message.matchLog.csvGeneratedOnDirectory", new String[] {ConfigurationMatchLogController.access$200(
-											this.this$0).getExternalConfigEntry().getMatchLogOutputDirectory()}));
+									.getMessage("message.matchLog.csvGeneratedOnDirectory", new String[] {
+											ConfigurationMatchLogController.this.externalConfigService.getExternalConfigEntry()
+													.getMatchLogOutputDirectory()}));
 				} catch(TkStrikeServiceException e) {
 					ConfigurationMatchLogController.this.manageException(e, "exportAllToDirectory", null);
 				} finally {
@@ -330,8 +331,9 @@ public class ConfigurationMatchLogController extends TkStrikeBaseController {
 							gender, categoryId, null, startDate, endDate);
 					ConfigurationMatchLogController.this.showInfoDialog(ConfigurationMatchLogController.this.getMessage("title.default.info"),
 							ConfigurationMatchLogController.this
-									.getMessage("message.matchLog.csvAggregatedGeneratedOnDirectory", new String[] {ConfigurationMatchLogController
-											.access$200(this.this$0).getExternalConfigEntry().getMatchLogOutputDirectory()}));
+									.getMessage("message.matchLog.csvAggregatedGeneratedOnDirectory", new String[] {
+											ConfigurationMatchLogController.this.externalConfigService.getExternalConfigEntry()
+													.getMatchLogOutputDirectory()}));
 				} catch(TkStrikeServiceException e) {
 					ConfigurationMatchLogController.this.manageException(e, "doGenerateAggregateCSV", null);
 				} finally {
@@ -355,7 +357,7 @@ public class ConfigurationMatchLogController extends TkStrikeBaseController {
 				ConfigurationMatchLogController.this.lblSelectAthletesInfo.setText(ConfigurationMatchLogController.this.getMessage(
 						"label.athletesFilterYes"));
 				ConfigurationMatchLogController.this.lblSelectAthletesInfo.getStyleClass().clear();
-				ConfigurationMatchLogController.this.lblSelectAthletesInfo.getStyleClass().addAll((Object[])new String[] {"label-green"});
+				ConfigurationMatchLogController.this.lblSelectAthletesInfo.getStyleClass().addAll(new String[] {"label-green"});
 			}
 		});
 		showMatchLogMain(true);
@@ -370,7 +372,7 @@ public class ConfigurationMatchLogController extends TkStrikeBaseController {
 				ConfigurationMatchLogController.this.lblSelectAthletesInfo.setText(ConfigurationMatchLogController.this.getMessage(
 						"label.athletesFilterNo"));
 				ConfigurationMatchLogController.this.lblSelectAthletesInfo.getStyleClass().clear();
-				ConfigurationMatchLogController.this.lblSelectAthletesInfo.getStyleClass().addAll((Object[])new String[] {"label-red"});
+				ConfigurationMatchLogController.this.lblSelectAthletesInfo.getStyleClass().addAll(new String[] {"label-red"});
 			}
 		});
 		showMatchLogMain(true);
@@ -718,7 +720,7 @@ public class ConfigurationMatchLogController extends TkStrikeBaseController {
 									ConfigurationMatchLogController.this.showInfoDialog(ConfigurationMatchLogController.this.getMessage(
 											"title.default.info"), ConfigurationMatchLogController.this
 													.getMessage("message.matchLog.pdfGeneratedOnDirectory", new String[] {
-															ConfigurationMatchLogController.access$200(this.this$2.this$1.this$0)
+															ConfigurationMatchLogController.this.externalConfigService
 																	.getExternalConfigEntry().getMatchLogOutputDirectory()}));
 								} catch(TkStrikeServiceException e) {
 									ConfigurationMatchLogController.this.manageException(e, "viewMatchLogASPDF", null);
@@ -777,7 +779,7 @@ public class ConfigurationMatchLogController extends TkStrikeBaseController {
 									ConfigurationMatchLogController.this.showInfoDialog(ConfigurationMatchLogController.this.getMessage(
 											"title.default.info"), ConfigurationMatchLogController.this
 													.getMessage("message.matchLog.csvGeneratedOnDirectory", new String[] {
-															ConfigurationMatchLogController.access$200(this.this$2.this$1.this$0)
+															ConfigurationMatchLogController.this.externalConfigService
 																	.getExternalConfigEntry().getMatchLogOutputDirectory()}));
 								} catch(TkStrikeServiceException e) {
 									ConfigurationMatchLogController.this.manageException(e, "viewMatchLogASCSV", null);

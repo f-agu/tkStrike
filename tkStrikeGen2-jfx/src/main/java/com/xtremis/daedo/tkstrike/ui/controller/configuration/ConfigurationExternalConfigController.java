@@ -803,7 +803,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 		for(int i = 0; i < thePaneListeners.getChildren().size(); i++) {
 			Node node = thePaneListeners.getChildren().get(i);
 			HBox hBox = (HBox)node;
-			arrayList.add(hBox.getChildren().get(1));
+			arrayList.add((Control)hBox.getChildren().get(1));
 		}
 		return arrayList;
 	}
