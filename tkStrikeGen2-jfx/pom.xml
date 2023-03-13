@@ -24,6 +24,11 @@
 <!--            <version>8.40.10</version>-->
         </dependency>
 
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>1.4.199</version>
+		</dependency>
         <!-- Apache POI-->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -220,6 +225,10 @@
                     <groupId>com.fasterxml.jackson.core</groupId>
                     <artifactId>jackson-annotations</artifactId>
                 </exclusion>
+                <exclusion>
+                	<groupId>org.olap4j</groupId>
+                	<artifactId>olap4j</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
@@ -255,8 +264,8 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
+		<plugins>
+        	<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.7</version>
@@ -267,12 +276,11 @@
                     </nonFilteredFileExtensions>
                 </configuration>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                <groupId>com.zenjava</groupId>
                <artifactId>javafx-maven-plugin</artifactId>
                <version>${zenjava.version}</version>
                <configuration>
-                   <!--<preLoader>com.xtremis.daedo.tkstrike.ui.TkStrikePreLoader</preLoader>-->
                    <mainClass>${exec.mainClass}</mainClass>
                    <identifier>${nativeBuildIdentifier}-${tkStrike-nativeReleaseVersion}</identifier>
                    <verbose>true</verbose>
@@ -281,19 +289,14 @@
                    <needShortcut>true</needShortcut>
                    <needMenu>true</needMenu>
                    <nativeReleaseVersion>${project.version}</nativeReleaseVersion>
-                   <!-- Definició per defecte de l'encoding a UTF-8 -->
                    <jvmProperties>
                        <file-encoding>UTF-8</file-encoding>
                        <file.encoding>UTF-8</file.encoding>
                        <sun.jnu.encoding>UTF-8</sun.jnu.encoding>
                    </jvmProperties>
-                   <!--<jvmProperties>-->
-                       <!--<prism.debug>true</prism.debug>-->
-                       <!--<prism.trace>true</prism.trace>-->
-                       <!--<prism.verbose>true</prism.verbose>-->
-                   <!--</jvmProperties>-->
+                  
                </configuration>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -304,8 +307,7 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-            <!-- Plugin per la generació del BuildNumber -->
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
                 <version>1.0</version>
@@ -326,10 +328,10 @@
                         <item>timestamp</item>
                     </items>
                 </configuration>
-            </plugin>
+            </plugin> -->
 
             <!-- unpack dependencies -->
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -345,7 +347,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 
@@ -422,4 +424,13 @@
             </dependencies>
         </profile>
     </profiles>
+    <dependencyManagement>
+    	<dependencies>
+    		<dependency>
+    			<groupId>com.lowagie</groupId>
+    			<artifactId>itext</artifactId>
+    			<version>2.1.7</version>
+    		</dependency>
+    	</dependencies>
+    </dependencyManagement>
 </project>
