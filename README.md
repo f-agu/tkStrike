@@ -1,4 +1,4 @@
-# TK-Strike from Deado
+# TK-Strike from Daedo
 
 Comptability with [OVR](https://set.sportdata.org/wp/2014/08/19/306/)
 
