@@ -42,6 +42,7 @@
 		<poi.version>3.17</poi.version>
 		<jssc.version>2.8.0</jssc.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
+		<hibernate-validator.version>4.3.1.Final</hibernate-validator.version>
 		<log4j.version>1.2.16</log4j.version>
 		<aspectj.version>1.6.9</aspectj.version>
 		<opencsv.version>2.3</opencsv.version>
@@ -221,7 +222,7 @@
 	        <dependency>
 	            <groupId>org.hibernate</groupId>
     			<artifactId>hibernate-validator</artifactId>
-	            <version>${hibernate.version}</version>
+	            <version>${hibernate-validator.version}</version>
 	        </dependency>
 	        
 	        <dependency>

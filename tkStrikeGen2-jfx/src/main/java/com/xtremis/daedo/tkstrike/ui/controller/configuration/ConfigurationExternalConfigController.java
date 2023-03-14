@@ -201,8 +201,8 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void run() {
-				ConfigurationExternalConfigController.this.pnContainer.setVisible( ! show);
-				ConfigurationExternalConfigController.this.pi.setVisible(show);
+				pnContainer.setVisible( ! show);
+				pi.setVisible(show);
 			}
 		});
 	}
@@ -243,75 +243,75 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void run() {
-				ConfigurationExternalConfigController.this.pnTkStrikeVM.setVisible(
-						! ConfigurationExternalConfigController.this.wtCompetitionDataProtocol.booleanValue());
-				ConfigurationExternalConfigController.this.pnWTOvr.setVisible(ConfigurationExternalConfigController.this.wtCompetitionDataProtocol
+				pnTkStrikeVM.setVisible(
+						! wtCompetitionDataProtocol.booleanValue());
+				pnWTOvr.setVisible(wtCompetitionDataProtocol
 						.booleanValue());
-				ConfigurationExternalConfigController.this.txtWTOvrUrl.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.wtOvrUrlProperty());
-				ConfigurationExternalConfigController.this.txtWTOvrXApiKey.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.wtOvrXApiKeyProperty());
-				ConfigurationExternalConfigController.this.txtWTOvrMat.textProperty().bindBidirectional(
-						(Property)ConfigurationExternalConfigController.this.currentExternalConfigEntry.wtOvrMatProperty(),
+				txtWTOvrUrl.textProperty().bindBidirectional(
+						currentExternalConfigEntry.wtOvrUrlProperty());
+				txtWTOvrXApiKey.textProperty().bindBidirectional(
+						currentExternalConfigEntry.wtOvrXApiKeyProperty());
+				txtWTOvrMat.textProperty().bindBidirectional(
+						(Property)currentExternalConfigEntry.wtOvrMatProperty(),
 						(StringConverter)new NumberStringConverter());
-				ConfigurationExternalConfigController.this.txtWTOvrUdpIp.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.wtOvrUdpIpProperty());
-				ConfigurationExternalConfigController.this.txtWTOvrUdpListenPort.textProperty().bindBidirectional(
-						(Property)ConfigurationExternalConfigController.this.currentExternalConfigEntry.wtOvrUdpListenPortProperty(),
+				txtWTOvrUdpIp.textProperty().bindBidirectional(
+						currentExternalConfigEntry.wtOvrUdpIpProperty());
+				txtWTOvrUdpListenPort.textProperty().bindBidirectional(
+						(Property)currentExternalConfigEntry.wtOvrUdpListenPortProperty(),
 						(StringConverter)new NumberStringConverter("0000"));
-				ConfigurationExternalConfigController.this.txtWTOvrUdpWritePort.textProperty().bindBidirectional(
-						(Property)ConfigurationExternalConfigController.this.currentExternalConfigEntry.wtOvrUdpWritePortProperty(),
+				txtWTOvrUdpWritePort.textProperty().bindBidirectional(
+						(Property)currentExternalConfigEntry.wtOvrUdpWritePortProperty(),
 						(StringConverter)new NumberStringConverter("0000"));
-				ConfigurationExternalConfigController.this.tgOvrXApiKey.setSelected(StringUtils.isNotBlank(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.getWtOvrXApiKey()));
-				ConfigurationExternalConfigController.this.txtVenueManagementURL.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.venueManagementURLProperty());
-				ConfigurationExternalConfigController.this.txtVenueManagementRingNumber.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.venueManagementRingNumberProperty());
-				ConfigurationExternalConfigController.this.cmbScreenRessolution.valueProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.extScoreboardResolutionProperty());
-				ConfigurationExternalConfigController.this.rbBlueOnLeft.selectedProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.extScoreboardBlueOnLeftProperty());
-				if( ! ConfigurationExternalConfigController.this.currentExternalConfigEntry.getExtScoreboardBlueOnLeft())
-					ConfigurationExternalConfigController.this.rbRedOnLeft.setSelected(true);
-				ConfigurationExternalConfigController.this.pnEventListeners.getChildren().clear();
-				if(ConfigurationExternalConfigController.this.currentExternalConfigEntry.getListenersURLs() != null
-						&& ConfigurationExternalConfigController.this.currentExternalConfigEntry.getListenersURLs().size() > 0)
-					for(String listenerURL : ConfigurationExternalConfigController.this.currentExternalConfigEntry.getListenersURLs())
-						ConfigurationExternalConfigController.this.createNewEventsListenerComponent(listenerURL,
-								ConfigurationExternalConfigController.this.pnEventListeners,
-								ConfigurationExternalConfigController.this.tkStrikeEventsListenerClient);
-				ConfigurationExternalConfigController.this.pnNodeEventListeners.getChildren().clear();
-				if(ConfigurationExternalConfigController.this.currentExternalConfigEntry.getNodeListenersURLs() != null
-						&& ConfigurationExternalConfigController.this.currentExternalConfigEntry.getNodeListenersURLs().size() > 0)
-					for(String listenerURL : ConfigurationExternalConfigController.this.currentExternalConfigEntry.getNodeListenersURLs())
-						ConfigurationExternalConfigController.this.createNewEventsListenerComponent(listenerURL,
-								ConfigurationExternalConfigController.this.pnNodeEventListeners,
-								ConfigurationExternalConfigController.this.tkStrikeNodeEventsListenerClient);
-				ConfigurationExternalConfigController.this.pnUDPEventListeners.getChildren().clear();
+				tgOvrXApiKey.setSelected(StringUtils.isNotBlank(
+						currentExternalConfigEntry.getWtOvrXApiKey()));
+				txtVenueManagementURL.textProperty().bindBidirectional(
+						currentExternalConfigEntry.venueManagementURLProperty());
+				txtVenueManagementRingNumber.textProperty().bindBidirectional(
+						currentExternalConfigEntry.venueManagementRingNumberProperty());
+				cmbScreenRessolution.valueProperty().bindBidirectional(
+						currentExternalConfigEntry.extScoreboardResolutionProperty());
+				rbBlueOnLeft.selectedProperty().bindBidirectional(
+						currentExternalConfigEntry.extScoreboardBlueOnLeftProperty());
+				if( ! currentExternalConfigEntry.getExtScoreboardBlueOnLeft())
+					rbRedOnLeft.setSelected(true);
+				pnEventListeners.getChildren().clear();
+				if(currentExternalConfigEntry.getListenersURLs() != null
+						&& currentExternalConfigEntry.getListenersURLs().size() > 0)
+					for(String listenerURL : currentExternalConfigEntry.getListenersURLs())
+						createNewEventsListenerComponent(listenerURL,
+								pnEventListeners,
+								tkStrikeEventsListenerClient);
+				pnNodeEventListeners.getChildren().clear();
+				if(currentExternalConfigEntry.getNodeListenersURLs() != null
+						&& currentExternalConfigEntry.getNodeListenersURLs().size() > 0)
+					for(String listenerURL : currentExternalConfigEntry.getNodeListenersURLs())
+						createNewEventsListenerComponent(listenerURL,
+								pnNodeEventListeners,
+								tkStrikeNodeEventsListenerClient);
+				pnUDPEventListeners.getChildren().clear();
 				try {
-					List<UdpEventListenerEntry> eventListenerEntryList = ConfigurationExternalConfigController.this.udpEventListenerService
+					List<UdpEventListenerEntry> eventListenerEntryList = udpEventListenerService
 							.findAllEntries();
 					if(eventListenerEntryList != null && eventListenerEntryList.size() > 0)
 						for(UdpEventListenerEntry entry : eventListenerEntryList)
-							ConfigurationExternalConfigController.this.createNewUDPEventsListenerComponent(entry,
-									ConfigurationExternalConfigController.this.pnUDPEventListeners);
+							createNewUDPEventsListenerComponent(entry,
+									pnUDPEventListeners);
 				} catch(TkStrikeServiceException e) {
-					ConfigurationExternalConfigController.this.manageException(e, "refreshExternalConfigAndRebind - udpEventListenerService", null);
+					manageException(e, "refreshExternalConfigAndRebind - udpEventListenerService", null);
 				}
-				ConfigurationExternalConfigController.this.txtRtBroadcastIp.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.rtBroadcastIpProperty());
-				ConfigurationExternalConfigController.this.txtRtBroadcastPort.textProperty().bindBidirectional(
-						(Property)ConfigurationExternalConfigController.this.currentExternalConfigEntry.rtBroadcastPortProperty(),
+				txtRtBroadcastIp.textProperty().bindBidirectional(
+						currentExternalConfigEntry.rtBroadcastIpProperty());
+				txtRtBroadcastPort.textProperty().bindBidirectional(
+						(Property)currentExternalConfigEntry.rtBroadcastPortProperty(),
 						(StringConverter)new NumberStringConverter("0000"));
-				ConfigurationExternalConfigController.this.txtRtBroadcastRingNumber.textProperty().bindBidirectional(
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.rtBroadcastRingNumberProperty());
-				ConfigurationExternalConfigController.this.rtBroadcastIpChanged.set(false);
-				ConfigurationExternalConfigController.this.rtBroadcastPortChanged.set(false);
-				ConfigurationExternalConfigController.this.rtBroadcastRingNumberChanged.set(false);
-				ConfigurationExternalConfigController.this.initializeFormControlsStyles();
-				ConfigurationExternalConfigController.this.formSaved.set(Boolean.FALSE.booleanValue());
-				ConfigurationExternalConfigController.this.showProgressIndicator(false);
+				txtRtBroadcastRingNumber.textProperty().bindBidirectional(
+						currentExternalConfigEntry.rtBroadcastRingNumberProperty());
+				rtBroadcastIpChanged.set(false);
+				rtBroadcastPortChanged.set(false);
+				rtBroadcastRingNumberChanged.set(false);
+				initializeFormControlsStyles();
+				formSaved.set(Boolean.FALSE.booleanValue());
+				showProgressIndicator(false);
 			}
 		});
 	}
@@ -339,17 +339,14 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 	public LinkedHashSet<FormValidationError> validateForm() {
 		LinkedHashSet<FormValidationError> res = null;
 		if(StringUtils.isNotBlank(this.txtRtBroadcastIp.getText()) &&
-				! this.txtRtBroadcastIp.getText().matches(
-						"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$") &&
-				! this.txtRtBroadcastIp.getText().matches(
-						"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$")) {
+				! this.txtRtBroadcastIp.getText().matches(IP_REGEX) &&
+				! this.txtRtBroadcastIp.getText().matches(HOSTNAME_REGEX)) {
 			res = new LinkedHashSet<>();
 			res.add(new FormValidationError(this.currentExternalConfigEntry, "rtBroadcastIp", this.txtRtBroadcastIp, getMessage(
 					"validation.invalidURL")));
 		}
 		if(this.wtCompetitionDataProtocol.booleanValue()) {
-			if(StringUtils.isNotBlank(this.txtWTOvrUrl.getText()) && ! this.txtWTOvrUrl.getText().matches(
-					"^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")) {
+			if(StringUtils.isNotBlank(this.txtWTOvrUrl.getText()) && ! this.txtWTOvrUrl.getText().matches(URL_REGEX)) {
 				if(res == null)
 					res = new LinkedHashSet<>();
 				res.add(new FormValidationError(this.currentExternalConfigEntry, "wtOvrUlr", this.txtWTOvrUrl, getMessage("validation.invalidURL")));
@@ -371,8 +368,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 						"validation.required")));
 			}
 		} else {
-			if(StringUtils.isNotBlank(this.txtVenueManagementURL.getText()) && ! this.txtVenueManagementURL.getText().matches(
-					"^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")) {
+			if(StringUtils.isNotBlank(this.txtVenueManagementURL.getText()) && ! this.txtVenueManagementURL.getText().matches(URL_REGEX)) {
 				if(res == null)
 					res = new LinkedHashSet<>();
 				res.add(new FormValidationError(this.currentExternalConfigEntry, "venueManagementURL", this.txtVenueManagementURL, getMessage(
@@ -403,7 +399,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 								"validation.required")));
 						continue;
 					}
-					if( ! textField.getText().matches("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]")) {
+					if( ! textField.getText().matches(URL_REGEX)) {
 						if(res == null)
 							res = new LinkedHashSet<>();
 						res.add(new FormValidationError(this.currentExternalConfigEntry, "eventsListenerURL", textField, getMessage(
@@ -421,26 +417,26 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 				@Override
 				public Void call() throws Exception {
-					ArrayList<String> strings = ConfigurationExternalConfigController.this.getListenersTextfieldValues(
-							ConfigurationExternalConfigController.this.pnEventListeners);
+					ArrayList<String> strings = getListenersTextfieldValues(
+							pnEventListeners);
 					if(strings != null)
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.setListenersURLs(strings);
-					strings = ConfigurationExternalConfigController.this.getListenersTextfieldValues(
-							ConfigurationExternalConfigController.this.pnNodeEventListeners);
+						currentExternalConfigEntry.setListenersURLs(strings);
+					strings = getListenersTextfieldValues(
+							pnNodeEventListeners);
 					if(strings != null)
-						ConfigurationExternalConfigController.this.currentExternalConfigEntry.setNodeListenersURLs(strings);
+						currentExternalConfigEntry.setNodeListenersURLs(strings);
 					try {
-						ConfigurationExternalConfigController.this.externalConfigService.update(
-								ConfigurationExternalConfigController.this.currentExternalConfigEntry.createExternalConfig());
-						ConfigurationExternalConfigController.this.getAppStatusWorker().externalScreenResolutionProperty().set(ScreenResolution
-								.valueOf(ConfigurationExternalConfigController.this.currentExternalConfigEntry.getExtScoreboardResolution()));
+						externalConfigService.update(
+								currentExternalConfigEntry.createExternalConfig());
+						getAppStatusWorker().externalScreenResolutionProperty().set(ScreenResolution
+								.valueOf(currentExternalConfigEntry.getExtScoreboardResolution()));
 					} catch(TkStrikeServiceException e) {
-						ConfigurationExternalConfigController.this.showProgressIndicator(false);
-						ConfigurationExternalConfigController.this.manageException(e, "Saving external config", null);
+						showProgressIndicator(false);
+						manageException(e, "Saving external config", null);
 						return null;
 					}
-					ConfigurationExternalConfigController.this.formSaved.set(Boolean.TRUE.booleanValue());
-					ConfigurationExternalConfigController.this.refreshExternalConfigAndRebind();
+					formSaved.set(Boolean.TRUE.booleanValue());
+					refreshExternalConfigAndRebind();
 					return null;
 				}
 			});
@@ -460,9 +456,9 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 				public Void call() throws Exception {
 					Boolean testResult = Boolean.FALSE;
 					try {
-						testResult = ConfigurationExternalConfigController.this.wtOvrClientService.doPing(
-								ConfigurationExternalConfigController.this.txtWTOvrUrl.getText(),
-								ConfigurationExternalConfigController.this.txtWTOvrXApiKey.getText());
+						testResult = wtOvrClientService.doPing(
+								txtWTOvrUrl.getText(),
+								txtWTOvrXApiKey.getText());
 					} catch(Exception e) {
 						ConfigurationExternalConfigController.logger.error("Exception calling WT-OVR", e);
 					}
@@ -471,13 +467,13 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 						@Override
 						public void run() {
-							ConfigurationExternalConfigController.this.showProgressIndicator(false);
+							showProgressIndicator(false);
 							if(testResultFinal.booleanValue()) {
-								ConfigurationExternalConfigController.this.showInfoDialog(ConfigurationExternalConfigController.this.getMessage(
-										"title.default.info"), ConfigurationExternalConfigController.this.getMessage("message.info.wtOvrTestOk"));
+								showInfoDialog(getMessage(
+										"title.default.info"), getMessage("message.info.wtOvrTestOk"));
 							} else {
-								ConfigurationExternalConfigController.this.showErrorDialog(ConfigurationExternalConfigController.this.getMessage(
-										"title.default.error"), ConfigurationExternalConfigController.this.getMessage("message.error.wtOvrTest"));
+								showErrorDialog(getMessage(
+										"title.default.error"), getMessage("message.error.wtOvrTest"));
 							}
 						}
 					});
@@ -495,8 +491,8 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 			public Void call() throws Exception {
 				Boolean testResult = Boolean.FALSE;
 				try {
-					testResult = ConfigurationExternalConfigController.this.venueManagementClient.doPing(
-							ConfigurationExternalConfigController.this.txtVenueManagementURL.getText());
+					testResult = venueManagementClient.doPing(
+							txtVenueManagementURL.getText());
 					if(testResult == null)
 						testResult = Boolean.FALSE;
 				} catch(TkStrikeServiceException e) {
@@ -507,14 +503,14 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 					@Override
 					public void run() {
-						ConfigurationExternalConfigController.this.showProgressIndicator(false);
+						showProgressIndicator(false);
 						if(testResultFinal.booleanValue()) {
-							ConfigurationExternalConfigController.this.showInfoDialog(ConfigurationExternalConfigController.this.getMessage(
-									"title.default.info"), ConfigurationExternalConfigController.this.getMessage(
+							showInfoDialog(getMessage(
+									"title.default.info"), getMessage(
 											"message.info.venueManagementTestOk"));
 						} else {
-							ConfigurationExternalConfigController.this.showErrorDialog(ConfigurationExternalConfigController.this.getMessage(
-									"title.default.error"), ConfigurationExternalConfigController.this.getMessage("message.error.venueManagement"));
+							showErrorDialog(getMessage(
+									"title.default.error"), getMessage("message.error.venueManagement"));
 						}
 					}
 				});
@@ -528,9 +524,9 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void run() {
-				ConfigurationExternalConfigController.this.createNewEventsListenerComponent((String)null,
-						ConfigurationExternalConfigController.this.pnEventListeners,
-						ConfigurationExternalConfigController.this.tkStrikeEventsListenerClient);
+				createNewEventsListenerComponent((String)null,
+						pnEventListeners,
+						tkStrikeEventsListenerClient);
 			}
 		});
 	}
@@ -540,9 +536,9 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void run() {
-				ConfigurationExternalConfigController.this.createNewEventsListenerComponent((String)null,
-						ConfigurationExternalConfigController.this.pnNodeEventListeners,
-						ConfigurationExternalConfigController.this.tkStrikeNodeEventsListenerClient);
+				createNewEventsListenerComponent((String)null,
+						pnNodeEventListeners,
+						tkStrikeNodeEventsListenerClient);
 			}
 		});
 	}
@@ -556,26 +552,25 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 				@Override
 				public void run() {
-					ConfigurationExternalConfigController.this.txtUDPListenerIp.getStyleClass().removeAll(Collections.singleton("form-default"));
-					ConfigurationExternalConfigController.this.txtUDPListenerIp.getStyleClass().add("form-error");
-					Tooltip errorTooltip = new Tooltip(ConfigurationExternalConfigController.this.getMessage("validation.required"));
+					txtUDPListenerIp.getStyleClass().removeAll(Collections.singleton("form-default"));
+					txtUDPListenerIp.getStyleClass().add("form-error");
+					Tooltip errorTooltip = new Tooltip(getMessage("validation.required"));
 					errorTooltip.setHideOnEscape(false);
-					ConfigurationExternalConfigController.this.txtUDPListenerIp.setTooltip(errorTooltip);
+					txtUDPListenerIp.setTooltip(errorTooltip);
 				}
 			});
 		} else if(StringUtils.isNotBlank(this.txtUDPListenerIp.getText()) &&
-				! this.txtUDPListenerIp.getText().matches(
-						"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$")) {
+				! this.txtUDPListenerIp.getText().matches(IP_REGEX)) {
 			isValid = false;
 			Platform.runLater(new Runnable() {
 
 				@Override
 				public void run() {
-					ConfigurationExternalConfigController.this.txtUDPListenerIp.getStyleClass().removeAll(Collections.singleton("form-default"));
-					ConfigurationExternalConfigController.this.txtUDPListenerIp.getStyleClass().add("form-error");
-					Tooltip errorTooltip = new Tooltip(ConfigurationExternalConfigController.this.getMessage("validation.invalidURL"));
+					txtUDPListenerIp.getStyleClass().removeAll(Collections.singleton("form-default"));
+					txtUDPListenerIp.getStyleClass().add("form-error");
+					Tooltip errorTooltip = new Tooltip(getMessage("validation.invalidURL"));
 					errorTooltip.setHideOnEscape(false);
-					ConfigurationExternalConfigController.this.txtUDPListenerIp.setTooltip(errorTooltip);
+					txtUDPListenerIp.setTooltip(errorTooltip);
 				}
 			});
 		}
@@ -585,11 +580,11 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 				@Override
 				public void run() {
-					ConfigurationExternalConfigController.this.txtUDPListenerPort.getStyleClass().removeAll(Collections.singleton("form-default"));
-					ConfigurationExternalConfigController.this.txtUDPListenerPort.getStyleClass().add("form-error");
-					Tooltip errorTooltip = new Tooltip(ConfigurationExternalConfigController.this.getMessage("validation.incorrectValue"));
+					txtUDPListenerPort.getStyleClass().removeAll(Collections.singleton("form-default"));
+					txtUDPListenerPort.getStyleClass().add("form-error");
+					Tooltip errorTooltip = new Tooltip(getMessage("validation.incorrectValue"));
 					errorTooltip.setHideOnEscape(false);
-					ConfigurationExternalConfigController.this.txtUDPListenerPort.setTooltip(errorTooltip);
+					txtUDPListenerPort.setTooltip(errorTooltip);
 				}
 			});
 		}
@@ -616,12 +611,12 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void run() {
-				ConfigurationExternalConfigController.this.txtUDPListenerIp.getStyleClass().removeAll(Collections.singleton("form-error"));
-				ConfigurationExternalConfigController.this.txtUDPListenerIp.getStyleClass().add("form-default");
-				ConfigurationExternalConfigController.this.txtUDPListenerIp.setTooltip(null);
-				ConfigurationExternalConfigController.this.txtUDPListenerPort.getStyleClass().removeAll(Collections.singleton("form-error"));
-				ConfigurationExternalConfigController.this.txtUDPListenerPort.getStyleClass().add("form-default");
-				ConfigurationExternalConfigController.this.txtUDPListenerPort.setTooltip(null);
+				txtUDPListenerIp.getStyleClass().removeAll(Collections.singleton("form-error"));
+				txtUDPListenerIp.getStyleClass().add("form-default");
+				txtUDPListenerIp.setTooltip(null);
+				txtUDPListenerPort.getStyleClass().removeAll(Collections.singleton("form-error"));
+				txtUDPListenerPort.getStyleClass().add("form-default");
+				txtUDPListenerPort.setTooltip(null);
 			}
 		});
 	}
@@ -658,9 +653,9 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 					@Override
 					public void run() {
 						Boolean testResult = Boolean.FALSE;
-						ConfigurationExternalConfigController.this.showProgressIndicator(true);
+						showProgressIndicator(true);
 						try {
-							TextField txtControl = ConfigurationExternalConfigController.this.getURLTextFieldByIndex(vBoxListeners, Integer.valueOf(
+							TextField txtControl = getURLTextFieldByIndex(vBoxListeners, Integer.valueOf(
 									newIndex));
 							if(txtControl != null) {
 								testResult = tkStrikeCommonEventListenerClient.doPing(txtControl.getText());
@@ -675,14 +670,14 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 							@Override
 							public void run() {
-								ConfigurationExternalConfigController.this.showProgressIndicator(false);
+								showProgressIndicator(false);
 								if(testResultFinal.booleanValue()) {
-									ConfigurationExternalConfigController.this.showInfoDialog(ConfigurationExternalConfigController.this.getMessage(
-											"title.default.info"), ConfigurationExternalConfigController.this.getMessage(
+									showInfoDialog(getMessage(
+											"title.default.info"), getMessage(
 													"message.info.externalEventsListener.testOk"));
 								} else {
-									ConfigurationExternalConfigController.this.showErrorDialog(ConfigurationExternalConfigController.this.getMessage(
-											"title.default.error"), ConfigurationExternalConfigController.this.getMessage(
+									showErrorDialog(getMessage(
+											"title.default.error"), getMessage(
 													"message.error.externalEventsListener"));
 								}
 							}
@@ -756,13 +751,13 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				ConfigurationExternalConfigController.this.showProgressIndicator(true);
+				showProgressIndicator(true);
 				Platform.runLater(new Runnable() {
 
 					@Override
 					public void run() {
 						try {
-							ConfigurationExternalConfigController.this.udpEventListenerService.delete(eventListenerEntry.getId());
+							udpEventListenerService.delete(eventListenerEntry.getId());
 							int index2Delete = 0;
 							for(int i = 0; i < vBoxListeners.getChildren().size(); i++) {
 								Node node = vBoxListeners.getChildren().get(i);
@@ -772,9 +767,9 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 							}
 							vBoxListeners.getChildren().remove(index2Delete);
 						} catch(TkStrikeServiceException e) {
-							ConfigurationExternalConfigController.this.manageException(e, "", null);
+							manageException(e, "", null);
 						} finally {
-							ConfigurationExternalConfigController.this.showProgressIndicator(false);
+							showProgressIndicator(false);
 						}
 					}
 				});
@@ -829,7 +824,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public String toString(String s) {
-				return ConfigurationExternalConfigController.this.getMessage("enum.screenRessolution." + s);
+				return getMessage("enum.screenRessolution." + s);
 			}
 
 			@Override
@@ -848,10 +843,10 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 					@Override
 					public void run() {
 						if(selected.booleanValue()) {
-							ConfigurationExternalConfigController.this.tgRtBroadcastConnection.setText(ConfigurationExternalConfigController.this
+							tgRtBroadcastConnection.setText(ConfigurationExternalConfigController.this
 									.getMessage("toggle.rtBroadcast.connected"));
 						} else {
-							ConfigurationExternalConfigController.this.tgRtBroadcastConnection.setText(ConfigurationExternalConfigController.this
+							tgRtBroadcastConnection.setText(ConfigurationExternalConfigController.this
 									.getMessage("toggle.rtBroadcast.notConnected"));
 						}
 					}
@@ -862,35 +857,35 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void handle(ActionEvent event) {
-				ConfigurationExternalConfigController.this.showProgressIndicator(true);
-				if( ! ConfigurationExternalConfigController.this.tgRtBroadcastConnection.isSelected()) {
+				showProgressIndicator(true);
+				if( ! tgRtBroadcastConnection.isSelected()) {
 					TkStrikeExecutors.executeInThreadPool(new Runnable() {
 
 						@Override
 						public void run() {
-							ConfigurationExternalConfigController.this.rtBroadcastSocketClient.closeConnection();
+							rtBroadcastSocketClient.closeConnection();
 						}
 					});
 					Platform.runLater(new Runnable() {
 
 						@Override
 						public void run() {
-							ConfigurationExternalConfigController.this.pi.setVisible(false);
-							ConfigurationExternalConfigController.this.pnContainer.setVisible(true);
-							ConfigurationExternalConfigController.this.tgRtBroadcastConnection.setSelected(false);
+							pi.setVisible(false);
+							pnContainer.setVisible(true);
+							tgRtBroadcastConnection.setSelected(false);
 						}
 					});
 				} else {
-					if(ConfigurationExternalConfigController.this.isFormValid()) {
+					if(isFormValid()) {
 						TkStrikeExecutors.executeInThreadPool(new Runnable() {
 
 							@Override
 							public void run() {
 								try {
-									ConfigurationExternalConfigController.this.rtBroadcastSocketClient.connect(
-											ConfigurationExternalConfigController.this.txtRtBroadcastIp.getText(), Long.valueOf(Long.parseLong(
-													ConfigurationExternalConfigController.this.txtRtBroadcastPort.getText())),
-											ConfigurationExternalConfigController.this.txtRtBroadcastRingNumber.getText());
+									rtBroadcastSocketClient.connect(
+											txtRtBroadcastIp.getText(), Long.valueOf(Long.parseLong(
+													txtRtBroadcastPort.getText())),
+											txtRtBroadcastRingNumber.getText());
 								} catch(TkStrikeServiceException e) {
 									e.printStackTrace();
 								}
@@ -901,11 +896,11 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 							@Override
 							public void run() {
-								ConfigurationExternalConfigController.this.tgRtBroadcastConnection.setSelected(false);
+								tgRtBroadcastConnection.setSelected(false);
 							}
 						});
 					}
-					ConfigurationExternalConfigController.this.showProgressIndicator(false);
+					showProgressIndicator(false);
 				}
 			}
 		});
@@ -921,7 +916,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 					@Override
 					public void run() {
-						ConfigurationExternalConfigController.this.tgRtBroadcastConnection.setSelected(connected.booleanValue());
+						tgRtBroadcastConnection.setSelected(connected.booleanValue());
 					}
 				});
 			}
@@ -930,31 +925,31 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				ConfigurationExternalConfigController.this.rtBroadcastIpChanged.set(Boolean.TRUE.booleanValue());
+				rtBroadcastIpChanged.set(Boolean.TRUE.booleanValue());
 			}
 		});
 		this.txtRtBroadcastPort.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				ConfigurationExternalConfigController.this.rtBroadcastPortChanged.set(Boolean.TRUE.booleanValue());
+				rtBroadcastPortChanged.set(Boolean.TRUE.booleanValue());
 			}
 		});
 		this.txtRtBroadcastRingNumber.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				ConfigurationExternalConfigController.this.rtBroadcastRingNumberChanged.set(Boolean.TRUE.booleanValue());
+				rtBroadcastRingNumberChanged.set(Boolean.TRUE.booleanValue());
 			}
 		});
 		this.tgOvrXApiKey.selectedProperty().addListener(new ChangeListener<Boolean>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				ConfigurationExternalConfigController.this.tgOvrXApiKey.setText(ConfigurationExternalConfigController.this.getMessage(
+				tgOvrXApiKey.setText(getMessage(
 						"toggle.wtOvrUseXApiKey." + (newValue.booleanValue() ? "enabled" : "disabled")));
 				if( ! newValue.booleanValue())
-					ConfigurationExternalConfigController.this.txtWTOvrXApiKey.clear();
+					txtWTOvrXApiKey.clear();
 			}
 		});
 		this.pnOvrXApiKey.visibleProperty().bind(this.tgOvrXApiKey.selectedProperty());
@@ -968,7 +963,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 					@Override
 					public void run() {
-						ConfigurationExternalConfigController.this.tgWtUdpConnected.setSelected(newValue.booleanValue());
+						tgWtUdpConnected.setSelected(newValue.booleanValue());
 					}
 				});
 			}
@@ -981,7 +976,7 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 					@Override
 					public void run() {
-						ConfigurationExternalConfigController.this.tgWtUdpConnected.setText(ConfigurationExternalConfigController.this.getMessage(
+						tgWtUdpConnected.setText(getMessage(
 								"toggle." + (newValue.booleanValue() ? "connected" : "notConnected")));
 					}
 				});
@@ -991,35 +986,35 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 			@Override
 			public void handle(ActionEvent event) {
-				ConfigurationExternalConfigController.this.showProgressIndicator(true);
-				if( ! ConfigurationExternalConfigController.this.tgWtUdpConnected.isSelected()) {
+				showProgressIndicator(true);
+				if( ! tgWtUdpConnected.isSelected()) {
 					TkStrikeExecutors.executeInThreadPool(new Runnable() {
 
 						@Override
 						public void run() {
-							ConfigurationExternalConfigController.this.wtUDPService.closeConnection(false);
+							wtUDPService.closeConnection(false);
 						}
 					});
 					Platform.runLater(new Runnable() {
 
 						@Override
 						public void run() {
-							ConfigurationExternalConfigController.this.showProgressIndicator(false);
-							ConfigurationExternalConfigController.this.tgWtUdpConnected.setSelected(false);
+							showProgressIndicator(false);
+							tgWtUdpConnected.setSelected(false);
 						}
 					});
 				} else {
-					if(ConfigurationExternalConfigController.this.isFormValid()) {
+					if(isFormValid()) {
 						TkStrikeExecutors.executeInThreadPool(new Runnable() {
 
 							@Override
 							public void run() {
 								try {
-									ConfigurationExternalConfigController.this.wtUDPService.connect(
-											ConfigurationExternalConfigController.this.txtWTOvrUdpIp.getText(),
-											Integer.valueOf(Integer.parseInt(ConfigurationExternalConfigController.this.txtWTOvrUdpListenPort
+									wtUDPService.connect(
+											txtWTOvrUdpIp.getText(),
+											Integer.valueOf(Integer.parseInt(txtWTOvrUdpListenPort
 													.getText())),
-											Integer.valueOf(Integer.parseInt(ConfigurationExternalConfigController.this.txtWTOvrUdpWritePort
+											Integer.valueOf(Integer.parseInt(txtWTOvrUdpWritePort
 													.getText())));
 								} catch(TkStrikeServiceException e) {
 									e.printStackTrace();
@@ -1031,11 +1026,11 @@ public class ConfigurationExternalConfigController extends TkStrikeBaseControlle
 
 							@Override
 							public void run() {
-								ConfigurationExternalConfigController.this.tgWtUdpConnected.setSelected(false);
+								tgWtUdpConnected.setSelected(false);
 							}
 						});
 					}
-					ConfigurationExternalConfigController.this.showProgressIndicator(false);
+					showProgressIndicator(false);
 				}
 			}
 		});

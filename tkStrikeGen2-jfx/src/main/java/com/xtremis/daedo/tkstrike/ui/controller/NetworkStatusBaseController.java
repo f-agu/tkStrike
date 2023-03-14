@@ -106,11 +106,11 @@ public abstract class NetworkStatusBaseController extends TkStrikeBaseController
 
 			@Override
 			public void run() {
-				NetworkStatusBaseController.this.currentNetworkConfiguration = NetworkStatusBaseController.this.getCurrentNetworkConfiguration();
-				if(NetworkStatusBaseController.this.hasUIStatus())
-					NetworkStatusBaseController.this.txtNetworkStatus().setText(NetworkStatusBaseController.this.getMessage("label.networkStatus."
-							+ NetworkStatusBaseController.this.tkStrikeCommunicationService.getCurrentNetworkStatus().toString()));
-				NetworkStatusBaseController.this._bindControls();
+				currentNetworkConfiguration = getCurrentNetworkConfiguration();
+				if(hasUIStatus())
+					txtNetworkStatus().setText(getMessage("label.networkStatus."
+							+ tkStrikeCommunicationService.getCurrentNetworkStatus().toString()));
+				_bindControls();
 			}
 		});
 		_customOnWindowShowEvent();
@@ -125,10 +125,10 @@ public abstract class NetworkStatusBaseController extends TkStrikeBaseController
 			public void handle(WindowEvent windowEvent) {
 				if(NetworkStatusBaseController.logger.isDebugEnabled())
 					NetworkStatusBaseController.logger.debug("On Window Close Event, REMOVE listener ?"
-							+ NetworkStatusBaseController.this.removeListenerWhenCloseWindow);
-				if(NetworkStatusBaseController.this.removeListenerWhenCloseWindow.booleanValue())
-					NetworkStatusBaseController.this.tkStrikeCommunicationService.removeListener(listener);
-				NetworkStatusBaseController.this._customOnWindowsCloseEvent();
+							+ removeListenerWhenCloseWindow);
+				if(removeListenerWhenCloseWindow.booleanValue())
+					tkStrikeCommunicationService.removeListener(listener);
+				_customOnWindowsCloseEvent();
 			}
 		};
 	}
@@ -150,28 +150,28 @@ public abstract class NetworkStatusBaseController extends TkStrikeBaseController
 
 			@Override
 			public void run() {
-				if(NetworkStatusBaseController.this.hasUIJudges()) {
-					NetworkStatusBaseController.this.txtJ1Battery().textProperty().bind(NetworkStatusBaseController.this.j1Battery);
-					NetworkStatusBaseController.this.txtJ2Battery().textProperty().bind(NetworkStatusBaseController.this.j2Battery);
-					NetworkStatusBaseController.this.txtJ3Battery().textProperty().bind(NetworkStatusBaseController.this.j3Battery);
-					NetworkStatusBaseController.this.hbJudge1().visibleProperty().bind(
-							NetworkStatusBaseController.this.currentNetworkConfiguration.judge1EnabledProperty);
-					NetworkStatusBaseController.this.hbJudge2().visibleProperty().bind(
-							NetworkStatusBaseController.this.currentNetworkConfiguration.judge2EnabledProperty);
-					NetworkStatusBaseController.this.hbJudge3().visibleProperty().bind(
-							NetworkStatusBaseController.this.currentNetworkConfiguration.judge3EnabledProperty);
+				if(hasUIJudges()) {
+					txtJ1Battery().textProperty().bind(j1Battery);
+					txtJ2Battery().textProperty().bind(j2Battery);
+					txtJ3Battery().textProperty().bind(j3Battery);
+					hbJudge1().visibleProperty().bind(
+							currentNetworkConfiguration.judge1EnabledProperty);
+					hbJudge2().visibleProperty().bind(
+							currentNetworkConfiguration.judge2EnabledProperty);
+					hbJudge3().visibleProperty().bind(
+							currentNetworkConfiguration.judge3EnabledProperty);
 				}
-				if(NetworkStatusBaseController.this.hasUIAthletes()) {
-					NetworkStatusBaseController.this.txtG1BBBattery().textProperty().bind(NetworkStatusBaseController.this.g1BBBattery);
-					NetworkStatusBaseController.this.txtG1HBBattery().textProperty().bind(NetworkStatusBaseController.this.g1HBBattery);
-					NetworkStatusBaseController.this.txtG1BRBattery().textProperty().bind(NetworkStatusBaseController.this.g1BRBattery);
-					NetworkStatusBaseController.this.txtG1HRBattery().textProperty().bind(NetworkStatusBaseController.this.g1HRBattery);
-					NetworkStatusBaseController.this.txtG2BBBattery().textProperty().bind(NetworkStatusBaseController.this.g2BBBattery);
-					NetworkStatusBaseController.this.txtG2HBBattery().textProperty().bind(NetworkStatusBaseController.this.g2HBBattery);
-					NetworkStatusBaseController.this.txtG2BRBattery().textProperty().bind(NetworkStatusBaseController.this.g2BRBattery);
-					NetworkStatusBaseController.this.txtG2HRBattery().textProperty().bind(NetworkStatusBaseController.this.g2HRBattery);
+				if(hasUIAthletes()) {
+					txtG1BBBattery().textProperty().bind(g1BBBattery);
+					txtG1HBBattery().textProperty().bind(g1HBBattery);
+					txtG1BRBattery().textProperty().bind(g1BRBattery);
+					txtG1HRBattery().textProperty().bind(g1HRBattery);
+					txtG2BBBattery().textProperty().bind(g2BBBattery);
+					txtG2HBBattery().textProperty().bind(g2HBBattery);
+					txtG2BRBattery().textProperty().bind(g2BRBattery);
+					txtG2HRBattery().textProperty().bind(g2HRBattery);
 				}
-				NetworkStatusBaseController.this._customBindControls();
+				_customBindControls();
 			}
 		});
 	}
@@ -243,7 +243,7 @@ public abstract class NetworkStatusBaseController extends TkStrikeBaseController
 							theShape.setFill(Color.RED);
 							thePctProperty.set("");
 						} else if(sensorKO) {
-							if(NetworkStatusBaseController.this.isTkStrikeGen2Version()) {
+							if(isTkStrikeGen2Version()) {
 								thePctProperty.set((nodeNetworkErrorEvent.getNetworkNode().getBatteryPct() <= 20.0D) ? "LOW" : "OK");
 							} else {
 								thePctProperty.set(CommonTkStrikeBaseController.pctFormat.format(nodeNetworkErrorEvent.getNetworkNode()
@@ -318,7 +318,7 @@ public abstract class NetworkStatusBaseController extends TkStrikeBaseController
 
 					@Override
 					public void run() {
-						if(NetworkStatusBaseController.this.isTkStrikeGen2Version()) {
+						if(isTkStrikeGen2Version()) {
 							fiPctProperty.set((progress <= 20.0D) ? "LOW" : "OK");
 						} else {
 							fiPctProperty.set(CommonTkStrikeBaseController.pctFormat.format(progress));
@@ -347,26 +347,26 @@ public abstract class NetworkStatusBaseController extends TkStrikeBaseController
 
 				@Override
 				public void run() {
-					NetworkStatusBaseController.this.txtNetworkStatus().setText(NetworkStatusBaseController.this.getMessage("label.networkStatus."
+					txtNetworkStatus().setText(getMessage("label.networkStatus."
 							+ changeNetworkStatusEvent.getNetworkStatus().toString()));
 					switch(changeNetworkStatusEvent.getNetworkStatus()) {
 						case OK:
-							NetworkStatusBaseController.this.reNetworkStatus().setFill(Color.GREEN);
-							NetworkStatusBaseController.this.getAppStatusWorker().setNetworkConfigurationEntry(NetworkStatusBaseController.this
+							reNetworkStatus().setFill(Color.GREEN);
+							getAppStatusWorker().setNetworkConfigurationEntry(NetworkStatusBaseController.this
 									.getCurrentNetworkConfiguration());
 							break;
 						case ANALYZING:
-							NetworkStatusBaseController.this.reNetworkStatus().setFill(Color.ORANGE);
+							reNetworkStatus().setFill(Color.ORANGE);
 							break;
 						case NOT_RECOGNIZED:
 						case NOT_STARTED:
-							NetworkStatusBaseController.this.reNetworkStatus().setFill(Color.RED);
+							reNetworkStatus().setFill(Color.RED);
 							break;
 						case NOT_CONNECTED:
-							NetworkStatusBaseController.this.reNetworkStatus().setFill(Color.web("cdcfd0"));
+							reNetworkStatus().setFill(Color.web("cdcfd0"));
 							break;
 					}
-					NetworkStatusBaseController.this._customHasChangeNetworkStatusEvent(changeNetworkStatusEvent);
+					_customHasChangeNetworkStatusEvent(changeNetworkStatusEvent);
 				}
 			});
 	}

@@ -116,10 +116,10 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
-        <!-- <dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-        </dependency> -->
+        </dependency>
 
         <!-- Spring -->
         <!-- Spring Framework -->
@@ -253,6 +253,11 @@
             <!-- <version>3.0.20190714142556</version> -->
             <version>3.4.20210509072026</version>
         </dependency>
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.0.0.GA</version>
+		</dependency>
     </dependencies>
 
 
@@ -261,7 +266,7 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
             </resource>
         </resources>
 		<plugins>
@@ -403,13 +408,6 @@
                 <rules.forceShowName.default>0</rules.forceShowName.default>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.xtremis.daedo.comm</groupId>
-                    <artifactId>tkStrike-comm-gen2</artifactId>
-                    <version>${project.version}</version>
-                    <scope>provided</scope>
-                </dependency>
-                <!-- Dependències de comm-gen2 -->
                 <!-- Spring -->
                 <dependency>
                     <groupId>org.springframework</groupId>
@@ -422,6 +420,9 @@
                 </dependency>
 
             </dependencies>
+            <activation>
+            	<activeByDefault>true</activeByDefault>
+       		 </activation>
         </profile>
     </profiles>
     <dependencyManagement>

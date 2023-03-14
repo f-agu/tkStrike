@@ -85,14 +85,14 @@ public class TkStrikeSimulatorCommunicationServiceImpl implements TkStrikeCommun
 
 			@Override
 			public void run() {
-				TkStrikeSimulatorCommunicationServiceImpl.this.fireNewChangeNetworkConfigurationEvent(Long.valueOf(System.currentTimeMillis()),
-						TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus, networkConfiguration);
+				fireNewChangeNetworkConfigurationEvent(Long.valueOf(System.currentTimeMillis()),
+						networkStatus, networkConfiguration);
 				if(TkStrikeSimulatorCommunicationServiceImpl._log.isDebugEnabled())
 					TkStrikeSimulatorCommunicationServiceImpl._log.debug("Has call fireNewChangeNetworkConfigurationEvent");
-				NetworkStatus last = TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus;
-				TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus = NetworkStatus.OK;
-				TkStrikeSimulatorCommunicationServiceImpl.this.fireNewChangeNetworkStatusEvent(Long.valueOf(System.currentTimeMillis()),
-						TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus, last);
+				NetworkStatus last = networkStatus;
+				networkStatus = NetworkStatus.OK;
+				fireNewChangeNetworkStatusEvent(Long.valueOf(System.currentTimeMillis()),
+						networkStatus, last);
 			}
 		}, 1L, TimeUnit.SECONDS);
 	}
@@ -234,9 +234,9 @@ public class TkStrikeSimulatorCommunicationServiceImpl implements TkStrikeCommun
 							sensorOk = Boolean.valueOf(eventParts[2].split("=")[1]);
 						if(TkStrikeSimulatorCommunicationServiceImpl._log.isDebugEnabled())
 							TkStrikeSimulatorCommunicationServiceImpl._log.debug(statusEvent + " - Node " + nodeId + " battery " + battery);
-						StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus,
+						StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, networkStatus,
 								nodeId, Boolean.FALSE, sensorOk, Double.valueOf(battery.doubleValue()), Double.valueOf(battery.doubleValue()));
-						TkStrikeSimulatorCommunicationServiceImpl.this.fireNewStatusEvent(newStatusEvent);
+						fireNewStatusEvent(newStatusEvent);
 					}
 				}
 			}
@@ -260,9 +260,9 @@ public class TkStrikeSimulatorCommunicationServiceImpl implements TkStrikeCommun
 							sensorOk = Boolean.valueOf(eventParts[3].split("=")[1]);
 						if(TkStrikeSimulatorCommunicationServiceImpl._log.isDebugEnabled())
 							TkStrikeSimulatorCommunicationServiceImpl._log.debug(statusEvent + " - Node " + nodeId + " battery " + battery);
-						StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus,
+						StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, networkStatus,
 								nodeId, offline, sensorOk, Double.valueOf(battery.doubleValue()), Double.valueOf(battery.doubleValue()));
-						TkStrikeSimulatorCommunicationServiceImpl.this.fireNewStatusEvent(newStatusEvent);
+						fireNewStatusEvent(newStatusEvent);
 					}
 				}
 			}
@@ -276,9 +276,9 @@ public class TkStrikeSimulatorCommunicationServiceImpl implements TkStrikeCommun
 				String[] eventParts = dataEvent.split(";");
 				String nodeId = eventParts[0].split("=")[1];
 				String hitValue = eventParts[1].split("=")[1];
-				DataEvent newDataEvent = new DataEvent(eventTimestamp, TkStrikeSimulatorCommunicationServiceImpl.this.networkStatus, nodeId, Integer
+				DataEvent newDataEvent = new DataEvent(eventTimestamp, networkStatus, nodeId, Integer
 						.valueOf(Integer.parseInt(hitValue)), DataEvent.DataEventHitType.BODY);
-				TkStrikeSimulatorCommunicationServiceImpl.this.fireNewDataEvent(newDataEvent);
+				fireNewDataEvent(newDataEvent);
 			}
 		}
 	}

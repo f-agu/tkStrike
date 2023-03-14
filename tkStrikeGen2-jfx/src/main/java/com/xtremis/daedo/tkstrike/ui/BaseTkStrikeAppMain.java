@@ -288,7 +288,6 @@ public abstract class BaseTkStrikeAppMain extends Application {
 			}
 		});
 		Scene splashScene = new Scene(this.splashLayout);
-		System.out.println(TkStrikeController.class.getResource("/styles/TkStrikeMain.css"));
 		splashScene.getStylesheets().addAll(new String[] {TkStrikeController.class.getResource("/styles/TkStrikeMain.css").toExternalForm()});
 		initStage.initStyle(StageStyle.UNDECORATED);
 		initStage.setScene(splashScene);

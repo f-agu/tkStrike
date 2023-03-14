@@ -165,6 +165,11 @@ public class AthletesManagementController extends TkStrikeBaseTableWithDeleteMan
 				return new TableCell<Image, FlagEntry>() {
 
 					ImageView imageView;
+					{
+						(this.imageView = new ImageView()).setPreserveRatio(true);
+						this.imageView.setFitHeight(22.0);
+						this.setGraphic(this.imageView);
+					}
 
 					@Override
 					protected void updateItem(FlagEntry item, boolean empty) {

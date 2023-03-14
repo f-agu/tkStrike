@@ -234,8 +234,8 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void run() {
-				ConfigurationNetworkController.this.mainView.setVisible( ! show);
-				ConfigurationNetworkController.this.piPanel.setVisible(show);
+				mainView.setVisible( ! show);
+				piPanel.setVisible(show);
 			}
 		});
 	}
@@ -260,24 +260,24 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 				@Override
 				public Void call() throws Exception {
-					NetworkConfigurationDto ncDto = ConfigurationNetworkController.this.currentNetworkConfiguration.getNetworkConfigurationDto();
+					NetworkConfigurationDto ncDto = currentNetworkConfiguration.getNetworkConfigurationDto();
 					try {
-						ConfigurationNetworkController.this.tkStrikeCommunicationService.startNetwork(ncDto);
-						ConfigurationNetworkController.this.getAppStatusWorker().setNetworkConfigurationEntry(
-								ConfigurationNetworkController.this.currentNetworkConfiguration);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.networkWasStartedProperty.set(true);
+						tkStrikeCommunicationService.startNetwork(ncDto);
+						getAppStatusWorker().setNetworkConfigurationEntry(
+								currentNetworkConfiguration);
+						currentNetworkConfiguration.networkWasStartedProperty.set(true);
 						try {
-							ConfigurationNetworkController.this.networkConfigurationService.update(
-									ConfigurationNetworkController.this.currentNetworkConfiguration.getNetworkConfiguration());
+							networkConfigurationService.update(
+									currentNetworkConfiguration.getNetworkConfiguration());
 						} catch(TkStrikeServiceException e) {
 							e.printStackTrace();
 						}
-						ConfigurationNetworkController.this.showProgressIndicator(false);
+						showProgressIndicator(false);
 					} catch(TkStrikeCommunicationException e) {
-						ConfigurationNetworkController.this.showErrorDialog(ConfigurationNetworkController.this.getMessage("title.default.error"),
-								ConfigurationNetworkController.this.getMessage("message.error.serialComm"));
+						showErrorDialog(getMessage("title.default.error"),
+								getMessage("message.error.serialComm"));
 					} finally {
-						ConfigurationNetworkController.this.showProgressIndicator(false);
+						showProgressIndicator(false);
 					}
 					return null;
 				}
@@ -292,13 +292,13 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			@Override
 			public void run() {
 				try {
-					ConfigurationNetworkController.this.tkStrikeCommunicationService.tryToRecognizeWithConfig(
-							ConfigurationNetworkController.this.currentNetworkConfiguration.getNetworkConfigurationDto(), true);
+					tkStrikeCommunicationService.tryToRecognizeWithConfig(
+							currentNetworkConfiguration.getNetworkConfigurationDto(), true);
 				} catch(TkStrikeCommunicationException e) {
-					ConfigurationNetworkController.this.showErrorDialog(ConfigurationNetworkController.this.getMessage("title.default.error"),
-							ConfigurationNetworkController.this.getMessage("message.error.serialComm"));
+					showErrorDialog(getMessage("title.default.error"),
+							getMessage("message.error.serialComm"));
 				} finally {
-					ConfigurationNetworkController.this.showProgressIndicator(false);
+					showProgressIndicator(false);
 				}
 			}
 		});
@@ -398,21 +398,21 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean isSelected) {
 				if(isSelected.booleanValue()) {
-					ConfigurationNetworkController.this.tgBodySensors.setText(ConfigurationNetworkController.this.getMessage(
+					tgBodySensors.setText(getMessage(
 							"toggle.bodySensors.enabled"));
 				} else {
-					ConfigurationNetworkController.this.tgBodySensors.setText(ConfigurationNetworkController.this.getMessage(
+					tgBodySensors.setText(getMessage(
 							"toggle.bodySensors.disabled"));
-					ConfigurationNetworkController.this.tgHeadSensors.setSelected(false);
+					tgHeadSensors.setSelected(false);
 				}
-				ConfigurationNetworkController.this.hbG2BB.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgBodySensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2BR.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgBodySensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2HB.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgHeadSensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2HR.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgHeadSensors.isSelected()));
+				hbG2BB.setVisible((tgG2.isSelected()
+						&& tgBodySensors.isSelected()));
+				hbG2BR.setVisible((tgG2.isSelected()
+						&& tgBodySensors.isSelected()));
+				hbG2HB.setVisible((tgG2.isSelected()
+						&& tgHeadSensors.isSelected()));
+				hbG2HR.setVisible((tgG2.isSelected()
+						&& tgHeadSensors.isSelected()));
 			}
 		});
 		this.hbG1BB.visibleProperty().bind(this.tgBodySensors.selectedProperty());
@@ -422,20 +422,20 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean isSelected) {
 				if(isSelected.booleanValue()) {
-					ConfigurationNetworkController.this.tgHeadSensors.setText(ConfigurationNetworkController.this.getMessage(
+					tgHeadSensors.setText(getMessage(
 							"toggle.headSensors.enabled"));
 				} else {
-					ConfigurationNetworkController.this.tgHeadSensors.setText(ConfigurationNetworkController.this.getMessage(
+					tgHeadSensors.setText(getMessage(
 							"toggle.headSensors.disabled"));
 				}
-				ConfigurationNetworkController.this.hbG2BB.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgBodySensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2BR.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgBodySensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2HB.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgHeadSensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2HR.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgHeadSensors.isSelected()));
+				hbG2BB.setVisible((tgG2.isSelected()
+						&& tgBodySensors.isSelected()));
+				hbG2BR.setVisible((tgG2.isSelected()
+						&& tgBodySensors.isSelected()));
+				hbG2HB.setVisible((tgG2.isSelected()
+						&& tgHeadSensors.isSelected()));
+				hbG2HR.setVisible((tgG2.isSelected()
+						&& tgHeadSensors.isSelected()));
 			}
 		});
 		this.hbG1HB.visibleProperty().bind(this.tgHeadSensors.selectedProperty());
@@ -447,28 +447,28 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 				boolean bodyEnabled = true;
 				boolean headEnabled = true;
 				if(isSelected.booleanValue()) {
-					ConfigurationNetworkController.this.tgG2.setText(ConfigurationNetworkController.this.getMessage("toggle.group2.enabled"));
-					bodyEnabled = ConfigurationNetworkController.this.tgBodySensors.isSelected();
-					headEnabled = ConfigurationNetworkController.this.tgHeadSensors.isSelected();
+					tgG2.setText(getMessage("toggle.group2.enabled"));
+					bodyEnabled = tgBodySensors.isSelected();
+					headEnabled = tgHeadSensors.isSelected();
 				} else {
-					ConfigurationNetworkController.this.tgG2.setText(ConfigurationNetworkController.this.getMessage("toggle.group2.disabled"));
-					ConfigurationNetworkController.this.txtG2BB.setText("0");
-					ConfigurationNetworkController.this.txtG2BR.setText("0");
-					ConfigurationNetworkController.this.txtG2HB.setText("0");
-					ConfigurationNetworkController.this.txtG2HR.setText("0");
+					tgG2.setText(getMessage("toggle.group2.disabled"));
+					txtG2BB.setText("0");
+					txtG2BR.setText("0");
+					txtG2HB.setText("0");
+					txtG2HR.setText("0");
 					bodyEnabled = false;
 					headEnabled = false;
 				}
-				(ConfigurationNetworkController.this.currentNetworkConfiguration.getGroup2Config()).bodySensorsEnabledProperty.set(bodyEnabled);
-				(ConfigurationNetworkController.this.currentNetworkConfiguration.getGroup2Config()).headSensorsEnabledProperty.set(headEnabled);
-				ConfigurationNetworkController.this.hbG2BB.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgBodySensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2BR.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgBodySensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2HB.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgHeadSensors.isSelected()));
-				ConfigurationNetworkController.this.hbG2HR.setVisible((ConfigurationNetworkController.this.tgG2.isSelected()
-						&& ConfigurationNetworkController.this.tgHeadSensors.isSelected()));
+				(currentNetworkConfiguration.getGroup2Config()).bodySensorsEnabledProperty.set(bodyEnabled);
+				(currentNetworkConfiguration.getGroup2Config()).headSensorsEnabledProperty.set(headEnabled);
+				hbG2BB.setVisible((tgG2.isSelected()
+						&& tgBodySensors.isSelected()));
+				hbG2BR.setVisible((tgG2.isSelected()
+						&& tgBodySensors.isSelected()));
+				hbG2HB.setVisible((tgG2.isSelected()
+						&& tgHeadSensors.isSelected()));
+				hbG2HR.setVisible((tgG2.isSelected()
+						&& tgHeadSensors.isSelected()));
 			}
 		});
 		int i;
@@ -482,24 +482,24 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			public void changed(ObservableValue<? extends Integer> observableValue, Integer integer, Integer t1) {
 				switch(t1.intValue()) {
 					case 0:
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge1EnabledProperty.set(false);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge2EnabledProperty.set(false);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge3EnabledProperty.set(false);
+						currentNetworkConfiguration.judge1EnabledProperty.set(false);
+						currentNetworkConfiguration.judge2EnabledProperty.set(false);
+						currentNetworkConfiguration.judge3EnabledProperty.set(false);
 						break;
 					case 1:
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge1EnabledProperty.set(true);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge2EnabledProperty.set(false);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge3EnabledProperty.set(false);
+						currentNetworkConfiguration.judge1EnabledProperty.set(true);
+						currentNetworkConfiguration.judge2EnabledProperty.set(false);
+						currentNetworkConfiguration.judge3EnabledProperty.set(false);
 						break;
 					case 2:
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge1EnabledProperty.set(true);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge2EnabledProperty.set(true);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge3EnabledProperty.set(false);
+						currentNetworkConfiguration.judge1EnabledProperty.set(true);
+						currentNetworkConfiguration.judge2EnabledProperty.set(true);
+						currentNetworkConfiguration.judge3EnabledProperty.set(false);
 						break;
 					case 3:
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge1EnabledProperty.set(true);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge2EnabledProperty.set(true);
-						ConfigurationNetworkController.this.currentNetworkConfiguration.judge3EnabledProperty.set(true);
+						currentNetworkConfiguration.judge1EnabledProperty.set(true);
+						currentNetworkConfiguration.judge2EnabledProperty.set(true);
+						currentNetworkConfiguration.judge3EnabledProperty.set(true);
 						break;
 				}
 			}
@@ -512,15 +512,23 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void handle(KeyEvent event) {
+				System.out.println("caharacter:  " + event.getCharacter());
+				System.out.println("isShiftDown: " + event.isShiftDown());
+				System.out.println("isAltDown:   " + event.isAltDown());
+				System.out.println("isMetaDown:  " + event.isMetaDown());
+				System.out.println("isShiftDown: " + event.isShiftDown());
+				System.out.println("isShortcutDown: " + event.isShortcutDown());
+				System.out.println(TkStrikeKeyCombinationsHelper.keyCombSIMULATOR);
+
 				if(TkStrikeKeyCombinationsHelper.keyCombSIMULATOR.match(event)) {
 					Platform.runLater(new Runnable() {
 
 						@Override
 						public void run() {
-							ConfigurationNetworkController.this.tgCommunicationType.setVisible(
-									! ConfigurationNetworkController.this.tgCommunicationType.isVisible());
-							if(ConfigurationNetworkController.this.tgCommunicationType.isVisible())
-								ConfigurationNetworkController.this.tgAllowNetworkErrors.setVisible(false);
+							tgCommunicationType.setVisible(
+									! tgCommunicationType.isVisible());
+							if(tgCommunicationType.isVisible())
+								tgAllowNetworkErrors.setVisible(false);
 						}
 					});
 				} else if(TkStrikeKeyCombinationsHelper.keyCombALLOW_NETWORK_ERRORS.match(event)) {
@@ -528,10 +536,10 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 						@Override
 						public void run() {
-							ConfigurationNetworkController.this.tgAllowNetworkErrors.setVisible(
-									! ConfigurationNetworkController.this.tgAllowNetworkErrors.isVisible());
-							if(ConfigurationNetworkController.this.tgAllowNetworkErrors.isVisible())
-								ConfigurationNetworkController.this.tgCommunicationType.setVisible(false);
+							tgAllowNetworkErrors.setVisible(
+									! tgAllowNetworkErrors.isVisible());
+							if(tgAllowNetworkErrors.isVisible())
+								tgCommunicationType.setVisible(false);
 						}
 					});
 				}
@@ -542,10 +550,10 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if(newValue.booleanValue()) {
-					ConfigurationNetworkController.this.tgAllowNetworkErrors.setText(ConfigurationNetworkController.this.getMessage(
+					tgAllowNetworkErrors.setText(getMessage(
 							"toggle.networkErrorOnMatch.allow"));
 				} else {
-					ConfigurationNetworkController.this.tgAllowNetworkErrors.setText(ConfigurationNetworkController.this.getMessage(
+					tgAllowNetworkErrors.setText(getMessage(
 							"toggle.networkErrorOnMatch.disallow"));
 				}
 			}
@@ -556,10 +564,10 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if(newValue.booleanValue()) {
-					ConfigurationNetworkController.this.tgCommunicationType.setText(ConfigurationNetworkController.this.getMessage(
+					tgCommunicationType.setText(getMessage(
 							"toggle.communicationType.simulator"));
 				} else {
-					ConfigurationNetworkController.this.tgCommunicationType.setText(ConfigurationNetworkController.this.getMessage(
+					tgCommunicationType.setText(getMessage(
 							"toggle.communicationType.normal"));
 				}
 			}
@@ -570,20 +578,20 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(ConfigurationNetworkController.this.showConfirmDialog(ConfigurationNetworkController.this.getMessage("title.default.question"),
+				if(showConfirmDialog(getMessage("title.default.question"),
 						ConfigurationNetworkController.this
 								.getMessage("message.tkStrike.communicationType.changes")).get().equals(ButtonType.OK)) {
 					TkStrikeCommunicationTypeValue newValue = TkStrikeCommunicationTypeValue.SIMULATOR;
-					if( ! ConfigurationNetworkController.this.tgCommunicationType.isSelected())
+					if( ! tgCommunicationType.isSelected())
 						newValue = TkStrikeCommunicationTypeValue.NORMAL;
 					try {
 						TkStrikeCommunicationTypeUtil.getInstance().setTkStrikeCommunicationType(newValue);
 					} catch(Exception e) {
-						ConfigurationNetworkController.this.manageException(e, "ChangeCommunicationType", null);
+						manageException(e, "ChangeCommunicationType", null);
 					}
-					ConfigurationNetworkController.this.getAppStatusWorker().doForceExitTkStrike();
+					getAppStatusWorker().doForceExitTkStrike();
 				} else {
-					ConfigurationNetworkController.this.tgCommunicationType.setSelected( ! ConfigurationNetworkController.this.tgCommunicationType
+					tgCommunicationType.setSelected( ! tgCommunicationType
 							.isSelected());
 				}
 			}
@@ -817,13 +825,13 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 		@Override
 		public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-			if(isNodeEnabled(ConfigurationNetworkController.this.txtG2BB.getText()) &&
-					isNodeEnabled(ConfigurationNetworkController.this.txtG2HB.getText()) &&
-					isNodeEnabled(ConfigurationNetworkController.this.txtG2BR.getText()) &&
-					isNodeEnabled(ConfigurationNetworkController.this.txtG2HR.getText())) {
-				ConfigurationNetworkController.this.currentNetworkConfiguration.group2EnabledProperty.set(true);
+			if(isNodeEnabled(txtG2BB.getText()) &&
+					isNodeEnabled(txtG2HB.getText()) &&
+					isNodeEnabled(txtG2BR.getText()) &&
+					isNodeEnabled(txtG2HR.getText())) {
+				currentNetworkConfiguration.group2EnabledProperty.set(true);
 			} else {
-				ConfigurationNetworkController.this.currentNetworkConfiguration.group2EnabledProperty.set(false);
+				currentNetworkConfiguration.group2EnabledProperty.set(false);
 			}
 		}
 
