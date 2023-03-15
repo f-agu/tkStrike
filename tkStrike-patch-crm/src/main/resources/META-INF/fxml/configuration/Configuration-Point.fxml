@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootView" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.configuration.CRMPointController">
+   <children>
+      <BorderPane fx:id="mainView" maxHeight="500.0" maxWidth="970.0" minHeight="500.0" minWidth="970.0" prefHeight="500.0" prefWidth="970.0" styleClass="tkStrike-window">
+         <padding>
+            <Insets bottom="1.0" left="20.0" right="20.0" top="1.0" />
+         </padding>
+         <center>
+            <GridPane hgap="1.0" vgap="1.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="465.0" prefWidth="465.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="465.0" minWidth="465.0" prefWidth="465.0" />
+              </columnConstraints>
+               <children>
+                  <BorderPane styleClass="tkStrike-window-container">
+                     <top>
+                        <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                           <children>
+                              <Label text="aaa" BorderPane.alignment="CENTER" />
+                           </children>
+                        </StackPane>
+                     </top>
+                     <center>
+                        <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Button fx:id="btStartNetwork" mnemonicParsing="false" onAction="#doStartNetwork" styleClass="button-window" text="%button.startNetwork" />
+                                    <Button layoutX="163.0" layoutY="10.0" mnemonicParsing="false" onAction="#doTryToRecognize" styleClass="button-window" text="%button.recognizeNetwork" />
+                                 </children>
+                              </HBox>
+                              <StackPane>
+                                 <children>
+                                    <Rectangle fx:id="reNetworkStatus" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="250.0" GridPane.rowIndex="1" />
+                                    <Text fx:id="txtNetworkStatus" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%label.networkStatus.NOT_CONNECTED" />
+                                 </children>
+                              </StackPane>
+                              <StackPane>
+                                 <children>
+                                    <ToggleButton fx:id="tgCommunicationType" mnemonicParsing="false" styleClass="toggle-networkConfig" text="%toggle.communicationType.normal" visible="false" StackPane.alignment="CENTER" />
+                                    <ToggleButton fx:id="tgAllowNetworkErrors" layoutX="143.0" layoutY="10.0" mnemonicParsing="false" styleClass="toggle-allowNetworkErrors" text="%toggle.networkErrorOnMatch.disallow" visible="false" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+                  <BorderPane layoutX="10.0" layoutY="-30.0" styleClass="tkStrike-window-container" GridPane.columnIndex="1">
+                     <center>
+                        <VBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                                       <children>
+                                          <Label text="encore" />
+                                       </children>
+                                    </StackPane>
+                                    <ComboBox fx:id="cmbNJudges" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbJudge1" alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                                       <children>
+                                          <Label minWidth="40.0" text="%label.judge1" />
+                                       </children>
+                                    </StackPane>
+                                    <TextField fx:id="txtJ1" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" promptText="999999999" text="0" />
+                                     <StackPane>
+                                        <children>
+                                           <Rectangle fx:id="stJ1" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                           <Text fx:id="txtJ1Battery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                        </children>
+                                     </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbJudge2" alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                                       <children>
+                                          <Label layoutX="10.0" layoutY="10.0" minWidth="40.0" text="%label.judge2" />
+                                       </children>
+                                    </StackPane>
+                                    <TextField fx:id="txtJ2" layoutX="22.0" layoutY="10.0" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" promptText="999999999" text="0" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stJ2" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtJ2Battery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbJudge3" alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <StackPane alignment="CENTER_LEFT" maxWidth="150.0" minWidth="150.0" prefWidth="150.0">
+                                       <children>
+                                          <Label layoutX="60.0" layoutY="10.0" minWidth="40.0" text="%label.judge3" />
+                                       </children>
+                                    </StackPane>
+                                    <TextField fx:id="txtJ3" layoutX="72.0" layoutY="10.0" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" promptText="999999999" text="0" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stJ3" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtJ3Battery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                     <top>
+                        <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                           <children>
+                              <Label text="%label.judges.upper" BorderPane.alignment="CENTER" />
+                           </children>
+                        </StackPane>
+                     </top>
+                  </BorderPane>
+                  <BorderPane layoutX="450.0" layoutY="-75.0" styleClass="tkStrike-window-container" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                     <top>
+                        <StackPane alignment="CENTER_LEFT" styleClass="tkStrike-window-container-title">
+                           <children>
+                              <Label text="%label.athletes" BorderPane.alignment="CENTER" />
+                           </children>
+                        </StackPane>
+                     </top>
+                     <center>
+                        <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" layoutX="478.0" layoutY="40.0" spacing="5.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                              <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="160.0" spacing="5.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" styleClass="label-blue" text="%label.blue" textFill="BLUE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" layoutX="101.0" layoutY="197.0" styleClass="label-red" text="%label.red" textFill="RED" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  
+                              <HBox fx:id="hbG1BB" alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="txtG1BB" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1BB" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG1BBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbG1HB" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="362.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtG1HB" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1HB" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG1HBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbG1BR" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="412.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="txtG1BR" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1BR" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG1BRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbG1HR" alignment="CENTER_RIGHT" layoutX="187.0" layoutY="362.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtG1HR" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG1HR" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG1HRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <StackPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="349.0" layoutY="22.0" styleClass="label-blue" text="%label.group1" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="199.0" layoutY="55.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="349.0" layoutY="22.0" styleClass="label-red" text="%label.group1" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="199.0" layoutY="55.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="349.0" layoutY="22.0" styleClass="label-blue" text="%label.group2" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="388.0" layoutY="55.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="349.0" layoutY="22.0" styleClass="label-red" text="%label.group2" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </StackPane>
+                              <HBox fx:id="hbG2BB" alignment="CENTER_RIGHT" layoutX="199.0" layoutY="85.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="txtG2BB" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG2BB" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG2BBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbG2HB" alignment="CENTER_RIGHT" layoutX="199.0" layoutY="130.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtG2HB" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG2HB" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG2HBBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbG2BR" alignment="CENTER_RIGHT" layoutX="577.0" layoutY="85.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="txtG2BR" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG2BR" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG2BRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbG2HR" alignment="CENTER_RIGHT" layoutX="551.0" layoutY="130.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="txtG2HR" layoutX="112.0" layoutY="10.0" maxWidth="115.0" minWidth="115.0" prefWidth="115.0" promptText="999999999" text="999999999" />
+                                    <StackPane>
+                                       <children>
+                                          <Rectangle fx:id="stG2HR" arcHeight="2.0" arcWidth="2.0" fill="#cdcfd0" height="35.0" layoutX="110.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                                          <Text fx:id="txtG2HRBattery" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <StackPane GridPane.rowIndex="4">
+                                 <children>
+                                    <Label alignment="CENTER" text="%label.head" GridPane.rowIndex="3" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="10.0" layoutY="130.0" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label alignment="CENTER" text="%label.body" GridPane.rowIndex="3" />
+                                 </children>
+                              </StackPane>
+                              <HBox alignment="CENTER" spacing="20.0" GridPane.columnSpan="5">
+                                 <children>
+                                    <ToggleButton fx:id="tgBodySensors" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="toggle-networkConfig" text="%toggle.bodySensors.disabled" />
+                                    <ToggleButton fx:id="tgHeadSensors" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="toggle-networkConfig" text="%toggle.headSensors.disabled" />
+                                    <ToggleButton fx:id="tgG2" layoutX="480.0" layoutY="13.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="toggle-networkConfig" text="%toggle.group2.enabled" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </GridPane>
+         </center>
+         <bottom>
+            <Pane maxHeight="0.0" minHeight="0.0" prefHeight="0.0" visible="false">
+               <children>
+                  <ComboBox fx:id="cmbChannel" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" visible="false" />
+               </children>
+            </Pane>
+         </bottom>
+      </BorderPane>
+      <StackPane fx:id="piPanel" visible="false">
+         <children>
+            <ProgressIndicator visible="true" />
+            <Label text="%message.info.workingPleaseWait" />
+         </children>
+      </StackPane>
+   </children>
+</StackPane>

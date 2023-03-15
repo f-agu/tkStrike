@@ -40,6 +40,7 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Alt+B`        | Scoreboard editor / video request by red |
 | `Shift+Ctrl+Alt+D` | Enable & show differential score |
 | `Shift+Ctrl+Alt+D` | Disabled & show differential score |
+| `Enter`         | Start round |
 | `Space`         | Pause / resume time out  |
 
 
@@ -98,6 +99,41 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Ctrl+Shift+Alt+R` | Select red group 4 |
 | `Ctrl+Shift+Alt+T` | Select red group 5 |
 | `Ctrl+Shift+Alt+Y` | Select red group 6 |
+
+
+### Scoreboard
+
+| shortcut        | comments |
+|-----------------|----------|
+| `Enter`       | Apply changes and close the scoreboard |
+| `Esc`          | Cancel |
+| `Ctrl+Alt+G` | Graphical details (hidden) |
+| `Ctrl+1`        | Add blue 2 points for blue  |
+| `Ctrl+2`        | Add blue 2 points for blue  |
+| `Ctrl+3`        | Add blue 3 points for blue |
+| `Ctrl+4`        | Add blue 2 points for blue |
+| `Ctrl+5`        | Add blue 1 point for blue |
+| `Ctrl+6`        | Add blue 2 points for red |
+| `Ctrl+7`        | Add blue 2 points for red |
+| `Ctrl+8`        | Add blue 3 points for red |
+| `Ctrl+9`        | Add blue 2 points for red |
+| `Ctrl+0`        | Add blue 1 point for red |
+| `Ctrl+Shift+1`| Remove blue 2 points for blue |
+| `Ctrl+Shift+2`| Remove blue 2 points for blue |
+| `Ctrl+Shift+3`| Remove blue 3 points for blue |
+| `Ctrl+Shift+4`| Remove blue 2 points for blue |
+| `Ctrl+Shift+5`| Remove blue 1 points for blue |
+| `Ctrl+Shift+6`| Remove blue 2 points for red |
+| `Ctrl+Shift+7`| Remove blue 2 points for red |
+| `Ctrl+Shift+8`| Remove blue 3 points for red |
+| `Ctrl+Shift+9`| Remove blue 2 points for red |
+| `Ctrl+Shift+0`| Remove blue 1 points for red |
+| `B`             | Add Gam Jeom for blue |
+| `Ctrl+Shift+B` | Remove Gam Jeom for blue |
+| `R`             | Add Gam Jeom for red |
+| `Ctrl+Shift+R` | Remove Gam Jeom for red |
+
+
 
 
 ## Update software

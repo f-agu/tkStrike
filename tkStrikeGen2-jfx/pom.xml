@@ -52,8 +52,7 @@
             <artifactId>tkSTrike-software-updates-restInterfaces</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-
+         
         <!-- Dependencies CXF -->
         <!-- CXF Client -->
         <dependency>

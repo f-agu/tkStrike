@@ -176,8 +176,7 @@ public abstract class BaseTkStrikeAppMain extends Application {
 					initErrors = Boolean.valueOf(tkStrikeDatabaseMigration.databaseMigration());
 					updateMessage("Initializing Context...");
 					try {
-						BaseTkStrikeAppMain.this.contextAnnotation = new AnnotationConfigApplicationContext(new Class[] {BaseTkStrikeAppMain.this
-								.getTkStrikeSpringConfigurationClass()});
+						contextAnnotation = new AnnotationConfigApplicationContext(new Class[] {getTkStrikeSpringConfigurationClass()});
 					} catch(Exception e) {
 						e.printStackTrace();
 						BaseTkStrikeAppMain.logger.info("Exception starting", e);
@@ -188,9 +187,8 @@ public abstract class BaseTkStrikeAppMain extends Application {
 					initErrors = BaseTkStrikeAppMain.this.customInitialize();
 					try {
 						updateMessage("Initializing Comm...");
-						BaseTkStrikeAppMain.this.tkStrikeCommunicationService = BaseTkStrikeAppMain.this.contextAnnotation.getBean(
-								TkStrikeCommunicationService.class);
-						BaseTkStrikeAppMain.this.tkStrikeCommunicationService.startComm();
+						tkStrikeCommunicationService = BaseTkStrikeAppMain.this.contextAnnotation.getBean(TkStrikeCommunicationService.class);
+						tkStrikeCommunicationService.startComm();
 					} catch(Exception e) {
 						e.printStackTrace();
 					}
@@ -249,7 +247,7 @@ public abstract class BaseTkStrikeAppMain extends Application {
 
 			@Override
 			public void complete(Boolean initErrors) {
-				BaseTkStrikeAppMain.this.showMainStage(initErrors);
+				showMainStage(initErrors);
 			}
 		});
 		(new Thread(friendTask)).start();

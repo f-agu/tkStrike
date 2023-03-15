@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xtremis.daedo.tkstrike.ui.configuration.CRMMainController">
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab id="tabDiscipline" text="WT / Kido" />
+                <Tab id="tabPoint" text="Point shortcuts" />
+                <Tab id="tabTestNetwork" text="Test network" />
+                <!--<Tab id="tabExternal" text="%label.tab.external" />
+                <Tab id="tabSound" text="%label.tab.sound" />
+                <Tab id="tabMatchLog" text="%label.tab.matchLog" />
+                <Tab id="tabSoftwareUpdates" text="%label.tab.softwareUpdates" />-->
+            </tabs>
+        </TabPane>
+    </center>
+   <bottom>
+      <StackPane styleClass="tkStrike-window">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#doCloseConfig" styleClass="button-image-close" text="%button.close" BorderPane.alignment="CENTER" StackPane.alignment="CENTER_RIGHT" />
+            <ToggleButton fx:id="tgGraphicDetail" mnemonicParsing="false" styleClass="toggle-graphic-detail" text="%toggle.scoreboardGraphicDetailType.LOW_GRAPHIC_DETAIL" visible="false" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
+         </padding>
+      </StackPane>
+   </bottom>
+</BorderPane>

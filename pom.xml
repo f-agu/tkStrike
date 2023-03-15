@@ -11,6 +11,7 @@
 		<module>tkStrike-base-dto</module>
 		<module>tkStrike-ei-dtos</module>
 		<module>tkStrikeGen2-jfx</module>
+		<module>tkStrike-patch-crm</module>
 		<module>tkStrike-ei-restInterfaces</module>
 		<module>tkStrike-software-updates</module>
 		<module>tkStrike-utils</module>
