@@ -12,6 +12,7 @@
                 <Tab id="tabDiscipline" text="WT / Kido" />
                 <Tab id="tabPoint" text="Point shortcuts" />
                 <Tab id="tabTestNetwork" text="Test network" />
+                <Tab id="tabMisc" text="Miscellaneous" />
                 <!--<Tab id="tabExternal" text="%label.tab.external" />
                 <Tab id="tabSound" text="%label.tab.sound" />
                 <Tab id="tabMatchLog" text="%label.tab.matchLog" />

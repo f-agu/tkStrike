@@ -30,6 +30,9 @@ public class CRMMainController extends BaseConfigurationMainController<NetworkCo
 	@Autowired
 	private CRMTestNetworkController crmTestNetworkController;
 
+	@Autowired
+	private CRMMiscController crmMiscController;
+
 	public void doCloseConfig() {
 		doCloseThisStage();
 	}
@@ -48,7 +51,8 @@ public class CRMMainController extends BaseConfigurationMainController<NetworkCo
 
 			@Override
 			public void handle(WindowEvent windowEvent) {
-				// crmPointController.getOnWindowCloseEventHandler().handle(windowEvent);
+				crmPointController.getOnWindowCloseEventHandler().handle(windowEvent);
+				crmMiscController.getOnWindowCloseEventHandler().handle(windowEvent);
 			}
 		};
 	}
@@ -68,6 +72,9 @@ public class CRMMainController extends BaseConfigurationMainController<NetworkCo
 				} else if("tabTestNetwork".equals(t1.getId())) {
 					t1.setContent(crmTestNetworkController.getRootView());
 					crmTestNetworkController.onWindowShowEvent();
+				} else if("tabMisc".equals(t1.getId())) {
+					t1.setContent(crmMiscController.getRootView());
+					crmMiscController.onWindowShowEvent();
 				}
 			}
 		});

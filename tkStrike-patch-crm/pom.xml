@@ -18,7 +18,14 @@
             <artifactId>tkStrikeGen2-jfx</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-labs</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

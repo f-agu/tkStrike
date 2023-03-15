@@ -134,6 +134,11 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Ctrl+Shift+R` | Remove Gam Jeom for red |
 
 
+### Patched
+
+| shortcut        | comments |
+|-----------------|----------|
+| `K`            | Open CRM configuration |
 
 
 ## Update software

@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Configuration;
 
 
 /**
- * @author Oodrive
  * @author f.agu
  * @created 15 mars 2023 10:55:24
  */

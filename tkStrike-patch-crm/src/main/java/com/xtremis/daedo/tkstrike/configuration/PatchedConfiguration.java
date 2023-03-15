@@ -6,15 +6,18 @@ import java.lang.reflect.Method;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceImpl;
 import com.xtremis.daedo.tkstrike.ui.CRMCombinationsHelper;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMDisciplineController;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMMainController;
+import com.xtremis.daedo.tkstrike.ui.configuration.CRMMiscController;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMPointController;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMTestNetworkController;
 import com.xtremis.daedo.tkstrike.ui.controller.CommonTkStrikeBaseController;
@@ -51,6 +54,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration {
 
 	@PostConstruct
 	void patch() {
+		patchLogLevel();
 		patchTkStrikeMainControllerImpl();
 		patchConfigurationNetworkController();
 	}
@@ -66,6 +70,11 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration {
 	}
 
 	@Bean
+	CRMMiscController crmMiscController() throws IOException {
+		return (CRMMiscController)loadController("/META-INF/fxml/configuration/Configuration-Misc.fxml");
+	}
+
+	@Bean
 	CRMPointController crmPointController() throws IOException {
 		return (CRMPointController)loadController("/META-INF/fxml/configuration/Configuration-Point.fxml");
 	}
@@ -76,6 +85,10 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration {
 	}
 
 	// ************************************************************
+
+	private void patchLogLevel() {
+		Logger.getLogger(TkStrikeCommunicationServiceImpl.class).setLevel(Level.DEBUG);
+	}
 
 	private void patchTkStrikeMainControllerImpl() {
 		try {

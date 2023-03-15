@@ -2,10 +2,13 @@ package com.xtremis.daedo.tkstrike.ui.configuration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.xtremis.daedo.tkstrike.communication.CommunicationHelper;
+import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeBaseController;
 
 import javafx.fxml.FXML;
@@ -27,8 +30,16 @@ public class CRMTestNetworkController extends TkStrikeBaseController {
 	@Override
 	public void afterPropertiesSet() throws Exception {}
 
-	public void doStartNetwork() {
+	public void doTestNetwork() {
+		TkStrikeExecutors.executeInThreadPool(new Callable<Void>() {
 
+			@Override
+			public Void call() throws Exception {
+				System.out.println("===================");
+				new CommunicationHelper().test();
+				return null;
+			}
+		});
 	}
 
 	public void doTryToRecognize() {
