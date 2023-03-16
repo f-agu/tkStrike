@@ -7,7 +7,7 @@ Comptability with [OVR](https://set.sportdata.org/wp/2014/08/19/306/)
 
 ### TODO
 
-- Update database for athletes
+- Update database for athletes (unecessary)
 
 
 ### DONE
