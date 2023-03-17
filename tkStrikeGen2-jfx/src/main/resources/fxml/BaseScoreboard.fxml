@@ -48,7 +48,7 @@
                                             <children>
                                                 <!--<ImageView fitHeight="50.0" pickOnBounds="true" preserveRatio="true">-->
                                                 <!--<image>-->
-                                                <!--<Image url="@/images/headGearLittle.png" />-->
+                                                <!--<Image url="@/images/headGearLittle0.png" />-->
                                                 <!--</image>-->
                                                 <!--</ImageView>-->
                                                 <Text fx:id="txtHeadLevel" strokeType="OUTSIDE"

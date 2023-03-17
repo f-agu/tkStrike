@@ -1,6 +1,8 @@
 package com.xtremis.daedo.tkstrike.configuration;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.function.BiConsumer;
@@ -34,13 +36,18 @@ import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeController;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeMainControllerImpl;
 import com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationMainController;
 import com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationNetworkController;
+import com.xtremis.daedo.tkstrike.ui.controller.externalscreen.ExternalScoreboardHDController;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.WindowEvent;
 
 
@@ -70,9 +77,13 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	@Autowired
 	private TkStrikeMainControllerImpl tkStrikeMainControllerImpl;
 
+	@Autowired
+	private ExternalScoreboardHDController externalScoreboardHDController;
+
 	@PostConstruct
 	void patch() {
 		patchLogLevel();
+		patchLogo();
 		patchTkStrikeMainControllerImpl();
 		patchConfigurationNetworkController();
 		patchConfigurationWindow();
@@ -123,6 +134,16 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		Logger.getLogger("EXTERNAL_INTEGRATION").setLevel(Level.DEBUG);
 		Logger.getLogger("MATCH_WORKER").setLevel(Level.DEBUG);
 		Logger.getLogger("CSV_IMPORTER").setLevel(Level.DEBUG);
+	}
+
+	private void patchLogo() {
+		Node lblMatchConfigNode = getRootView(tkStrikeMainControllerImpl).lookup("#lblMatchConfig");
+		ObservableList<Node> children = ((HBox)lblMatchConfigNode.getParent()).getChildren();
+		children.add(2, createImageViewTKKD());
+
+		lblMatchConfigNode = getRootView(externalScoreboardHDController).lookup("#lblMatchConfig");
+		children = ((HBox)lblMatchConfigNode.getParent()).getChildren();
+		children.add(2, createImageViewTKKD());
 	}
 
 	private void patchConfigurationWindow() {
@@ -235,6 +256,20 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		} catch(Exception e) {
 			LOGGER.info(e.getMessage(), e);
 			return null;
+		}
+	}
+
+	private ImageView createImageViewTKKD() {
+		try (InputStream is = getClass().getResourceAsStream("/images/logo-taekwonkido.png")) {
+			Image image = new Image(is);
+			ImageView imageView = new ImageView();
+			imageView.setImage(image);
+			imageView.setFitHeight(50);
+			imageView.setPickOnBounds(true);
+			imageView.setPreserveRatio(true);
+			return imageView;
+		} catch(IOException e) {
+			throw new UncheckedIOException(e);
 		}
 	}
 

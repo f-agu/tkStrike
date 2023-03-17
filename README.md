@@ -35,14 +35,14 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Ctrl+K`      | Kye Shi |
 | `Ctrl+D`      | Doctor |
 | `Ctrl+Alt+E` | External screen |
-| `Ctrl+Alt+J` | Show backup system (hidden) |
+| `Ctrl+Alt+J` | Show backup system (:see_no_evil: hidden) |
 | `Alt+B`        | Scoreboard editor / video request by blue |
 | `Alt+B`        | Scoreboard editor / video request by red |
 | `Shift+Ctrl+Alt+D` | Enable & show differential score |
 | `Shift+Ctrl+Alt+D` | Disabled & show differential score |
 | `Enter`         | Start round |
 | `Space`         | Pause / resume time out  |
-| `K`             | Open CRM configuration if patched |
+| `K`             | Open CRM configuration (:rainbow: if patched) |
 
 
 ### Round working / pause mode
@@ -79,9 +79,10 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 
 | shortcut        | comments |
 |-----------------|----------|
-| `Ctrl+Alt+S` | Toggle communication between 'Normal' & 'Simulator' (hidden) |
-| `Ctrl+Alt+N` | Not allow error network on match (hidden) |
-| `Ctrl+Alt+G` | Graphical details (hidden) |
+| `Ctrl+Alt+S` | Toggle communication between 'Normal' & 'Simulator' (:see_no_evil: hidden) |
+| `Ctrl+Alt+N` | Not allow error network on match (:see_no_evil: hidden) |
+| `Ctrl+Alt+G` | Graphical details (:see_no_evil: hidden) |
+| `Ctrl+I`      | Set node ids for all groups & judges (:rainbow: if patched) |
 
 
 ### Network configuration (if properties `tkStrike.allowGroupSelectionByColor = true`, default is `false`)
@@ -108,7 +109,7 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 |-----------------|----------|
 | `Enter`       | Apply changes and close the scoreboard |
 | `Esc`          | Cancel |
-| `Ctrl+Alt+G` | Graphical details (hidden) |
+| `Ctrl+Alt+G` | Graphical details (:see_no_evil: hidden) |
 | `Ctrl+1`        | Add blue 2 points for blue  |
 | `Ctrl+2`        | Add blue 2 points for blue  |
 | `Ctrl+3`        | Add blue 3 points for blue |
