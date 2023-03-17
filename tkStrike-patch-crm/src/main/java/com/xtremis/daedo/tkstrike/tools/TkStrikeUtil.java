@@ -18,6 +18,7 @@ import com.xtremis.daedo.tkstrike.tools.NodeIds.Color;
 import com.xtremis.daedo.tkstrike.tools.NodeIds.Part;
 import com.xtremis.daedo.tkstrike.utils.TkStrikeBaseDirectoriesUtil;
 
+
 /**
  * @author f.agu
  * @created 15 mars 2023 16:56:31
@@ -53,11 +54,10 @@ public class TkStrikeUtil {
 	}
 
 	public void setGeneration(Generation generation) throws IOException {
-		if (generation == null) {
+		if(generation == null) {
 			return;
 		}
-		File file = getTkStrikeWorkFile();
-		if (!file.exists()) {
+		if( ! file.exists()) {
 			file.createNewFile();
 		}
 		_log.info("Writing " + file.getAbsolutePath());
@@ -68,24 +68,36 @@ public class TkStrikeUtil {
 
 	public NodeIds getNodeIds() throws IOException {
 		boolean updated = false;
-		File file = getTkStrikeWorkFile();
-		if (!file.exists()) {
+		if( ! file.exists()) {
 			file.createNewFile();
 		}
 		_log.info("Reading " + file.getAbsolutePath());
 		Properties properties = loadTkStrikeWorkFile().orElseThrow(RuntimeException::new);
 		NodeIds nodeIds = new NodeIds();
+		// judge
+		for(int j = 1; j <= 3; ++j) {
+			StringJoiner joiner = new StringJoiner(".");
+			joiner.add(KEY_NODEIDS_PREFIX);
+			joiner.add("judge" + j);
+			String id = properties.getProperty(joiner.toString());
+			if(id == null) {
+				updated = true;
+				properties.setProperty(joiner.toString(), nodeIds.getJudge(j));
+			} else {
+				nodeIds.setJudge(j, id);
+			}
+		}
 		// sensors
-		for (Color color : Color.values()) {
-			for (int group = 1; group <= 2; ++group) {
-				for (Part part : Part.values()) {
+		for(Color color : Color.values()) {
+			for(int group = 1; group <= 2; ++group) {
+				for(Part part : Part.values()) {
 					StringJoiner joiner = new StringJoiner(".");
 					joiner.add(KEY_NODEIDS_PREFIX);
 					joiner.add(color.name().toLowerCase());
 					joiner.add(Integer.toString(group));
 					joiner.add(part.name().toLowerCase());
 					String id = properties.getProperty(joiner.toString());
-					if (id == null) {
+					if(id == null) {
 						updated = true;
 						properties.setProperty(joiner.toString(), nodeIds.getSensorId(color, group, part));
 					} else {
@@ -94,15 +106,18 @@ public class TkStrikeUtil {
 				}
 			}
 		}
-		if (updated) {
+
+		if(updated) {
 			write(properties);
 		}
 		return nodeIds;
 	}
 
 	public void setNodeIds(NodeIds nodeIds) throws IOException {
-		File file = getTkStrikeWorkFile();
-		if (!file.exists()) {
+		if(nodeIds == null) {
+			return;
+		}
+		if( ! file.exists()) {
 			file.createNewFile();
 		}
 		_log.info("Writing " + file.getAbsolutePath());
@@ -115,13 +130,12 @@ public class TkStrikeUtil {
 	}
 
 	public Optional<Properties> loadTkStrikeWorkFile() {
-		File file = getTkStrikeWorkFile();
-		if (file.exists()) {
+		if(file.exists()) {
 			_log.info("Reading " + file.getAbsolutePath());
 			Properties properties = new Properties();
 			try (InputStream inputStream = new FileInputStream(file)) {
 				properties.load(inputStream);
-			} catch (IOException e) {
+			} catch(IOException e) {
 				throw new RuntimeException(e);
 			}
 			return Optional.of(properties);
@@ -132,10 +146,19 @@ public class TkStrikeUtil {
 	// **********************************************
 
 	private void writeNodeIds(NodeIds nodeIds, Properties properties) throws IOException {
+		// judges
+		for(Entry<Integer, String> entry : nodeIds.getJudges().entrySet()) {
+			StringJoiner joiner = new StringJoiner(".");
+			joiner.add(KEY_NODEIDS_PREFIX);
+			joiner.add("judge" + entry.getKey());
+			properties.setProperty(joiner.toString(), entry.getValue());
+		}
+
+		// sensors
 		Map<Color, Map<Integer, Map<Part, String>>> sensors = nodeIds.getSensors();
-		for (Entry<Color, Map<Integer, Map<Part, String>>> sensorEntry : sensors.entrySet()) {
-			for (Entry<Integer, Map<Part, String>> groupEntry : sensorEntry.getValue().entrySet()) {
-				for (Entry<Part, String> partEntry : groupEntry.getValue().entrySet()) {
+		for(Entry<Color, Map<Integer, Map<Part, String>>> sensorEntry : sensors.entrySet()) {
+			for(Entry<Integer, Map<Part, String>> groupEntry : sensorEntry.getValue().entrySet()) {
+				for(Entry<Part, String> partEntry : groupEntry.getValue().entrySet()) {
 					StringJoiner joiner = new StringJoiner(".");
 					joiner.add(KEY_NODEIDS_PREFIX);
 					joiner.add(sensorEntry.getKey().name().toLowerCase());
@@ -150,7 +173,7 @@ public class TkStrikeUtil {
 
 	private void write(Properties properties) throws IOException {
 		try (OutputStream outputStream = new FileOutputStream(file)) {
-			properties.store(outputStream, (String) null);
+			properties.store(outputStream, (String)null);
 		}
 	}
 

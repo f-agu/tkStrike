@@ -4,6 +4,9 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 
 /**
  * @author f.agu
@@ -18,35 +21,55 @@ public class NodeIds {
 		BODY, HEAD
 	}
 
-	// TODO judge
+	private final SortedMap<Integer, String> judges = judges();
 
-	private final Map<Color, Map<Integer, Map<Part, String>>> SENSORS = createMap();
+	private final Map<Color, Map<Integer, Map<Part, String>>> sensors = sensors();
+
+	public String getJudge(int num) {
+		return judges.get(num);
+	}
+
+	public void setJudge(int num, String id) {
+		judges.put(num, id);
+	}
 
 	public String getSensorId(Color color, int group, Part part) {
 		Objects.requireNonNull(color);
 		Objects.requireNonNull(part);
-		if (group < 1 || group > 2) {
+		if(group < 1 || group > 2) {
 			throw new IllegalArgumentException("group " + group);
 		}
-		return SENSORS.get(color).get(group).get(part);
+		return sensors.get(color).get(group).get(part);
 	}
 
 	public void setSensorId(Color color, int group, Part part, String id) {
 		Objects.requireNonNull(color);
 		Objects.requireNonNull(part);
-		if (group < 1 || group > 2) {
+		if(group < 1 || group > 2) {
 			throw new IllegalArgumentException("group " + group);
 		}
-		set(SENSORS, color, group, part, id);
+		set(sensors, color, group, part, id);
+	}
+
+	public SortedMap<Integer, String> getJudges() {
+		return judges;
 	}
 
 	public Map<Color, Map<Integer, Map<Part, String>>> getSensors() {
-		return SENSORS;
+		return sensors;
 	}
 
 	// ************************************************************
 
-	private static Map<Color, Map<Integer, Map<Part, String>>> createMap() {
+	private static SortedMap<Integer, String> judges() {
+		SortedMap<Integer, String> map = new TreeMap<>();
+		map.put(1, "TODO-1");
+		map.put(2, "TODO-2");
+		map.put(3, "TODO-3");
+		return map;
+	}
+
+	private static Map<Color, Map<Integer, Map<Part, String>>> sensors() {
 		Map<Color, Map<Integer, Map<Part, String>>> map = new EnumMap<>(Color.class);
 		set(map, Color.BLUE, 1, Part.BODY, "1105630150");
 		set(map, Color.BLUE, 1, Part.HEAD, "1100430114");

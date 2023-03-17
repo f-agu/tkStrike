@@ -36,7 +36,7 @@ public class CRMTestNetworkController extends TkStrikeBaseController {
 			@Override
 			public Void call() throws Exception {
 				System.out.println("===================");
-				new CommunicationHelper().test();
+				new CommunicationHelper().testComm();
 				return null;
 			}
 		});
