@@ -1,6 +1,5 @@
 package com.xtremis.daedo.tkstrike.ui.configuration;
 
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.xtremis.daedo.tkstrike.tools.Generation;
 import com.xtremis.daedo.tkstrike.tools.TkStrikeUtil;
+import com.xtremis.daedo.tkstrike.tools.UpdateGen;
 import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
-import com.xtremis.daedo.tkstrike.ui.controller.CommonTkStrikeBaseController;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeBaseController;
 
 import javafx.application.Platform;
@@ -22,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.stage.WindowEvent;
-
 
 // see com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationNetworkController
 @Component
@@ -40,10 +38,12 @@ public class CRMMiscController extends TkStrikeBaseController {
 	private ComboBox<String> cmbGen;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {}
+	public void afterPropertiesSet() throws Exception {
+	}
 
 	@Override
 	public EventHandler<WindowEvent> getOnWindowCloseEventHandler() {
@@ -52,14 +52,14 @@ public class CRMMiscController extends TkStrikeBaseController {
 			@Override
 			public void handle(WindowEvent windowEvent) {
 				ObjectProperty<String> valueProperty = cmbGen.valueProperty();
-				if(valueProperty != null) {
+				if (valueProperty != null) {
 					String value = valueProperty.getValue();
-					if(value != null) {
+					if (value != null) {
 						try {
 							Generation generation = Generation.valueOf(value.toUpperCase());
 							TkStrikeUtil.getInstance().setGeneration(generation);
-							updateTkStrikeGenVersion(generation.name().toLowerCase());
-						} catch(Exception e) {
+							UpdateGen.updateTkStrikeGenVersion(applicationContext, value);
+						} catch (Exception e) {
 							logger.info(e.getMessage(), e);
 							showErrorDialog(getMessage("title.default.error"), e.toString());
 						}
@@ -85,7 +85,7 @@ public class CRMMiscController extends TkStrikeBaseController {
 	// *************************************
 
 	protected final void customInitialize() {
-		if(cmbGen.getItems().isEmpty()) {
+		if (cmbGen.getItems().isEmpty()) {
 			cmbGen.getItems().add("gen1");
 			cmbGen.getItems().add("gen2");
 		}
@@ -101,19 +101,4 @@ public class CRMMiscController extends TkStrikeBaseController {
 		});
 	}
 
-	// *************************************
-
-	private void updateTkStrikeGenVersion(String tkStrikeGenVersion) throws Exception {
-		Field field = CommonTkStrikeBaseController.class.getDeclaredField("tkStrikeGenVersion");
-		field.setAccessible(true);
-		applicationContext.getBeansOfType(CommonTkStrikeBaseController.class)
-				.values()
-				.forEach(cc -> {
-					try {
-						field.set(cc, tkStrikeGenVersion);
-					} catch(Exception e) {
-						throw new RuntimeException(e);
-					}
-				});
-	}
 }

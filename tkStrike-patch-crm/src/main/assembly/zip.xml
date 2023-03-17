@@ -12,12 +12,13 @@
 	<fileSets>
 		<fileSet>
 			<directory>${project.basedir}/scripts/patch</directory>
+			<outputDirectory>patch</outputDirectory>
 		</fileSet>
 	</fileSets>
 	<files>
 		<file>
 			<source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
-			<outputDirectory>/app/lib</outputDirectory>
+			<outputDirectory>/patch</outputDirectory>
 			<destName>${project.artifactId}.jar</destName>
 		</file>
 		<file>

@@ -13,16 +13,15 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 
 /**
+ * Copy of
+ * com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceImpl
+ * 
  * @author f.agu
  * @created 15 mars 2023 18:05:57
  */
 public class CommunicationHelper {
 
 	private static final Logger LOGGER = Logger.getLogger(CommunicationHelper.class);
-
-	public CommunicationHelper() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public void test() {
 		test("^COM", 15);
@@ -55,24 +54,33 @@ public class CommunicationHelper {
 						LOGGER.info("From port " + tempPortName + ", read: " + readed);
 						if (readed.trim().contains("TS_GEN2")) {
 							LOGGER.info("Port " + tempPortName + " is TkStrike GEN2 OK");
+							LOGGER.info("Port " + tempPortName + " write bodygap");
 							toValidateSerialPort.writeString("bodygap=" + initBodyGap,
 									StandardCharsets.US_ASCII.name());
+							LOGGER.info("Port " + tempPortName + " write 13 (1)");
 							toValidateSerialPort.writeByte((byte) 13);
+							LOGGER.info("Port " + tempPortName + " write headgap");
 							toValidateSerialPort.writeString("headgap=" + initBodyGap,
 									StandardCharsets.US_ASCII.name());
+							LOGGER.info("Port " + tempPortName + " write 13 (2)");
 							toValidateSerialPort.writeByte((byte) 13);
+							LOGGER.info("Port " + tempPortName + " write gap");
 							toValidateSerialPort.writeString("gap?", StandardCharsets.US_ASCII.name());
+							LOGGER.info("Port " + tempPortName + " write 13 (3)");
 							toValidateSerialPort.writeByte((byte) 13);
 							TimeUnit.SECONDS.sleep(1L);
+							LOGGER.info("Port " + tempPortName + " getInputBufferBytesCount");
 							r = toValidateSerialPort.getInputBufferBytesCount();
+							LOGGER.info("Port " + tempPortName + " readString(" + r + ")");
 							readed = toValidateSerialPort.readString(r);
-							LOGGER.info("CurrentGap? " + readed);
+							LOGGER.info("CurrentGap? (" + readed + ")");
 							readed = null;
 						}
 					} catch (Exception e) {
 						LOGGER.error("startComm", e);
 					} finally {
 						try {
+							LOGGER.info("Closing port " + tempPortName + "...");
 							toValidateSerialPort.closePort();
 						} catch (SerialPortException ex) {
 						}

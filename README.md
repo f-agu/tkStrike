@@ -42,6 +42,7 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Shift+Ctrl+Alt+D` | Disabled & show differential score |
 | `Enter`         | Start round |
 | `Space`         | Pause / resume time out  |
+| `K`             | Open CRM configuration if patched |
 
 
 ### Round working / pause mode
@@ -134,11 +135,12 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Ctrl+Shift+R` | Remove Gam Jeom for red |
 
 
-### Patched
+### External screen
 
 | shortcut        | comments |
 |-----------------|----------|
-| `K`            | Open CRM configuration |
+| `Ctrl+Alt+E` | Exit full screen |
+
 
 
 ## Update software
