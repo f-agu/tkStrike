@@ -37,6 +37,7 @@ import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeMainControllerImpl;
 import com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationMainController;
 import com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationNetworkController;
 import com.xtremis.daedo.tkstrike.ui.controller.externalscreen.ExternalScoreboardHDController;
+import com.xtremis.daedo.tkstrike.ui.controller.ringmanager.MatchConfigurationController;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -80,12 +81,16 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	@Autowired
 	private ExternalScoreboardHDController externalScoreboardHDController;
 
+	@Autowired
+	private MatchConfigurationController matchConfigurationController;
+
 	@PostConstruct
 	void patch() {
 		patchLogLevel();
 		patchLogo();
 		patchTkStrikeMainControllerImpl();
 		patchConfigurationNetworkController();
+		patchMatchConfigurationController();
 		patchConfigurationWindow();
 	}
 
@@ -139,11 +144,11 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	private void patchLogo() {
 		Node lblMatchConfigNode = getRootView(tkStrikeMainControllerImpl).lookup("#lblMatchConfig");
 		ObservableList<Node> children = ((HBox)lblMatchConfigNode.getParent()).getChildren();
-		children.add(2, createImageViewTKKD());
+		children.set(1, createImageViewTKKD());
 
 		lblMatchConfigNode = getRootView(externalScoreboardHDController).lookup("#lblMatchConfig");
 		children = ((HBox)lblMatchConfigNode.getParent()).getChildren();
-		children.add(2, createImageViewTKKD());
+		children.set(1, createImageViewTKKD());
 	}
 
 	private void patchConfigurationWindow() {
@@ -161,7 +166,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 						@Override
 						public void run() {
 							BiConsumer<String, String> updater = (fieldName, value) -> {
-								TextField textField = getField(ConfigurationNetworkController.class, fieldName,
+								TextField textField = getFieldValue(ConfigurationNetworkController.class, fieldName,
 										configurationNetworkController);
 								textField.setText(value);
 							};
@@ -239,19 +244,38 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	}
 
 	private void patchConfigurationNetworkController() {
-		ToggleButton button = getField(ConfigurationNetworkController.class, "tgCommunicationType",
+		ToggleButton button = getFieldValue(ConfigurationNetworkController.class, "tgCommunicationType",
 				configurationNetworkController);
 		button.setVisible(true);
 	}
 
-	private <V extends CommonTkStrikeBaseController> Node getRootView(V v) {
-		return getField(CommonTkStrikeBaseController.class, "rootView", v);
+	private void patchMatchConfigurationController() {
+		Field field = getField(MatchConfigurationController.class, "maxGamJeomsAllowed");
+		try {
+			field.set(matchConfigurationController, TkStrikeUtil.getInstance().getGamJom());
+		} catch(IllegalArgumentException | IllegalAccessException e) {
+			LOGGER.info(e.getMessage(), e);
+		}
 	}
 
-	private <F> F getField(Class<?> cls, String name, Object instance) {
+	private <V extends CommonTkStrikeBaseController> Node getRootView(V v) {
+		return getFieldValue(CommonTkStrikeBaseController.class, "rootView", v);
+	}
+
+	private Field getField(Class<?> cls, String name) {
 		try {
 			Field field = cls.getDeclaredField(name);
 			field.setAccessible(true);
+			return field;
+		} catch(Exception e) {
+			LOGGER.info(e.getMessage(), e);
+			return null;
+		}
+	}
+
+	private <F> F getFieldValue(Class<?> cls, String name, Object instance) {
+		try {
+			Field field = getField(cls, name);
 			return (F)field.get(instance);
 		} catch(Exception e) {
 			LOGGER.info(e.getMessage(), e);

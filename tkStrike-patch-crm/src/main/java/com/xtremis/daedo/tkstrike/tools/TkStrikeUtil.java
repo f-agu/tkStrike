@@ -27,6 +27,10 @@ public class TkStrikeUtil {
 
 	private static final Logger _log = Logger.getLogger(TkStrikeUtil.class);
 
+	public static final String GAMJOM = "tkStrike.gamjom";
+
+	public static final String DIFFERENTIAL_SCORE = "tkStrike.differentialscore";
+
 	private static final String FILENAME = "tkStrikeWork.tks";
 
 	private static final String KEY_GENERATION = "tkStrike.patch.generation";
@@ -57,13 +61,45 @@ public class TkStrikeUtil {
 		if(generation == null) {
 			return;
 		}
+		writeProperty(KEY_GENERATION, generation.name());
+	}
+
+	public int getGamJom() {
+		return getPropertyInt(GAMJOM).orElse(5);
+	}
+
+	public int getDifferentialScore() {
+		return getPropertyInt(DIFFERENTIAL_SCORE).orElse(12);
+	}
+
+	public Optional<String> getProperty(String key) {
+		if(file.exists()) {
+			return Optional.empty();
+		}
+		_log.info("Reading " + file.getAbsolutePath());
+		Properties properties = loadTkStrikeWorkFile().orElseThrow(RuntimeException::new);
+		return Optional.ofNullable(properties.getProperty(key));
+	}
+
+	public Optional<Integer> getPropertyInt(String key) {
+		return getProperty(key).map(Integer::parseInt);
+	}
+
+	public void writeProperty(String key, String value) throws IOException {
+		if(key == null) {
+			return;
+		}
 		if( ! file.exists()) {
 			file.createNewFile();
 		}
 		_log.info("Writing " + file.getAbsolutePath());
 		Properties properties = loadTkStrikeWorkFile().orElseThrow(RuntimeException::new);
-		properties.setProperty(KEY_GENERATION, generation.name());
+		properties.setProperty(key, value);
 		write(properties);
+	}
+
+	public void writeProperty(String key, int value) throws IOException {
+		writeProperty(key, Integer.toString(value));
 	}
 
 	public NodeIds getNodeIds() throws IOException {
