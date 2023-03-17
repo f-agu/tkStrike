@@ -16,3 +16,4 @@ pom.xml.releaseBackup
 pom.xml.next
 
 hs_err_pid*.log
+/README-DEV.md
