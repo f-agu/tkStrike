@@ -14,6 +14,7 @@
 		<module>tkStrike-patch-crm</module>
 		<module>tkStrike-ei-restInterfaces</module>
 		<module>tkStrike-software-updates</module>
+		<module>tkStrike-test-network</module>
 		<module>tkStrike-utils</module>
 	</modules>
 

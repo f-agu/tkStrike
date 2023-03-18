@@ -7,12 +7,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Set;
 import java.util.StringJoiner;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.xtremis.daedo.tkstrike.tools.NodeIds.Color;
@@ -30,6 +36,7 @@ public class TkProperties {
 	private static final String GAMJOM = "defaultMaxGamjomAllowed";
 	private static final String DIFFERENTIAL_SCORE = "defaultDifferentialScore";
 	private static final String KEY_GENERATION = "generation";
+	private static final String LOGGING_LEVEL_PREFIX = "logging.level.";
 	private static final String KEY_NODEIDS_PREFIX = "nodeids";
 	private static final Generation DEFAULT = Generation.GEN2;
 
@@ -46,6 +53,10 @@ public class TkProperties {
 
 	public static TkProperties getInstance() {
 		return INSTANCE;
+	}
+
+	public Properties getProperties() {
+		return properties;
 	}
 
 	public String getString(String key, String defaultValue) {
@@ -72,6 +83,10 @@ public class TkProperties {
 
 	public int getDifferentialScore() {
 		return getInt(DIFFERENTIAL_SCORE, 12);
+	}
+
+	public Level getLogLevel(String key, Level defaultLevel) {
+		return getAndWriteProperty(LOGGING_LEVEL_PREFIX + key, defaultLevel, new LevelConverter()).writeIfNotExist();
 	}
 
 	public Generation getGeneration() {
@@ -148,6 +163,14 @@ public class TkProperties {
 		write();
 	}
 
+	public void write() {
+		try (OutputStream outputStream = new FileOutputStream(file)) {
+			properties.store(outputStream, (String) null);
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
+		}
+	}
+
 	// **************************************
 
 	private <T> ValueAndWriter<T> getAndWriteProperty(String key, T defaultValue, Converter<T> converter) {
@@ -159,16 +182,29 @@ public class TkProperties {
 		return new ValueAndWriter<>(converter.parse(property), true);
 	}
 
-	private void write() {
-		try (OutputStream outputStream = new FileOutputStream(file)) {
-			properties.store(outputStream, (String) null);
-		} catch (IOException e) {
-			throw new UncheckedIOException(e);
-		}
-	}
-
 	private static Properties loadTkStrikeWorkFile(File file) {
-		Properties p = new Properties();
+		Properties p = new Properties() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			@SuppressWarnings("unchecked")
+			public Set<Entry<Object, Object>> entrySet() {
+				Set<Entry<String, Object>> sortedSet = new TreeSet<>(Comparator.comparing(Entry::getKey));
+				sortedSet.addAll((Set) super.entrySet());
+				return (Set) sortedSet;
+			}
+
+			@Override
+			public Set<Object> keySet() {
+				return new TreeSet<>(super.keySet());
+			}
+
+			@Override
+			public synchronized Enumeration<Object> keys() {
+				return Collections.enumeration(new TreeSet<>(super.keySet()));
+			}
+
+		};
 		if (file.exists()) {
 			_log.info("Reading " + file.getAbsolutePath());
 			try (InputStream inputStream = new FileInputStream(file)) {
@@ -214,6 +250,20 @@ public class TkProperties {
 
 		@Override
 		public String toString(Integer t) {
+			return t != null ? t.toString() : null;
+		}
+	}
+
+	// ---------------------------------------------------
+
+	private static class LevelConverter implements Converter<Level> {
+		@Override
+		public Level parse(String s) {
+			return s != null ? Level.toLevel(s.toUpperCase().trim()) : null;
+		}
+
+		@Override
+		public String toString(Level t) {
 			return t != null ? t.toString() : null;
 		}
 	}

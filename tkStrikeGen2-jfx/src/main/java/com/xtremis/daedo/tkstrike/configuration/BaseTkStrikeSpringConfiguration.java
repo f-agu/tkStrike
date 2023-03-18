@@ -26,7 +26,6 @@ import com.xtremis.daedo.tkstrike.utils.TkStrikeBaseDirectoriesUtil;
 
 import javafx.fxml.FXMLLoader;
 
-
 public abstract class BaseTkStrikeSpringConfiguration {
 
 	@Autowired
@@ -41,7 +40,7 @@ public abstract class BaseTkStrikeSpringConfiguration {
 
 	@Bean
 	@Scope("singleton")
-	@Conditional({SimulatorCommunicationConditional.class})
+	@Conditional({ SimulatorCommunicationConditional.class })
 	public TkStrikeCommunicationService getTkStrikeSimulatorCommunicationServiceImpl() {
 		return new TkStrikeSimulatorCommunicationServiceImpl();
 	}
@@ -52,11 +51,13 @@ public abstract class BaseTkStrikeSpringConfiguration {
 		TkStrikeBaseDirectoriesUtil tkStrikeBaseDirectoriesUtil = TkStrikeBaseDirectoriesUtil.getInstance();
 		File fCommunicationType = new File(tkStrikeBaseDirectoriesUtil.getWorkBaseDir() + "tkStrike-ext.properties");
 		Resource[] resources = new Resource[0];
-		resources = (Resource[])ArrayUtils.add((Object[])resources, new ClassPathResource("/META-INF/app.properties"));
-		if(fCommunicationType.exists())
+		resources = (Resource[]) ArrayUtils.add((Object[]) resources,
+				new ClassPathResource("/META-INF/app.properties"));
+		if (fCommunicationType.exists())
 			try {
-				resources = (Resource[])ArrayUtils.add((Object[])resources, new UrlResource(fCommunicationType.toURI()));
-			} catch(MalformedURLException e) {
+				resources = (Resource[]) ArrayUtils.add((Object[]) resources,
+						new UrlResource(fCommunicationType.toURI()));
+			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 		ppc.setLocations(resources);
@@ -70,11 +71,12 @@ public abstract class BaseTkStrikeSpringConfiguration {
 			fxmlStream = getClass().getResourceAsStream(url);
 			FXMLLoader loader = new FXMLLoader();
 			loader.setCharset(Charset.forName("UTF-8"));
-			loader.setResources(ResourceBundle.getBundle("language.TkStrikeMain", Locale.forLanguageTag(this.tkStrikeLanguage)));
+			loader.setResources(
+					ResourceBundle.getBundle("language.TkStrikeMain", Locale.forLanguageTag(this.tkStrikeLanguage)));
 			loader.load(fxmlStream);
 			return loader.getController();
 		} finally {
-			if(fxmlStream != null)
+			if (fxmlStream != null)
 				fxmlStream.close();
 		}
 	}
@@ -85,12 +87,13 @@ public abstract class BaseTkStrikeSpringConfiguration {
 			fxmlStream = getClass().getResourceAsStream(url);
 			FXMLLoader loader = new FXMLLoader();
 			loader.setCharset(Charset.forName("UTF-8"));
-			loader.setResources(ResourceBundle.getBundle("language.TkStrikeMain", Locale.forLanguageTag(this.tkStrikeLanguage)));
+			loader.setResources(
+					ResourceBundle.getBundle("language.TkStrikeMain", Locale.forLanguageTag(this.tkStrikeLanguage)));
 			loader.setController(controller);
 			loader.load(fxmlStream);
-			return (TkStrikeController)loader.getController();
+			return (TkStrikeController) loader.getController();
 		} finally {
-			if(fxmlStream != null)
+			if (fxmlStream != null)
 				fxmlStream.close();
 		}
 	}

@@ -6,6 +6,7 @@ import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -130,14 +131,17 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	// ************************************************************
 
 	private void patchLogLevel() {
-		Logger.getLogger(TkStrikeCommunicationServiceImpl.class).setLevel(Level.DEBUG);
-		Logger.getLogger("COMM_EVENT").setLevel(Level.DEBUG);
-		Logger.getLogger("STATUS_EVENT").setLevel(Level.DEBUG);
-		Logger.getLogger("GLOBAL_NETWORK_STATUS_CONTROLLER").setLevel(Level.DEBUG);
-		Logger.getLogger("DATA_EVENT").setLevel(Level.DEBUG);
-		Logger.getLogger("EXTERNAL_INTEGRATION").setLevel(Level.DEBUG);
-		Logger.getLogger("MATCH_WORKER").setLevel(Level.DEBUG);
-		Logger.getLogger("CSV_IMPORTER").setLevel(Level.DEBUG);
+		TkProperties tkProperties = TkProperties.getInstance();
+		Consumer<String> updater = k -> Logger.getLogger(k).setLevel(tkProperties.getLogLevel(k, Level.DEBUG));
+		updater.accept(TkStrikeCommunicationServiceImpl.class.getName());
+		updater.accept("COMM_EVENT");
+		updater.accept("STATUS_EVENT");
+		updater.accept("GLOBAL_NETWORK_STATUS_CONTROLLER");
+		updater.accept("DATA_EVENT");
+		updater.accept("EXTERNAL_INTEGRATION");
+		updater.accept("MATCH_WORKER");
+		updater.accept("CSV_IMPORTER");
+		updater.accept("EXTRA_COMMUNICATION");
 	}
 
 	private void patchLogo() {

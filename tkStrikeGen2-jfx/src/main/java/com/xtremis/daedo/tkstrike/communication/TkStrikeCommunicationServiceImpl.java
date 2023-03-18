@@ -488,11 +488,10 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 						readed2 = readed2.replaceAll(new String(new byte[] { 13 }), "");
 						readed2 = readed2.replaceAll("\n", "");
 						readed2 = readed2.replaceAll("\\n", "");
-						readed2 = readed2.replaceAll(TkStrikeCommunicationServiceImpl.STAUTS_PACKET_COM_SEPARATOR, "-");
-						readed2 = readed2.replaceAll(TkStrikeCommunicationServiceImpl.STAUTS_PACKET_COM_HEADER, "#");
-						if (TkStrikeCommunicationServiceImpl.loggerCommEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerCommEvent
-									.debug("READED -" + readed2 + " length=" + readed2.length());
+						readed2 = readed2.replaceAll(STAUTS_PACKET_COM_SEPARATOR, "-");
+						readed2 = readed2.replaceAll(STAUTS_PACKET_COM_HEADER, "#");
+						if (loggerCommEvent.isDebugEnabled())
+							loggerCommEvent.debug("READED -" + readed2 + " length=" + readed2.length());
 						String workingReaded = readed2;
 						do {
 							String resta = "";
@@ -501,23 +500,20 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 								workingReaded = StringUtils.substringBefore(temp, "#");
 								resta = StringUtils.substringAfter(temp, "#");
 							}
-							if (TkStrikeCommunicationServiceImpl.isHitEventPattern.matcher(workingReaded).lookingAt()) {
-								if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-									TkStrikeCommunicationServiceImpl.loggerDataEvent
-											.debug("Is HIT Event " + workingReaded);
+							if (isHitEventPattern.matcher(workingReaded).lookingAt()) {
+								if (loggerDataEvent.isDebugEnabled())
+									loggerDataEvent.debug("Is HIT Event " + workingReaded);
 								long eventTimestamp = System.currentTimeMillis();
 								if (workingReaded.length() > 2) {
 									String hitSource = workingReaded.substring(0, 2);
 									if (hitSource.startsWith("j")) {
 										if (!" ".equals(workingReaded.substring(2, 3))) {
-											TkStrikeCommunicationServiceImpl.logger
-													.debug("Is not a valid JUDGE HIT EVENT!");
+											logger.debug("Is not a valid JUDGE HIT EVENT!");
 											return;
 										}
 										String hitValue = StringUtils.substringBetween(workingReaded, " ");
-										if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-											TkStrikeCommunicationServiceImpl.loggerDataEvent
-													.debug("JUDGE Source " + hitSource + " Value = " + hitValue);
+										if (loggerDataEvent.isDebugEnabled())
+											loggerDataEvent.debug("JUDGE Source " + hitSource + " Value = " + hitValue);
 										String nodeId = networkConfiguration.getJudge1NodeId();
 										if (hitSource.startsWith("j2")) {
 											nodeId = networkConfiguration.getJudge2NodeId();
@@ -550,15 +546,14 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 													.get(nodeId + "-" + intHitValue);
 											boolean throwEvent = (lastHit4Node == null || eventTimestamp
 													- lastHit4Node.longValue() >= judgeClickTimeValidation.longValue());
-											if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-												TkStrikeCommunicationServiceImpl.loggerDataEvent.debug(
-														"JUDGE VALIDATION " + nodeId + "-" + intHitValue + " Last "
-																+ lastHit4Node + " Current " + eventTimestamp + " Diff "
-																+ (eventTimestamp
-																		- ((lastHit4Node != null) ? lastHit4Node
+											if (loggerDataEvent.isDebugEnabled())
+												loggerDataEvent.debug("JUDGE VALIDATION " + nodeId + "-" + intHitValue
+														+ " Last " + lastHit4Node + " Current " + eventTimestamp
+														+ " Diff "
+														+ (eventTimestamp - ((lastHit4Node != null) ? lastHit4Node
 
-																				.longValue() : 0L))
-																+ ". ThrowEvent?" + throwEvent);
+																.longValue() : 0L))
+														+ ". ThrowEvent?" + throwEvent);
 											if (throwEvent) {
 												DataEvent newDataEvent = new DataEvent(Long.valueOf(eventTimestamp),
 														networkStatus, nodeId, Integer.valueOf(intHitValue),
@@ -573,9 +568,9 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 										String[] hitValueParts = StringUtils
 												.split(workingReaded.substring(3, workingReaded.length()), " ");
 										String nodeId = null;
-										if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-											TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("SENSOR Source "
-													+ hitSource + " Group " + hitGroup + " ValueParts = "
+										if (loggerDataEvent.isDebugEnabled())
+											loggerDataEvent.debug("SENSOR Source " + hitSource + " Group " + hitGroup
+													+ " ValueParts = "
 													+ ToStringBuilder.reflectionToString(hitValueParts));
 										int hitValue = -1;
 										if (hitValueParts.length > 0)
@@ -619,11 +614,10 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 												Long lastHit4Node = headNodeLastHitTimestamp.get(nodeId);
 												throwEvent = (lastHit4Node == null || eventTimestamp - lastHit4Node
 														.longValue() >= headHitTimeValidation.longValue());
-												if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-													TkStrikeCommunicationServiceImpl.loggerDataEvent
-															.debug("HIT VALIDATION " + nodeId + " Last " + lastHit4Node
-																	+ " Current " + eventTimestamp + " ThrowEvent?"
-																	+ throwEvent);
+												if (loggerDataEvent.isDebugEnabled())
+													loggerDataEvent.debug("HIT VALIDATION " + nodeId + " Last "
+															+ lastHit4Node + " Current " + eventTimestamp
+															+ " ThrowEvent?" + throwEvent);
 											}
 											if (throwEvent) {
 												DataEvent newDataEvent = new DataEvent(Long.valueOf(eventTimestamp),
@@ -636,19 +630,18 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 										}
 									}
 								}
-							} else if (TkStrikeCommunicationServiceImpl.isStatusEventPattern.matcher(workingReaded)
-									.lookingAt()) {
-								if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Is Status Event ");
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(
+							} else if (isStatusEventPattern.matcher(workingReaded).lookingAt()) {
+								if (loggerStatusEvent.isDebugEnabled()) {
+									loggerStatusEvent.debug("Is Status Event ");
+									loggerStatusEvent.debug(
 											"STATUS Before ->" + StringUtils.substringBefore(workingReaded, "-"));
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent
+									loggerStatusEvent
 											.debug("STATUS After ->" + StringUtils.substringAfter(workingReaded, "-"));
 								}
 								try {
 									String statusType = StringUtils.substringBefore(workingReaded, "-");
 									String statusValue = StringUtils.substringAfter(workingReaded, "-");
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent
+									loggerStatusEvent
 											.debug("STATUS VALUE " + statusValue + " length:" + statusValue.length());
 									if (StringUtils.isNotBlank(statusValue)) {
 										long eventTimestamp = System.currentTimeMillis();
@@ -669,15 +662,13 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 														workingReaded);
 												break;
 											}
-											if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-												TkStrikeCommunicationServiceImpl.loggerStatusEvent
-														.debug("INCORRECT JUDGES'S PACKET " + statusValue);
+											if (loggerStatusEvent.isDebugEnabled())
+												loggerStatusEvent.debug("INCORRECT JUDGES'S PACKET " + statusValue);
 											break;
 										case "cb":
 										case "cr":
-											if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-												TkStrikeCommunicationServiceImpl.loggerStatusEvent
-														.debug("ATHLETE SENSOR'S PACKET");
+											if (loggerStatusEvent.isDebugEnabled())
+												loggerStatusEvent.debug("ATHLETE SENSOR'S PACKET");
 											if (statusValue.contains("-") || statusValue.length() == 5) {
 												String[] groupInfo = statusValue.split("-");
 												if (groupInfo.length > 0) {
@@ -688,44 +679,39 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 															workWithAthleteMemberStatusEvent(
 																	Long.valueOf(eventTimestamp), statusType, strGroup,
 																	member, workingReaded);
-														} else if (TkStrikeCommunicationServiceImpl.loggerStatusEvent
-																.isDebugEnabled()) {
-															TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(
+														} else if (loggerStatusEvent.isDebugEnabled()) {
+															loggerStatusEvent.debug(
 																	"INCORRECT GROUP 1 ATHLETE'S PACKET " + strGroup);
 														}
 													}
 													break;
 												}
-												if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-													TkStrikeCommunicationServiceImpl.loggerStatusEvent
+												if (loggerStatusEvent.isDebugEnabled())
+													loggerStatusEvent
 															.debug("INCORRECT ATHLETE'S PACKET " + statusValue);
 											}
 											break;
 										}
-									} else if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
-										TkStrikeCommunicationServiceImpl.loggerStatusEvent
-												.debug("INCORRECT SENSOR'S PACKET " + statusValue);
+									} else if (loggerStatusEvent.isDebugEnabled()) {
+										loggerStatusEvent.debug("INCORRECT SENSOR'S PACKET " + statusValue);
 									}
 								} catch (Exception e) {
-									if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-										TkStrikeCommunicationServiceImpl.loggerStatusEvent
-												.error("EXCEPTION PROCESSING Status Packet " + workingReaded, e);
+									if (loggerStatusEvent.isDebugEnabled())
+										loggerStatusEvent.error("EXCEPTION PROCESSING Status Packet " + workingReaded,
+												e);
 								}
 							} else if ("***".equals(workingReaded)) {
-								TkStrikeCommunicationServiceImpl.loggerCommEvent.debug("Hem llegit VALOR DEL TOGGLE");
+								loggerCommEvent.debug("Hem llegit VALOR DEL TOGGLE");
 							} else if (StringUtils.isNumeric(workingReaded)) {
-								TkStrikeCommunicationServiceImpl.loggerCommEvent.debug("Hem llegit valor numèric");
+								loggerCommEvent.debug("Hem llegit valor numèric");
 							} else {
 								boolean someNode = false;
-								if (TkStrikeCommunicationServiceImpl.isShowIDResponsePattern.matcher(workingReaded)
-										.lookingAt())
-									TkStrikeCommunicationServiceImpl.loggerCommEvent
-											.info("IS A SHOW ID RESPONSE PATTERN");
+								if (isShowIDResponsePattern.matcher(workingReaded).lookingAt())
+									loggerCommEvent.info("IS A SHOW ID RESPONSE PATTERN");
 								if (workingReaded.startsWith("showID?") && workingReaded.length() > 7) {
 									workingReaded = StringUtils.substringAfter(workingReaded, "showID?");
-									if (TkStrikeCommunicationServiceImpl.loggerCommEvent.isDebugEnabled())
-										TkStrikeCommunicationServiceImpl.loggerCommEvent
-												.debug("Starts with showID after substring " + workingReaded);
+									if (loggerCommEvent.isDebugEnabled())
+										loggerCommEvent.debug("Starts with showID after substring " + workingReaded);
 								}
 								String nodesWorking = StringUtils.substringBefore(workingReaded, "Judge");
 								String judgesWorking = "Judge" + StringUtils.substringAfter(workingReaded, "Judge");
@@ -736,8 +722,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 									someNode = true;
 								if (someNode)
 									if (networkConfiguration.areAllNodesInitialized().booleanValue()) {
-										TkStrikeCommunicationServiceImpl.logger
-												.debug("S'ha determinat tota la xarxa...");
+										logger.debug("S'ha determinat tota la xarxa...");
 										hasSendShowID = false;
 										networkConfiguration.setNetworkWasStarted(Boolean.TRUE);
 										networkConfiguration.setChannelNumber(Integer.valueOf(14));
@@ -761,7 +746,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 					}
 				}
 			} catch (Exception e) {
-				TkStrikeCommunicationServiceImpl.logger.error("Error on Serial", e);
+				logger.error("Error on Serial", e);
 			}
 		}
 
@@ -776,12 +761,11 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 				fireNewStatusEvent(newStatusEvent);
 			} else if ("1".equals(value)) {
 				prevBadTimes.set(prevBadTimes.get() + 1);
-				if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-					TkStrikeCommunicationServiceImpl.loggerStatusEvent
-							.debug("Judge " + judgeNodeId + " is OffLine.. times? " + prevBadTimes.get());
+				if (loggerStatusEvent.isDebugEnabled())
+					loggerStatusEvent.debug("Judge " + judgeNodeId + " is OffLine.. times? " + prevBadTimes.get());
 				if (prevBadTimes.get() >= nodeConnBadTimesAllowed.intValue()) {
-					if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-						TkStrikeCommunicationServiceImpl.loggerStatusEvent
+					if (loggerStatusEvent.isDebugEnabled())
+						loggerStatusEvent
 								.debug("Judge " + judgeNodeId + " has exceeded number of offline allowed times");
 					StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, networkStatus, judgeNodeId,
 							Boolean.TRUE, Boolean.FALSE, Double.valueOf(0.0D), Double.valueOf(0.0D), nativePacket);
@@ -884,29 +868,29 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 						headBadTimes.set(0);
 						bodyInitialized.set(true);
 						headInitialized.set(true);
-						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(prefix + " are OK BOTH!!!");
+						if (loggerStatusEvent.isDebugEnabled())
+							loggerStatusEvent.debug(prefix + " are OK BOTH!!!");
 						bodyOffline = false;
 						headOffline = false;
 					} else if ("1".equals(comm)) {
 						bodyBadTimes.set(bodyBadTimes.get() + 1);
 						headBadTimes.set(headBadTimes.get() + 1);
-						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent
+						if (loggerStatusEvent.isDebugEnabled())
+							loggerStatusEvent
 									.debug("Body " + bodyNodeId + " is OffLine.. times? " + bodyBadTimes.get());
 						if (bodyBadTimes.get() >= nodeConnBadTimesAllowed.intValue() || !bodyInitialized.get()) {
-							if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-								TkStrikeCommunicationServiceImpl.loggerStatusEvent
+							if (loggerStatusEvent.isDebugEnabled())
+								loggerStatusEvent
 										.debug("Body " + bodyNodeId + " has exceeded number of offline allowed times"
 												+ bodyBadTimes.get() + " Or initialized? " + bodyInitialized.get());
 							bodyOffline = Boolean.TRUE.booleanValue();
 						}
-						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent
+						if (loggerStatusEvent.isDebugEnabled())
+							loggerStatusEvent
 									.debug("Head " + headNodeId + " is OffLine.. times? " + headBadTimes.get());
 						if (headBadTimes.get() >= nodeConnBadTimesAllowed.intValue() || !headInitialized.get()) {
-							if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-								TkStrikeCommunicationServiceImpl.loggerStatusEvent
+							if (loggerStatusEvent.isDebugEnabled())
+								loggerStatusEvent
 										.debug("Head " + headNodeId + " has exceeded number of offline allowed times: "
 												+ headBadTimes.get() + " Or initialized? " + headInitialized.get());
 							headOffline = Boolean.TRUE.booleanValue();
@@ -915,12 +899,12 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 						bodyBadTimes.set(0);
 						bodyInitialized.set(true);
 						headBadTimes.set(headBadTimes.get() + 1);
-						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent
+						if (loggerStatusEvent.isDebugEnabled())
+							loggerStatusEvent
 									.debug("Head " + headNodeId + " is OffLine.. times? " + headBadTimes.get());
 						if (headBadTimes.get() >= nodeConnBadTimesAllowed.intValue() || !headInitialized.get()) {
-							if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-								TkStrikeCommunicationServiceImpl.loggerStatusEvent
+							if (loggerStatusEvent.isDebugEnabled())
+								loggerStatusEvent
 										.debug("Head " + headNodeId + " has exceeded number of offline allowed times:"
 												+ headBadTimes.get() + " Or initialized? " + headInitialized.get());
 							headOffline = Boolean.TRUE.booleanValue();
@@ -934,9 +918,8 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 
 							Boolean.valueOf(headOffline), Boolean.valueOf(headSensorOk), Double.valueOf(headBattery),
 							Double.valueOf(headBatteryPct), nativePacket));
-				} else if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
-					TkStrikeCommunicationServiceImpl.loggerStatusEvent
-							.debug("Can't get body or head bad times for string:" + value);
+				} else if (loggerStatusEvent.isDebugEnabled()) {
+					loggerStatusEvent.debug("Can't get body or head bad times for string:" + value);
 				}
 			}
 		}
@@ -944,6 +927,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		System.out.println(getClass().getSimpleName() + " afterPropertiesSet / initBodyGap: " + initBodyGap);
 		Assert.notNull(this.maxNetworkAthleteGroupsAllowed);
 		this.networkConfiguration = new NetworkConfigurationDto(this.maxNetworkAthleteGroupsAllowed);
 	}
