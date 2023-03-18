@@ -26,7 +26,6 @@ import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 
-
 public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationService, Runnable, InitializingBean {
 
 	private static final Logger logger = Logger.getLogger(TkStrikeCommunicationServiceImpl.class);
@@ -45,9 +44,9 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 
 	private static final String SEND_SHOWID = "showID?";
 
-	private static final String STAUTS_PACKET_COM_SEPARATOR = new String(new byte[] {2});
+	private static final String STAUTS_PACKET_COM_SEPARATOR = new String(new byte[] { 2 });
 
-	private static final String STAUTS_PACKET_COM_HEADER = new String(new byte[] {1});
+	private static final String STAUTS_PACKET_COM_HEADER = new String(new byte[] { 1 });
 
 	private static final String STAUTS_PACKET_HEADER = "#";
 
@@ -108,24 +107,24 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 
 	@Override
 	public synchronized void startComm() throws TkStrikeCommunicationException {
-		if(logger.isDebugEnabled())
+		if (logger.isDebugEnabled())
 			logger.debug("Start Port Gen2");
-		if(this.serialPort == null) {
+		if (this.serialPort == null) {
 			String portName = null;
 			try {
 				String[] portNames = SerialPortList.getPortNames();
-				for(int i = 0; i < portNames.length; i++) {
+				for (int i = 0; i < portNames.length; i++) {
 					String tempPortName = portNames[i];
-					if(logger.isDebugEnabled())
+					if (logger.isDebugEnabled())
 						logger.debug("Port Name = " + tempPortName);
-					if(Pattern.compile(this.serialNamePattern).matcher(tempPortName).lookingAt())
+					if (Pattern.compile(this.serialNamePattern).matcher(tempPortName).lookingAt())
 						new SerialPort(tempPortName);
 				}
-			} catch(Exception e) {
+			} catch (Exception e) {
 				logger.error("startComm", e);
 			}
-			if(portName != null) {
-				if(logger.isDebugEnabled())
+			if (portName != null) {
+				if (logger.isDebugEnabled())
 					logger.debug("Open port " + portName);
 				this.serialPort = new SerialPort(portName);
 				try {
@@ -137,7 +136,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 					this.networkStatus = NetworkStatus.NOT_STARTED;
 					fireNewChangeNetworkStatusEvent(Long.valueOf(System.currentTimeMillis()), this.networkStatus, last);
 					return;
-				} catch(SerialPortException e) {
+				} catch (SerialPortException e) {
 					e.printStackTrace();
 					logger.error("startComm", e);
 					this.serialPort = null;
@@ -145,18 +144,18 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 				}
 			}
 		}
-		if(this.serialPort == null)
+		if (this.serialPort == null)
 			throw new TkStrikeCommunicationException("");
 	}
 
 	@Override
 	public void stopComm() throws TkStrikeCommunicationException {
-		if(this.serialPort != null)
+		if (this.serialPort != null)
 			try {
 				_stopGetData();
 				this.serialPort.removeEventListener();
 				this.serialPort.closePort();
-			} catch(SerialPortException e) {
+			} catch (SerialPortException e) {
 				logger.error("stopComm", e);
 				throw new TkStrikeCommunicationException(e);
 			} finally {
@@ -173,13 +172,13 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	}
 
 	@Override
-	public void tryToRecognizeWithConfig(NetworkConfigurationDto networkConfigurationDto, boolean forceInitializerSerial)
-			throws TkStrikeCommunicationException {
+	public void tryToRecognizeWithConfig(NetworkConfigurationDto networkConfigurationDto,
+			boolean forceInitializerSerial) throws TkStrikeCommunicationException {
 		logger.debug("tryToRecognizeWithConfig() method");
 		_cleanAllNodes();
 		try {
 			_sendShowID();
-		} catch(SerialPortException e) {
+		} catch (SerialPortException e) {
 			e.printStackTrace();
 			throw new TkStrikeCommunicationException(e);
 		}
@@ -187,9 +186,9 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 
 	@Override
 	public void startNetwork(NetworkConfigurationDto networkConfiguration) throws TkStrikeCommunicationException {
-		if(networkConfiguration != null) {
+		if (networkConfiguration != null) {
 			stopComm();
-			if(logger.isDebugEnabled())
+			if (logger.isDebugEnabled())
 				logger.debug("Start netvork with " + ToStringBuilder.reflectionToString(networkConfiguration));
 			try {
 				_stopGetData();
@@ -201,22 +200,27 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 				fireNewChangeNetworkStatusEvent(Long.valueOf(System.currentTimeMillis()), this.networkStatus, last);
 				_cleanAllNodes();
 				int currNodeCount = 1;
-				for(int i = 1; i <= this.maxNetworkAthleteGroupsAllowed.intValue(); i++) {
-					NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(Integer.valueOf(i));
-					if(groupConfig != null) {
+				for (int i = 1; i <= this.maxNetworkAthleteGroupsAllowed.intValue(); i++) {
+					NetworkAthletesGroupConfigDto groupConfig = networkConfiguration
+							.getNetworkAthletesGroupConfig(Integer.valueOf(i));
+					if (groupConfig != null) {
 						boolean bodyEnabled = groupConfig.getBodySensorsEnabled().booleanValue();
 						boolean headEnabled = groupConfig.getHeadSensorsEnabled().booleanValue();
 						boolean groupEnabled = (networkConfiguration.getGroupsNumber().intValue() >= i);
 						logger.debug("GROUP " + i + " enabled?" + groupEnabled);
 						logger.debug("BODY " + i + " enabled?" + bodyEnabled);
 						logger.debug("HEAD " + i + " enabled?" + headEnabled);
-						String blueBody = (groupEnabled && bodyEnabled && groupConfig.getBodyBlueNodeId() != null) ? groupConfig.getBodyBlueNodeId()
+						String blueBody = (groupEnabled && bodyEnabled && groupConfig.getBodyBlueNodeId() != null)
+								? groupConfig.getBodyBlueNodeId()
 								: "0";
-						String blueHead = (groupEnabled && headEnabled && groupConfig.getHeadBlueNodeId() != null) ? groupConfig.getHeadBlueNodeId()
+						String blueHead = (groupEnabled && headEnabled && groupConfig.getHeadBlueNodeId() != null)
+								? groupConfig.getHeadBlueNodeId()
 								: "0";
-						String redBody = (groupEnabled && bodyEnabled && groupConfig.getBodyRedNodeId() != null) ? groupConfig.getBodyRedNodeId()
+						String redBody = (groupEnabled && bodyEnabled && groupConfig.getBodyRedNodeId() != null)
+								? groupConfig.getBodyRedNodeId()
 								: "0";
-						String redHead = (groupEnabled && headEnabled && groupConfig.getHeadRedNodeId() != null) ? groupConfig.getHeadRedNodeId()
+						String redHead = (groupEnabled && headEnabled && groupConfig.getHeadRedNodeId() != null)
+								? groupConfig.getHeadRedNodeId()
 								: "0";
 						logger.debug("TO SEND n" + currNodeCount + "=" + blueBody);
 						_sendString2Serial("n" + currNodeCount + "=" + blueBody);
@@ -232,17 +236,26 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 						currNodeCount++;
 					}
 				}
-				logger.debug("TO SEND j1=" + ((networkConfiguration.getJudgesNumber().intValue() >= 1) ? networkConfiguration.getJudge1NodeId()
+				logger.debug("TO SEND j1=" + ((networkConfiguration.getJudgesNumber().intValue() >= 1)
+						? networkConfiguration.getJudge1NodeId()
 						: "0"));
-				_sendString2Serial("j1=" + ((networkConfiguration.getJudgesNumber().intValue() >= 1) ? networkConfiguration.getJudge1NodeId() : "0"));
-				logger.debug("TO SEND j2=" + ((networkConfiguration.getJudgesNumber().intValue() >= 2) ? networkConfiguration.getJudge2NodeId()
+				_sendString2Serial("j1=" + ((networkConfiguration.getJudgesNumber().intValue() >= 1)
+						? networkConfiguration.getJudge1NodeId()
 						: "0"));
-				_sendString2Serial("j2=" + ((networkConfiguration.getJudgesNumber().intValue() >= 2) ? networkConfiguration.getJudge2NodeId() : "0"));
-				logger.debug("TO SEND j3=" + ((networkConfiguration.getJudgesNumber().intValue() == 3) ? networkConfiguration.getJudge3NodeId()
+				logger.debug("TO SEND j2=" + ((networkConfiguration.getJudgesNumber().intValue() >= 2)
+						? networkConfiguration.getJudge2NodeId()
 						: "0"));
-				_sendString2Serial("j3=" + ((networkConfiguration.getJudgesNumber().intValue() == 3) ? networkConfiguration.getJudge3NodeId() : "0"));
+				_sendString2Serial("j2=" + ((networkConfiguration.getJudgesNumber().intValue() >= 2)
+						? networkConfiguration.getJudge2NodeId()
+						: "0"));
+				logger.debug("TO SEND j3=" + ((networkConfiguration.getJudgesNumber().intValue() == 3)
+						? networkConfiguration.getJudge3NodeId()
+						: "0"));
+				_sendString2Serial("j3=" + ((networkConfiguration.getJudgesNumber().intValue() == 3)
+						? networkConfiguration.getJudge3NodeId()
+						: "0"));
 				tryToRecognizeWithConfig(networkConfiguration, false);
-			} catch(SerialPortException e) {
+			} catch (SerialPortException e) {
 				throw new TkStrikeCommunicationException(e);
 			}
 		}
@@ -252,14 +265,16 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 		_sendString2Serial("group?");
 		try {
 			TimeUnit.SECONDS.sleep(1L);
-		} catch(InterruptedException interruptedException) {}
+		} catch (InterruptedException interruptedException) {
+		}
 		String readed = this.serialPort.readString(this.serialPort.getInputBufferBytesCount());
-		if(readed != null && ! readed.toLowerCase().contains("invalid command")) {
+		if (readed != null && !readed.toLowerCase().contains("invalid command")) {
 			logger.info("Is TkStrike with Groups Setting Conf");
 			_sendString2Serial("group=" + groupsNumber);
 			try {
 				TimeUnit.SECONDS.sleep(1L);
-			} catch(InterruptedException interruptedException) {}
+			} catch (InterruptedException interruptedException) {
+			}
 			readed = this.serialPort.readString(this.serialPort.getInputBufferBytesCount());
 			logger.info("Group ->" + readed);
 		}
@@ -272,7 +287,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 
 	@Override
 	public void addListener(TkStrikeCommunicationListener tkStrikeCommunicationListener) {
-		if( ! this.listeners.contains(tkStrikeCommunicationListener))
+		if (!this.listeners.contains(tkStrikeCommunicationListener))
 			this.listeners.add(tkStrikeCommunicationListener);
 	}
 
@@ -282,22 +297,23 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	}
 
 	private void validateSerial() throws TkStrikeCommunicationException {
-		if(this.serialPort == null)
+		if (this.serialPort == null)
 			startComm();
 	}
 
 	private void _validateIfIsGetDataEnabled() {
-		if( ! this.hasValidateDataEnabled) {
+		if (!this.hasValidateDataEnabled) {
 			logger.debug("Validate if GetData Is Enabled");
 			validateSerial();
 			try {
 				logger.debug("Sleep 3 seconds");
 				try {
 					Thread.sleep(3000L);
-				} catch(InterruptedException interruptedException) {}
+				} catch (InterruptedException interruptedException) {
+				}
 				int r = this.serialPort.getInputBufferBytesCount();
 				String strReaded = this.serialPort.readString(r);
-				if(StringUtils.isNotBlank(strReaded)) {
+				if (StringUtils.isNotBlank(strReaded)) {
 					strReaded = _cleanReadedFromSerialString(strReaded);
 					logger.debug("READED after Wait " + strReaded);
 					this.getDataEnabled = isStatusEventPattern.matcher(strReaded).lookingAt();
@@ -305,7 +321,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 					this.getDataEnabled = false;
 				}
 				this.hasValidateDataEnabled = true;
-			} catch(SerialPortException e) {
+			} catch (SerialPortException e) {
 				e.printStackTrace();
 			}
 		}
@@ -313,24 +329,26 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	}
 
 	private void _sendString2Serial(String string) throws SerialPortException {
-		if(StringUtils.isNotBlank(string)) {
+		if (StringUtils.isNotBlank(string)) {
 			validateSerial();
-			if(logger.isDebugEnabled())
+			if (logger.isDebugEnabled())
 				logger.debug("Send to serial " + string);
 			try {
 				this.serialPort.writeString(string, StandardCharsets.US_ASCII.name());
-			} catch(UnsupportedEncodingException unsupportedEncodingException) {}
-			this.serialPort.writeByte((byte)13);
+			} catch (UnsupportedEncodingException unsupportedEncodingException) {
+			}
+			this.serialPort.writeByte((byte) 13);
 			try {
 				Thread.sleep(100L);
-			} catch(InterruptedException interruptedException) {}
+			} catch (InterruptedException interruptedException) {
+			}
 		}
 	}
 
 	private void _stopGetData() throws SerialPortException {
 		validateSerial();
 		logger.debug("_stopGetData() method");
-		if(this.getDataEnabled) {
+		if (this.getDataEnabled) {
 			logger.debug("SEND STOP DATA ************************************************");
 			_sendString2Serial("***");
 		}
@@ -340,7 +358,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	private void _startGetData() throws SerialPortException {
 		validateSerial();
 		logger.debug("_startGetData() method");
-		if( ! this.getDataEnabled) {
+		if (!this.getDataEnabled) {
 			logger.debug("SEND START DATA ************************************************");
 			_sendString2Serial("***");
 		}
@@ -350,17 +368,17 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	private void _sendShowID() throws SerialPortException {
 		validateSerial();
 		logger.debug("_sendShowID() method");
-		if(this.getDataEnabled)
+		if (this.getDataEnabled)
 			_stopGetData();
-		if( ! this.getDataEnabled)
+		if (!this.getDataEnabled)
 			_sendString2Serial("showID?");
 		this.hasSendShowID = true;
 	}
 
 	private String _cleanReadedFromSerialString(String readed) {
 		readed = StringUtils.trimToNull(readed);
-		if(readed != null) {
-			readed = readed.replaceAll(new String(new byte[] {13}), "");
+		if (readed != null) {
+			readed = readed.replaceAll(new String(new byte[] { 13 }), "");
 			readed = readed.replaceAll("\n", "");
 			readed = readed.replaceAll("\\n", "");
 			readed = readed.replaceAll(STAUTS_PACKET_COM_SEPARATOR, "-");
@@ -390,14 +408,14 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 		}));
 		try {
 			TkStrikeExecutors.executeInParallel(tasks);
-		} catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void fireNewStatusEvent(StatusEvent newStatusEvent) {
 		ArrayList<Callable<Void>> tasks = new ArrayList<>(this.listeners.size());
-		if(loggerStatusEvent.isDebugEnabled())
+		if (loggerStatusEvent.isDebugEnabled())
 			loggerStatusEvent.debug("Fire New Status Event ->" + newStatusEvent.toString());
 		this.listeners.forEach(lis -> tasks.add(new Callable<Void>() {
 
@@ -409,13 +427,14 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 		}));
 		try {
 			TkStrikeExecutors.executeInParallel(tasks);
-		} catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void fireNewChangeNetworkStatusEvent(Long timestamp, NetworkStatus prevStatus, NetworkStatus newStatus) {
-		ChangeNetworkStatusEvent changeNetworkStatusEvent = new ChangeNetworkStatusEvent(timestamp, prevStatus, newStatus);
+		ChangeNetworkStatusEvent changeNetworkStatusEvent = new ChangeNetworkStatusEvent(timestamp, prevStatus,
+				newStatus);
 		ArrayList<Callable<Void>> tasks = new ArrayList<>(this.listeners.size());
 		this.listeners.forEach(lis -> tasks.add(new Callable<Void>() {
 
@@ -427,14 +446,15 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 		}));
 		try {
 			TkStrikeExecutors.executeInParallel(tasks);
-		} catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void fireNewChangeNetworkConfigurationEvent(Long timestamp, NetworkStatus prevStatus, NetworkConfigurationDto networkConfiguration) {
-		ChangeNetworkConfigurationEvent changeNetworkConfigurationEvent = new ChangeNetworkConfigurationEvent(timestamp, prevStatus,
-				networkConfiguration);
+	private void fireNewChangeNetworkConfigurationEvent(Long timestamp, NetworkStatus prevStatus,
+			NetworkConfigurationDto networkConfiguration) {
+		ChangeNetworkConfigurationEvent changeNetworkConfigurationEvent = new ChangeNetworkConfigurationEvent(timestamp,
+				prevStatus, networkConfiguration);
 		ArrayList<Callable<Void>> tasks = new ArrayList<>(this.listeners.size());
 		this.listeners.forEach(lis -> tasks.add(new Callable<Void>() {
 
@@ -446,459 +466,477 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 		}));
 		try {
 			TkStrikeExecutors.executeInParallel(tasks);
-		} catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void run() {}
+	public void run() {
+	}
 
 	class CustomSerialListener implements SerialPortEventListener {
 
 		@Override
 		public void serialEvent(SerialPortEvent serialPortEvent) {
 			try {
-				if(serialPortEvent != null && 1 == serialPortEvent.getEventType()) {
-					int r = TkStrikeCommunicationServiceImpl.this.serialPort.getInputBufferBytesCount();
-					String readed = TkStrikeCommunicationServiceImpl.this.serialPort.readString(r);
+				if (serialPortEvent != null && 1 == serialPortEvent.getEventType()) {
+					int r = serialPort.getInputBufferBytesCount();
+					String readed = serialPort.readString(r);
 					String readed2 = StringUtils.trimToNull(readed);
-					if(readed2 != null) {
-						readed2 = readed2.replaceAll(new String(new byte[] {13}), "");
+					if (readed2 != null) {
+						readed2 = readed2.replaceAll(new String(new byte[] { 13 }), "");
 						readed2 = readed2.replaceAll("\n", "");
 						readed2 = readed2.replaceAll("\\n", "");
 						readed2 = readed2.replaceAll(TkStrikeCommunicationServiceImpl.STAUTS_PACKET_COM_SEPARATOR, "-");
 						readed2 = readed2.replaceAll(TkStrikeCommunicationServiceImpl.STAUTS_PACKET_COM_HEADER, "#");
-						if(TkStrikeCommunicationServiceImpl.loggerCommEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerCommEvent.debug("READED -" + readed2 + " length=" + readed2.length());
+						if (TkStrikeCommunicationServiceImpl.loggerCommEvent.isDebugEnabled())
+							TkStrikeCommunicationServiceImpl.loggerCommEvent
+									.debug("READED -" + readed2 + " length=" + readed2.length());
 						String workingReaded = readed2;
 						do {
 							String resta = "";
 							String temp = workingReaded;
-							if(workingReaded.contains("#")) {
+							if (workingReaded.contains("#")) {
 								workingReaded = StringUtils.substringBefore(temp, "#");
 								resta = StringUtils.substringAfter(temp, "#");
 							}
-							if(TkStrikeCommunicationServiceImpl.isHitEventPattern.matcher(workingReaded).lookingAt()) {
-								if(TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-									TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("Is HIT Event " + workingReaded);
+							if (TkStrikeCommunicationServiceImpl.isHitEventPattern.matcher(workingReaded).lookingAt()) {
+								if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
+									TkStrikeCommunicationServiceImpl.loggerDataEvent
+											.debug("Is HIT Event " + workingReaded);
 								long eventTimestamp = System.currentTimeMillis();
-								if(workingReaded.length() > 2) {
+								if (workingReaded.length() > 2) {
 									String hitSource = workingReaded.substring(0, 2);
-									if(hitSource.startsWith("j")) {
-										if( ! " ".equals(workingReaded.substring(2, 3))) {
-											TkStrikeCommunicationServiceImpl.logger.debug("Is not a valid JUDGE HIT EVENT!");
+									if (hitSource.startsWith("j")) {
+										if (!" ".equals(workingReaded.substring(2, 3))) {
+											TkStrikeCommunicationServiceImpl.logger
+													.debug("Is not a valid JUDGE HIT EVENT!");
 											return;
 										}
 										String hitValue = StringUtils.substringBetween(workingReaded, " ");
-										if(TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-											TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("JUDGE Source " + hitSource + " Value = "
-													+ hitValue);
-										String nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getJudge1NodeId();
-										if(hitSource.startsWith("j2")) {
-											nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getJudge2NodeId();
-										} else if(hitSource.startsWith("j3")) {
-											nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getJudge3NodeId();
+										if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
+											TkStrikeCommunicationServiceImpl.loggerDataEvent
+													.debug("JUDGE Source " + hitSource + " Value = " + hitValue);
+										String nodeId = networkConfiguration.getJudge1NodeId();
+										if (hitSource.startsWith("j2")) {
+											nodeId = networkConfiguration.getJudge2NodeId();
+										} else if (hitSource.startsWith("j3")) {
+											nodeId = networkConfiguration.getJudge3NodeId();
 										}
 										int intHitValue = 0;
-										switch(hitValue) {
-											case "100000":
-												intHitValue = 43521;
-												break;
-											case "010000":
-												intHitValue = 43522;
-												break;
-											case "001000":
-												intHitValue = 43552;
-												break;
-											case "000100":
-												intHitValue = 43524;
-												break;
-											case "000010":
-												intHitValue = 43528;
-												break;
-											case "000001":
-												intHitValue = 43536;
-												break;
+										switch (hitValue) {
+										case "100000":
+											intHitValue = 43521;
+											break;
+										case "010000":
+											intHitValue = 43522;
+											break;
+										case "001000":
+											intHitValue = 43552;
+											break;
+										case "000100":
+											intHitValue = 43524;
+											break;
+										case "000010":
+											intHitValue = 43528;
+											break;
+										case "000001":
+											intHitValue = 43536;
+											break;
 										}
-										if(StringUtils.isNotBlank(nodeId) && ! "0".equals(nodeId)) {
-											Long lastHit4Node = TkStrikeCommunicationServiceImpl.this.judgeNodeLastClickTimestamp.get(nodeId + "-"
-													+ intHitValue);
-											boolean throwEvent = (lastHit4Node == null || eventTimestamp - lastHit4Node
-													.longValue() >= TkStrikeCommunicationServiceImpl.this.judgeClickTimeValidation.longValue());
-											if(TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-												TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("JUDGE VALIDATION " + nodeId + "-"
-														+ intHitValue + " Last " + lastHit4Node + " Current " + eventTimestamp + " Diff "
-														+ (eventTimestamp - ((lastHit4Node != null) ? lastHit4Node
+										if (StringUtils.isNotBlank(nodeId) && !"0".equals(nodeId)) {
+											Long lastHit4Node = judgeNodeLastClickTimestamp
+													.get(nodeId + "-" + intHitValue);
+											boolean throwEvent = (lastHit4Node == null || eventTimestamp
+													- lastHit4Node.longValue() >= judgeClickTimeValidation.longValue());
+											if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
+												TkStrikeCommunicationServiceImpl.loggerDataEvent.debug(
+														"JUDGE VALIDATION " + nodeId + "-" + intHitValue + " Last "
+																+ lastHit4Node + " Current " + eventTimestamp + " Diff "
+																+ (eventTimestamp
+																		- ((lastHit4Node != null) ? lastHit4Node
 
-																.longValue() : 0L)) + ". ThrowEvent?" + throwEvent);
-											if(throwEvent) {
+																				.longValue() : 0L))
+																+ ". ThrowEvent?" + throwEvent);
+											if (throwEvent) {
 												DataEvent newDataEvent = new DataEvent(Long.valueOf(eventTimestamp),
-														TkStrikeCommunicationServiceImpl.this.networkStatus, nodeId, Integer.valueOf(intHitValue),
+														networkStatus, nodeId, Integer.valueOf(intHitValue),
 														DataEvent.DataEventHitType.BODY, workingReaded);
-												TkStrikeCommunicationServiceImpl.this.fireNewDataEvent(newDataEvent);
-												TkStrikeCommunicationServiceImpl.this.judgeNodeLastClickTimestamp.put(nodeId + "-" + intHitValue, Long
-														.valueOf(eventTimestamp));
+												fireNewDataEvent(newDataEvent);
+												judgeNodeLastClickTimestamp.put(nodeId + "-" + intHitValue,
+														Long.valueOf(eventTimestamp));
 											}
 										}
 									} else {
 										String hitGroup = workingReaded.substring(2, 3);
-										String[] hitValueParts = StringUtils.split(workingReaded.substring(3, workingReaded.length()), " ");
+										String[] hitValueParts = StringUtils
+												.split(workingReaded.substring(3, workingReaded.length()), " ");
 										String nodeId = null;
-										if(TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-											TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("SENSOR Source " + hitSource + " Group " + hitGroup
-													+ " ValueParts = " + ToStringBuilder.reflectionToString(hitValueParts));
-										int hitValue = - 1;
-										if(hitValueParts.length > 0)
+										if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
+											TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("SENSOR Source "
+													+ hitSource + " Group " + hitGroup + " ValueParts = "
+													+ ToStringBuilder.reflectionToString(hitValueParts));
+										int hitValue = -1;
+										if (hitValueParts.length > 0)
 											try {
 												hitValue = Integer.parseInt(hitValueParts[0]);
-											} catch(NumberFormatException nfe) {
-												hitValue = - 1;
+											} catch (NumberFormatException nfe) {
+												hitValue = -1;
 											}
 										boolean isHeadHit = false;
-										switch(hitSource) {
-											case "bb":
-												nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-														Integer.valueOf(Integer.parseInt(hitGroup))).getBodyBlueNodeId();
-												break;
-											case "bh":
-												isHeadHit = true;
-												nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-														Integer.valueOf(Integer.parseInt(hitGroup))).getHeadBlueNodeId();
-												break;
-											case "rb":
-												nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-														Integer.valueOf(Integer.parseInt(hitGroup))).getBodyRedNodeId();
-												break;
-											case "rh":
-												isHeadHit = true;
-												nodeId = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-														Integer.valueOf(Integer.parseInt(hitGroup))).getHeadRedNodeId();
-												break;
+										switch (hitSource) {
+										case "bb":
+											nodeId = networkConfiguration
+													.getNetworkAthletesGroupConfig(
+															Integer.valueOf(Integer.parseInt(hitGroup)))
+													.getBodyBlueNodeId();
+											break;
+										case "bh":
+											isHeadHit = true;
+											nodeId = networkConfiguration
+													.getNetworkAthletesGroupConfig(
+															Integer.valueOf(Integer.parseInt(hitGroup)))
+													.getHeadBlueNodeId();
+											break;
+										case "rb":
+											nodeId = networkConfiguration
+													.getNetworkAthletesGroupConfig(
+															Integer.valueOf(Integer.parseInt(hitGroup)))
+													.getBodyRedNodeId();
+											break;
+										case "rh":
+											isHeadHit = true;
+											nodeId = networkConfiguration
+													.getNetworkAthletesGroupConfig(
+															Integer.valueOf(Integer.parseInt(hitGroup)))
+													.getHeadRedNodeId();
+											break;
 										}
-										if(StringUtils.isNotBlank(nodeId) &&
-												! "0".equals(nodeId) && hitValue >= 0) {
+										if (StringUtils.isNotBlank(nodeId) && !"0".equals(nodeId) && hitValue >= 0) {
 											boolean throwEvent = true;
-											if(isHeadHit) {
-												Long lastHit4Node = TkStrikeCommunicationServiceImpl.this.headNodeLastHitTimestamp.get(nodeId);
+											if (isHeadHit) {
+												Long lastHit4Node = headNodeLastHitTimestamp.get(nodeId);
 												throwEvent = (lastHit4Node == null || eventTimestamp - lastHit4Node
-														.longValue() >= TkStrikeCommunicationServiceImpl.this.headHitTimeValidation.longValue());
-												if(TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
-													TkStrikeCommunicationServiceImpl.loggerDataEvent.debug("HIT VALIDATION " + nodeId + " Last "
-															+ lastHit4Node + " Current " + eventTimestamp + " ThrowEvent?" + throwEvent);
+														.longValue() >= headHitTimeValidation.longValue());
+												if (TkStrikeCommunicationServiceImpl.loggerDataEvent.isDebugEnabled())
+													TkStrikeCommunicationServiceImpl.loggerDataEvent
+															.debug("HIT VALIDATION " + nodeId + " Last " + lastHit4Node
+																	+ " Current " + eventTimestamp + " ThrowEvent?"
+																	+ throwEvent);
 											}
-											if(throwEvent) {
+											if (throwEvent) {
 												DataEvent newDataEvent = new DataEvent(Long.valueOf(eventTimestamp),
-														TkStrikeCommunicationServiceImpl.this.networkStatus, nodeId, Integer.valueOf(hitValue),
+														networkStatus, nodeId, Integer.valueOf(hitValue),
 														DataEvent.DataEventHitType.BODY, workingReaded);
-												TkStrikeCommunicationServiceImpl.this.fireNewDataEvent(newDataEvent);
-												if(isHeadHit)
-													TkStrikeCommunicationServiceImpl.this.headNodeLastHitTimestamp.put(nodeId, Long.valueOf(
-															eventTimestamp));
+												fireNewDataEvent(newDataEvent);
+												if (isHeadHit)
+													headNodeLastHitTimestamp.put(nodeId, Long.valueOf(eventTimestamp));
 											}
 										}
 									}
 								}
-							} else if(TkStrikeCommunicationServiceImpl.isStatusEventPattern.matcher(workingReaded).lookingAt()) {
-								if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
+							} else if (TkStrikeCommunicationServiceImpl.isStatusEventPattern.matcher(workingReaded)
+									.lookingAt()) {
+								if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
 									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Is Status Event ");
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("STATUS Before ->" + StringUtils.substringBefore(
-											workingReaded, "-"));
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("STATUS After ->" + StringUtils.substringAfter(
-											workingReaded, "-"));
+									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(
+											"STATUS Before ->" + StringUtils.substringBefore(workingReaded, "-"));
+									TkStrikeCommunicationServiceImpl.loggerStatusEvent
+											.debug("STATUS After ->" + StringUtils.substringAfter(workingReaded, "-"));
 								}
 								try {
 									String statusType = StringUtils.substringBefore(workingReaded, "-");
 									String statusValue = StringUtils.substringAfter(workingReaded, "-");
-									TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("STATUS VALUE " + statusValue + " length:" + statusValue
-											.length());
-									if(StringUtils.isNotBlank(statusValue)) {
+									TkStrikeCommunicationServiceImpl.loggerStatusEvent
+											.debug("STATUS VALUE " + statusValue + " length:" + statusValue.length());
+									if (StringUtils.isNotBlank(statusValue)) {
 										long eventTimestamp = System.currentTimeMillis();
-										switch(statusType) {
-											case "cj":
-												if(statusValue.length() == 3) {
-													workWithJudgeStatusEvent(Long.valueOf(eventTimestamp), statusValue.substring(0, 1),
-															TkStrikeCommunicationServiceImpl.this.networkConfiguration.getJudge1NodeId(),
-															TkStrikeCommunicationServiceImpl.this.judge1NodeBadTimes, workingReaded);
-													workWithJudgeStatusEvent(Long.valueOf(eventTimestamp), statusValue.substring(1, 2),
-															TkStrikeCommunicationServiceImpl.this.networkConfiguration.getJudge2NodeId(),
-															TkStrikeCommunicationServiceImpl.this.judge2NodeBadTimes, workingReaded);
-													workWithJudgeStatusEvent(Long.valueOf(eventTimestamp), statusValue.substring(2, 3),
-															TkStrikeCommunicationServiceImpl.this.networkConfiguration.getJudge3NodeId(),
-															TkStrikeCommunicationServiceImpl.this.judge3NodeBadTimes, workingReaded);
+										switch (statusType) {
+										case "cj":
+											if (statusValue.length() == 3) {
+												workWithJudgeStatusEvent(Long.valueOf(eventTimestamp),
+														statusValue.substring(0, 1),
+														networkConfiguration.getJudge1NodeId(), judge1NodeBadTimes,
+														workingReaded);
+												workWithJudgeStatusEvent(Long.valueOf(eventTimestamp),
+														statusValue.substring(1, 2),
+														networkConfiguration.getJudge2NodeId(), judge2NodeBadTimes,
+														workingReaded);
+												workWithJudgeStatusEvent(Long.valueOf(eventTimestamp),
+														statusValue.substring(2, 3),
+														networkConfiguration.getJudge3NodeId(), judge3NodeBadTimes,
+														workingReaded);
+												break;
+											}
+											if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+												TkStrikeCommunicationServiceImpl.loggerStatusEvent
+														.debug("INCORRECT JUDGES'S PACKET " + statusValue);
+											break;
+										case "cb":
+										case "cr":
+											if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+												TkStrikeCommunicationServiceImpl.loggerStatusEvent
+														.debug("ATHLETE SENSOR'S PACKET");
+											if (statusValue.contains("-") || statusValue.length() == 5) {
+												String[] groupInfo = statusValue.split("-");
+												if (groupInfo.length > 0) {
+													for (String strGroup : groupInfo) {
+														if (strGroup.length() == 5) {
+															Integer member = Integer.valueOf(Integer.parseInt(
+																	StringUtils.substringAfter(strGroup, ",")));
+															workWithAthleteMemberStatusEvent(
+																	Long.valueOf(eventTimestamp), statusType, strGroup,
+																	member, workingReaded);
+														} else if (TkStrikeCommunicationServiceImpl.loggerStatusEvent
+																.isDebugEnabled()) {
+															TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(
+																	"INCORRECT GROUP 1 ATHLETE'S PACKET " + strGroup);
+														}
+													}
 													break;
 												}
-												if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-													TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("INCORRECT JUDGES'S PACKET "
-															+ statusValue);
-												break;
-											case "cb":
-											case "cr":
-												if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-													TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("ATHLETE SENSOR'S PACKET");
-												if(statusValue.contains("-") || statusValue.length() == 5) {
-													String[] groupInfo = statusValue.split("-");
-													if(groupInfo.length > 0) {
-														for(String strGroup : groupInfo) {
-															if(strGroup.length() == 5) {
-																Integer member = Integer.valueOf(Integer.parseInt(StringUtils.substringAfter(strGroup,
-																		",")));
-																workWithAthleteMemberStatusEvent(Long.valueOf(eventTimestamp), statusType, strGroup,
-																		member, workingReaded);
-															} else if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
-																TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(
-																		"INCORRECT GROUP 1 ATHLETE'S PACKET " + strGroup);
-															}
-														}
-														break;
-													}
-													if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-														TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("INCORRECT ATHLETE'S PACKET "
-																+ statusValue);
-												}
-												break;
+												if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+													TkStrikeCommunicationServiceImpl.loggerStatusEvent
+															.debug("INCORRECT ATHLETE'S PACKET " + statusValue);
+											}
+											break;
 										}
-									} else if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
-										TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("INCORRECT SENSOR'S PACKET " + statusValue);
+									} else if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
+										TkStrikeCommunicationServiceImpl.loggerStatusEvent
+												.debug("INCORRECT SENSOR'S PACKET " + statusValue);
 									}
-								} catch(Exception e) {
-									if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-										TkStrikeCommunicationServiceImpl.loggerStatusEvent.error("EXCEPTION PROCESSING Status Packet "
-												+ workingReaded, e);
+								} catch (Exception e) {
+									if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+										TkStrikeCommunicationServiceImpl.loggerStatusEvent
+												.error("EXCEPTION PROCESSING Status Packet " + workingReaded, e);
 								}
-							} else if("***".equals(workingReaded)) {
+							} else if ("***".equals(workingReaded)) {
 								TkStrikeCommunicationServiceImpl.loggerCommEvent.debug("Hem llegit VALOR DEL TOGGLE");
-							} else if(StringUtils.isNumeric(workingReaded)) {
+							} else if (StringUtils.isNumeric(workingReaded)) {
 								TkStrikeCommunicationServiceImpl.loggerCommEvent.debug("Hem llegit valor numèric");
 							} else {
 								boolean someNode = false;
-								if(TkStrikeCommunicationServiceImpl.isShowIDResponsePattern.matcher(workingReaded).lookingAt())
-									TkStrikeCommunicationServiceImpl.loggerCommEvent.info("IS A SHOW ID RESPONSE PATTERN");
-								if(workingReaded.startsWith("showID?") && workingReaded.length() > 7) {
+								if (TkStrikeCommunicationServiceImpl.isShowIDResponsePattern.matcher(workingReaded)
+										.lookingAt())
+									TkStrikeCommunicationServiceImpl.loggerCommEvent
+											.info("IS A SHOW ID RESPONSE PATTERN");
+								if (workingReaded.startsWith("showID?") && workingReaded.length() > 7) {
 									workingReaded = StringUtils.substringAfter(workingReaded, "showID?");
-									if(TkStrikeCommunicationServiceImpl.loggerCommEvent.isDebugEnabled())
-										TkStrikeCommunicationServiceImpl.loggerCommEvent.debug("Starts with showID after substring " + workingReaded);
+									if (TkStrikeCommunicationServiceImpl.loggerCommEvent.isDebugEnabled())
+										TkStrikeCommunicationServiceImpl.loggerCommEvent
+												.debug("Starts with showID after substring " + workingReaded);
 								}
 								String nodesWorking = StringUtils.substringBefore(workingReaded, "Judge");
 								String judgesWorking = "Judge" + StringUtils.substringAfter(workingReaded, "Judge");
-								if(StringUtils.isNotBlank(nodesWorking) &&
-										TkStrikeCommunicationServiceImpl.this.workWithReadNodesString(nodesWorking, "n"))
+								if (StringUtils.isNotBlank(nodesWorking) && workWithReadNodesString(nodesWorking, "n"))
 									someNode = true;
-								if(StringUtils.isNotBlank(judgesWorking) && ! "Judge".equals(judgesWorking) &&
-										TkStrikeCommunicationServiceImpl.this.workWithReadNodesString(judgesWorking, "Judge"))
+								if (StringUtils.isNotBlank(judgesWorking) && !"Judge".equals(judgesWorking)
+										&& workWithReadNodesString(judgesWorking, "Judge"))
 									someNode = true;
-								if(someNode)
-									if(TkStrikeCommunicationServiceImpl.this.networkConfiguration.areAllNodesInitialized().booleanValue()) {
-										TkStrikeCommunicationServiceImpl.logger.debug("S'ha determinat tota la xarxa...");
-										TkStrikeCommunicationServiceImpl.this.hasSendShowID = false;
-										TkStrikeCommunicationServiceImpl.this.networkConfiguration.setNetworkWasStarted(Boolean.TRUE);
-										TkStrikeCommunicationServiceImpl.this.networkConfiguration.setChannelNumber(Integer.valueOf(14));
-										TkStrikeCommunicationServiceImpl.this.networkConfiguration.calculateNumberOfJudges();
-										TkStrikeCommunicationServiceImpl.this.networkConfiguration.calculateNumberOfGroups();
-										TkStrikeCommunicationServiceImpl.this.fireNewChangeNetworkConfigurationEvent(Long.valueOf(System
-												.currentTimeMillis()), TkStrikeCommunicationServiceImpl.this.networkStatus,
-												TkStrikeCommunicationServiceImpl.this.networkConfiguration);
-										NetworkStatus last = TkStrikeCommunicationServiceImpl.this.networkStatus;
-										TkStrikeCommunicationServiceImpl.this.networkStatus = NetworkStatus.OK;
-										TkStrikeCommunicationServiceImpl.this.fireNewChangeNetworkStatusEvent(Long.valueOf(System
-												.currentTimeMillis()), TkStrikeCommunicationServiceImpl.this.networkStatus, last);
+								if (someNode)
+									if (networkConfiguration.areAllNodesInitialized().booleanValue()) {
+										TkStrikeCommunicationServiceImpl.logger
+												.debug("S'ha determinat tota la xarxa...");
+										hasSendShowID = false;
+										networkConfiguration.setNetworkWasStarted(Boolean.TRUE);
+										networkConfiguration.setChannelNumber(Integer.valueOf(14));
+										networkConfiguration.calculateNumberOfJudges();
+										networkConfiguration.calculateNumberOfGroups();
+										fireNewChangeNetworkConfigurationEvent(Long.valueOf(System.currentTimeMillis()),
+												networkStatus, networkConfiguration);
+										NetworkStatus last = networkStatus;
+										networkStatus = NetworkStatus.OK;
+										fireNewChangeNetworkStatusEvent(Long.valueOf(System.currentTimeMillis()),
+												networkStatus, last);
 										try {
-											TkStrikeCommunicationServiceImpl.this._startGetData();
-										} catch(SerialPortException e) {
+											_startGetData();
+										} catch (SerialPortException e) {
 											e.printStackTrace();
 										}
 									}
 							}
 							workingReaded = resta;
-						} while(StringUtils.isNotBlank(workingReaded));
+						} while (StringUtils.isNotBlank(workingReaded));
 					}
 				}
-			} catch(Exception e) {
+			} catch (Exception e) {
 				TkStrikeCommunicationServiceImpl.logger.error("Error on Serial", e);
 			}
 		}
 
-		private void workWithJudgeStatusEvent(Long eventTimestamp, String value, String judgeNodeId, SimpleIntegerProperty prevBadTimes,
-				String nativePacket) {
-			if("0".equals(value)) {
+		private void workWithJudgeStatusEvent(Long eventTimestamp, String value, String judgeNodeId,
+				SimpleIntegerProperty prevBadTimes, String nativePacket) {
+			if ("0".equals(value)) {
 				prevBadTimes.set(0);
-				StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, TkStrikeCommunicationServiceImpl.this.networkStatus, judgeNodeId,
-						Boolean.FALSE, "0".equals(value) ? Boolean.TRUE : Boolean.FALSE, Double.valueOf("2".equals(value) ? 0.0D : 4.0D), Double
-								.valueOf("2".equals(value) ? 0.0D : 90.0D), nativePacket);
-				TkStrikeCommunicationServiceImpl.this.fireNewStatusEvent(newStatusEvent);
-			} else if("1".equals(value)) {
+				StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, networkStatus, judgeNodeId, Boolean.FALSE,
+						"0".equals(value) ? Boolean.TRUE : Boolean.FALSE,
+						Double.valueOf("2".equals(value) ? 0.0D : 4.0D),
+						Double.valueOf("2".equals(value) ? 0.0D : 90.0D), nativePacket);
+				fireNewStatusEvent(newStatusEvent);
+			} else if ("1".equals(value)) {
 				prevBadTimes.set(prevBadTimes.get() + 1);
-				if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-					TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Judge " + judgeNodeId + " is OffLine.. times? " + prevBadTimes.get());
-				if(prevBadTimes.get() >= TkStrikeCommunicationServiceImpl.this.nodeConnBadTimesAllowed.intValue()) {
-					if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-						TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Judge " + judgeNodeId
-								+ " has exceeded number of offline allowed times");
-					StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, TkStrikeCommunicationServiceImpl.this.networkStatus, judgeNodeId,
+				if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+					TkStrikeCommunicationServiceImpl.loggerStatusEvent
+							.debug("Judge " + judgeNodeId + " is OffLine.. times? " + prevBadTimes.get());
+				if (prevBadTimes.get() >= nodeConnBadTimesAllowed.intValue()) {
+					if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+						TkStrikeCommunicationServiceImpl.loggerStatusEvent
+								.debug("Judge " + judgeNodeId + " has exceeded number of offline allowed times");
+					StatusEvent newStatusEvent = new StatusEvent(eventTimestamp, networkStatus, judgeNodeId,
 							Boolean.TRUE, Boolean.FALSE, Double.valueOf(0.0D), Double.valueOf(0.0D), nativePacket);
-					TkStrikeCommunicationServiceImpl.this.fireNewStatusEvent(newStatusEvent);
+					fireNewStatusEvent(newStatusEvent);
 				}
 			}
 		}
 
 		private String _getBodyNodeId4Athlete(String prefix, Integer member) {
-			NetworkAthletesGroupConfigDto groupConfig = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-					member);
-			if(groupConfig != null) {
-				if("cb".equals(prefix))
+			NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+			if (groupConfig != null) {
+				if ("cb".equals(prefix))
 					return groupConfig.getBodyBlueNodeId();
-				if("cr".equals(prefix))
+				if ("cr".equals(prefix))
 					return groupConfig.getBodyRedNodeId();
 			}
 			return null;
 		}
 
 		private String _getHeadNodeId4Athlete(String prefix, Integer member) {
-			NetworkAthletesGroupConfigDto groupConfig = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-					member);
-			if(groupConfig != null) {
-				if("cb".equals(prefix))
+			NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+			if (groupConfig != null) {
+				if ("cb".equals(prefix))
 					return groupConfig.getHeadBlueNodeId();
-				if("cr".equals(prefix))
+				if ("cr".equals(prefix))
 					return groupConfig.getHeadRedNodeId();
 			}
 			return null;
 		}
 
 		private SimpleIntegerProperty _getBodyNodeBadTimes4Athlete(String prefix, Integer member) {
-			NetworkAthletesGroupConfigDto groupConfig = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-					member);
-			if(groupConfig != null) {
-				if("cb".equals(prefix))
+			NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+			if (groupConfig != null) {
+				if ("cb".equals(prefix))
 					return groupConfig.bodyBlueNodeBadTimesProperty();
-				if("cr".equals(prefix))
+				if ("cr".equals(prefix))
 					return groupConfig.bodyRedNodeBadTimesProperty();
 			}
 			return null;
 		}
 
 		private SimpleIntegerProperty _getHeadNodeBadTimes4Athlete(String prefix, Integer member) {
-			NetworkAthletesGroupConfigDto groupConfig = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-					member);
-			if(groupConfig != null) {
-				if("cb".equals(prefix))
+			NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+			if (groupConfig != null) {
+				if ("cb".equals(prefix))
 					return groupConfig.headBlueNodeBadTimesProperty();
-				if("cr".equals(prefix))
+				if ("cr".equals(prefix))
 					return groupConfig.headRedNodeBadTimesProperty();
 			}
 			return null;
 		}
 
 		private SimpleBooleanProperty _getBodyNodeInitialized4Athlete(String prefix, Integer member) {
-			NetworkAthletesGroupConfigDto groupConfig = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-					member);
-			if(groupConfig != null) {
-				if("cb".equals(prefix))
+			NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+			if (groupConfig != null) {
+				if ("cb".equals(prefix))
 					return groupConfig.bodyBlueNodeInitializedProperty();
-				if("cr".equals(prefix))
+				if ("cr".equals(prefix))
 					return groupConfig.bodyRedNodeInitializedProperty();
 			}
 			return null;
 		}
 
 		private SimpleBooleanProperty _getHeadNodeInitialized4Athlete(String prefix, Integer member) {
-			NetworkAthletesGroupConfigDto groupConfig = TkStrikeCommunicationServiceImpl.this.networkConfiguration.getNetworkAthletesGroupConfig(
-					member);
-			if(groupConfig != null) {
-				if("cb".equals(prefix))
+			NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+			if (groupConfig != null) {
+				if ("cb".equals(prefix))
 					return groupConfig.headBlueNodeInitializedProperty();
-				if("cr".equals(prefix))
+				if ("cr".equals(prefix))
 					return groupConfig.headRedNodeInitializedProperty();
 			}
 			return null;
 		}
 
-		private void workWithAthleteMemberStatusEvent(Long eventTimestamp, String prefix, String value, Integer member, String nativePacket) {
+		private void workWithAthleteMemberStatusEvent(Long eventTimestamp, String prefix, String value, Integer member,
+				String nativePacket) {
 			String comm = value.substring(0, 1);
 			String conn = value.substring(1, 2);
 			String battery = value.substring(2, 3);
-			if(member.intValue() <= TkStrikeCommunicationServiceImpl.this.networkConfiguration.getGroupsNumber().intValue()) {
+			if (member.intValue() <= networkConfiguration.getGroupsNumber().intValue()) {
 				SimpleBooleanProperty bodyInitialized = _getBodyNodeInitialized4Athlete(prefix, member);
 				SimpleBooleanProperty headInitialized = _getHeadNodeInitialized4Athlete(prefix, member);
 				SimpleIntegerProperty bodyBadTimes = _getBodyNodeBadTimes4Athlete(prefix, member);
 				SimpleIntegerProperty headBadTimes = _getHeadNodeBadTimes4Athlete(prefix, member);
 				String bodyNodeId = _getBodyNodeId4Athlete(prefix, member);
 				String headNodeId = _getHeadNodeId4Athlete(prefix, member);
-				if(bodyInitialized != null && headInitialized != null && bodyBadTimes != null && headBadTimes != null) {
+				if (bodyInitialized != null && headInitialized != null && bodyBadTimes != null
+						&& headBadTimes != null) {
 					boolean bodyOffline = false;
 					boolean headOffline = false;
-					boolean bodySensorOk = (("0".equals(conn) || "2".equals(conn)) ? Boolean.TRUE : Boolean.FALSE).booleanValue();
+					boolean bodySensorOk = (("0".equals(conn) || "2".equals(conn)) ? Boolean.TRUE : Boolean.FALSE)
+							.booleanValue();
 					boolean headSensorOk = ("0".equals(conn) ? Boolean.TRUE : Boolean.FALSE).booleanValue();
 					double bodyBattery = ("0".equals(battery) || "2".equals(battery)) ? 4.0D : 0.0D;
 					double bodyBatteryPct = ("0".equals(battery) || "2".equals(battery)) ? 100.0D : 0.0D;
 					double headBattery = "0".equals(battery) ? 4.0D : 0.0D;
 					double headBatteryPct = "0".equals(battery) ? 100.0D : 0.0D;
-					if("0".equals(comm)) {
+					if ("0".equals(comm)) {
 						bodyBadTimes.set(0);
 						headBadTimes.set(0);
 						bodyInitialized.set(true);
 						headInitialized.set(true);
-						if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
 							TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug(prefix + " are OK BOTH!!!");
 						bodyOffline = false;
 						headOffline = false;
-					} else if("1".equals(comm)) {
+					} else if ("1".equals(comm)) {
 						bodyBadTimes.set(bodyBadTimes.get() + 1);
 						headBadTimes.set(headBadTimes.get() + 1);
-						if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Body " + bodyNodeId + " is OffLine.. times? " + bodyBadTimes
-									.get());
-						if(bodyBadTimes.get() >= TkStrikeCommunicationServiceImpl.this.nodeConnBadTimesAllowed.intValue() ||
-								! bodyInitialized.get()) {
-							if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-								TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Body " + bodyNodeId
-										+ " has exceeded number of offline allowed times" + bodyBadTimes.get() + " Or initialized? " + bodyInitialized
-												.get());
+						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+							TkStrikeCommunicationServiceImpl.loggerStatusEvent
+									.debug("Body " + bodyNodeId + " is OffLine.. times? " + bodyBadTimes.get());
+						if (bodyBadTimes.get() >= nodeConnBadTimesAllowed.intValue() || !bodyInitialized.get()) {
+							if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+								TkStrikeCommunicationServiceImpl.loggerStatusEvent
+										.debug("Body " + bodyNodeId + " has exceeded number of offline allowed times"
+												+ bodyBadTimes.get() + " Or initialized? " + bodyInitialized.get());
 							bodyOffline = Boolean.TRUE.booleanValue();
 						}
-						if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Head " + headNodeId + " is OffLine.. times? " + headBadTimes
-									.get());
-						if(headBadTimes.get() >= TkStrikeCommunicationServiceImpl.this.nodeConnBadTimesAllowed.intValue() ||
-								! headInitialized.get()) {
-							if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-								TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Head " + headNodeId
-										+ " has exceeded number of offline allowed times: " + headBadTimes.get() + " Or initialized? "
-										+ headInitialized.get());
+						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+							TkStrikeCommunicationServiceImpl.loggerStatusEvent
+									.debug("Head " + headNodeId + " is OffLine.. times? " + headBadTimes.get());
+						if (headBadTimes.get() >= nodeConnBadTimesAllowed.intValue() || !headInitialized.get()) {
+							if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+								TkStrikeCommunicationServiceImpl.loggerStatusEvent
+										.debug("Head " + headNodeId + " has exceeded number of offline allowed times: "
+												+ headBadTimes.get() + " Or initialized? " + headInitialized.get());
 							headOffline = Boolean.TRUE.booleanValue();
 						}
-					} else if("2".equals(comm)) {
+					} else if ("2".equals(comm)) {
 						bodyBadTimes.set(0);
 						bodyInitialized.set(true);
 						headBadTimes.set(headBadTimes.get() + 1);
-						if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-							TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Head " + headNodeId + " is OffLine.. times? " + headBadTimes
-									.get());
-						if(headBadTimes.get() >= TkStrikeCommunicationServiceImpl.this.nodeConnBadTimesAllowed.intValue() ||
-								! headInitialized.get()) {
-							if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
-								TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Head " + headNodeId
-										+ " has exceeded number of offline allowed times:" + headBadTimes.get() + " Or initialized? "
-										+ headInitialized.get());
+						if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+							TkStrikeCommunicationServiceImpl.loggerStatusEvent
+									.debug("Head " + headNodeId + " is OffLine.. times? " + headBadTimes.get());
+						if (headBadTimes.get() >= nodeConnBadTimesAllowed.intValue() || !headInitialized.get()) {
+							if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled())
+								TkStrikeCommunicationServiceImpl.loggerStatusEvent
+										.debug("Head " + headNodeId + " has exceeded number of offline allowed times:"
+												+ headBadTimes.get() + " Or initialized? " + headInitialized.get());
 							headOffline = Boolean.TRUE.booleanValue();
 						}
 					}
-					TkStrikeCommunicationServiceImpl.this.fireNewStatusEvent(new StatusEvent(eventTimestamp,
-							TkStrikeCommunicationServiceImpl.this.networkStatus, bodyNodeId,
+					fireNewStatusEvent(new StatusEvent(eventTimestamp, networkStatus, bodyNodeId,
 
-							Boolean.valueOf(bodyOffline),
-							Boolean.valueOf(bodySensorOk),
-							Double.valueOf(bodyBattery),
+							Boolean.valueOf(bodyOffline), Boolean.valueOf(bodySensorOk), Double.valueOf(bodyBattery),
 							Double.valueOf(bodyBatteryPct), nativePacket));
-					TkStrikeCommunicationServiceImpl.this.fireNewStatusEvent(new StatusEvent(eventTimestamp,
-							TkStrikeCommunicationServiceImpl.this.networkStatus, headNodeId,
+					fireNewStatusEvent(new StatusEvent(eventTimestamp, networkStatus, headNodeId,
 
-							Boolean.valueOf(headOffline),
-							Boolean.valueOf(headSensorOk),
-							Double.valueOf(headBattery),
+							Boolean.valueOf(headOffline), Boolean.valueOf(headSensorOk), Double.valueOf(headBattery),
 							Double.valueOf(headBatteryPct), nativePacket));
-				} else if(TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
-					TkStrikeCommunicationServiceImpl.loggerStatusEvent.debug("Can't get body or head bad times for string:" + value);
+				} else if (TkStrikeCommunicationServiceImpl.loggerStatusEvent.isDebugEnabled()) {
+					TkStrikeCommunicationServiceImpl.loggerStatusEvent
+							.debug("Can't get body or head bad times for string:" + value);
 				}
 			}
 		}
@@ -913,21 +951,21 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	private boolean workWithReadNodesString(String nodesString, String prefix) {
 		boolean someNode = false;
 		int countMatches = StringUtils.countMatches(nodesString, ":");
-		if(countMatches > 1) {
+		if (countMatches > 1) {
 			String[] arrNodeIds = nodesString.split(prefix + "(\\d+):");
 			String[] arrNodes = nodesString.split(prefix);
-			if(arrNodeIds.length == arrNodes.length)
-				for(int i = 0; i < arrNodes.length; i++) {
-					if(StringUtils.isNotBlank(arrNodes[i]) && StringUtils.isNotBlank(arrNodeIds[i])) {
+			if (arrNodeIds.length == arrNodes.length)
+				for (int i = 0; i < arrNodes.length; i++) {
+					if (StringUtils.isNotBlank(arrNodes[i]) && StringUtils.isNotBlank(arrNodeIds[i])) {
 						String node = StringUtils.substringBefore(arrNodes[i], ":");
 						String nodeId = arrNodeIds[i];
-						if(workWithNode(prefix, nodeId, node))
+						if (workWithNode(prefix, nodeId, node))
 							someNode = true;
 					}
 				}
-		} else if(countMatches == 1) {
-			return workWithNode(prefix, StringUtils.substringAfter(nodesString, ":"), StringUtils.substringBefore(StringUtils.substringAfter(
-					nodesString, prefix), ":"));
+		} else if (countMatches == 1) {
+			return workWithNode(prefix, StringUtils.substringAfter(nodesString, ":"),
+					StringUtils.substringBefore(StringUtils.substringAfter(nodesString, prefix), ":"));
 		}
 		return someNode;
 	}
@@ -935,67 +973,68 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	private boolean workWithNode(String prefix, String nodeId, String node) {
 		boolean someNode = false;
 		Integer nodeNumber = Integer.valueOf(Integer.parseInt(node));
-		if("n".equals(prefix)) {
+		if ("n".equals(prefix)) {
 			int member = 1;
-			while(nodeNumber.intValue() > 4) {
+			while (nodeNumber.intValue() > 4) {
 				member++;
 				nodeNumber = Integer.valueOf(nodeNumber.intValue() - 4);
 			}
-			NetworkAthletesGroupConfigDto groupConfig = this.networkConfiguration.getNetworkAthletesGroupConfig(Integer.valueOf(member));
-			switch(nodeNumber.intValue()) {
-				case 1:
-					groupConfig.setBodyBlueNodeId(nodeId);
-					groupConfig.setBodyBlueNodeBadTimes(0);
-					groupConfig.setBodyBlueNodeInitialized(false);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("Member " + member + " blueBodyNodeId OK");
-					break;
-				case 2:
-					groupConfig.setHeadBlueNodeId(nodeId);
-					groupConfig.setHeadBlueNodeBadTimes(0);
-					groupConfig.setHeadBlueNodeInitialized(false);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("Member " + member + " blueHeadNodeId OK");
-					break;
-				case 3:
-					groupConfig.setBodyRedNodeId(nodeId);
-					groupConfig.setBodyRedNodeBadTimes(0);
-					groupConfig.setBodyRedNodeInitialized(false);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("Member " + member + " redBodyNodeId OK");
-					break;
-				case 4:
-					groupConfig.setHeadRedNodeId(nodeId);
-					groupConfig.setHeadRedNodeBadTimes(0);
-					groupConfig.setHeadRedNodeInitialized(false);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("Member " + member + " redHeadGNodeId OK");
-					break;
+			NetworkAthletesGroupConfigDto groupConfig = this.networkConfiguration
+					.getNetworkAthletesGroupConfig(Integer.valueOf(member));
+			switch (nodeNumber.intValue()) {
+			case 1:
+				groupConfig.setBodyBlueNodeId(nodeId);
+				groupConfig.setBodyBlueNodeBadTimes(0);
+				groupConfig.setBodyBlueNodeInitialized(false);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("Member " + member + " blueBodyNodeId OK");
+				break;
+			case 2:
+				groupConfig.setHeadBlueNodeId(nodeId);
+				groupConfig.setHeadBlueNodeBadTimes(0);
+				groupConfig.setHeadBlueNodeInitialized(false);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("Member " + member + " blueHeadNodeId OK");
+				break;
+			case 3:
+				groupConfig.setBodyRedNodeId(nodeId);
+				groupConfig.setBodyRedNodeBadTimes(0);
+				groupConfig.setBodyRedNodeInitialized(false);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("Member " + member + " redBodyNodeId OK");
+				break;
+			case 4:
+				groupConfig.setHeadRedNodeId(nodeId);
+				groupConfig.setHeadRedNodeBadTimes(0);
+				groupConfig.setHeadRedNodeInitialized(false);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("Member " + member + " redHeadGNodeId OK");
+				break;
 			}
 		} else {
-			switch(nodeNumber.intValue()) {
-				case 1:
-					this.networkConfiguration.setJudge1NodeId(nodeId);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("judge1NodeId OK");
-					break;
-				case 2:
-					this.networkConfiguration.setJudge2NodeId(nodeId);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("judge2NodeId OK");
-					break;
-				case 3:
-					this.networkConfiguration.setJudge3NodeId(nodeId);
-					someNode = true;
-					if(loggerCommEvent.isDebugEnabled())
-						loggerCommEvent.debug("judge3NodeId OK");
-					break;
+			switch (nodeNumber.intValue()) {
+			case 1:
+				this.networkConfiguration.setJudge1NodeId(nodeId);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("judge1NodeId OK");
+				break;
+			case 2:
+				this.networkConfiguration.setJudge2NodeId(nodeId);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("judge2NodeId OK");
+				break;
+			case 3:
+				this.networkConfiguration.setJudge3NodeId(nodeId);
+				someNode = true;
+				if (loggerCommEvent.isDebugEnabled())
+					loggerCommEvent.debug("judge3NodeId OK");
+				break;
 			}
 		}
 		return someNode;

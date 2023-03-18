@@ -17,14 +17,13 @@ import com.xtremis.daedo.tkstrike.configuration.TkStrikeCommunicationTypeUtil;
 import com.xtremis.daedo.tkstrike.configuration.TkStrikeCommunicationTypeValue;
 import com.xtremis.daedo.tkstrike.orm.model.Rules;
 import com.xtremis.daedo.tkstrike.service.RulesService;
-import com.xtremis.daedo.tkstrike.tools.TkStrikeUtil;
+import com.xtremis.daedo.tkstrike.tools.TkProperties;
 import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeBaseController;
 import com.xtremis.daedo.tkstrike.ui.model.RulesEntry;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-
 
 // see com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationNetworkController
 @Component
@@ -41,10 +40,12 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 	protected RulesEntry rulesEntry = new RulesEntry();
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {}
+	public void afterPropertiesSet() throws Exception {
+	}
 
 	@Override
 	public void onWindowShowEvent() {
@@ -53,7 +54,7 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 
 			@Override
 			public void run() {
-				rulesEntry = (RulesEntry)getAppStatusWorker().getRulesEntry();
+				rulesEntry = (RulesEntry) getAppStatusWorker().getRulesEntry();
 			}
 		});
 	}
@@ -65,10 +66,10 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 			public Void call() throws Exception {
 				try {
 					updateRules();
-					if( ! setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue.NORMAL)) {
+					if (!setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue.NORMAL)) {
 						showInfoDialog("Updated", "Pathed for WT: " + getUpdateMessage("Hardware required"));
 					}
-				} catch(TkStrikeCommunicationException e) {
+				} catch (TkStrikeCommunicationException e) {
 					showErrorDialog(getMessage("title.default.error"), getMessage("message.error.serialComm"));
 				}
 				return null;
@@ -83,10 +84,10 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 			public Void call() throws Exception {
 				try {
 					updateRules();
-					if( ! setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue.SIMULATOR)) {
+					if (!setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue.SIMULATOR)) {
 						showInfoDialog("Updated", "Pathed for Kido: " + getUpdateMessage("Hardware disconnected"));
 					}
-				} catch(TkStrikeCommunicationException e) {
+				} catch (TkStrikeCommunicationException e) {
 					showErrorDialog(getMessage("title.default.error"), getMessage("message.error.serialComm"));
 				}
 				return null;
@@ -99,18 +100,18 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 	private boolean setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue newValue) {
 		TkStrikeCommunicationTypeValue currentType = TkStrikeCommunicationTypeUtil.getInstance()
 				.getTkStrikeCommunicationType();
-		if(currentType == newValue) {
+		if (currentType == newValue) {
 			return false;
 		}
 		try {
 			TkStrikeCommunicationTypeUtil.getInstance().setTkStrikeCommunicationType(newValue);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			manageException(e, "ChangeCommunicationType", null);
 		}
 		showInfoDialog("Restart", "tkStrike will stop in few seconds. You need to restart it");
 		try {
 			TimeUnit.SECONDS.sleep(1L);
-		} catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		getAppStatusWorker().doForceExitTkStrike();
@@ -126,15 +127,15 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 	}
 
 	private void updateRules() {
-		TkStrikeUtil util = TkStrikeUtil.getInstance();
+		TkProperties tkProperties = TkProperties.getInstance();
 		rulesEntry.setForceMaxGamJomAllowed(Boolean.TRUE);
-		rulesEntry.setMaxGamJomAllowed(util.getGamJom());
-		rulesEntry.differencialScoreProperty().set(util.getDifferentialScore());
+		rulesEntry.setMaxGamJomAllowed(tkProperties.getGamJom());
+		rulesEntry.differencialScoreProperty().set(tkProperties.getDifferentialScore());
 		try {
 			rulesService.update(rulesEntry);
-		} catch(TransactionSystemException e) {
+		} catch (TransactionSystemException e) {
 			// ignore
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage(), e);
 			showErrorDialog(getMessage("title.default.error"), e.toString());
 		}
