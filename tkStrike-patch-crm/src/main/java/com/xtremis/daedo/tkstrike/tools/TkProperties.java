@@ -89,16 +89,16 @@ public class TkProperties {
 		return getAndWriteProperty(LOGGING_LEVEL_PREFIX + key, defaultLevel, new LevelConverter()).writeIfNotExist();
 	}
 
-	public Generation getGeneration() {
-		return Generation.valueOf(getString(KEY_GENERATION, DEFAULT.name()).toUpperCase());
-	}
-
-	public void setGeneration(Generation generation) throws IOException {
-		if (generation == null) {
-			return;
-		}
-		setString(KEY_GENERATION, generation.name());
-	}
+//	public Generation getGeneration() {
+//		return Generation.valueOf(getString(KEY_GENERATION, DEFAULT.name()).toUpperCase());
+//	}
+//
+//	public void setGeneration(Generation generation) throws IOException {
+//		if (generation == null) {
+//			return;
+//		}
+//		setString(KEY_GENERATION, generation.name());
+//	}
 
 	public NodeIds getNodeIds() throws IOException {
 		boolean updated = false;

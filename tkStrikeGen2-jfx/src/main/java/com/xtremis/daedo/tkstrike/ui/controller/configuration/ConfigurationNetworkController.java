@@ -45,7 +45,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-
 @Component
 public class ConfigurationNetworkController extends NetworkStatusBaseController {
 
@@ -234,7 +233,7 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void run() {
-				mainView.setVisible( ! show);
+				mainView.setVisible(!show);
 				piPanel.setVisible(show);
 			}
 		});
@@ -246,15 +245,17 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 		Platform.runLater(new Runnable() {
 
 			@Override
-			public void run() {}
+			public void run() {
+			}
 		});
 	}
 
 	@Override
-	protected void _customOnWindowsCloseEvent() {}
+	protected void _customOnWindowsCloseEvent() {
+	}
 
 	public void doStartNetwork() {
-		if(isFormValid()) {
+		if (isFormValid()) {
 			showProgressIndicator(true);
 			TkStrikeExecutors.executeInThreadPool(new Callable<Void>() {
 
@@ -263,19 +264,16 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 					NetworkConfigurationDto ncDto = currentNetworkConfiguration.getNetworkConfigurationDto();
 					try {
 						tkStrikeCommunicationService.startNetwork(ncDto);
-						getAppStatusWorker().setNetworkConfigurationEntry(
-								currentNetworkConfiguration);
+						getAppStatusWorker().setNetworkConfigurationEntry(currentNetworkConfiguration);
 						currentNetworkConfiguration.networkWasStartedProperty.set(true);
 						try {
-							networkConfigurationService.update(
-									currentNetworkConfiguration.getNetworkConfiguration());
-						} catch(TkStrikeServiceException e) {
+							networkConfigurationService.update(currentNetworkConfiguration.getNetworkConfiguration());
+						} catch (TkStrikeServiceException e) {
 							e.printStackTrace();
 						}
 						showProgressIndicator(false);
-					} catch(TkStrikeCommunicationException e) {
-						showErrorDialog(getMessage("title.default.error"),
-								getMessage("message.error.serialComm"));
+					} catch (TkStrikeCommunicationException e) {
+						showErrorDialog(getMessage("title.default.error"), getMessage("message.error.serialComm"));
 					} finally {
 						showProgressIndicator(false);
 					}
@@ -292,11 +290,10 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			@Override
 			public void run() {
 				try {
-					tkStrikeCommunicationService.tryToRecognizeWithConfig(
-							currentNetworkConfiguration.getNetworkConfigurationDto(), true);
-				} catch(TkStrikeCommunicationException e) {
-					showErrorDialog(getMessage("title.default.error"),
-							getMessage("message.error.serialComm"));
+					tkStrikeCommunicationService
+							.tryToRecognizeWithConfig(currentNetworkConfiguration.getNetworkConfigurationDto(), true);
+				} catch (TkStrikeCommunicationException e) {
+					showErrorDialog(getMessage("title.default.error"), getMessage("message.error.serialComm"));
 				} finally {
 					showProgressIndicator(false);
 				}
@@ -306,85 +303,85 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 	@Override
 	protected Collection<Control> getFormControls() {
-		return FXCollections.observableArrayList(new Control[] {this.txtJ1, this.txtJ2, this.txtJ3, this.txtG1BB, this.txtG1HB, this.txtG1BR,
-				this.txtG1HR});
+		return FXCollections.observableArrayList(new Control[] { this.txtJ1, this.txtJ2, this.txtJ3, this.txtG1BB,
+				this.txtG1HB, this.txtG1BR, this.txtG1HR });
 	}
 
 	@Override
 	public LinkedHashSet<FormValidationError> validateForm() {
 		LinkedHashSet<FormValidationError> res = null;
-		if(this.cmbNJudges.getValue().intValue() > 0 &&
-				StringUtils.isBlank(this.txtJ1.getText())) {
+		if (this.cmbNJudges.getValue().intValue() > 0 && StringUtils.isBlank(this.txtJ1.getText())) {
 			res = new LinkedHashSet<>();
-			res.add(new FormValidationError(this.currentNetworkConfiguration, "judge1NodeId", this.txtJ1, getMessage("validation.required")));
+			res.add(new FormValidationError(this.currentNetworkConfiguration, "judge1NodeId", this.txtJ1,
+					getMessage("validation.required")));
 		}
-		if(this.cmbNJudges.getValue().intValue() > 1 &&
-				StringUtils.isBlank(this.txtJ2.getText())) {
-			if(res == null)
+		if (this.cmbNJudges.getValue().intValue() > 1 && StringUtils.isBlank(this.txtJ2.getText())) {
+			if (res == null)
 				res = new LinkedHashSet<>();
-			res.add(new FormValidationError(this.currentNetworkConfiguration, "judge2NodeId", this.txtJ2, getMessage("validation.required")));
+			res.add(new FormValidationError(this.currentNetworkConfiguration, "judge2NodeId", this.txtJ2,
+					getMessage("validation.required")));
 		}
-		if(this.cmbNJudges.getValue().intValue() > 2 &&
-				StringUtils.isBlank(this.txtJ3.getText())) {
-			if(res == null)
+		if (this.cmbNJudges.getValue().intValue() > 2 && StringUtils.isBlank(this.txtJ3.getText())) {
+			if (res == null)
 				res = new LinkedHashSet<>();
-			res.add(new FormValidationError(this.currentNetworkConfiguration, "judge3NodeId", this.txtJ3, getMessage("validation.required")));
+			res.add(new FormValidationError(this.currentNetworkConfiguration, "judge3NodeId", this.txtJ3,
+					getMessage("validation.required")));
 		}
-		if(this.tgBodySensors.isSelected()) {
-			if(StringUtils.isBlank(this.txtG1BB.getText())) {
-				if(res == null)
+		if (this.tgBodySensors.isSelected()) {
+			if (StringUtils.isBlank(this.txtG1BB.getText())) {
+				if (res == null)
 					res = new LinkedHashSet<>();
-				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.bodyBlueNodeId", this.txtG1BB, getMessage(
-						"validation.required")));
+				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.bodyBlueNodeId",
+						this.txtG1BB, getMessage("validation.required")));
 			}
-			if(StringUtils.isBlank(this.txtG1BR.getText())) {
-				if(res == null)
+			if (StringUtils.isBlank(this.txtG1BR.getText())) {
+				if (res == null)
 					res = new LinkedHashSet<>();
-				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.bodyRedNodeId", this.txtG1BR, getMessage(
-						"validation.required")));
-			}
-		}
-		if(this.tgHeadSensors.isSelected()) {
-			if(StringUtils.isBlank(this.txtG1HB.getText())) {
-				if(res == null)
-					res = new LinkedHashSet<>();
-				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.headBlueNodeId", this.txtG1HB, getMessage(
-						"validation.required")));
-			}
-			if(StringUtils.isBlank(this.txtG1HR.getText())) {
-				if(res == null)
-					res = new LinkedHashSet<>();
-				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.headRedNodeId", this.txtG1HR, getMessage(
-						"validation.required")));
+				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.bodyRedNodeId",
+						this.txtG1BR, getMessage("validation.required")));
 			}
 		}
-		if(isTkStrikeGen2Version() && this.currentNetworkConfiguration.getGroup2Enabled().booleanValue()) {
-			if(this.tgHeadSensors.isSelected()) {
-				if(StringUtils.isBlank(this.txtG2HB.getText())) {
-					if(res == null)
+		if (this.tgHeadSensors.isSelected()) {
+			if (StringUtils.isBlank(this.txtG1HB.getText())) {
+				if (res == null)
+					res = new LinkedHashSet<>();
+				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.headBlueNodeId",
+						this.txtG1HB, getMessage("validation.required")));
+			}
+			if (StringUtils.isBlank(this.txtG1HR.getText())) {
+				if (res == null)
+					res = new LinkedHashSet<>();
+				res.add(new FormValidationError(this.currentNetworkConfiguration, "group1Config.headRedNodeId",
+						this.txtG1HR, getMessage("validation.required")));
+			}
+		}
+		if (isTkStrikeGen2Version() && this.currentNetworkConfiguration.getGroup2Enabled().booleanValue()) {
+			if (this.tgHeadSensors.isSelected()) {
+				if (StringUtils.isBlank(this.txtG2HB.getText())) {
+					if (res == null)
 						res = new LinkedHashSet<>();
-					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.headBlueNodeId", this.txtG2HB, getMessage(
-							"validation.required")));
+					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.headBlueNodeId",
+							this.txtG2HB, getMessage("validation.required")));
 				}
-				if(StringUtils.isBlank(this.txtG2HR.getText())) {
-					if(res == null)
+				if (StringUtils.isBlank(this.txtG2HR.getText())) {
+					if (res == null)
 						res = new LinkedHashSet<>();
-					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.headRedNodeId", this.txtG2HR, getMessage(
-							"validation.required")));
+					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.headRedNodeId",
+							this.txtG2HR, getMessage("validation.required")));
 				}
 			}
-			if(this.tgBodySensors.isSelected()) {
-				if(StringUtils.isBlank(this.txtG2BB.getText())) {
-					if(res == null)
+			if (this.tgBodySensors.isSelected()) {
+				if (StringUtils.isBlank(this.txtG2BB.getText())) {
+					if (res == null)
 						res = new LinkedHashSet<>();
-					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.bodyBlueNodeId", this.txtG2BB, getMessage(
-							"validation.required")));
+					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.bodyBlueNodeId",
+							this.txtG2BB, getMessage("validation.required")));
 				}
-				if(StringUtils.isBlank(this.txtG2BR.getText())) {
-					if(res == null)
+				if (StringUtils.isBlank(this.txtG2BR.getText())) {
+					if (res == null)
 						res = new LinkedHashSet<>();
-					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.bodyRedNodeId", this.txtG2BR, getMessage(
-							"validation.required")));
+					res.add(new FormValidationError(this.currentNetworkConfiguration, "group2Config.bodyRedNodeId",
+							this.txtG2BR, getMessage("validation.required")));
 				}
 			}
 		}
@@ -397,22 +394,16 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean isSelected) {
-				if(isSelected.booleanValue()) {
-					tgBodySensors.setText(getMessage(
-							"toggle.bodySensors.enabled"));
+				if (isSelected.booleanValue()) {
+					tgBodySensors.setText(getMessage("toggle.bodySensors.enabled"));
 				} else {
-					tgBodySensors.setText(getMessage(
-							"toggle.bodySensors.disabled"));
+					tgBodySensors.setText(getMessage("toggle.bodySensors.disabled"));
 					tgHeadSensors.setSelected(false);
 				}
-				hbG2BB.setVisible((tgG2.isSelected()
-						&& tgBodySensors.isSelected()));
-				hbG2BR.setVisible((tgG2.isSelected()
-						&& tgBodySensors.isSelected()));
-				hbG2HB.setVisible((tgG2.isSelected()
-						&& tgHeadSensors.isSelected()));
-				hbG2HR.setVisible((tgG2.isSelected()
-						&& tgHeadSensors.isSelected()));
+				hbG2BB.setVisible((tgG2.isSelected() && tgBodySensors.isSelected()));
+				hbG2BR.setVisible((tgG2.isSelected() && tgBodySensors.isSelected()));
+				hbG2HB.setVisible((tgG2.isSelected() && tgHeadSensors.isSelected()));
+				hbG2HR.setVisible((tgG2.isSelected() && tgHeadSensors.isSelected()));
 			}
 		});
 		this.hbG1BB.visibleProperty().bind(this.tgBodySensors.selectedProperty());
@@ -421,21 +412,15 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean isSelected) {
-				if(isSelected.booleanValue()) {
-					tgHeadSensors.setText(getMessage(
-							"toggle.headSensors.enabled"));
+				if (isSelected.booleanValue()) {
+					tgHeadSensors.setText(getMessage("toggle.headSensors.enabled"));
 				} else {
-					tgHeadSensors.setText(getMessage(
-							"toggle.headSensors.disabled"));
+					tgHeadSensors.setText(getMessage("toggle.headSensors.disabled"));
 				}
-				hbG2BB.setVisible((tgG2.isSelected()
-						&& tgBodySensors.isSelected()));
-				hbG2BR.setVisible((tgG2.isSelected()
-						&& tgBodySensors.isSelected()));
-				hbG2HB.setVisible((tgG2.isSelected()
-						&& tgHeadSensors.isSelected()));
-				hbG2HR.setVisible((tgG2.isSelected()
-						&& tgHeadSensors.isSelected()));
+				hbG2BB.setVisible((tgG2.isSelected() && tgBodySensors.isSelected()));
+				hbG2BR.setVisible((tgG2.isSelected() && tgBodySensors.isSelected()));
+				hbG2HB.setVisible((tgG2.isSelected() && tgHeadSensors.isSelected()));
+				hbG2HR.setVisible((tgG2.isSelected() && tgHeadSensors.isSelected()));
 			}
 		});
 		this.hbG1HB.visibleProperty().bind(this.tgHeadSensors.selectedProperty());
@@ -446,7 +431,7 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean isSelected) {
 				boolean bodyEnabled = true;
 				boolean headEnabled = true;
-				if(isSelected.booleanValue()) {
+				if (isSelected.booleanValue()) {
 					tgG2.setText(getMessage("toggle.group2.enabled"));
 					bodyEnabled = tgBodySensors.isSelected();
 					headEnabled = tgHeadSensors.isSelected();
@@ -461,46 +446,42 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 				}
 				(currentNetworkConfiguration.getGroup2Config()).bodySensorsEnabledProperty.set(bodyEnabled);
 				(currentNetworkConfiguration.getGroup2Config()).headSensorsEnabledProperty.set(headEnabled);
-				hbG2BB.setVisible((tgG2.isSelected()
-						&& tgBodySensors.isSelected()));
-				hbG2BR.setVisible((tgG2.isSelected()
-						&& tgBodySensors.isSelected()));
-				hbG2HB.setVisible((tgG2.isSelected()
-						&& tgHeadSensors.isSelected()));
-				hbG2HR.setVisible((tgG2.isSelected()
-						&& tgHeadSensors.isSelected()));
+				hbG2BB.setVisible((tgG2.isSelected() && tgBodySensors.isSelected()));
+				hbG2BR.setVisible((tgG2.isSelected() && tgBodySensors.isSelected()));
+				hbG2HB.setVisible((tgG2.isSelected() && tgHeadSensors.isSelected()));
+				hbG2HR.setVisible((tgG2.isSelected() && tgHeadSensors.isSelected()));
 			}
 		});
 		int i;
-		for(i = 1; i <= 15; i++)
+		for (i = 1; i <= 15; i++)
 			this.cmbChannel.getItems().add(Integer.valueOf(i));
-		for(i = 0; i <= 3; i++)
+		for (i = 0; i <= 3; i++)
 			this.cmbNJudges.getItems().add(Integer.valueOf(i));
 		this.cmbNJudges.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Integer>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Integer> observableValue, Integer integer, Integer t1) {
-				switch(t1.intValue()) {
-					case 0:
-						currentNetworkConfiguration.judge1EnabledProperty.set(false);
-						currentNetworkConfiguration.judge2EnabledProperty.set(false);
-						currentNetworkConfiguration.judge3EnabledProperty.set(false);
-						break;
-					case 1:
-						currentNetworkConfiguration.judge1EnabledProperty.set(true);
-						currentNetworkConfiguration.judge2EnabledProperty.set(false);
-						currentNetworkConfiguration.judge3EnabledProperty.set(false);
-						break;
-					case 2:
-						currentNetworkConfiguration.judge1EnabledProperty.set(true);
-						currentNetworkConfiguration.judge2EnabledProperty.set(true);
-						currentNetworkConfiguration.judge3EnabledProperty.set(false);
-						break;
-					case 3:
-						currentNetworkConfiguration.judge1EnabledProperty.set(true);
-						currentNetworkConfiguration.judge2EnabledProperty.set(true);
-						currentNetworkConfiguration.judge3EnabledProperty.set(true);
-						break;
+				switch (t1.intValue()) {
+				case 0:
+					currentNetworkConfiguration.judge1EnabledProperty.set(false);
+					currentNetworkConfiguration.judge2EnabledProperty.set(false);
+					currentNetworkConfiguration.judge3EnabledProperty.set(false);
+					break;
+				case 1:
+					currentNetworkConfiguration.judge1EnabledProperty.set(true);
+					currentNetworkConfiguration.judge2EnabledProperty.set(false);
+					currentNetworkConfiguration.judge3EnabledProperty.set(false);
+					break;
+				case 2:
+					currentNetworkConfiguration.judge1EnabledProperty.set(true);
+					currentNetworkConfiguration.judge2EnabledProperty.set(true);
+					currentNetworkConfiguration.judge3EnabledProperty.set(false);
+					break;
+				case 3:
+					currentNetworkConfiguration.judge1EnabledProperty.set(true);
+					currentNetworkConfiguration.judge2EnabledProperty.set(true);
+					currentNetworkConfiguration.judge3EnabledProperty.set(true);
+					break;
 				}
 			}
 		});
@@ -512,33 +493,23 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void handle(KeyEvent event) {
-				System.out.println("caharacter:  " + event.getCharacter());
-				System.out.println("isShiftDown: " + event.isShiftDown());
-				System.out.println("isAltDown:   " + event.isAltDown());
-				System.out.println("isMetaDown:  " + event.isMetaDown());
-				System.out.println("isShiftDown: " + event.isShiftDown());
-				System.out.println("isShortcutDown: " + event.isShortcutDown());
-				System.out.println(TkStrikeKeyCombinationsHelper.keyCombSIMULATOR);
-
-				if(TkStrikeKeyCombinationsHelper.keyCombSIMULATOR.match(event)) {
+				if (TkStrikeKeyCombinationsHelper.keyCombSIMULATOR.match(event)) {
 					Platform.runLater(new Runnable() {
 
 						@Override
 						public void run() {
-							tgCommunicationType.setVisible(
-									! tgCommunicationType.isVisible());
-							if(tgCommunicationType.isVisible())
+							tgCommunicationType.setVisible(!tgCommunicationType.isVisible());
+							if (tgCommunicationType.isVisible())
 								tgAllowNetworkErrors.setVisible(false);
 						}
 					});
-				} else if(TkStrikeKeyCombinationsHelper.keyCombALLOW_NETWORK_ERRORS.match(event)) {
+				} else if (TkStrikeKeyCombinationsHelper.keyCombALLOW_NETWORK_ERRORS.match(event)) {
 					Platform.runLater(new Runnable() {
 
 						@Override
 						public void run() {
-							tgAllowNetworkErrors.setVisible(
-									! tgAllowNetworkErrors.isVisible());
-							if(tgAllowNetworkErrors.isVisible())
+							tgAllowNetworkErrors.setVisible(!tgAllowNetworkErrors.isVisible());
+							if (tgAllowNetworkErrors.isVisible())
 								tgCommunicationType.setVisible(false);
 						}
 					});
@@ -549,12 +520,10 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if(newValue.booleanValue()) {
-					tgAllowNetworkErrors.setText(getMessage(
-							"toggle.networkErrorOnMatch.allow"));
+				if (newValue.booleanValue()) {
+					tgAllowNetworkErrors.setText(getMessage("toggle.networkErrorOnMatch.allow"));
 				} else {
-					tgAllowNetworkErrors.setText(getMessage(
-							"toggle.networkErrorOnMatch.disallow"));
+					tgAllowNetworkErrors.setText(getMessage("toggle.networkErrorOnMatch.disallow"));
 				}
 			}
 		});
@@ -563,36 +532,34 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if(newValue.booleanValue()) {
-					tgCommunicationType.setText(getMessage(
-							"toggle.communicationType.simulator"));
+				if (newValue.booleanValue()) {
+					tgCommunicationType.setText(getMessage("toggle.communicationType.simulator"));
 				} else {
-					tgCommunicationType.setText(getMessage(
-							"toggle.communicationType.normal"));
+					tgCommunicationType.setText(getMessage("toggle.communicationType.normal"));
 				}
 			}
 		});
 		this.tgCommunicationType.setVisible(false);
-		this.tgCommunicationType.setSelected(TkStrikeCommunicationTypeValue.SIMULATOR.equals(this.tkStrikeCommunicationTypeValue));
+		this.tgCommunicationType
+				.setSelected(TkStrikeCommunicationTypeValue.SIMULATOR.equals(this.tkStrikeCommunicationTypeValue));
 		this.tgCommunicationType.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(showConfirmDialog(getMessage("title.default.question"),
-						ConfigurationNetworkController.this
-								.getMessage("message.tkStrike.communicationType.changes")).get().equals(ButtonType.OK)) {
+				if (showConfirmDialog(getMessage("title.default.question"),
+						ConfigurationNetworkController.this.getMessage("message.tkStrike.communicationType.changes"))
+						.get().equals(ButtonType.OK)) {
 					TkStrikeCommunicationTypeValue newValue = TkStrikeCommunicationTypeValue.SIMULATOR;
-					if( ! tgCommunicationType.isSelected())
+					if (!tgCommunicationType.isSelected())
 						newValue = TkStrikeCommunicationTypeValue.NORMAL;
 					try {
 						TkStrikeCommunicationTypeUtil.getInstance().setTkStrikeCommunicationType(newValue);
-					} catch(Exception e) {
+					} catch (Exception e) {
 						manageException(e, "ChangeCommunicationType", null);
 					}
 					getAppStatusWorker().doForceExitTkStrike();
 				} else {
-					tgCommunicationType.setSelected( ! tgCommunicationType
-							.isSelected());
+					tgCommunicationType.setSelected(!tgCommunicationType.isSelected());
 				}
 			}
 		});
@@ -626,10 +593,12 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 	}
 
 	@Override
-	public void hasNewDataEvent(DataEvent dataEvent) {}
+	public void hasNewDataEvent(DataEvent dataEvent) {
+	}
 
 	@Override
-	protected void _customHasChangeNetworkStatusEvent(ChangeNetworkStatusEvent changeNetworkStatusEvent) {}
+	protected void _customHasChangeNetworkStatusEvent(ChangeNetworkStatusEvent changeNetworkStatusEvent) {
+	}
 
 	@Override
 	protected boolean hasUIStatus() {
@@ -825,10 +794,8 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 
 		@Override
 		public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-			if(isNodeEnabled(txtG2BB.getText()) &&
-					isNodeEnabled(txtG2HB.getText()) &&
-					isNodeEnabled(txtG2BR.getText()) &&
-					isNodeEnabled(txtG2HR.getText())) {
+			if (isNodeEnabled(txtG2BB.getText()) && isNodeEnabled(txtG2HB.getText()) && isNodeEnabled(txtG2BR.getText())
+					&& isNodeEnabled(txtG2HR.getText())) {
 				currentNetworkConfiguration.group2EnabledProperty.set(true);
 			} else {
 				currentNetworkConfiguration.group2EnabledProperty.set(false);
@@ -836,7 +803,7 @@ public class ConfigurationNetworkController extends NetworkStatusBaseController 
 		}
 
 		private boolean isNodeEnabled(String value) {
-			return (StringUtils.isNotBlank(value) && ! "0".equals(value));
+			return (StringUtils.isNotBlank(value) && !"0".equals(value));
 		}
 	}
 }

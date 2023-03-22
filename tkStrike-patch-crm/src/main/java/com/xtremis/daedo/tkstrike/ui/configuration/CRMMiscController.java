@@ -9,8 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.xtremis.daedo.tkstrike.tools.Generation;
-import com.xtremis.daedo.tkstrike.tools.TkProperties;
-import com.xtremis.daedo.tkstrike.tools.UpdateGen;
+import com.xtremis.daedo.tkstrike.tools.TkExtProperties;
 import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeBaseController;
 
@@ -57,8 +56,10 @@ public class CRMMiscController extends TkStrikeBaseController {
 					if (value != null) {
 						try {
 							Generation generation = Generation.valueOf(value.toUpperCase());
-							TkProperties.getInstance().setGeneration(generation);
-							UpdateGen.updateTkStrikeGenVersion(applicationContext, value);
+							if (!generation.equals(TkExtProperties.getInstance().getGenVersion())) {
+								TkExtProperties.getInstance().setGenVersion(generation);
+								getAppStatusWorker().doForceExitTkStrike();
+							}
 						} catch (Exception e) {
 							logger.info(e.getMessage(), e);
 							showErrorDialog(getMessage("title.default.error"), e.toString());
@@ -96,7 +97,11 @@ public class CRMMiscController extends TkStrikeBaseController {
 
 			@Override
 			public void run() {
-				cmbGen.setValue(TkProperties.getInstance().getGeneration().name().toLowerCase());
+				try {
+					cmbGen.setValue(TkExtProperties.getInstance().getGenVersion().name().toLowerCase());
+				} catch (Exception e) {
+					logger.error(e.getMessage(), e);
+				}
 			}
 		});
 	}

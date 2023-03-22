@@ -75,28 +75,41 @@ public class TkStrikeCommunication implements Closeable {
 						try {
 							toValidateSerialPort.openPort();
 							toValidateSerialPort.setParams(38400, 8, 1, 0);
-							toValidateSerialPort.writeString("v?", StandardCharsets.US_ASCII.name());
-							toValidateSerialPort.writeByte((byte) 13);
+							toValidateSerialPort.writeBytes("A".getBytes(StandardCharsets.US_ASCII));
+							// toValidateSerialPort.writeString("v?", StandardCharsets.US_ASCII.name());
+							// toValidateSerialPort.writeByte((byte) 13);
 							TimeUnit.SECONDS.sleep(1L);
 							int r = toValidateSerialPort.getInputBufferBytesCount();
 							String readed = toValidateSerialPort.readString(r);
-							if (readed.trim().contains("TS_GEN2")) {
-								System.out.println("Port " + tempPortName + " is TkStrike GEN2 OK");
-
+							System.out.println("Read: [" + readed + "]/" + r);
+							if (readed.endsWith("a")) {
+								System.out.println("Port " + tempPortName + " is TkStrike GEN1 OK");
 								portName = tempPortName;
-								toValidateSerialPort.writeString("bodygap=" + initBodyGap.toString(),
-										StandardCharsets.US_ASCII.name());
-								toValidateSerialPort.writeByte((byte) 13);
-								toValidateSerialPort.writeString("headgap=" + initHeadGap.toString(),
-										StandardCharsets.US_ASCII.name());
-								toValidateSerialPort.writeByte((byte) 13);
-								toValidateSerialPort.writeString("gap?", StandardCharsets.US_ASCII.name());
-								toValidateSerialPort.writeByte((byte) 13);
+							} else {
+								// toValidateSerialPort.writeString("v?", StandardCharsets.US_ASCII.name());
+								// toValidateSerialPort.writeByte((byte) 13);
 								TimeUnit.SECONDS.sleep(1L);
 								r = toValidateSerialPort.getInputBufferBytesCount();
 								readed = toValidateSerialPort.readString(r);
-								System.out.println("CurrentGap ?= [" + readed + "]");
-								readed = null;
+								System.out.println("Read: [" + readed + "]/" + r);
+								if (readed.trim().contains("TS_GEN2")) {
+									System.out.println("Port " + tempPortName + " is TkStrike GEN2 OK");
+
+									portName = tempPortName;
+									toValidateSerialPort.writeString("bodygap=" + initBodyGap.toString(),
+											StandardCharsets.US_ASCII.name());
+									toValidateSerialPort.writeByte((byte) 13);
+									toValidateSerialPort.writeString("headgap=" + initHeadGap.toString(),
+											StandardCharsets.US_ASCII.name());
+									toValidateSerialPort.writeByte((byte) 13);
+									toValidateSerialPort.writeString("gap?", StandardCharsets.US_ASCII.name());
+									toValidateSerialPort.writeByte((byte) 13);
+									TimeUnit.SECONDS.sleep(1L);
+									r = toValidateSerialPort.getInputBufferBytesCount();
+									readed = toValidateSerialPort.readString(r);
+									System.out.println("CurrentGap ?= [" + readed + "]");
+									readed = null;
+								}
 							}
 						} catch (Exception var19) {
 							var19.printStackTrace();

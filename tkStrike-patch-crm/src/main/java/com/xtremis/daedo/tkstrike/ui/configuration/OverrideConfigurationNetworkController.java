@@ -8,7 +8,6 @@ import com.xtremis.daedo.tkstrike.service.TkStrikeServiceException;
 import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
 import com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationNetworkController;
 
-
 /**
  * @author Oodrive
  * @author f.agu
@@ -18,7 +17,7 @@ public class OverrideConfigurationNetworkController extends ConfigurationNetwork
 
 	@Override
 	public void doStartNetwork() {
-		if(isFormValid()) {
+		if (isFormValid()) {
 			showProgressIndicator(true);
 			TkStrikeExecutors.executeInThreadPool(new Callable<Void>() {
 
@@ -26,21 +25,18 @@ public class OverrideConfigurationNetworkController extends ConfigurationNetwork
 				public Void call() throws Exception {
 					NetworkConfigurationDto ncDto = currentNetworkConfiguration.getNetworkConfigurationDto();
 					try {
-						tkStrikeCommunicationService.startNetwork(ncDto);
-						getAppStatusWorker().setNetworkConfigurationEntry(
-								currentNetworkConfiguration);
-						currentNetworkConfiguration.networkWasStartedProperty.set(true);
 						try {
-							networkConfigurationService.update(
-									currentNetworkConfiguration.getNetworkConfiguration());
-						} catch(TkStrikeServiceException e) {
+							networkConfigurationService.update(currentNetworkConfiguration.getNetworkConfiguration());
+						} catch (TkStrikeServiceException e) {
 							logger.error(e.getMessage(), e);
 						}
+						tkStrikeCommunicationService.startNetwork(ncDto);
+						getAppStatusWorker().setNetworkConfigurationEntry(currentNetworkConfiguration);
+						currentNetworkConfiguration.networkWasStartedProperty.set(true);
 						showProgressIndicator(false);
-					} catch(TkStrikeCommunicationException e) {
+					} catch (TkStrikeCommunicationException e) {
 						logger.error(e.getMessage(), e);
-						showErrorDialog(getMessage("title.default.error"),
-								getMessage("message.error.serialComm"));
+						showErrorDialog(getMessage("title.default.error"), getMessage("message.error.serialComm"));
 					} finally {
 						showProgressIndicator(false);
 					}
