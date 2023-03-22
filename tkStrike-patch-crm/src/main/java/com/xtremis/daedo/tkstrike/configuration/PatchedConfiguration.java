@@ -18,6 +18,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceImpl;
@@ -32,6 +33,7 @@ import com.xtremis.daedo.tkstrike.ui.configuration.CRMMainController;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMMiscController;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMPointController;
 import com.xtremis.daedo.tkstrike.ui.configuration.CRMTestNetworkController;
+import com.xtremis.daedo.tkstrike.ui.configuration.OverrideConfigurationNetworkController;
 import com.xtremis.daedo.tkstrike.ui.controller.CommonTkStrikeBaseController;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeController;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeMainControllerImpl;
@@ -51,6 +53,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.WindowEvent;
+
 
 /**
  * @author f.agu
@@ -98,34 +101,40 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		try {
 			UpdateGen.updateTkStrikeGenVersion(applicationContext, TkProperties.getInstance().getGeneration().name());
-		} catch (Exception e) {
+		} catch(Exception e) {
 			LOGGER.error(e.getMessage(), e);
 		}
 	}
 
 	@Bean
+	@Primary
+	OverrideConfigurationNetworkController overrideConfigurationNetworkController() throws IOException {
+		return (OverrideConfigurationNetworkController)loadController("/META-INF/fxml/configuration/Configuration-Network2.fxml");
+	}
+
+	@Bean
 	CRMMainController crmController() throws IOException {
-		return (CRMMainController) loadController("/META-INF/fxml/configuration/ConfigurationCRM.fxml");
+		return (CRMMainController)loadController("/META-INF/fxml/configuration/ConfigurationCRM.fxml");
 	}
 
 	@Bean
 	CRMDisciplineController crmDisciplineController() throws IOException {
-		return (CRMDisciplineController) loadController("/META-INF/fxml/configuration/Configuration-Discipline.fxml");
+		return (CRMDisciplineController)loadController("/META-INF/fxml/configuration/Configuration-Discipline.fxml");
 	}
 
 	@Bean
 	CRMMiscController crmMiscController() throws IOException {
-		return (CRMMiscController) loadController("/META-INF/fxml/configuration/Configuration-Misc.fxml");
+		return (CRMMiscController)loadController("/META-INF/fxml/configuration/Configuration-Misc.fxml");
 	}
 
 	@Bean
 	CRMPointController crmPointController() throws IOException {
-		return (CRMPointController) loadController("/META-INF/fxml/configuration/Configuration-Point.fxml");
+		return (CRMPointController)loadController("/META-INF/fxml/configuration/Configuration-Point.fxml");
 	}
 
 	@Bean
 	CRMTestNetworkController crmTestNetworkController() throws IOException {
-		return (CRMTestNetworkController) loadController("/META-INF/fxml/configuration/Configuration-TestNetwork.fxml");
+		return (CRMTestNetworkController)loadController("/META-INF/fxml/configuration/Configuration-TestNetwork.fxml");
 	}
 
 	// ************************************************************
@@ -146,24 +155,24 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 
 	private void patchLogo() {
 		Node lblMatchConfigNode = getRootView(tkStrikeMainControllerImpl).lookup("#lblMatchConfig");
-		ObservableList<Node> children = ((HBox) lblMatchConfigNode.getParent()).getChildren();
+		ObservableList<Node> children = ((HBox)lblMatchConfigNode.getParent()).getChildren();
 		children.set(1, createImageViewTKKD());
 
 		lblMatchConfigNode = getRootView(externalScoreboardHDController).lookup("#lblMatchConfig");
-		children = ((HBox) lblMatchConfigNode.getParent()).getChildren();
+		children = ((HBox)lblMatchConfigNode.getParent()).getChildren();
 		children.set(1, createImageViewTKKD());
 	}
 
 	private void patchConfigurationWindow() {
 		Node rootView = getRootView(configurationMainController);
-		if (rootView == null) {
+		if(rootView == null) {
 			return;
 		}
 		rootView.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
-				if (CRMCombinationsHelper.keyCombSetNodesIds.match(event))
+				if(CRMCombinationsHelper.keyCombSetNodesIds.match(event))
 					Platform.runLater(new Runnable() {
 
 						@Override
@@ -176,7 +185,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 							NodeIds nodeIds = null;
 							try {
 								nodeIds = TkProperties.getInstance().getNodeIds();
-							} catch (IOException e) {
+							} catch(IOException e) {
 								LOGGER.info(e.getMessage(), e);
 								return;
 							}
@@ -201,29 +210,29 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	private void patchTkStrikeMainControllerImpl() {
 		Node rootView = getRootView(tkStrikeMainControllerImpl);
 		patchTkStrikeMainControllerImplRootView(rootView);
-//		HBox hbox = (HBox) rootView.lookup("#pnAppMainButtons");
-//		ObservableList<Node> children = hbox.getChildren();
-//		Button button = new Button("CONFIGURATION CRM");
-//		button.setFocusTraversable(false);
-//		button.setMnemonicParsing(false);
-//		children.add(3, button);
-//		children.stream().map(Button.class::cast).forEach(b -> {
-//			b.getStyleClass().remove("button-main");
-//			b.setStyle("-fx-cursor: hand");
-//			b.setStyle("-fx-max-width: 150");
-//			b.setStyle("-fx-min-width: 150");
-//			b.setStyle("-fx-pref-width: 150");
-//			b.setStyle("-fx-max-height: 40");
-//			b.setStyle("-fx-min-height: 40");
-//			b.setStyle("-fx-pref-height: 40");
-//			b.setStyle("-fx-background-color: #3f3f3f");
-//			b.setStyle("-fx-text-fill: white");
-//			b.setStyle("-fx-font-weight: bold");
-//			b.setStyle("-fx-text-alignment: center");
-//			b.setStyle("-fx-font-size: 14");
-//			b.setStyle("-fx-border-radius: 0");
-//			b.setStyle("-fx-background-radius: 0");
-//		});
+		// HBox hbox = (HBox) rootView.lookup("#pnAppMainButtons");
+		// ObservableList<Node> children = hbox.getChildren();
+		// Button button = new Button("CONFIGURATION CRM");
+		// button.setFocusTraversable(false);
+		// button.setMnemonicParsing(false);
+		// children.add(3, button);
+		// children.stream().map(Button.class::cast).forEach(b -> {
+		// b.getStyleClass().remove("button-main");
+		// b.setStyle("-fx-cursor: hand");
+		// b.setStyle("-fx-max-width: 150");
+		// b.setStyle("-fx-min-width: 150");
+		// b.setStyle("-fx-pref-width: 150");
+		// b.setStyle("-fx-max-height: 40");
+		// b.setStyle("-fx-min-height: 40");
+		// b.setStyle("-fx-pref-height: 40");
+		// b.setStyle("-fx-background-color: #3f3f3f");
+		// b.setStyle("-fx-text-fill: white");
+		// b.setStyle("-fx-font-weight: bold");
+		// b.setStyle("-fx-text-alignment: center");
+		// b.setStyle("-fx-font-size: 14");
+		// b.setStyle("-fx-border-radius: 0");
+		// b.setStyle("-fx-background-radius: 0");
+		// });
 	}
 
 	private void patchTkStrikeMainControllerImplRootView(Node rootView) {
@@ -231,7 +240,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 
 			@Override
 			public void handle(KeyEvent event) {
-				if (CRMCombinationsHelper.keyCombCRM.match(event)) {
+				if(CRMCombinationsHelper.keyCombCRM.match(event)) {
 					Platform.runLater(new Runnable() {
 
 						@Override
@@ -264,7 +273,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 			method.setAccessible(true);
 			method.invoke(tkStrikeMainControllerImpl, tkStrikeController, windowCloseEventHandler, stageTitle, width,
 					height, resizeable);
-		} catch (Exception e) {
+		} catch(Exception e) {
 			LOGGER.info(e.getMessage(), e);
 		}
 
@@ -280,7 +289,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		Field field = getField(MatchConfigurationController.class, "maxGamJeomsAllowed");
 		try {
 			field.set(matchConfigurationController, TkProperties.getInstance().getGamJom());
-		} catch (IllegalArgumentException | IllegalAccessException e) {
+		} catch(IllegalArgumentException | IllegalAccessException e) {
 			LOGGER.info(e.getMessage(), e);
 		}
 	}
@@ -294,7 +303,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 			Field field = cls.getDeclaredField(name);
 			field.setAccessible(true);
 			return field;
-		} catch (Exception e) {
+		} catch(Exception e) {
 			LOGGER.info(e.getMessage(), e);
 			return null;
 		}
@@ -303,8 +312,8 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	private <F> F getFieldValue(Class<?> cls, String name, Object instance) {
 		try {
 			Field field = getField(cls, name);
-			return (F) field.get(instance);
-		} catch (Exception e) {
+			return (F)field.get(instance);
+		} catch(Exception e) {
 			LOGGER.info(e.getMessage(), e);
 			return null;
 		}
@@ -319,7 +328,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 			imageView.setPickOnBounds(true);
 			imageView.setPreserveRatio(true);
 			return imageView;
-		} catch (IOException e) {
+		} catch(IOException e) {
 			throw new UncheckedIOException(e);
 		}
 	}
