@@ -112,9 +112,9 @@ public class NetworkConfigurationDto implements Serializable {
 //	}
 
 	public NetworkAthletesGroupConfigDto getNetworkAthletesGroupConfig(Integer groupNumber) {
-		return (groupNumber != null && groupNumber.intValue() > 0
-				&& groupNumber.intValue() <= this.maxGroupsNumber.intValue()) ? this.groupsConfig.get(groupNumber)
-						: null;
+		return groupNumber != null && groupNumber.intValue() > 0 && groupNumber.intValue() <= maxGroupsNumber.intValue()
+				? groupsConfig.get(groupNumber)
+				: null;
 	}
 
 //  private void _setNetworkAthletesGroupConfig(Integer forceGroupNumber, NetworkAthletesGroupConfigDto groupConfig) {

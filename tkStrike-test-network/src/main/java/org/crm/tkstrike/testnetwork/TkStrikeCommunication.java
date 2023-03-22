@@ -10,7 +10,10 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.crm.tkstrike.testnetwork.NodeIds.Color;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -563,6 +566,14 @@ public class TkStrikeCommunication implements Closeable {
 		log(serialPortEvent, message, null);
 	}
 
+	private static void log(SerialPortEvent serialPortEvent, Color color, String message) {
+		if (color != null) {
+			log(serialPortEvent, StringUtils.rightPad(color.name(), 6) + message, null);
+		} else {
+			log(serialPortEvent, message, null);
+		}
+	}
+
 	private static void log(SerialPortEvent serialPortEvent, String message, Exception e) {
 		System.out.println("@" + StringUtils.rightPad(Integer.toHexString(serialPortEvent.hashCode()), 10) + message);
 		if (e != null) {
@@ -735,8 +746,9 @@ public class TkStrikeCommunication implements Closeable {
 															if (strGroup.length() == 5) {
 																Integer member = Integer.parseInt(
 																		StringUtils.substringAfter(strGroup, ","));
-																workWithAthleteMemberStatusEvent(eventTimestampx,
-																		statusType, strGroup, member, workingReaded);
+																workWithAthleteMemberStatusEvent(serialPortEvent,
+																		eventTimestampx, statusType, strGroup, member,
+																		workingReaded);
 															} else {
 																log(serialPortEvent,
 																		"INCORRECT GROUP 1 ATHLETE'S PACKET "
@@ -867,135 +879,145 @@ public class TkStrikeCommunication implements Closeable {
 				return groupConfig.getHeadRedNodeId();
 			}
 		}
+		return null;
+	}
+
+	private SimpleIntegerProperty _getBodyNodeBadTimes4Athlete(String prefix, Integer member) {
+		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+		if (groupConfig != null) {
+			if ("cb".equals(prefix)) {
+				return groupConfig.bodyBlueNodeBadTimesProperty();
+			}
+			if ("cr".equals(prefix)) {
+				return groupConfig.bodyRedNodeBadTimesProperty();
+			}
+		}
+		return null;
+	}
+
+	private SimpleIntegerProperty _getHeadNodeBadTimes4Athlete(String prefix, Integer member) {
+		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+		if (groupConfig != null) {
+			if ("cb".equals(prefix)) {
+				return groupConfig.headBlueNodeBadTimesProperty();
+			}
+			if ("cr".equals(prefix)) {
+				return groupConfig.headRedNodeBadTimesProperty();
+			}
+		}
+		return null;
+	}
+
+	private SimpleBooleanProperty _getBodyNodeInitialized4Athlete(String prefix, Integer member) {
+		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+		if (groupConfig != null) {
+			if ("cb".equals(prefix)) {
+				return groupConfig.bodyBlueNodeInitializedProperty();
+			}
+			if ("cr".equals(prefix)) {
+				return groupConfig.bodyRedNodeInitializedProperty();
+			}
+		}
+		return null;
+	}
+
+	private SimpleBooleanProperty _getHeadNodeInitialized4Athlete(String prefix, Integer member) {
+		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
+		if (groupConfig != null) {
+			if ("cb".equals(prefix)) {
+				return groupConfig.headBlueNodeInitializedProperty();
+			}
+			if ("cr".equals(prefix)) {
+				return groupConfig.headRedNodeInitializedProperty();
+			}
+		}
 
 		return null;
 	}
 
-//	private SimpleIntegerProperty _getBodyNodeBadTimes4Athlete(String prefix, Integer member) {
-//		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
-//		if (groupConfig != null) {
-//			if ("cb".equals(prefix)) {
-//				return groupConfig.bodyBlueNodeBadTimesProperty();
-//			}
-//
-//			if ("cr".equals(prefix)) {
-//				return groupConfig.bodyRedNodeBadTimesProperty();
-//			}
-//		}
-//
-//		return null;
-//	}
-//
-//	private SimpleIntegerProperty _getHeadNodeBadTimes4Athlete(String prefix, Integer member) {
-//		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
-//		if (groupConfig != null) {
-//			if ("cb".equals(prefix)) {
-//				return groupConfig.headBlueNodeBadTimesProperty();
-//			}
-//
-//			if ("cr".equals(prefix)) {
-//				return groupConfig.headRedNodeBadTimesProperty();
-//			}
-//		}
-//
-//		return null;
-//	}
-//
-//	private SimpleBooleanProperty _getBodyNodeInitialized4Athlete(String prefix, Integer member) {
-//		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
-//		if (groupConfig != null) {
-//			if ("cb".equals(prefix)) {
-//				return groupConfig.bodyBlueNodeInitializedProperty();
-//			}
-//
-//			if ("cr".equals(prefix)) {
-//				return groupConfig.bodyRedNodeInitializedProperty();
-//			}
-//		}
-//
-//		return null;
-//	}
-//
-//	private SimpleBooleanProperty _getHeadNodeInitialized4Athlete(String prefix, Integer member) {
-//		NetworkAthletesGroupConfigDto groupConfig = networkConfiguration.getNetworkAthletesGroupConfig(member);
-//		if (groupConfig != null) {
-//			if ("cb".equals(prefix)) {
-//				return groupConfig.headBlueNodeInitializedProperty();
-//			}
-//
-//			if ("cr".equals(prefix)) {
-//				return groupConfig.headRedNodeInitializedProperty();
-//			}
-//		}
-//
-//		return null;
-//	}
+	private void workWithAthleteMemberStatusEvent(SerialPortEvent serialPortEvent, Long eventTimestamp, String prefix,
+			String value, Integer member, String nativePacket) {
 
-	private void workWithAthleteMemberStatusEvent(Long eventTimestamp, String prefix, String value, Integer member,
-			String nativePacket) {
+//		log(serialPortEvent, "workWithAthleteMemberStatusEvent(" + eventTimestamp + ", '" + prefix + "', '" + value
+//				+ "', " + member + ", '" + nativePacket + "')");
 		String comm = value.substring(0, 1);
 		String conn = value.substring(1, 2);
 		String battery = value.substring(2, 3);
-		System.out.println("comm: " + comm + " ; conn: " + conn + " ; battery: " + battery + " ; " + member + " <= "
-				+ networkConfiguration.getGroupsNumber());
+		Color color = "r".equals(prefix.substring(1, 2)) ? Color.RED : Color.BLUE;
 		if (member <= networkConfiguration.getGroupsNumber()) {
-//			SimpleBooleanProperty bodyInitialized = this._getBodyNodeInitialized4Athlete(prefix, member);
-//			SimpleBooleanProperty headInitialized = this._getHeadNodeInitialized4Athlete(prefix, member);
-//			SimpleIntegerProperty bodyBadTimes = this._getBodyNodeBadTimes4Athlete(prefix, member);
-//			SimpleIntegerProperty headBadTimes = this._getHeadNodeBadTimes4Athlete(prefix, member);
-			String bodyNodeId = this._getBodyNodeId4Athlete(prefix, member);
-			String headNodeId = this._getHeadNodeId4Athlete(prefix, member);
-//			if (bodyInitialized != null && headInitialized != null && bodyBadTimes != null && headBadTimes != null) {
-//				boolean bodyOffline = false;
-//				boolean headOffline = false;
-//				boolean bodySensorOk = !"0".equals(conn) && !"2".equals(conn) ? Boolean.FALSE : Boolean.TRUE;
-//				boolean headSensorOk = "0".equals(conn) ? Boolean.TRUE : Boolean.FALSE;
-//				double bodyBattery = !"0".equals(battery) && !"2".equals(battery) ? 0.0D : 4.0D;
-//				double bodyBatteryPct = !"0".equals(battery) && !"2".equals(battery) ? 0.0D : 100.0D;
-//				double headBattery = "0".equals(battery) ? 4.0D : 0.0D;
-//				double headBatteryPct = "0".equals(battery) ? 100.0D : 0.0D;
-//				if ("0".equals(comm)) {
-//					// bodyBadTimes.set(0);
-//					// headBadTimes.set(0);
-//					// bodyInitialized.set(true);
-//					// headInitialized.set(true);
-//					System.out.println(prefix + " are OK BOTH!!!");
-//
-//					bodyOffline = false;
-//					headOffline = false;
-//				} else if ("1".equals(comm)) {
-//					// bodyBadTimes.set(bodyBadTimes.get() + 1);
-//					// headBadTimes.set(headBadTimes.get() + 1);
-//					System.out.println("Body " + bodyNodeId + " is OffLine.. times? " + bodyBadTimes.get());
-//
-//					if (bodyBadTimes.get() >= this.nodeConnBadTimesAllowed || !bodyInitialized.get()) {
-//						System.out.println("Body " + bodyNodeId + " has exceeded number of offline allowed times"
-//								+ bodyBadTimes.get() + " Or initialized? " + bodyInitialized.get());
-//
-//						bodyOffline = Boolean.TRUE;
-//					}
-//
-//					System.out.println("Head " + headNodeId + " is OffLine.. times? " + headBadTimes.get());
-//
-//					if (headBadTimes.get() >= this.nodeConnBadTimesAllowed || !headInitialized.get()) {
-//						System.out.println("Head " + headNodeId + " has exceeded number of offline allowed times: "
-//								+ headBadTimes.get() + " Or initialized? " + headInitialized.get());
-//
-//						headOffline = Boolean.TRUE;
-//					}
-//				} else if ("2".equals(comm)) {
-//					bodyBadTimes.set(0);
-//					bodyInitialized.set(true);
-//					headBadTimes.set(headBadTimes.get() + 1);
-//					System.out.println("Head " + headNodeId + " is OffLine.. times? " + headBadTimes.get());
-//				}
-//				if (headBadTimes.get() >= this.nodeConnBadTimesAllowed || !headInitialized.get()) {
-//					System.out.println("Head " + headNodeId + " has exceeded number of offline allowed times:"
-//							+ headBadTimes.get() + " Or initialized? " + headInitialized.get());
-//
-//					headOffline = Boolean.TRUE;
-//				}
-//			}
+			SimpleBooleanProperty bodyInitialized = _getBodyNodeInitialized4Athlete(prefix, member);
+			SimpleBooleanProperty headInitialized = _getHeadNodeInitialized4Athlete(prefix, member);
+			SimpleIntegerProperty bodyBadTimes = _getBodyNodeBadTimes4Athlete(prefix, member);
+			SimpleIntegerProperty headBadTimes = _getHeadNodeBadTimes4Athlete(prefix, member);
+			String bodyNodeId = _getBodyNodeId4Athlete(prefix, member);
+			String headNodeId = _getHeadNodeId4Athlete(prefix, member);
+
+			if (bodyInitialized != null && headInitialized != null && bodyBadTimes != null && headBadTimes != null) {
+				boolean bodyOffline = false;
+				boolean headOffline = false;
+				boolean bodySensorOk = !"0".equals(conn) && !"2".equals(conn) ? Boolean.FALSE : Boolean.TRUE;
+				boolean headSensorOk = "0".equals(conn) ? Boolean.TRUE : Boolean.FALSE;
+				double bodyBattery = !"0".equals(battery) && !"2".equals(battery) ? 0.0D : 4.0D;
+				double bodyBatteryPct = !"0".equals(battery) && !"2".equals(battery) ? 0.0D : 100.0D;
+				double headBattery = "0".equals(battery) ? 4.0D : 0.0D;
+				double headBatteryPct = "0".equals(battery) ? 100.0D : 0.0D;
+				if ("0".equals(comm)) {
+					bodyBadTimes.set(0);
+					headBadTimes.set(0);
+					bodyInitialized.set(true);
+					headInitialized.set(true);
+					log(serialPortEvent, color, prefix + " are OK BOTH!!!");
+
+					bodyOffline = false;
+					headOffline = false;
+				} else if ("1".equals(comm)) {
+					bodyBadTimes.set(bodyBadTimes.get() + 1);
+					headBadTimes.set(headBadTimes.get() + 1);
+
+//					log(serialPortEvent, color,
+//							"Body " + bodyNodeId + " is offline... " + bodyBadTimes.get() + " times");
+					if (bodyBadTimes.get() >= nodeConnBadTimesAllowed || !bodyInitialized.get()) {
+						if (!bodyInitialized.get()) {
+							log(serialPortEvent, color,
+									"Body " + bodyNodeId + " not initialized (" + bodyBadTimes.get() + " times)");
+						} else {
+							log(serialPortEvent, color, "Body " + bodyNodeId
+									+ " has exceeded number of offline allowed times" + bodyBadTimes.get());
+						}
+						bodyOffline = Boolean.TRUE;
+					} else {
+						log(serialPortEvent, color, "Body INITIALIZED !!!!!!!!!!!!!!!!!!!!!!!!!");
+					}
+
+//					log(serialPortEvent, "Head " + headNodeId + " is offline... " + headBadTimes.get() + " times");
+					if (headBadTimes.get() >= nodeConnBadTimesAllowed || !headInitialized.get()) {
+						if (!headInitialized.get()) {
+							log(serialPortEvent, color,
+									"Head " + headNodeId + " not initialized (" + headBadTimes.get() + " times)");
+						} else {
+							log(serialPortEvent, color, "Head " + headNodeId
+									+ " has exceeded number of offline allowed times: " + headBadTimes.get());
+						}
+						headOffline = Boolean.TRUE;
+					} else {
+						log(serialPortEvent, color, "Head INITIALIZED !!!!!!!!!!!!!!!!!!!!!!!!!");
+					}
+				} else if ("2".equals(comm)) {
+					bodyBadTimes.set(0);
+					bodyInitialized.set(true);
+					headBadTimes.set(headBadTimes.get() + 1);
+					log(serialPortEvent, color,
+							"Head " + headNodeId + " is offline... " + headBadTimes.get() + " times");
+
+					if (headBadTimes.get() >= this.nodeConnBadTimesAllowed || !headInitialized.get()) {
+						log(serialPortEvent, color,
+								"Head " + headNodeId + " has exceeded number of offline allowed times:"
+										+ headBadTimes.get() + " or initialized? " + headInitialized.get());
+
+						headOffline = Boolean.TRUE;
+					}
+				}
+			}
 
 //			this.fireNewStatusEvent(new StatusEvent(eventTimestamp, this.networkStatus, bodyNodeId, bodyOffline,
 //					bodySensorOk, bodyBattery, bodyBatteryPct, nativePacket));

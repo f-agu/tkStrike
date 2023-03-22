@@ -23,7 +23,7 @@ public class Application {
 		group1Config.setBodySensorsEnabled(true);
 		group1Config.setBodyBlueNodeId(nodeIds.getSensorId(Color.BLUE, 1, Part.BODY));
 		group1Config.setBodyRedNodeId(nodeIds.getSensorId(Color.RED, 1, Part.BODY));
-		group1Config.setHeadSensorsEnabled(true);
+		group1Config.setHeadSensorsEnabled(false);
 		group1Config.setHeadBlueNodeId(nodeIds.getSensorId(Color.BLUE, 1, Part.HEAD));
 		group1Config.setHeadRedNodeId(nodeIds.getSensorId(Color.RED, 1, Part.HEAD));
 
