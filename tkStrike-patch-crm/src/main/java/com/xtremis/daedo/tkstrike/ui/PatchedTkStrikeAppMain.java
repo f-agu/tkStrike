@@ -1,7 +1,9 @@
 package com.xtremis.daedo.tkstrike.ui;
 
-import com.xtremis.daedo.tkstrike.configuration.PatchedConfiguration;
+import java.io.IOException;
 
+import com.xtremis.daedo.tkstrike.configuration.PatchedConfiguration;
+import com.xtremis.daedo.tkstrike.tools.TkExtProperties;
 
 /**
  * @author f.agu
@@ -16,6 +18,16 @@ public class PatchedTkStrikeAppMain extends TkStrikeAppMain {
 
 	@Override
 	String getTkStrikeSplashUrl() {
+		try {
+			switch (TkExtProperties.getInstance().getGenVersion()) {
+			case GEN1:
+				return "/images/TkStrikeSplash-patched-gen1.jpg";
+			case GEN2:
+				return "/images/TkStrikeSplash-patched-gen2.jpg";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return "/images/TkStrikeSplash-patched.jpg";
 	}
 

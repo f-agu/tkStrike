@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-
 /**
  * @author f.agu
  */
@@ -36,7 +35,7 @@ public class NodeIds {
 	public String getSensorId(Color color, int group, Part part) {
 		Objects.requireNonNull(color);
 		Objects.requireNonNull(part);
-		if(group < 1 || group > 2) {
+		if (group < 1 || group > 2) {
 			throw new IllegalArgumentException("group " + group);
 		}
 		return sensors.get(color).get(group).get(part);
@@ -45,7 +44,7 @@ public class NodeIds {
 	public void setSensorId(Color color, int group, Part part, String id) {
 		Objects.requireNonNull(color);
 		Objects.requireNonNull(part);
-		if(group < 1 || group > 2) {
+		if (group < 1 || group > 2) {
 			throw new IllegalArgumentException("group " + group);
 		}
 		set(sensors, color, group, part, id);
@@ -63,9 +62,9 @@ public class NodeIds {
 
 	private static SortedMap<Integer, String> judges() {
 		SortedMap<Integer, String> map = new TreeMap<>();
-		map.put(1, "TODO-1");
-		map.put(2, "TODO-2");
-		map.put(3, "TODO-3");
+		map.put(1, "1108590103"); // rouge
+		map.put(2, "1108590045"); // vert
+		map.put(3, "1100460003"); // bleu
 		return map;
 	}
 
