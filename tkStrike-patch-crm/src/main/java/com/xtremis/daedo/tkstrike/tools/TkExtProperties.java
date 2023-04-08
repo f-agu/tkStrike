@@ -19,6 +19,7 @@ public final class TkExtProperties {
 	private static final String FILENAME = "tkStrike-ext.properties";
 
 	public static final String GEN_VERSION = "tkStrike.genVersion";
+	public static final String STYLE = "tkStrike.style";
 
 	private static final TkExtProperties INSTANCE = new TkExtProperties();
 
@@ -55,6 +56,14 @@ public final class TkExtProperties {
 
 	public void setGenVersion(Generation generation) throws IOException {
 		set(GEN_VERSION, generation.name().toLowerCase());
+	}
+
+	public Discipline getStyle() throws IOException {
+		return Optional.ofNullable(get(STYLE)).map(s -> Discipline.valueOf(s.toUpperCase())).orElse(Discipline.WT);
+	}
+
+	public void setStyle(Discipline style) throws IOException {
+		set(STYLE, style.name().toLowerCase());
 	}
 
 	// ********************************************************************

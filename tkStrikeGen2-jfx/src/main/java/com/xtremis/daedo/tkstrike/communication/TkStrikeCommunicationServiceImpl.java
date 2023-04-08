@@ -71,6 +71,7 @@ public class TkStrikeCommunicationServiceImpl implements TkStrikeCommunicationSe
 	private static final Pattern isShowIDResponsePattern = Pattern.compile("^showID\\?|n[1-8]|Judge[1-3]:");
 
 	public TkStrikeCommunicationServiceImpl() {
+		logger.info("Create Gen2 communication");
 		this.networkStatus = NetworkStatus.NOT_CONNECTED;
 	}
 

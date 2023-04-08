@@ -47,7 +47,7 @@ public class TkStrikeCommunicationServiceGen1 implements TkStrikeCommunicationSe
 	private int lastRecognizeRemain;
 
 	public TkStrikeCommunicationServiceGen1() {
-		logger.info("Start Gen1 communication");
+		logger.info("Create Gen1 communication");
 		this.networkStatus = NetworkStatus.NOT_CONNECTED;
 		this.networkRecognizerFuture = null;
 		this.recognitionFinishedProperty = new SimpleBooleanProperty();

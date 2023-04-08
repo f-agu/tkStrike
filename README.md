@@ -37,28 +37,46 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 | `Ctrl+Alt+E` | External screen |
 | `Ctrl+Alt+J` | Show backup system (:see_no_evil: hidden) |
 | `Alt+B`        | Scoreboard editor / video request by blue |
-| `Alt+B`        | Scoreboard editor / video request by red |
+| `Alt+R`        | Scoreboard editor / video request by red |
 | `Shift+Ctrl+Alt+D` | Enable & show differential score |
-| `Shift+Ctrl+Alt+D` | Disabled & show differential score |
+| `Shift+Ctrl+Alt+P` | Disabled & show differential score |
 | `Enter`         | Start round |
 | `Space`         | Pause / resume time out  |
-| `K`             | Open CRM configuration (:rainbow: if patched) |
+
+
+
+### Main (Patched :rainbow:)
+
+| shortcut        | comments |
+|-----------------|----------|
+| `1`            | Add blue 2 points for blue  |
+| `2`            | Add blue 2 points for blue  |
+| `3`            | Add blue 3 points for blue |
+| `4`            | Add blue 2 points for blue |
+| `5`            | Add blue 1 point for blue |
+| `6`            | Add blue 2 points for red |
+| `7`            | Add blue 2 points for red |
+| `8`            | Add blue 3 points for red |
+| `9`            | Add blue 2 points for red |
+| `0`            | Add blue 1 point for red |
+| `U`            | Undo last 'Add points' with `1`, `2`, ... to `0` |
+| `K`             | Open CRM configuration |
 
 
 ### Round working / pause mode
 
 | shortcut        | comments |
 |-----------------|----------|
-| `Ctrl+1`        | Add blue 2 points for blue  |
-| `Ctrl+2`        | Add blue 2 points for blue  |
-| `Ctrl+3`        | Add blue 3 points for blue |
-| `Ctrl+4`        | Add blue 2 points for blue |
-| `Ctrl+5`        | Add blue 1 point for blue |
-| `Ctrl+6`        | Add blue 2 points for red |
-| `Ctrl+7`        | Add blue 2 points for red |
-| `Ctrl+8`        | Add blue 3 points for red |
-| `Ctrl+9`        | Add blue 2 points for red |
-| `Ctrl+0`        | Add blue 1 point for red |
+| `Ctrl+1`      | Add blue 2 points for blue  |
+| `Ctrl+2`      | Add blue 2 points for blue  |
+| `Ctrl+3`      | Add blue 3 points for blue |
+| `Ctrl+4`      | Add blue 2 points for blue |
+| `Ctrl+5`      | Add blue 1 point for blue |
+| `Ctrl+6`      | Add blue 2 points for red |
+| `Ctrl+7`      | Add blue 2 points for red |
+| `Ctrl+8`      | Add blue 3 points for red |
+| `Ctrl+9`      | Add blue 2 points for red |
+| `Ctrl+0`      | Add blue 1 point for red |
 | `Ctrl+Shift+1`| Remove blue 2 points for blue |
 | `Ctrl+Shift+2`| Remove blue 2 points for blue |
 | `Ctrl+Shift+3`| Remove blue 3 points for blue |

@@ -1,5 +1,6 @@
 package com.xtremis.daedo.tkstrike.ui.configuration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -17,11 +18,14 @@ import com.xtremis.daedo.tkstrike.configuration.TkStrikeCommunicationTypeUtil;
 import com.xtremis.daedo.tkstrike.configuration.TkStrikeCommunicationTypeValue;
 import com.xtremis.daedo.tkstrike.orm.model.Rules;
 import com.xtremis.daedo.tkstrike.service.RulesService;
+import com.xtremis.daedo.tkstrike.tools.Discipline;
+import com.xtremis.daedo.tkstrike.tools.TkExtProperties;
 import com.xtremis.daedo.tkstrike.tools.TkProperties;
 import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeBaseController;
 import com.xtremis.daedo.tkstrike.ui.model.RulesEntry;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 
@@ -65,7 +69,7 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 			@Override
 			public Void call() throws Exception {
 				try {
-					updateRules();
+					updateRules(Discipline.WT);
 					if (!setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue.NORMAL)) {
 						showInfoDialog("Updated", "Pathed for WT: " + getUpdateMessage("Hardware required"));
 					}
@@ -83,7 +87,7 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 			@Override
 			public Void call() throws Exception {
 				try {
-					updateRules();
+					updateRules(Discipline.KIDO);
 					if (!setTkStrikeCommunicationTypeValue(TkStrikeCommunicationTypeValue.SIMULATOR)) {
 						showInfoDialog("Updated", "Pathed for Kido: " + getUpdateMessage("Hardware disconnected"));
 					}
@@ -118,6 +122,30 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 		return true;
 	}
 
+	private void bindControls(Discipline discipline) {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				if (discipline == Discipline.WT) {
+					logger.info("Applies WT points");
+					rulesEntry.punchPointsProperty().setValue(1);
+					rulesEntry.bodyPointsProperty().setValue(2);
+					rulesEntry.headPointsProperty().setValue(3);
+					rulesEntry.bodyTechPointsProperty().setValue(2);
+					rulesEntry.headTechPointsProperty().setValue(2);
+				} else if (discipline == Discipline.KIDO) {
+					logger.info("Applies KIDO points");
+					rulesEntry.punchPointsProperty().setValue(1);
+					rulesEntry.bodyPointsProperty().setValue(2);
+					rulesEntry.headPointsProperty().setValue(3);
+					rulesEntry.bodyTechPointsProperty().setValue(4);
+					rulesEntry.headTechPointsProperty().setValue(5);
+				}
+			}
+		});
+	}
+
 	private String getUpdateMessage(String... strings) {
 		StringJoiner joiner = new StringJoiner("\n");
 		Arrays.stream(strings).forEach(joiner::add);
@@ -126,7 +154,15 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 		return joiner.toString();
 	}
 
-	private void updateRules() {
+	private void updateRules(Discipline discipline) {
+		bindControls(discipline);
+		TkExtProperties tkExtProperties = TkExtProperties.getInstance();
+		try {
+			tkExtProperties.setStyle(discipline);
+		} catch (IOException e1) {
+			logger.info(e1.toString(), e1);
+		}
+
 		TkProperties tkProperties = TkProperties.getInstance();
 		rulesEntry.setForceMaxGamJomAllowed(Boolean.TRUE);
 		rulesEntry.setMaxGamJomAllowed(tkProperties.getGamJom());

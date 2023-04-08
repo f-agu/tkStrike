@@ -94,8 +94,8 @@ public abstract class BaseCommonGlobalNetworkStatusControllerImpl
 				}
 			} else if (currentTime - node.getLastTimestampStatusOk() >= (timeAllowedNextStatus.longValue()
 					* (nodesInNetwork > 5 ? nodesInNetwork : 5L))) {
-				System.out.println((currentTime - node.getLastTimestampStatusOk()) + "  --  "
-						+ (timeAllowedNextStatus.longValue() * (nodesInNetwork > 5 ? this.nodesInNetwork : 5L)));
+//				System.out.println((currentTime - node.getLastTimestampStatusOk()) + "  --  "
+//						+ (timeAllowedNextStatus.longValue() * (nodesInNetwork > 5 ? this.nodesInNetwork : 5L)));
 				if (gnscLogger.isDebugEnabled())
 					gnscLogger.debug("**** Node " + node.getNodeId() + " timeValidation "
 							+ (currentTime - node.getLastTimestampStatusOk()) + " is >= "

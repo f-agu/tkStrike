@@ -22,8 +22,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+import com.xtremis.daedo.tkstrike.communication.GlobalNetworkStatusControllerImpl;
 import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceGen1;
 import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceImpl;
+import com.xtremis.daedo.tkstrike.communication.TkStrikeSimulatorCommunicationServiceImpl;
+import com.xtremis.daedo.tkstrike.om.AppStatusId;
 import com.xtremis.daedo.tkstrike.service.AppStatusWorker;
 import com.xtremis.daedo.tkstrike.service.MatchWorker;
 import com.xtremis.daedo.tkstrike.tools.NodeIds;
@@ -92,6 +95,12 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	@Autowired
 	private MatchConfigurationController matchConfigurationController;
 
+	@Autowired(required = false)
+	private TkStrikeSimulatorCommunicationServiceImpl tkStrikeSimulatorCommunicationServiceImpl;
+
+	@Autowired
+	private GlobalNetworkStatusControllerImpl globalNetworkStatusControllerImpl;
+
 	@PostConstruct
 	void patch() {
 		patchLogLevel();
@@ -100,7 +109,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		patchConfigurationNetworkController();
 		patchMatchConfigurationController();
 		patchConfigurationWindow();
-
+		patchCommunication();
 	}
 
 	@Override
@@ -165,6 +174,13 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		updater.accept("MATCH_WORKER");
 		updater.accept("CSV_IMPORTER");
 		updater.accept("EXTRA_COMMUNICATION");
+	}
+
+	private void patchCommunication() {
+		if (tkStrikeSimulatorCommunicationServiceImpl != null) {
+			tkStrikeSimulatorCommunicationServiceImpl.removeListener(globalNetworkStatusControllerImpl);
+			appStatusWorker.addAppStatusOk(AppStatusId.READY_FOR_MATCH);
+		}
 	}
 
 	private void patchLogo() {
