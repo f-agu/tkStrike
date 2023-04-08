@@ -24,6 +24,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceGen1;
 import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceImpl;
+import com.xtremis.daedo.tkstrike.service.AppStatusWorker;
+import com.xtremis.daedo.tkstrike.service.MatchWorker;
 import com.xtremis.daedo.tkstrike.tools.NodeIds;
 import com.xtremis.daedo.tkstrike.tools.NodeIds.Color;
 import com.xtremis.daedo.tkstrike.tools.NodeIds.Part;
@@ -82,6 +84,9 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	private TkStrikeMainControllerImpl tkStrikeMainControllerImpl;
 
 	@Autowired
+	private AppStatusWorker appStatusWorker;
+
+	@Autowired
 	private ExternalScoreboardHDController externalScoreboardHDController;
 
 	@Autowired
@@ -95,6 +100,7 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		patchConfigurationNetworkController();
 		patchMatchConfigurationController();
 		patchConfigurationWindow();
+
 	}
 
 	@Override
@@ -259,6 +265,9 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 				}
 			}
 		});
+		MatchWorker matchWorker = getFieldValue(TkStrikeMainControllerImpl.class, "matchWorker",
+				tkStrikeMainControllerImpl);
+		CombinationPointConfig.apply(tkStrikeMainControllerImpl, rootView, matchWorker, appStatusWorker);
 	}
 
 	private void openCRMConfiguration() {
@@ -284,7 +293,6 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 		} catch (Exception e) {
 			LOGGER.info(e.getMessage(), e);
 		}
-
 	}
 
 	private void patchConfigurationNetworkController() {
