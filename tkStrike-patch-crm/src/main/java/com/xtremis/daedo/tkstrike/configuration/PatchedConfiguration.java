@@ -28,6 +28,7 @@ import com.xtremis.daedo.tkstrike.communication.TkStrikeCommunicationServiceImpl
 import com.xtremis.daedo.tkstrike.communication.TkStrikeSimulatorCommunicationServiceImpl;
 import com.xtremis.daedo.tkstrike.om.AppStatusId;
 import com.xtremis.daedo.tkstrike.service.AppStatusWorker;
+import com.xtremis.daedo.tkstrike.service.BaseCommonMatchWorker;
 import com.xtremis.daedo.tkstrike.service.MatchWorker;
 import com.xtremis.daedo.tkstrike.tools.NodeIds;
 import com.xtremis.daedo.tkstrike.tools.NodeIds.Color;
@@ -49,6 +50,7 @@ import com.xtremis.daedo.tkstrike.ui.controller.externalscreen.ExternalScoreboar
 import com.xtremis.daedo.tkstrike.ui.controller.ringmanager.MatchConfigurationController;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -179,7 +181,15 @@ public class PatchedConfiguration extends TkStrikeSpringConfiguration
 	private void patchCommunication() {
 		if (tkStrikeSimulatorCommunicationServiceImpl != null) {
 			tkStrikeSimulatorCommunicationServiceImpl.removeListener(globalNetworkStatusControllerImpl);
+			appStatusWorker.addAppStatusOk(AppStatusId.NETWORK_CONFIGURED);
 			appStatusWorker.addAppStatusOk(AppStatusId.READY_FOR_MATCH);
+			appStatusWorker.addAppStatusOk(AppStatusId.MATCH_CONFIGURED);
+
+			MatchWorker matchWorker = getFieldValue(TkStrikeMainControllerImpl.class, "matchWorker",
+					tkStrikeMainControllerImpl);
+			SimpleBooleanProperty networkOkByGlobalController = getFieldValue(BaseCommonMatchWorker.class,
+					"networkOkByGlobalController", matchWorker);
+			networkOkByGlobalController.set(true);
 		}
 	}
 

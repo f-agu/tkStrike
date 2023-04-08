@@ -21,6 +21,7 @@ import com.xtremis.daedo.tkstrike.service.RulesService;
 import com.xtremis.daedo.tkstrike.tools.Discipline;
 import com.xtremis.daedo.tkstrike.tools.TkExtProperties;
 import com.xtremis.daedo.tkstrike.tools.TkProperties;
+import com.xtremis.daedo.tkstrike.tools.ei.om.MatchVictoryCriteria;
 import com.xtremis.daedo.tkstrike.tools.utils.TkStrikeExecutors;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeBaseController;
 import com.xtremis.daedo.tkstrike.ui.model.RulesEntry;
@@ -167,6 +168,7 @@ public class CRMDisciplineController extends TkStrikeBaseController {
 		rulesEntry.setForceMaxGamJomAllowed(Boolean.TRUE);
 		rulesEntry.setMaxGamJomAllowed(tkProperties.getGamJom());
 		rulesEntry.differencialScoreProperty().set(tkProperties.getDifferentialScore());
+		rulesEntry.setMatchVictoryCriteria(MatchVictoryCriteria.BESTOF3);
 		try {
 			rulesService.update(rulesEntry);
 		} catch (TransactionSystemException e) {

@@ -28,7 +28,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.WindowEvent;
 import javafx.util.converter.NumberStringConverter;
 
-
 // see com.xtremis.daedo.tkstrike.ui.controller.configuration.ConfigurationNetworkController
 @Component
 public class CRMPointController extends TkStrikeBaseController {
@@ -59,10 +58,12 @@ public class CRMPointController extends TkStrikeBaseController {
 	protected RulesEntry rulesEntry = new RulesEntry();
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {}
+	public void afterPropertiesSet() throws Exception {
+	}
 
 	public void doStartNetwork() {
 
@@ -74,12 +75,8 @@ public class CRMPointController extends TkStrikeBaseController {
 
 	@Override
 	protected Collection<Control> getFormControls() {
-		return FXCollections.observableArrayList(new Control[] {
-				txtPoint1_6,
-				txtPoint2_7,
-				txtPoint3_8,
-				txtPoint4_9,
-				txtPoint5_0});
+		return FXCollections
+				.observableArrayList(new Control[] { txtPoint1_6, txtPoint2_7, txtPoint3_8, txtPoint4_9, txtPoint5_0 });
 	}
 
 	@Override
@@ -100,10 +97,12 @@ public class CRMPointController extends TkStrikeBaseController {
 			@Override
 			public void handle(WindowEvent windowEvent) {
 				try {
+					// logger.info("Point ");
+
 					rulesService.update(rulesEntry);
-				} catch(TransactionSystemException e) {
+				} catch (TransactionSystemException e) {
 					// ignore
-				} catch(Exception e) {
+				} catch (Exception e) {
 					logger.info(e.getMessage(), e);
 					showErrorDialog(getMessage("title.default.error"), e.toString());
 				}
@@ -118,7 +117,7 @@ public class CRMPointController extends TkStrikeBaseController {
 
 			@Override
 			public void run() {
-				rulesEntry = (RulesEntry)getAppStatusWorker().getRulesEntry();
+				rulesEntry = (RulesEntry) getAppStatusWorker().getRulesEntry();
 				bindControls();
 			}
 		});
@@ -131,19 +130,25 @@ public class CRMPointController extends TkStrikeBaseController {
 
 			@Override
 			public void run() {
-				txtPoint1_6.textProperty().bindBidirectional(rulesEntry.bodyPointsProperty(), new NumberStringConverter());
-				txtPoint2_7.textProperty().bindBidirectional(rulesEntry.bodyTechPointsProperty(), new NumberStringConverter());
-				txtPoint3_8.textProperty().bindBidirectional(rulesEntry.headPointsProperty(), new NumberStringConverter());
-				txtPoint4_9.textProperty().bindBidirectional(rulesEntry.headTechPointsProperty(), new NumberStringConverter());
-				txtPoint5_0.textProperty().bindBidirectional(rulesEntry.punchPointsProperty(), new NumberStringConverter());
+				txtPoint1_6.textProperty().bindBidirectional(rulesEntry.bodyPointsProperty(),
+						new NumberStringConverter());
+				txtPoint2_7.textProperty().bindBidirectional(rulesEntry.bodyTechPointsProperty(),
+						new NumberStringConverter());
+				txtPoint3_8.textProperty().bindBidirectional(rulesEntry.headPointsProperty(),
+						new NumberStringConverter());
+				txtPoint4_9.textProperty().bindBidirectional(rulesEntry.headTechPointsProperty(),
+						new NumberStringConverter());
+				txtPoint5_0.textProperty().bindBidirectional(rulesEntry.punchPointsProperty(),
+						new NumberStringConverter());
 			}
 		});
 	}
 
 	// *************************************
 
-	private void checkIsDigitBetween1And5(LinkedHashSet<FormValidationError> res, TextField textField, String entryFieldName) {
-		if(checkIsDigitBetween1And5(textField)) {
+	private void checkIsDigitBetween1And5(LinkedHashSet<FormValidationError> res, TextField textField,
+			String entryFieldName) {
+		if (checkIsDigitBetween1And5(textField)) {
 			res = new LinkedHashSet<>();
 			res.add(new FormValidationError(rulesEntry, entryFieldName, textField, getMessage("validation.required")));
 		}
@@ -151,15 +156,11 @@ public class CRMPointController extends TkStrikeBaseController {
 
 	private boolean checkIsDigitBetween1And5(TextField textField) {
 		String s = textField.getText();
-		if(StringUtils.isBlank(textField.getText())) {
+		if (StringUtils.isBlank(textField.getText())) {
 			return false;
 		}
 		s = s.trim();
-		return "1".equals(s)
-				|| "2".equals(s)
-				|| "3".equals(s)
-				|| "4".equals(s)
-				|| "5".equals(s);
+		return "1".equals(s) || "2".equals(s) || "3".equals(s) || "4".equals(s) || "5".equals(s);
 	}
 
 }

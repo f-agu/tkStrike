@@ -5,6 +5,7 @@ import com.xtremis.daedo.tkstrike.service.AppStatusWorker;
 import com.xtremis.daedo.tkstrike.service.MatchWorker;
 import com.xtremis.daedo.tkstrike.tools.LimitedLastQueue;
 import com.xtremis.daedo.tkstrike.ui.CRMCombinationsHelper;
+import com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper;
 import com.xtremis.daedo.tkstrike.ui.controller.TkStrikeMainControllerImpl;
 import com.xtremis.daedo.tkstrike.ui.model.IRulesEntry;
 
@@ -97,6 +98,9 @@ class CombinationPointConfig {
 						return;
 					}
 					revertRunnables.removeLast().run();
+
+				} else if (TkStrikeKeyCombinationsHelper.keyCombENTER.match(event)) {
+
 				}
 			}
 		});

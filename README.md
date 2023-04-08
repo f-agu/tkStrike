@@ -47,20 +47,20 @@ See `com.xtremis.daedo.tkstrike.ui.TkStrikeKeyCombinationsHelper`
 
 ### Main (Patched :rainbow:)
 
-| shortcut        | comments |
-|-----------------|----------|
-| `1`            | Add blue 2 points for blue  |
-| `2`            | Add blue 2 points for blue  |
-| `3`            | Add blue 3 points for blue |
-| `4`            | Add blue 2 points for blue |
-| `5`            | Add blue 1 point for blue |
-| `6`            | Add blue 2 points for red |
-| `7`            | Add blue 2 points for red |
-| `8`            | Add blue 3 points for red |
-| `9`            | Add blue 2 points for red |
-| `0`            | Add blue 1 point for red |
-| `U`            | Undo last 'Add points' with `1`, `2`, ... to `0` |
-| `K`             | Open CRM configuration |
+| shortcut   | comments |
+|------------|----------|
+| `1`       | Add blue 1 points for blue (punch)  |
+| `2`       | Add blue 2 points for blue (body) |
+| `3`       | Add blue 3 points for blue (head) |
+| `4`       | Add blue 4 points for blue (body tech) |
+| `5`       | Add blue 5 point for blue (head tech) |
+| `6`       | Add blue 1 points for red (punch) |
+| `7`       | Add blue 2 points for red (body) |
+| `8`       | Add blue 3 points for red (head) |
+| `9`       | Add blue 4 points for red (body tech) |
+| `0`       | Add blue 5 point for red (head tech) |
+| `U`       | Undo last 'Add points' with `1`, `2`, ... to `0` |
+| `K`       | Open CRM configuration |
 
 
 ### Round working / pause mode
